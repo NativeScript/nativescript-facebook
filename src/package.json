@@ -1,0 +1,58 @@
+{
+  "name": "nativescript-facebook",
+  "version": "1.0.0",
+  "description": "Your awesome NativeScript plugin.",
+  "nativescript": {
+    "platforms": {
+      "android": "2.5.0",
+      "ios": "2.5.0"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "postclone": "npm i && node scripts/postclone.js",
+    "demo.ios": "npm run preparedemo && cd demo && tns run ios --emulator",
+    "demo.ios.device": "npm run preparedemo && cd demo && tns run ios",
+    "demo.android": "npm run preparedemo && cd demo && tns debug android --justlaunch",
+    "test.ios": "cd demo && tns platform remove ios && tns test ios --emulator",
+    "test.ios.device": "cd demo && tns platform remove ios && tns test ios",
+    "test.android": "cd demo && tns platform remove android",
+    "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-facebook && tns plugin add .. && tns install",
+
+    "demo.ios.angular": "npm run preparedemoangular && cd demo-angular && tns run ios --emulator",
+    "demo.ios.device.angular": "npm run preparedemoangular && cd demo-angular && tns run ios",
+    "demo.android.angular": "npm run preparedemoangular && cd demo-angular && tns debug android --justlaunch",
+    "test.ios.angular": "cd demo-angular && tns platform remove ios && tns test ios --emulator",
+    "test.ios.device.angular": "cd demo-angular && tns platform remove ios && tns test ios",
+    "test.android.angular": "cd demo-angular && tns platform remove android",
+    "preparedemoangular": "npm run build && cd demo-angular && tns plugin remove nativescript-facebook && tns plugin add .. && tns install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angeltsvetkov/nativescript-facebook.git"
+  },
+  "keywords": [
+    "NativeScript",
+    "JavaScript",
+    "Android",
+    "iOS"
+  ],
+  "author": {
+    "name": "Your Name",
+    "email": "youremail@yourdomain.com"
+  },
+  "bugs": {
+    "url": "https://github.com/angeltsvetkov/nativescript-facebook/issues"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/angeltsvetkov/nativescript-facebook",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "@angular/compiler": "2.4.3",
+    "@angular/compiler-cli": "2.4.3",
+    "nativescript-angular": "1.3.0",
+    "tns-core-modules": "2.4.0",
+    "tns-platform-declarations": "^2.5.0",
+    "typescript": "~2.1.0"
+  }
+}
