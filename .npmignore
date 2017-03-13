@@ -1,0 +1,7 @@
+demo/
+screenshots/
+scripts/
+*.log
+*.map
+*.ts
+!*.d.ts
