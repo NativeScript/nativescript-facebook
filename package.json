@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Your awesome NativeScript plugin.",
   "main": "facebook",
-  "typings": "index.d.ts",
   "nativescript": {
     "platforms": {
       "android": "2.5.0",
@@ -14,10 +13,10 @@
     "build": "tsc",
     "demo.ios": "npm run preparedemo && cd demo && tns run ios --emulator",
     "demo.ios.device": "npm run preparedemo && cd demo && tns run ios",
-    "demo.android": "npm run preparedemo && cd demo && tns run android --justlaunch",
+    "demo.android": "npm run preparedemo && cd demo && tns debug android --justlaunch",
     "test.ios": "cd demo && tns platform remove ios && tns test ios --emulator",
     "test.ios.device": "cd demo && tns platform remove ios && tns test ios",
-    "test.android": "cd demo && tns platform remove android && tns test android --justlaunch",
+    "test.android": "cd demo && tns platform remove android",
     "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-facebook && tns plugin add .. && tns install",
     "setup": "npm i && cd demo && npm i && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
     "postclone": "npm i && node scripts/postclone.js"

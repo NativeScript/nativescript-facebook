@@ -1,14 +1,60 @@
-import {Observable} from 'data/observable';
-import {Facebook} from 'nativescript-facebook';
+import { Observable } from 'data/observable';
+import { Facebook } from 'nativescript-facebook';
+
+// Facebook Authentication CODE
+import * as application from "application";
+
+declare class UIResponder { };
+declare var UIApplicationDelegate: any;
+declare var FBSDKApplicationDelegate: any;
+declare var FBSDKAppEvents: any;
+declare class UIApplication { };
+declare interface UIApplicationDelegate { };
+declare class NSDictionary { };
 
 export class HelloWorldModel extends Observable {
   public message: string;
   private facebook: Facebook;
+  private fbPermissions = ["publish_actions, public_profile, email"];
 
   constructor() {
     super();
 
-    this.facebook = new Facebook();
-    this.message = this.facebook.message;
+    if (application.ios && !application.ios.delegate) {
+      class MyDelegate extends UIResponder implements UIApplicationDelegate {
+        public static ObjCProtocols = [UIApplicationDelegate];
+
+        applicationDidFinishLaunchingWithOptions(application: UIApplication, launchOptions: NSDictionary): boolean {
+          return FBSDKApplicationDelegate.sharedInstance().applicationDidFinishLaunchingWithOptions(application, launchOptions);
+        }
+
+        applicationOpenURLSourceApplicationAnnotation(application, url, sourceApplication, annotation) {
+          return FBSDKApplicationDelegate.sharedInstance().applicationOpenURLSourceApplicationAnnotation(application, url, sourceApplication, annotation);
+        }
+
+        applicationDidBecomeActive(application: UIApplication): void {
+          FBSDKAppEvents.activateApp();
+        }
+
+        applicationWillTerminate(application: UIApplication): void {
+          //Do something you want here
+        }
+
+        applicationDidEnterBackground(application: UIApplication): void {
+          //Do something you want here
+        }
+      }
+
+      application.ios.delegate = MyDelegate;
+    }
+
+    this.facebook.registerCallback(function(err, token) {
+      
+    });
+    this.facebook.login(this.fbPermissions, function(err, token){
+      alert('ERROR: ' + err);
+      alert('TOKEN: ' + err);
+    });
+
   }
 }

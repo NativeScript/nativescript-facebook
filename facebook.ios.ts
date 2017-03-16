@@ -1,34 +1,36 @@
 //NativeScript modules
 import * as applicationModule from "application";
+declare var FBSDKLoginManager: any;
+declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any};
 
-var _isInit: boolean = false;
+export class Facebook {
+  _isInit: boolean = false;
 
-var mCallbackManager;
-var loginManager;
+  mCallbackManager;
+  loginManager;
 
-
-export function init(loginBehavior? : any): boolean {
+  init(loginBehavior?: any): boolean {
     //fb initialization
-  loginManager = FBSDKLoginManager.alloc().init();
+    this.loginManager = FBSDKLoginManager.alloc().init();
 
-  if (loginManager) {
-    //This solve the case when user changes accounts error code 304
-    loginManager.logOut();
-    //Set the loginBehavior if there is one
-    if (loginBehavior) {
-      loginManager.loginBehavior = loginBehavior;
+    if (this.loginManager) {
+      //This solve the case when user changes accounts error code 304
+      this.loginManager.logOut();
+      //Set the loginBehavior if there is one
+      if (loginBehavior) {
+        this.loginManager.loginBehavior = loginBehavior;
+      }
+      this._isInit = true;
+      return true;
     }
-    _isInit = true;
-    return true;
-   }
-   else {
-   return false;
-   }
+    else {
+      return false;
+    }
   }
 
-export function registerCallback(successCallback: any, cancelCallback: any, failCallback: any) {
-    if (_isInit) {
-      mCallbackManager= function(result: FBSDKLoginManagerLoginResult, error: NSError) {
+  registerCallback(successCallback: any, cancelCallback: any, failCallback: any) {
+    if (this._isInit) {
+      this.mCallbackManager = function (result: FBSDKLoginManagerLoginResult, error: NSError) {
 
         if (error) {
           failCallback(error);
@@ -55,13 +57,17 @@ export function registerCallback(successCallback: any, cancelCallback: any, fail
       }
     }
   }
-export function logInWithPublishPermissions(permissions: string[]) {
-    if (_isInit) {
-      loginManager.logInWithPublishPermissionsHandler(permissions, mCallbackManager);
+
+  logInWithPublishPermissions(permissions: string[]) {
+    if (this._isInit) {
+      this.loginManager.logInWithPublishPermissionsHandler(permissions, this.mCallbackManager);
     }
   }
-export function logInWithReadPermissions(permissions: string[]) {
-    if (_isInit) {
-    loginManager.logInWithReadPermissionsHandler(permissions, mCallbackManager);
+
+  logInWithReadPermissions(permissions: string[]) {
+    if (this._isInit) {
+      this.loginManager.logInWithReadPermissionsHandler(permissions, this.mCallbackManager);
     }
+  }
 }
+

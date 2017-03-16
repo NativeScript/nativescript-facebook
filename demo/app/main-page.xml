@@ -1,5 +1,7 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" class="page">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+      xmlns:Facebook="nativescript-facebook"
+  loaded="pageLoaded" class="page">
   <StackLayout class="p-20">
-    <Label text="{{ message }}" class="t-20 text-center c-black" textWrap="true"/>
+    <Facebook:LoginButton text="Test1 Button" fbid="159198307916686" permissions=""></Facebook:LoginButton>
   </StackLayout>
-</Page>
+</Page> 
