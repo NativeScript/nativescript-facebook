@@ -2,6 +2,6 @@
       xmlns:Facebook="nativescript-facebook"
   loaded="pageLoaded" class="page">
   <StackLayout class="p-20">
-    <Facebook:LoginButton text="Test1 Button" fbid="159198307916686" permissions=""></Facebook:LoginButton>
+    <Facebook:LoginButton text="Test1 Button" fbId="159198307916686" permissions="{{ fbPermissions }}" onLogin="{{ onLogin }}"></Facebook:LoginButton>
   </StackLayout>
 </Page> 

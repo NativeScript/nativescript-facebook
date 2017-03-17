@@ -1,6 +1,5 @@
 import { Observable } from 'data/observable';
-import { Facebook } from 'nativescript-facebook';
-
+var Facebook = require('nativescript-facebook');
 // Facebook Authentication CODE
 import * as application from "application";
 
@@ -14,12 +13,13 @@ declare class NSDictionary { };
 
 export class HelloWorldModel extends Observable {
   public message: string;
-  private facebook: Facebook;
-  private fbPermissions = ["publish_actions, public_profile, email"];
+  private fbPermissions = ["publish_actions", "public_profile", "email"];
 
+  onLogin() {
+    console.log("YES");
+  }
   constructor() {
     super();
-
     if (application.ios && !application.ios.delegate) {
       class MyDelegate extends UIResponder implements UIApplicationDelegate {
         public static ObjCProtocols = [UIApplicationDelegate];
@@ -47,14 +47,5 @@ export class HelloWorldModel extends Observable {
 
       application.ios.delegate = MyDelegate;
     }
-
-    this.facebook.registerCallback(function(err, token) {
-      
-    });
-    this.facebook.login(this.fbPermissions, function(err, token){
-      alert('ERROR: ' + err);
-      alert('TOKEN: ' + err);
-    });
-
   }
 }
