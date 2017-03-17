@@ -31,7 +31,7 @@ export class Facebook {
     }
   }
 
-  private registerLoginCallback(callback: Function) {
+  private _registerLoginCallback(callback: Function) {
 
     let act = this._AndroidApplication.foregroundActivity || this._AndroidApplication.startActivity;
     this._act = act;
@@ -75,18 +75,18 @@ export class Facebook {
     this._AndroidApplication.on(applicationModule.AndroidApplication.activityResultEvent, onActivityResult);
   }
 
-  private logInWithPublishPermissions(permissions: string[], callback: Function) {
+  public requestPublishPermissions(permissions: string[], callback: Function) {
 
-    this.registerLoginCallback(callback);
+    this._registerLoginCallback(callback);
 
     let javaPermissionsList = java.util.Arrays.asList(permissions);
     //Start the login process
     this.loginManager.logInWithPublishPermissions(this._act, javaPermissionsList);
   }
 
-  private logInWithReadPermissions(permissions: string[], callback: Function) {
+  public requestReadPermissions(permissions: string[], callback: Function) {
 
-    this.registerLoginCallback(callback);
+    this._registerLoginCallback(callback);
 
     let javaPermissionsList = java.util.Arrays.asList(permissions);
 
@@ -94,8 +94,8 @@ export class Facebook {
     this.loginManager.logInWithReadPermissions(this._act, javaPermissionsList);
   }
 
-  public login(permissions: string[], callback: Function, withPublishPermissions: boolean = true) {
-    withPublishPermissions ? this.logInWithPublishPermissions(permissions, callback) : this.logInWithReadPermissions(permissions, callback);
+  public login(callback: Function) {
+    this.requestReadPermissions(["public_profile", "email"], callback);
   }
 }
 
@@ -116,7 +116,6 @@ let AffectsLayout = isAndroid ? PropertyMetadataSettings.None : PropertyMetadata
 export class LoginButton extends StackLayout {
   public static textProperty = new Property("text", "LoginButton", new PropertyMetadata(undefined, AffectsLayout));
   public static onLoginProperty = new Property("onLogin", "LoginButton", new PropertyMetadata(undefined, AffectsLayout));
-  public static permissionsProperty = new Property("permissions", "LoginButton", new PropertyMetadata(undefined, AffectsLayout));
   public static fbIdProperty = new Property("fbId", "LoginButton", new PropertyMetadata(undefined, AffectsLayout));
 
   private loginButtonElement: button.Button;
@@ -127,14 +126,6 @@ export class LoginButton extends StackLayout {
 
   set onLogin(value: Function) {
     this._setValue(LoginButton.onLoginProperty, value);
-  }
-
-  get permissions() {
-    return this._getValue(LoginButton.permissionsProperty);
-  }
-
-  set permissions(value: string[]) {
-    this._setValue(LoginButton.permissionsProperty, value);
   }
 
   get text() {
@@ -167,7 +158,7 @@ export class LoginButton extends StackLayout {
     nsFacebook.setFacebookAppId(this.fbId.toString());
 
     this.loginButtonElement.on(button.Button.tapEvent, (args: observable.EventData) => {
-      nsFacebook.login(this.permissions, this.onLogin);
+      nsFacebook.login(this.onLogin);
     });
 
     this.addChild(this.loginButtonElement);

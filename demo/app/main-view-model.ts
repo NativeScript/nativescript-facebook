@@ -17,6 +17,9 @@ export class HelloWorldModel extends Observable {
 
   onLogin() {
     console.log("YES");
+    Facebook.nsFacebook.requestReadPermissions(["user_friends"], () => {
+      console.log("YES2");
+    });
   }
   constructor() {
     super();
