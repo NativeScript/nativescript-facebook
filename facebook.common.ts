@@ -64,3 +64,12 @@ export abstract class LoginButtonBase extends StackLayout {
 
   abstract onLoginClick(callback);
 }
+
+export class LoginResponse {
+  userId: string;
+  token: string;
+  constructor(userId: string, token: string){
+    this.userId = userId;
+    this.token = token;
+  }
+}

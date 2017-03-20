@@ -1,6 +1,6 @@
 //NativeScript modules
 import * as applicationModule from "application";
-import { LoginButtonBase } from './facebook.common';
+import { LoginButtonBase, LoginResponse } from './facebook.common';
 declare let com: any;
 
 export class Facebook {
@@ -41,7 +41,9 @@ export class Facebook {
 
       onSuccess: function (result) {
         let token = result.getAccessToken().getToken();
-        callback(null, token);
+        let userId = result.getAccessToken().getUserId();
+        let loginResponse = new LoginResponse(userId, token);
+        callback(null, loginResponse);
       },
       onCancel: function () {
         callback('canceled');

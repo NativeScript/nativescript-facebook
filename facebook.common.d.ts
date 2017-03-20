@@ -14,3 +14,8 @@ export declare abstract class LoginButtonBase extends StackLayout {
     abstract setFacebookAppId(appId: any): any;
     abstract onLoginClick(callback: any): any;
 }
+export declare class LoginResponse {
+    userId: string;
+    token: string;
+    constructor(userId: string, token: string);
+}
