@@ -1,5 +1,6 @@
 //NativeScript modules
 import * as applicationModule from "application";
+import { LoginButtonBase } from './facebook.common';
 declare let com: any;
 
 export class Facebook {
@@ -101,66 +102,11 @@ export class Facebook {
 
 export let nsFacebook = new Facebook();
 
-import button = require("ui/button");
-import builder = require("ui/builder");
-import * as x from "./ui/login-button"
-
-import observable = require("data/observable");
-import { StackLayout } from "ui/layouts/stack-layout";
-import { Property, PropertyChangeData, PropertyMetadataSettings } from "ui/core/dependency-observable";
-import { PropertyMetadata } from "ui/core/proxy";
-import { isAndroid } from "platform";
-
-let AffectsLayout = isAndroid ? PropertyMetadataSettings.None : PropertyMetadataSettings.AffectsLayout;
-
-export class LoginButton extends StackLayout {
-  public static textProperty = new Property("text", "LoginButton", new PropertyMetadata(undefined, AffectsLayout));
-  public static onLoginProperty = new Property("onLogin", "LoginButton", new PropertyMetadata(undefined, AffectsLayout));
-  public static fbIdProperty = new Property("fbId", "LoginButton", new PropertyMetadata(undefined, AffectsLayout));
-
-  private loginButtonElement: button.Button;
-
-  get onLogin() {
-    return this._getValue(LoginButton.onLoginProperty);
+export class LoginButton extends LoginButtonBase {
+  setFacebookAppId(appId: any) {
+    nsFacebook.setFacebookAppId(appId);
   }
-
-  set onLogin(value: Function) {
-    this._setValue(LoginButton.onLoginProperty, value);
-  }
-
-  get text() {
-    return this._getValue(LoginButton.textProperty) || "Continue with Facebook";
-  }
-
-  set text(value: string) {
-    this._setValue(LoginButton.textProperty, value);
-  }
-
-  get fbId() {
-    return this._getValue(LoginButton.fbIdProperty);
-  }
-
-  set fbId(value: string) {
-    this._setValue(LoginButton.fbIdProperty, value);
-  }
-
-  constructor() {
-    super();
-
-    this.loginButtonElement = new button.Button();
-  }
-
-  onLoaded() {
-    super.onLoaded();
-
-    this.loginButtonElement.text = this.text;
-
-    nsFacebook.setFacebookAppId(this.fbId.toString());
-
-    this.loginButtonElement.on(button.Button.tapEvent, (args: observable.EventData) => {
-      nsFacebook.login(this.onLogin);
-    });
-
-    this.addChild(this.loginButtonElement);
+  onLoginClick(callback: any) {
+    nsFacebook.login(callback);
   }
 }

@@ -1,4 +1,5 @@
 import * as applicationModule from "application";
+import { LoginButtonBase } from './facebook.common';
 export declare class Facebook {
     _AndroidApplication: applicationModule.AndroidApplication;
     _act: android.app.Activity;
@@ -11,16 +12,7 @@ export declare class Facebook {
     login(callback: Function): void;
 }
 export declare let nsFacebook: Facebook;
-import { StackLayout } from "ui/layouts/stack-layout";
-import { Property } from "ui/core/dependency-observable";
-export declare class LoginButton extends StackLayout {
-    static textProperty: Property;
-    static onLoginProperty: Property;
-    static fbIdProperty: Property;
-    private loginButtonElement;
-    onLogin: Function;
-    text: string;
-    fbId: string;
-    constructor();
-    onLoaded(): void;
+export declare class LoginButton extends LoginButtonBase {
+    setFacebookAppId(appId: any): void;
+    onLoginClick(callback: any): void;
 }
