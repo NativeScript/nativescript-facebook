@@ -1,18 +1,12 @@
-import button = require("ui/button");
-import { StackLayout } from "ui/layouts/stack-layout";
+import { View } from "ui/core/view";
 import { Property } from "ui/core/dependency-observable";
-export declare abstract class LoginButtonBase extends StackLayout {
-    protected loginButtonElement: button.Button;
-    static textProperty: Property;
+export declare abstract class LoginButton extends View {
     static onLoginProperty: Property;
     static fbIdProperty: Property;
     onLogin: Function;
-    text: string;
     fbId: string;
-    constructor();
-    onLoaded(): void;
-    abstract setFacebookAppId(appId: any): any;
-    abstract onLoginClick(callback: any): any;
+    abstract onOnLoginChanged(callback: any): any;
+    abstract onFbIdChanged(appId: any): any;
 }
 export declare class LoginResponse {
     userId: string;

@@ -1,6 +1,6 @@
 //NativeScript modules
 import * as applicationModule from "application";
-import { LoginButtonBase, LoginResponse } from './facebook.common';
+import { LoginButton as LoginButtonBase, LoginResponse } from './facebook.common';
 declare let FBSDKLoginManager: any;
 declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; };
 
@@ -44,14 +44,14 @@ export class Facebook {
       }
 
       if (result.token) {
-        callback(null,result);
+        callback(null, result);
       }
       else {
         callback("Could not acquire an access token");
         return;
       }
     }
-}
+  }
 
   public requestPublishPermissions(permissions: string[], callback: Function) {
 
@@ -75,10 +75,10 @@ export class Facebook {
 export let nsFacebook = new Facebook();
 
 export class LoginButton extends LoginButtonBase {
-  setFacebookAppId(appId: any) {
-    nsFacebook.setFacebookAppId(appId);
-  }
-  onLoginClick(callback: any) {
+  onOnLoginChanged(callback: any) {
     nsFacebook.login(callback);
+  }
+  onFbIdChanged(appId: any) {
+    nsFacebook.setFacebookAppId(appId);
   }
 }
