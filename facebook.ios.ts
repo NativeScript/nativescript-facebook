@@ -57,14 +57,14 @@ export class Facebook {
 
     this._registerLoginCallback(callback);
 
-    this.loginManager.logInWithPublishPermissions(permissions, this.mCallbackManager);
+    this.loginManager.logInWithPublishPermissionsHandler(permissions, this.mCallbackManager);
   }
 
   public requestReadPermissions(permissions: string[], callback: Function) {
 
     this._registerLoginCallback(callback);
 
-    this.loginManager.logInWithReadPermissions(permissions, this.mCallbackManager);
+    this.loginManager.logInWithReadPermissionsHandler(permissions, this.mCallbackManager);
   }
 
   public login(callback: Function) {
