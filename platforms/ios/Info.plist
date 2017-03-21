@@ -3,19 +3,10 @@
 <plist version="1.0">
 	<dict>
 		<!--Describe the permissions, features or other configurations required by your plugin for iOS.-->
-		<key>CFBundleURLTypes</key>
-		<array>
-			<dict>
-				<key>CFBundleURLSchemes</key>
-				<array>
-					<string>fb159198307916686</string>
-				</array>
-			</dict>
-		</array>
+
 		<key>CFBundleVersion</key>
 		<string>1.0</string>
-		<key>FacebookAppID</key>
-		<string>159198307916686</string>
+
 		<key>FacebookDisplayName</key>
 		<string>FacebookLoginDemo</string>
 		<key>LSApplicationQueriesSchemes</key>
