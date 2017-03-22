@@ -1,4 +1,4 @@
-import { LoginButtonBase } from './facebook.common';
+import { LoginButton as LoginButtonBase } from './facebook.common';
 export declare class Facebook {
     mCallbackManager: any;
     loginManager: any;
@@ -10,6 +10,6 @@ export declare class Facebook {
 }
 export declare let nsFacebook: Facebook;
 export declare class LoginButton extends LoginButtonBase {
-    setFacebookAppId(appId: any): void;
-    onLoginClick(callback: any): void;
+    onOnLoginChanged(callback: any): void;
+    onFbIdChanged(appId: any): void;
 }

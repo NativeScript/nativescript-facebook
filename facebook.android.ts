@@ -1,6 +1,6 @@
 //NativeScript modules
 import * as applicationModule from "application";
-import { LoginButtonBase, LoginResponse } from './facebook.common';
+import { LoginButton as LoginButtonBase, LoginResponse } from './facebook.common';
 declare let com: any;
 
 export class Facebook {
@@ -10,9 +10,7 @@ export class Facebook {
   mCallbackManager;
   loginManager;
 
-  public setFacebookAppId(fbAppId: string) {
-    com.facebook.FacebookSdk.setApplicationId(fbAppId);
-
+  constructor() {
     try {
       //fb initialization
       com.facebook.FacebookSdk.sdkInitialize(this._AndroidApplication.context.getApplicationContext());
@@ -32,7 +30,11 @@ export class Facebook {
     }
   }
 
-  private _registerLoginCallback(callback: Function) {
+  public setFacebookAppId(fbAppId: string) {
+    com.facebook.FacebookSdk.setApplicationId(fbAppId);
+  }
+
+  public registerLoginCallback(callback: Function) {
 
     let act = this._AndroidApplication.foregroundActivity || this._AndroidApplication.startActivity;
     this._act = act;
@@ -80,7 +82,7 @@ export class Facebook {
 
   public requestPublishPermissions(permissions: string[], callback: Function) {
 
-    this._registerLoginCallback(callback);
+    this.registerLoginCallback(callback);
 
     let javaPermissionsList = java.util.Arrays.asList(permissions);
     //Start the login process
@@ -89,7 +91,7 @@ export class Facebook {
 
   public requestReadPermissions(permissions: string[], callback: Function) {
 
-    this._registerLoginCallback(callback);
+    this.registerLoginCallback(callback);
 
     let javaPermissionsList = java.util.Arrays.asList(permissions);
 
@@ -105,10 +107,22 @@ export class Facebook {
 export let nsFacebook = new Facebook();
 
 export class LoginButton extends LoginButtonBase {
-  setFacebookAppId(appId: any) {
-    nsFacebook.setFacebookAppId(appId);
+  protected _android: any;
+
+  public get android() {
+    return this._android;
   }
-  onLoginClick(callback: any) {
-    nsFacebook.login(callback);
+
+  public _createUI() {
+
+    this._android = new com.facebook.login.widget.LoginButton(this._context);
+  }
+
+  onOnLoginChanged(callback: any) {
+    nsFacebook.registerLoginCallback(this.onLogin);
+  }
+
+  onFbIdChanged(appId: any) {
+    nsFacebook.setFacebookAppId(this.fbId.toString());
   }
 }
