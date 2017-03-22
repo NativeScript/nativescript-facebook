@@ -10,11 +10,7 @@ export class Facebook {
   mCallbackManager;
   loginManager;
 
-  public setFacebookAppId(fbAppId: string) {
-    // com.facebook.FacebookSdk.setApplicationId(fbAppId);
-
-    FBSDKSettings.setAppID("159198307916686");
-
+  constructor() {
     this.loginManager = FBSDKLoginManager.alloc().init();
     this.loginManager.loginBehavior = 2;
 
@@ -24,6 +20,10 @@ export class Facebook {
     if (!this.mCallbackManager || !this.loginManager) {
       // throw exception
     }
+  }
+
+  public setFacebookAppId(fbAppId: string) {
+    FBSDKSettings.setAppID(fbAppId);
   }
 
   public registerLoginCallback(callback: Function) {
@@ -37,7 +37,7 @@ export class Facebook {
 
       //something went really wrong no error and no result
       if (!result) {
-        callback("Null error");
+        callback("Fatal error");
         return;
       }
 
