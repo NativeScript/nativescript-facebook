@@ -15,7 +15,6 @@ export declare class Facebook {
 export declare let nsFacebook: Facebook;
 export declare class LoginButton extends LoginButtonBase {
     protected _android: any;
-    static loginEvent: string;
     readonly android: any;
     _createUI(): void;
     onOnLoginChanged(callback: any): void;

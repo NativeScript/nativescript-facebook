@@ -23,7 +23,7 @@ export class Facebook {
     }
   }
 
-  private _registerLoginCallback(callback: Function) {
+  public registerLoginCallback(callback: Function) {
 
     this.mCallbackManager = function (result: FBSDKLoginManagerLoginResult, error: NSError) {
 
@@ -55,14 +55,14 @@ export class Facebook {
 
   public requestPublishPermissions(permissions: string[], callback: Function) {
 
-    this._registerLoginCallback(callback);
+    this.registerLoginCallback(callback);
 
     this.loginManager.logInWithPublishPermissionsHandler(permissions, this.mCallbackManager);
   }
 
   public requestReadPermissions(permissions: string[], callback: Function) {
 
-    this._registerLoginCallback(callback);
+    this.registerLoginCallback(callback);
 
     this.loginManager.logInWithReadPermissionsHandler(permissions, this.mCallbackManager);
   }
@@ -74,11 +74,24 @@ export class Facebook {
 
 export let nsFacebook = new Facebook();
 
+declare let FBSDKLoginButton: any;
 export class LoginButton extends LoginButtonBase {
-  onOnLoginChanged(callback: any) {
-    nsFacebook.login(callback);
+  protected _ios: any;
+
+  public get ios() {
+    return this._ios;
   }
+
+  constructor() {
+    super()
+    this._ios = new FBSDKLoginButton();
+  }
+
+  onOnLoginChanged(callback: any) {
+    nsFacebook.registerLoginCallback(this.onLogin);
+  }
+
   onFbIdChanged(appId: any) {
-    nsFacebook.setFacebookAppId(appId);
+    nsFacebook.setFacebookAppId(this.fbId.toString());
   }
 }
