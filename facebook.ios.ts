@@ -13,7 +13,7 @@ export class Facebook {
   public setFacebookAppId(fbAppId: string) {
     // com.facebook.FacebookSdk.setApplicationId(fbAppId);
 
-    [FBSDKSettings setAppID:fbAppId];
+    FBSDKSettings.setAppID("159198307916686");
 
     this.loginManager = FBSDKLoginManager.alloc().init();
     this.loginManager.loginBehavior = 2;
