@@ -1,9 +1,17 @@
 //NativeScript modules
 import * as applicationModule from "application";
 import { LoginButton as LoginButtonBase, LoginResponse } from './facebook.common';
+
 declare let FBSDKLoginManager: any;
 declare let FBSDKSettings: any;
 declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; };
+declare class UIResponder { };
+declare var UIApplicationDelegate: any;
+declare var FBSDKApplicationDelegate: any;
+declare var FBSDKAppEvents: any;
+declare class UIApplication { };
+declare interface UIApplicationDelegate { };
+declare class NSDictionary { };
 
 export class Facebook {
 
@@ -98,3 +106,29 @@ export class LoginButton extends LoginButtonBase {
     nsFacebook.setFacebookAppId(this.fbId.toString());
   }
 }
+
+class BaseDelegate extends UIResponder implements UIApplicationDelegate {
+  public static ObjCProtocols = [UIApplicationDelegate];
+
+  applicationDidFinishLaunchingWithOptions(application: UIApplication, launchOptions: NSDictionary): boolean {
+    return FBSDKApplicationDelegate.sharedInstance().applicationDidFinishLaunchingWithOptions(application, launchOptions);
+  }
+
+  applicationOpenURLSourceApplicationAnnotation(application, url, sourceApplication, annotation) {
+    return FBSDKApplicationDelegate.sharedInstance().applicationOpenURLSourceApplicationAnnotation(application, url, sourceApplication, annotation);
+  }
+
+  applicationDidBecomeActive(application: UIApplication): void {
+    FBSDKAppEvents.activateApp();
+  }
+
+  applicationWillTerminate(application: UIApplication): void {
+    //Do something you want here
+  }
+
+  applicationDidEnterBackground(application: UIApplication): void {
+    //Do something you want here
+  }
+}
+
+applicationModule.ios.delegate = BaseDelegate;
