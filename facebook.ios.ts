@@ -107,6 +107,7 @@ export class LoginButton extends LoginButtonBase {
   }
 }
 
+//TODO: Extend existing delegate if exists
 class BaseDelegate extends UIResponder implements UIApplicationDelegate {
   public static ObjCProtocols = [UIApplicationDelegate];
 
@@ -120,14 +121,6 @@ class BaseDelegate extends UIResponder implements UIApplicationDelegate {
 
   applicationDidBecomeActive(application: UIApplication): void {
     FBSDKAppEvents.activateApp();
-  }
-
-  applicationWillTerminate(application: UIApplication): void {
-    //Do something you want here
-  }
-
-  applicationDidEnterBackground(application: UIApplication): void {
-    //Do something you want here
   }
 }
 
