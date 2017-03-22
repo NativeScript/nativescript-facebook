@@ -2,6 +2,7 @@
 import * as applicationModule from "application";
 import { LoginButton as LoginButtonBase, LoginResponse } from './facebook.common';
 declare let FBSDKLoginManager: any;
+declare let FBSDKSettings: any;
 declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; };
 
 export class Facebook {
@@ -11,6 +12,8 @@ export class Facebook {
 
   public setFacebookAppId(fbAppId: string) {
     // com.facebook.FacebookSdk.setApplicationId(fbAppId);
+
+    [FBSDKSettings setAppID:fbAppId];
 
     this.loginManager = FBSDKLoginManager.alloc().init();
     this.loginManager.loginBehavior = 2;
