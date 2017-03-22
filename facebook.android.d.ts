@@ -5,7 +5,7 @@ export declare class Facebook {
     _act: android.app.Activity;
     mCallbackManager: any;
     loginManager: any;
-    constructor();
+    init(): void;
     setFacebookAppId(fbAppId: string): void;
     registerLoginCallback(callback: Function): void;
     requestPublishPermissions(permissions: string[], callback: Function): void;

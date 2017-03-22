@@ -10,7 +10,7 @@ export class Facebook {
   mCallbackManager;
   loginManager;
 
-  constructor() {
+  public init() {
     try {
       //fb initialization
       com.facebook.FacebookSdk.sdkInitialize(this._AndroidApplication.context.getApplicationContext());
@@ -114,7 +114,7 @@ export class LoginButton extends LoginButtonBase {
   }
 
   public _createUI() {
-
+    nsFacebook.init();
     this._android = new com.facebook.login.widget.LoginButton(this._context);
   }
 
