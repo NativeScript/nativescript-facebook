@@ -24,13 +24,8 @@
     },
     "exclude": [
         "demo",
+        "demo-angular",
         "node_modules"
     ],
-    "compileOnSave": false,
-    "angularCompilerOptions": {
-        "genDir": ".",
-        "skipMetadataEmit": false,
-        "skipTemplateCodegen": true,
-        "debug": true
-    }
+    "compileOnSave": false
 }

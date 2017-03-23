@@ -10,4 +10,4 @@ var LoginButton = require("../");
 })
 export class NativescriptFacebookModule { }
 
-registerElement("FacebookLoginButton", () => LoginButton);
+registerElement("FacebookLoginButton", () => LoginButton.LoginButton);

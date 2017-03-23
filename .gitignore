@@ -10,4 +10,8 @@ demo/*.d.ts
 demo/lib
 demo/platforms
 demo/node_modules
+demo-angular/app/*.js
+demo-angular/*.d.ts
+demo-angular/platforms
+demo-angular/node_modules
 node_modules
