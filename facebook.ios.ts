@@ -11,6 +11,8 @@ declare var FBSDKApplicationDelegate: any;
 declare var FBSDKAppEvents: any;
 declare class UIApplication { };
 declare interface UIApplicationDelegate { };
+export class FBSDKLoginButtonDelegate { };
+declare let FBSDKLoginButton: any;
 declare class NSDictionary { };
 
 export class Facebook {
@@ -85,8 +87,9 @@ export class Facebook {
 
 export let nsFacebook = new Facebook();
 
-declare let FBSDKLoginButton: any;
-export class LoginButton extends LoginButtonBase {
+export class LoginButton extends LoginButtonBase implements FBSDKLoginButtonDelegate {
+  public static ObjCProtocols = [FBSDKLoginButtonDelegate];
+
   protected _ios: any;
 
   public get ios() {
@@ -95,7 +98,13 @@ export class LoginButton extends LoginButtonBase {
 
   constructor() {
     super()
-    this._ios = new FBSDKLoginButton();
+    let fbLoginButton = new FBSDKLoginButton();
+    fbLoginButton.delegate = this;
+    this._ios = fbLoginButton;
+  }
+
+  loginButtonDidCompleteWithResult(result: any, error: NSError) {
+    console.log('loginButtonDidCompleteWithResult');
   }
 
   onOnLoginChanged(callback: any) {
