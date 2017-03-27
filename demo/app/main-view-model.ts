@@ -13,4 +13,10 @@ export class HelloWorldModel extends Observable {
     console.log("GELEEEEEEE");
     this.set("labelContent", data);
   }
+
+  public testAction(){
+    Facebook.nsFacebook.login(()=>{
+      alert("TEST");
+    });
+  }
 }

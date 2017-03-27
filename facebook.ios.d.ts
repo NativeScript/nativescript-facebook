@@ -1,6 +1,4 @@
 import { LoginButton as LoginButtonBase } from './facebook.common';
-export declare class FBSDKLoginButtonDelegate {
-}
 export declare class Facebook {
     mCallbackManager: any;
     loginManager: any;
@@ -12,12 +10,13 @@ export declare class Facebook {
     login(callback: Function): void;
 }
 export declare let nsFacebook: Facebook;
-export declare class LoginButton extends LoginButtonBase implements FBSDKLoginButtonDelegate {
-    static ObjCProtocols: typeof FBSDKLoginButtonDelegate[];
+export declare class LoginButton extends LoginButtonBase {
     protected _ios: any;
     readonly ios: any;
     constructor();
-    loginButtonDidCompleteWithResult(result: any, error: NSError): void;
+    private _localDelegate;
+    onLoaded(): void;
+    onUnloaded(): void;
     onOnLoginChanged(callback: any): void;
     onFbIdChanged(appId: any): void;
 }

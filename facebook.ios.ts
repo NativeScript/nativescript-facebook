@@ -1,4 +1,3 @@
-//NativeScript modules
 import * as applicationModule from "application";
 import { LoginButton as LoginButtonBase, LoginResponse } from './facebook.common';
 
@@ -11,7 +10,7 @@ declare var FBSDKApplicationDelegate: any;
 declare var FBSDKAppEvents: any;
 declare class UIApplication { };
 declare interface UIApplicationDelegate { };
-export class FBSDKLoginButtonDelegate { };
+declare class FBSDKLoginButtonDelegate { };
 declare let FBSDKLoginButton: any;
 declare class NSDictionary { };
 
@@ -87,8 +86,7 @@ export class Facebook {
 
 export let nsFacebook = new Facebook();
 
-export class LoginButton extends LoginButtonBase implements FBSDKLoginButtonDelegate {
-  public static ObjCProtocols = [FBSDKLoginButtonDelegate];
+export class LoginButton extends LoginButtonBase {
 
   protected _ios: any;
 
@@ -98,13 +96,18 @@ export class LoginButton extends LoginButtonBase implements FBSDKLoginButtonDele
 
   constructor() {
     super()
-    let fbLoginButton = new FBSDKLoginButton();
-    fbLoginButton.delegate = this;
-    this._ios = fbLoginButton;
+    this._ios = new FBSDKLoginButton();
+    this._localDelegate = LoginButtonDelegate.new();
+  }
+  private _localDelegate;
+  public onLoaded() {
+    super.onLoaded();
+    this._ios.delegate = this._localDelegate;
   }
 
-  loginButtonDidCompleteWithResult(result: any, error: NSError) {
-    console.log('loginButtonDidCompleteWithResult');
+  public onUnloaded() {
+    super.onUnloaded();
+    this._ios.delegate = 'undefined';
   }
 
   onOnLoginChanged(callback: any) {
@@ -113,6 +116,23 @@ export class LoginButton extends LoginButtonBase implements FBSDKLoginButtonDele
 
   onFbIdChanged(appId: any) {
     nsFacebook.setFacebookAppId(this.fbId.toString());
+  }
+}
+
+class LoginButtonDelegate extends NSObject implements FBSDKLoginButtonDelegate {
+  public static ObjCProtocols = [FBSDKLoginButtonDelegate];
+
+
+  loginButtonDidCompleteWithResultError(loginButton: any, result: any, error: NSError) {
+    alert('loginButtonDidCompleteWithResult');
+  }
+
+  loginButtonDidLogOut(loginButton: any) {
+    alert('loginButtonDidLogOut');
+  }
+
+  loginButtonWillLogin(loginButton: any) {
+    return true;
   }
 }
 
