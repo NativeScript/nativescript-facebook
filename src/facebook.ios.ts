@@ -1,9 +1,8 @@
 import * as applicationModule from "application";
 import { LoginButton as LoginButtonBase, LoginResponse } from './facebook.common';
-
 declare let FBSDKLoginManager: any;
 declare let FBSDKSettings: any;
-declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; };
+declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; userId: any;};
 declare class UIResponder { };
 declare var UIApplicationDelegate: any;
 declare var FBSDKApplicationDelegate: any;
@@ -14,83 +13,74 @@ declare class FBSDKLoginButtonDelegate { };
 declare let FBSDKLoginButton: any;
 declare class NSDictionary { };
 
-export class Facebook {
+const FB_LOGIN_BEHAVIOUR = 2;
 
-  mCallbackManager;
-  loginManager;
+let onLoginCallback;
+let loginManager = FBSDKLoginManager.alloc().init();
+loginManager.loginBehavior = FB_LOGIN_BEHAVIOUR;
+loginManager.logOut();
 
-  constructor() {
-    this.loginManager = FBSDKLoginManager.alloc().init();
-    this.loginManager.loginBehavior = 2;
+let registerLoginCallback = function (callback: Function) {
 
-    //This solve the case when user changes accounts error code 304
-    this.loginManager.logOut();
+  onLoginCallback = function (result: FBSDKLoginManagerLoginResult, error: NSError) {
 
-    if (!this.mCallbackManager || !this.loginManager) {
-      // throw exception
+    if (error) {
+      callback(error);
+      return;
     }
-  }
 
-  public setFacebookAppId(fbAppId: string) {
-    FBSDKSettings.setAppID(fbAppId);
-  }
-
-  public registerLoginCallback(callback: Function) {
-
-    this.mCallbackManager = function (result: FBSDKLoginManagerLoginResult, error: NSError) {
-
-      if (error) {
-        callback(error);
-        return;
-      }
-
-      //something went really wrong no error and no result
-      if (!result) {
-        callback("Fatal error");
-        return;
-      }
-
-      if (result.isCancelled) {
-        callback('canceled');
-        return;
-      }
-
-      if (result.token) {
-        callback(null, result);
-      }
-      else {
-        callback("Could not acquire an access token");
-        return;
-      }
+    //something went really wrong no error and no result
+    if (!result) {
+      callback("Fatal error");
+      return;
     }
-  }
 
-  public requestPublishPermissions(permissions: string[], callback: Function) {
+    if (result.isCancelled) {
+      callback('canceled');
+      return;
+    }
 
-    this.registerLoginCallback(callback);
-
-    this.loginManager.logInWithPublishPermissionsHandler(permissions, this.mCallbackManager);
-  }
-
-  public requestReadPermissions(permissions: string[], callback: Function) {
-
-    this.registerLoginCallback(callback);
-
-    this.loginManager.logInWithReadPermissionsHandler(permissions, this.mCallbackManager);
-  }
-
-  public login(callback: Function) {
-    this.requestReadPermissions(["public_profile", "email"], callback);
+    if (result.token) {
+      let token = result.token.tokenString;
+      let userId = result.token.userID;
+      let loginResponse = new LoginResponse(userId, token);
+      callback(null, loginResponse);
+    }
+    else {
+      callback("Could not acquire an access token");
+      return;
+    }
   }
 }
 
-export let nsFacebook = new Facebook();
+let setFacebookAppId = function (fbAppId: string) {
+  FBSDKSettings.setAppID(fbAppId);
+}
+
+
+let requestPublishPermissions = function (permissions: string[], callback: Function) {
+
+  registerLoginCallback(callback);
+  loginManager.logInWithPublishPermissionsHandler(permissions, onLoginCallback);
+}
+
+let requestReadPermissions = function (permissions: string[], callback: Function) {
+
+  registerLoginCallback(callback);
+  loginManager.logInWithReadPermissionsHandler(permissions, onLoginCallback);
+}
+
+let login = function (callback: Function) {
+  requestReadPermissions(["public_profile", "email"], callback);
+}
+
 
 export class LoginButton extends LoginButtonBase {
 
   protected _ios: any;
+  private _localDelegate;
 
-  public get ios() {
+  get ios() {
     return this._ios;
   }
 
@@ -99,36 +89,37 @@ export class LoginButton extends LoginButtonBase {
     this._ios = new FBSDKLoginButton();
     this._localDelegate = LoginButtonDelegate.new();
   }
-  private _localDelegate;
-  public onLoaded() {
+
+  onLoaded() {
     super.onLoaded();
     this._ios.delegate = this._localDelegate;
   }
 
-  public onUnloaded() {
+  onUnloaded() {
     super.onUnloaded();
-    this._ios.delegate = 'undefined';
+    this._ios.delegate = undefined;
   }
 
   onOnLoginChanged(callback: any) {
-    nsFacebook.registerLoginCallback(this.onLogin);
+    registerLoginCallback(this.onLogin);
   }
 
   onFbIdChanged(appId: any) {
-    nsFacebook.setFacebookAppId(this.fbId.toString());
+    setFacebookAppId(this.fbId.toString());
   }
 }
 
 class LoginButtonDelegate extends NSObject implements FBSDKLoginButtonDelegate {
   public static ObjCProtocols = [FBSDKLoginButtonDelegate];
 
-
   loginButtonDidCompleteWithResultError(loginButton: any, result: any, error: NSError) {
-    alert('loginButtonDidCompleteWithResult');
+    if (onLoginCallback) {
+      onLoginCallback(result, error);
+    }
   }
 
   loginButtonDidLogOut(loginButton: any) {
-    alert('loginButtonDidLogOut');
+    //TODO: Provide logout callback
   }
 
   loginButtonWillLogin(loginButton: any) {
@@ -154,3 +145,8 @@ class BaseDelegate extends UIResponder implements UIApplicationDelegate {
 }
 
 applicationModule.ios.delegate = BaseDelegate;
+
+exports.login = login;
+exports.requestPublishPermissions = requestPublishPermissions;
+exports.requestReadPermissions = requestReadPermissions;
+exports.setFacebookAppId = setFacebookAppId;

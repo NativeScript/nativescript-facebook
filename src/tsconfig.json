@@ -20,7 +20,8 @@
         "noImplicitReturns": true,
         "noImplicitUseStrict": false,
         "noFallthroughCasesInSwitch": true,
-        "types": []
+        "types": [],
+        "watch": true
     },
     "exclude": [
         "demo",
