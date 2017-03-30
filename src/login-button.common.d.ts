@@ -5,11 +5,6 @@ export declare abstract class LoginButton extends View {
     static fbIdProperty: Property;
     onLogin: Function;
     fbId: string;
-    abstract onOnLoginChanged(callback: any): any;
-    abstract onFbIdChanged(appId: any): any;
-}
-export declare class LoginResponse {
-    userId: string;
-    token: string;
-    constructor(userId: string, token: string);
+    abstract onLoginPropertyChanged(callback: any): any;
+    abstract fbIdPropertyChanged(appId: any): any;
 }

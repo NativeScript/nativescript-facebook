@@ -14,4 +14,4 @@ demo-angular/app/*.js
 demo-angular/*.d.ts
 demo-angular/platforms
 demo-angular/node_modules
-node_modules
+src/node_modules

@@ -1,4 +1,4 @@
-import { LoginButton as LoginButtonBase } from './facebook.common';
+import { LoginButton as LoginButtonBase } from './login-button.common';
 export declare class LoginButton extends LoginButtonBase {
     protected _ios: any;
     private _localDelegate;
@@ -6,6 +6,6 @@ export declare class LoginButton extends LoginButtonBase {
     constructor();
     onLoaded(): void;
     onUnloaded(): void;
-    onOnLoginChanged(callback: any): void;
-    onFbIdChanged(appId: any): void;
+    onLoginPropertyChanged(callback: any): void;
+    fbIdPropertyChanged(appId: any): void;
 }

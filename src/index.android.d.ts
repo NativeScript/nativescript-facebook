@@ -1,5 +1,5 @@
 import * as applicationModule from "application";
-import { LoginButton as LoginButtonBase } from './facebook.common';
+import { LoginButton as LoginButtonBase } from './login-button.common';
 export declare class Facebook {
     _AndroidApplication: applicationModule.AndroidApplication;
     _act: android.app.Activity;
@@ -17,6 +17,6 @@ export declare class LoginButton extends LoginButtonBase {
     protected _android: any;
     readonly android: any;
     _createUI(): void;
-    onOnLoginChanged(callback: any): void;
-    onFbIdChanged(appId: any): void;
+    onLoginPropertyChanged(callback: any): void;
+    fbIdPropertyChanged(appId: any): void;
 }

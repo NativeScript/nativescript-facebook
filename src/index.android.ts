@@ -1,6 +1,7 @@
 //NativeScript modules
 import * as applicationModule from "application";
-import { LoginButton as LoginButtonBase, LoginResponse } from './facebook.common';
+import { LoginButton as LoginButtonBase } from './login-button.common';
+import { LoginResponse } from './login-response';
 declare let com: any;
 
 export class Facebook {
@@ -118,11 +119,11 @@ export class LoginButton extends LoginButtonBase {
     this._android = new com.facebook.login.widget.LoginButton(this._context);
   }
 
-  onOnLoginChanged(callback: any) {
+  onLoginPropertyChanged(callback: any) {
     nsFacebook.registerLoginCallback(this.onLogin);
   }
 
-  onFbIdChanged(appId: any) {
+  fbIdPropertyChanged(appId: any) {
     nsFacebook.setFacebookAppId(this.fbId.toString());
   }
 }
