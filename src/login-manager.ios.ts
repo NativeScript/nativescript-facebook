@@ -16,7 +16,8 @@ const LOGIN_PERMISSIONS = ["public_profile", "email"];
 export let onLoginCallback;
 let loginManager;
 
-export function init() {
+export function init(fbId: string) {
+  setAppId(fbId);
   loginManager = FBSDKLoginManager.alloc().init();
   loginManager.loginBehavior = FB_LOGIN_BEHAVIOUR;
   loginManager.logOut();

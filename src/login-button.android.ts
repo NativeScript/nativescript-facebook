@@ -13,7 +13,6 @@ export class LoginButton extends LoginButtonBase {
   }
 
   public _createUI() {
-    loginManager.init();
     this._android = new com.facebook.login.widget.LoginButton(this._context);
   }
 

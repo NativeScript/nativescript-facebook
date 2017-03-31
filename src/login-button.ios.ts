@@ -16,7 +16,6 @@ export class LoginButton extends LoginButtonBase {
 
   constructor() {
     super()
-    loginManager.init();
     this._ios = new FBSDKLoginButton();
     this._localDelegate = LoginButtonDelegate.new();
   }
