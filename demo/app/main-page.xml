@@ -4,6 +4,6 @@
   <StackLayout class="p-20" style="vertical-align: bottom;" >
     <Label id="userIdLabel" text="{{ labelContent }}" style="padding-bottom: 100;horizontal-align: center;"/>
     <Facebook:LoginButton fbId="159198307916686" onLogin="{{ onLogin }}"></Facebook:LoginButton>
-    <Button tap="{{ testAction }}" text="Test"></Button>
+    <Button tap="{{ testAction }}" text="Custom Login Button"></Button>
   </StackLayout>
 </Page> 

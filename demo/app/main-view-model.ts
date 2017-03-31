@@ -6,16 +6,13 @@ var view = require("ui/core/view");
 
 export class HelloWorldModel extends Observable {
 
-  labelContent: string;
-
   public onLogin(error, data) {
-    console.dump(arguments);
-    console.log("GELEEEEEEE");
+    console.log("Success!");
   }
 
-  public testAction(){
-    Facebook.login(()=>{
-      alert("TEST");
+  public testAction() {
+    Facebook.login((error, data) => {
+      console.log("Success!");
     });
   }
 }

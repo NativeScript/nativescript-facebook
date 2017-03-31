@@ -2,7 +2,7 @@ import * as applicationModule from "application";
 import { LoginResponse } from './login-response';
 declare let FBSDKLoginManager: any;
 declare let FBSDKSettings: any;
-declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; userId: any;};
+declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; userId: any; };
 declare class UIResponder { };
 declare var UIApplicationDelegate: any;
 declare class UIApplication { };
@@ -14,9 +14,13 @@ const LOGIN_PERMISSIONS = ["public_profile", "email"];
 
 //TODO: add getter and setter
 export let onLoginCallback;
-let loginManager = FBSDKLoginManager.alloc().init();
-loginManager.loginBehavior = FB_LOGIN_BEHAVIOUR;
-loginManager.logOut();
+let loginManager;
+
+export function init() {
+  loginManager = FBSDKLoginManager.alloc().init();
+  loginManager.loginBehavior = FB_LOGIN_BEHAVIOUR;
+  loginManager.logOut();
+}
 
 export function registerLoginCallback(callback: Function) {
 
