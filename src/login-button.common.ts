@@ -20,7 +20,7 @@ export abstract class LoginButton extends View {
 
   public set onLogin(value: Function) {
     this._setValue(LoginButton.onLoginProperty, value);
-    this.onOnLoginChanged(value);
+    this.onLoginPropertyChanged(value);
   }
 
   public get fbId() {
@@ -29,19 +29,10 @@ export abstract class LoginButton extends View {
 
   public set fbId(value: string) {
     this._setValue(LoginButton.fbIdProperty, value);
-    this.onFbIdChanged(value);
+    this.fbIdPropertyChanged(value);
   }
 
-  abstract onOnLoginChanged(callback);
+  abstract onLoginPropertyChanged(callback);
 
-  abstract onFbIdChanged(appId);
-}
-
-export class LoginResponse {
-  userId: string;
-  token: string;
-  constructor(userId: string, token: string){
-    this.userId = userId;
-    this.token = token;
-  }
+  abstract fbIdPropertyChanged(appId);
 }

@@ -2,7 +2,6 @@
   "name": "nativescript-facebook",
   "version": "1.0.0",
   "description": "Your awesome NativeScript plugin.",
-  "main": "facebook",
   "nativescript": {
     "platforms": {
       "android": "2.5.0",
