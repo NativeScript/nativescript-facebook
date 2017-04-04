@@ -6,21 +6,15 @@ import * as loginManager from './login-manager';
 declare let com: any;
 
 export class LoginButton extends LoginButtonBase {
-  protected _android: any;
-
-  public get android() {
-    return this._android;
-  }
-
-  public _createUI() {
-    this._android = new com.facebook.login.widget.LoginButton(this._context);
+  public createNativeView() {
+    return new com.facebook.login.widget.LoginButton(this._context);
   }
 
   onLoginPropertyChanged(callback: any) {
-    loginManager.registerLoginCallback(this.onLogin);
+    loginManager.registerLoginCallback(callback);
   }
 
   fbIdPropertyChanged(appId: any) {
-    loginManager.setAppId(this.fbId.toString());
+    loginManager.setAppId(appId.toString());
   }
 }

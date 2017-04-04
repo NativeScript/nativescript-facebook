@@ -8,8 +8,16 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": [
-            "es2016"
+            "es6",
+            "dom"
         ],
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "./node_modules/tns-core-modules/*",
+                "./node_modules/*"
+            ]
+        },
         "pretty": true,
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
