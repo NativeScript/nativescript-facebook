@@ -1,38 +1,22 @@
-import { View } from "ui/core/view"
-import { Property, PropertyChangeData, PropertyMetadataSettings } from "ui/core/dependency-observable";
-import { PropertyMetadata } from "ui/core/proxy";
-import { isAndroid } from "platform";
-
-declare let com: any;
-let AffectsLayout = isAndroid ? PropertyMetadataSettings.None : PropertyMetadataSettings.AffectsLayout;
+import { View, Property } from "ui/core/view"
 
 export abstract class LoginButton extends View {
-
-  public static onLoginProperty = new Property("onLogin", "LoginButton",
-    new PropertyMetadata(undefined, AffectsLayout, args => (<LoginButton>args.object).onLogin = args.newValue));
-
-  public static fbIdProperty = new Property("fbId", "LoginButton",
-    new PropertyMetadata(undefined, AffectsLayout, args => (<LoginButton>args.object).fbId = args.newValue));
-
-  public get onLogin() {
-    return this._getValue(LoginButton.onLoginProperty);
-  }
-
-  public set onLogin(value: Function) {
-    this._setValue(LoginButton.onLoginProperty, value);
-    this.onLoginPropertyChanged(value);
-  }
-
-  public get fbId() {
-    return this._getValue(LoginButton.fbIdProperty);
-  }
-
-  public set fbId(value: string) {
-    this._setValue(LoginButton.fbIdProperty, value);
-    this.fbIdPropertyChanged(value);
-  }
-
   abstract onLoginPropertyChanged(callback);
 
   abstract fbIdPropertyChanged(appId);
 }
+
+export const onLoginProperty = new Property<LoginButton, Function>({
+  name: "onLogin", defaultValue: undefined, valueChanged: (btn, oldV, newV) => {
+    btn.onLoginPropertyChanged(newV);
+  }
+});
+onLoginProperty.register(LoginButton);
+
+
+export const fbIdProperty = new Property<LoginButton, string>({
+  name: "fbId", defaultValue: "", valueChanged: (btn, oldV, newV) => {
+    btn.fbIdPropertyChanged(newV);
+  }
+});
+fbIdProperty.register(LoginButton);

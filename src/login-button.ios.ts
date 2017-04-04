@@ -31,11 +31,11 @@ export class LoginButton extends LoginButtonBase {
   }
 
   onLoginPropertyChanged(callback: any) {
-    loginManager.registerLoginCallback(this.onLogin);
+    loginManager.registerLoginCallback(callback);
   }
 
   fbIdPropertyChanged(appId: any) {
-    loginManager.setAppId(this.fbId.toString());
+    loginManager.setAppId(appId.toString());
   }
 }
 
