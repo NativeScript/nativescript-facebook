@@ -7,35 +7,31 @@ declare class FBSDKLoginButtonDelegate { };
 
 export class LoginButton extends LoginButtonBase {
 
-  protected _ios: any;
+  public nativeView: any;
   private _localDelegate;
-
-  get ios() {
-    return this._ios;
-  }
 
   constructor() {
     super()
-    this._ios = new FBSDKLoginButton();
+    this.nativeView = new FBSDKLoginButton();
     this._localDelegate = LoginButtonDelegate.new();
   }
 
   onLoaded() {
     super.onLoaded();
-    this._ios.delegate = this._localDelegate;
+    this.nativeView.delegate = this._localDelegate;
   }
 
   onUnloaded() {
     super.onUnloaded();
-    this._ios.delegate = undefined;
+    this.nativeView.delegate = undefined;
   }
 
   onLoginPropertyChanged(callback: any) {
-    loginManager.registerLoginCallback(this.onLogin);
+    loginManager.registerLoginCallback(callback);
   }
 
   fbIdPropertyChanged(appId: any) {
-    loginManager.setAppId(this.fbId.toString());
+    loginManager.setAppId(appId.toString());
   }
 }
 
