@@ -15,13 +15,13 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 - [NativeScript Core](#nativescript-core)
     - [Initialization](#initialization)
     - [Login](#login)
-        - [Native Facebook Login Button](#native-facebook-login-button)
-        - [Native Custom Login Button](#native-custom-login-button)
+        - [Facebook Login Button](#facebook-login-button)
+        - [Custom Login Button](#custom-login-button)
 - [NativeScript + Angular](#nativescript--angular)
     - [Initialization](#initialization-1)
     - [Login](#login-1)
-        - [Native Facebook Login Button](#native-facebook-login-button-1)
-        - [Native Custom Login Button](#native-custom-login-button-1)
+        - [Facebook Login Button](#facebook-login-button-1)
+        - [Custom Login Button](#custom-login-button-1)
 - [Login Response](#login-response)
 - [License](#license)
 
@@ -82,7 +82,7 @@ application.start({ moduleName: "main-page" });
 ```
 
 ### Login
-#### Native Facebook Login Button
+#### Facebook Login Button
 main-page.xml
 ```xml
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
@@ -112,7 +112,7 @@ export class HelloWorldModel extends Observable {
 }
 ```
 
-#### Native Custom Login Button
+#### Custom Login Button
 main-page.xml
 ```xml
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
@@ -164,7 +164,7 @@ platformNativeScriptDynamic().bootstrapModule(AppModule);
 ```
 
 ### Login
-#### Native Facebook Login Button
+#### Facebook Login Button
 app.component.html
 ```html
 <StackLayout>
@@ -188,7 +188,7 @@ export class AppComponent {
 }
 ```
 
-#### Native Custom Login Button
+#### Custom Login Button
 app.component.html
 ```html
 <StackLayout>
