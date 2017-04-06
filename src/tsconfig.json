@@ -14,8 +14,7 @@
         "noLib": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "pretty": true,
-        "watch": true
+        "pretty": true
     },
     "exclude": [
         "demo",
