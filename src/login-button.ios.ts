@@ -25,22 +25,14 @@ export class LoginButton extends LoginButtonBase {
     super.onUnloaded();
     this.nativeView.delegate = undefined;
   }
-
-  onLoginPropertyChanged(callback: any) {
-    loginManager.registerLoginCallback(callback);
-  }
-
-  fbIdPropertyChanged(appId: any) {
-    loginManager.setAppId(appId.toString());
-  }
 }
 
 class LoginButtonDelegate extends NSObject implements FBSDKLoginButtonDelegate {
   public static ObjCProtocols = [FBSDKLoginButtonDelegate];
 
   loginButtonDidCompleteWithResultError(loginButton: any, result: any, error: NSError) {
-    if (loginManager.onLoginCallback) {
-      loginManager.onLoginCallback(result, error);
+    if (loginManager._onLoginCallback) {
+      loginManager._onLoginCallback(result, error);
     }
   }
 

@@ -23,7 +23,7 @@ export function init(fbId: string) {
   loginManager.logOut();
 }
 
-export function registerLoginCallback(callback: Function) {
+export function _registerLoginCallback(callback: Function) {
 
   onLoginCallback = function (result: FBSDKLoginManagerLoginResult, error: NSError) {
 
@@ -56,17 +56,17 @@ export function registerLoginCallback(callback: Function) {
   }
 }
 
-export function setAppId(fbAppId: string) {
+function setAppId(fbAppId: string) {
   FBSDKSettings.setAppID(fbAppId);
 }
 
 export function requestPublishPermissions(permissions: string[], callback: Function) {
-  registerLoginCallback(callback);
+  _registerLoginCallback(callback);
   loginManager.logInWithPublishPermissionsHandler(permissions, onLoginCallback);
 }
 
 export function requestReadPermissions(permissions: string[], callback: Function) {
-  registerLoginCallback(callback);
+  _registerLoginCallback(callback);
   loginManager.logInWithReadPermissionsHandler(permissions, onLoginCallback);
 }
 

@@ -25,7 +25,7 @@ export function init(fbId: string) {
   loginManager.logOut();
 }
 
-export function registerLoginCallback(callback: Function) {
+export function _registerLoginCallback(callback: Function) {
 
   let act = androidApplication.foregroundActivity || androidApplication.startActivity;
   _act = act;
@@ -70,19 +70,19 @@ export function registerLoginCallback(callback: Function) {
   androidApplication.on(application.AndroidApplication.activityResultEvent, onActivityResult);
 }
 
-export function setAppId(fbAppId: string) {
+function setAppId(fbAppId: string) {
   com.facebook.FacebookSdk.setApplicationId(fbAppId);
 }
 
 export function requestPublishPermissions(permissions: string[], callback: Function) {
-  registerLoginCallback(callback);
+  _registerLoginCallback(callback);
 
   let javaPermissionsList = java.util.Arrays.asList(permissions);
   loginManager.logInWithPublishPermissions(_act, javaPermissionsList);
 }
 
 export function requestReadPermissions(permissions: string[], callback: Function) {
-  registerLoginCallback(callback);
+  _registerLoginCallback(callback);
 
   let javaPermissionsList = java.util.Arrays.asList(permissions);
   loginManager.logInWithReadPermissions(_act, javaPermissionsList);

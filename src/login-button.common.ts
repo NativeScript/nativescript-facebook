@@ -1,9 +1,10 @@
 import { View, Property } from "ui/core/view"
+import * as loginManager from './login-manager';
 
 export abstract class LoginButton extends View {
-  abstract onLoginPropertyChanged(callback);
-
-  abstract fbIdPropertyChanged(appId);
+  onLoginPropertyChanged(callback: any) {
+    loginManager._registerLoginCallback(callback);
+  }
 }
 
 export const onLoginProperty = new Property<LoginButton, Function>({
@@ -12,11 +13,3 @@ export const onLoginProperty = new Property<LoginButton, Function>({
   }
 });
 onLoginProperty.register(LoginButton);
-
-
-export const fbIdProperty = new Property<LoginButton, string>({
-  name: "fbId", defaultValue: "", valueChanged: (btn, oldV, newV) => {
-    btn.fbIdPropertyChanged(newV);
-  }
-});
-fbIdProperty.register(LoginButton);
