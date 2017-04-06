@@ -1,7 +1,7 @@
 NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/picons-social/57/16-apple-32.png) ![android](https://cdn4.iconfinder.com/data/icons/logos-3/228/android-32.png)
  =======
 
-[NativeScript](https://www.nativescript.org) plugin, wrapper of native [Facebook SDK](https://developers.facebook.com) for Adroid and iOS.
+[NativeScript](https://www.nativescript.org) plugin, wrapper of native [Facebook SDK](https://developers.facebook.com) for Android and iOS.
 
 ![demo](https://github.com/nativescript-space/nativescript-facebook/blob/assets/demo.gif?raw=true)
 
@@ -67,7 +67,7 @@ Update Info.plist file (app/App_Resources/iOS/Info.plist) to contains `CFBundleU
 
 ## NativeScript Core
 ### Initialization
-Call init of nativescript-facebook module on application lunch.
+Call init of nativescript-facebook module on application launch.
 
 app.ts
 ```TypeScript
@@ -146,7 +146,7 @@ export class HelloWorldModel extends Observable {
 
 ## NativeScript + Angular
 ### Initialization
-Call init of nativescript-facebook module on application lunch.
+Call init of nativescript-facebook module on application launch.
 
 main.ts
 ```TypeScript
