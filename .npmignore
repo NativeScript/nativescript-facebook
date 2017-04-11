@@ -1,7 +1,6 @@
 demo/
 demo-angular/
 screenshots/
-scripts/
 *.log
 *.map
 *.ts
