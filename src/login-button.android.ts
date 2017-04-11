@@ -1,5 +1,3 @@
-//NativeScript modules
-import * as applicationModule from "application";
 import { LoginButton as LoginButtonBase } from './login-button.common';
 
 declare let com: any;

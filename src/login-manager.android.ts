@@ -4,7 +4,7 @@ declare let com: any;
 
 const LOGIN_PERMISSIONS = ["public_profile", "email"];
 
-//TODO: add getter and setter
+// TODO: add getter and setter
 let onLoginCallback;
 let androidApplication;
 let _act: android.app.Activity;
@@ -14,11 +14,11 @@ export function init(fbId: string) {
   setAppId(fbId);
   androidApplication = application.android;
   try {
-    //fb initialization
+    // fb initialization
     com.facebook.FacebookSdk.sdkInitialize(androidApplication.context.getApplicationContext());
   }
   catch (e) {
-    console.log("nativescript-facebook: The plugin could not find the android library, try to clean the android platform")
+    console.log("nativescript-facebook: The plugin could not find the android library, try to clean the android platform");
   }
   onLoginCallback = com.facebook.CallbackManager.Factory.create();
   loginManager = com.facebook.login.LoginManager.getInstance();
@@ -26,9 +26,7 @@ export function init(fbId: string) {
 }
 
 export function _registerLoginCallback(callback: Function) {
-
-  let act = androidApplication.foregroundActivity || androidApplication.startActivity;
-  _act = act;
+  _act = androidApplication.foregroundActivity || androidApplication.startActivity;
   loginManager.registerCallback(onLoginCallback, new com.facebook.FacebookCallback({
 
     onSuccess: function (result) {
@@ -39,7 +37,6 @@ export function _registerLoginCallback(callback: Function) {
     },
     onCancel: function () {
       callback('canceled');
-
     },
     onError: function (e) {
       let errorMessage = "Error with Facebook";
@@ -54,7 +51,6 @@ export function _registerLoginCallback(callback: Function) {
       }
       callback(errorMessage);
     }
-
   }));
 
   let onActivityResult = (args) => {
