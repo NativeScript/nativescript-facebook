@@ -9,7 +9,7 @@
     }
   },
   "dependencies": {
-    "nativescript-facebook": "file:///../src",
+    "nativescript-facebook": "file:../src",
     "nativescript-theme-core": "^1.0.2",
     "nativescript-unit-test-runner": "^0.3.4",
     "tns-core-modules": "rc"

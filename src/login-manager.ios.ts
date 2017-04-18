@@ -1,18 +1,17 @@
-import * as applicationModule from "application";
 import { LoginResponse } from './login-response';
 declare let FBSDKLoginManager: any;
 declare let FBSDKSettings: any;
-declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; userId: any; };
-declare class UIResponder { };
-declare var UIApplicationDelegate: any;
-declare class UIApplication { };
+declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; userId: any; }
+declare class UIResponder { }
+declare let UIApplicationDelegate: any;
+declare class UIApplication { }
 declare let FBSDKLoginButton: any;
-declare class NSDictionary { };
+declare class NSDictionary { }
 
 const FB_LOGIN_BEHAVIOUR = 2;
 const LOGIN_PERMISSIONS = ["public_profile", "email"];
 
-//TODO: add getter and setter
+// TODO: add getter and setter
 export let onLoginCallback;
 let loginManager;
 
@@ -32,14 +31,14 @@ export function _registerLoginCallback(callback: Function) {
       return;
     }
 
-    //something went really wrong no error and no result
+    // something went really wrong: no error and no result
     if (!result) {
       callback("Fatal error");
       return;
     }
 
     if (result.isCancelled) {
-      callback('canceled');
+      callback("canceled");
       return;
     }
 
@@ -53,7 +52,7 @@ export function _registerLoginCallback(callback: Function) {
       callback("Could not acquire an access token");
       return;
     }
-  }
+  };
 }
 
 function setAppId(fbAppId: string) {

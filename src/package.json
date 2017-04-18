@@ -1,7 +1,7 @@
 {
   "name": "nativescript-facebook",
   "version": "1.0.0",
-  "description": "Your awesome NativeScript plugin.",
+  "description": "NativeScript plugin, wrapper of native Facebook SDK for Android and iOS.",
   "nativescript": {
     "platforms": {
       "android": "3.0.0",
@@ -20,6 +20,10 @@
     "demo.ios.angular": "npm run preparedemoangular && cd ../demo-angular && tns run ios --emulator",
     "demo.ios.device.angular": "npm run preparedemoangular && ../cd demo-angular && tns run ios",
     "demo.android.angular": "npm run preparedemoangular && cd ../demo-angular && tns debug android --justlaunch",
+    "tslint": "tslint *.ts",
+    "tslint.demo": "tslint ../demo/app/*.ts",
+    "tslint.demo.angular": "tslint ../demo-angular/app/*.ts",
+    "test": "npm run tslint && npm run tslint.demo && npm run tslint.demo.angular && cd ../demo && tns build ios && tns build android",
     "test.ios.angular": "cd ../demo-angular && tns platform remove ios && tns test ios --emulator",
     "test.ios.device.angular": "cd ../demo-angular && tns platform remove ios && tns test ios",
     "test.android.angular": "cd ../demo-angular && tns platform remove android",
@@ -27,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/angeltsvetkov/nativescript-facebook.git"
+    "url": "https://github.com/NativeScript/nativescript-facebook.git"
   },
   "keywords": [
     "NativeScript",
@@ -36,16 +40,16 @@
     "iOS"
   ],
   "author": {
-    "name": "Your Name",
-    "email": "youremail@yourdomain.com"
+    "name": "NativeScript",
+    "email": "info@nativescript.org"
   },
   "bugs": {
-    "url": "https://github.com/angeltsvetkov/nativescript-facebook/issues"
+    "url": "https://github.com/NativeScript/nativescript-facebook/issues"
   },
   "license": "MIT",
-  "homepage": "https://github.com/angeltsvetkov/nativescript-facebook",
+  "homepage": "https://github.com/NativeScript/nativescript-facebook",
   "readmeFilename": "README.md",
-  "dependencies": {
+  "devDependencies": {
     "nativescript-angular": "rc",
     "tns-core-modules": "rc",
     "tns-platform-declarations": "rc",
@@ -55,6 +59,7 @@
     "@angular/compiler": "4.0.1",
     "rxjs": "5.2.0",
     "reflect-metadata": "0.1.8",
-    "zone.js": "0.8.4"
+    "zone.js": "0.8.4",
+    "tslint": "^5.0.0"
   }
 }
