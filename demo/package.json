@@ -9,10 +9,10 @@
     }
   },
   "dependencies": {
-    "nativescript-facebook": "file:///../src",
+    "nativescript-facebook": "../src",
     "nativescript-theme-core": "^1.0.2",
     "nativescript-unit-test-runner": "^0.3.4",
-    "tns-core-modules": "rc"
+    "tns-core-modules": "^3.0.0 || ^3.0.0-rc.2"
   },
   "devDependencies": {
     "babel-traverse": "6.12.0",
@@ -24,7 +24,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-nativescript-launcher": "^0.4.0",
     "lazy": "1.0.11",
-    "nativescript-dev-typescript": "0.4",
-    "typescript": "2.2.2"
+    "nativescript-dev-typescript": "^0.4.0",
+    "typescript": "~2.2.2"
   }
 }
