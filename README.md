@@ -17,7 +17,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
     - [Login](#login)
         - [Facebook Login Button](#facebook-login-button)
         - [Custom Login Button](#custom-login-button)
-- [NativeScript + Angular](#nativescript--angular)
+- [NativeScript Angular](#nativescript--angular)
     - [Initialization](#initialization-1)
     - [Login](#login-1)
         - [Facebook Login Button](#facebook-login-button-1)
@@ -144,13 +144,13 @@ export class HelloWorldModel extends Observable {
 }
 ```
 
-## NativeScript + Angular
+## NativeScript Angular
 ### Initialization
 Call init of nativescript-facebook module on application launch.
 
-main.ts
+app.module.ts
 ```TypeScript
-import { platformNativeScriptDynamic } from "nativescript-angular/platform";
+...
 import * as application from 'application';
 var nsFacebook = require('nativescript-facebook');
 
@@ -159,8 +159,7 @@ import { AppModule } from "./app.module";
 application.on(application.launchEvent, function (args) {
     nsFacebook.init("{facebook_app_id}");
 });
-
-platformNativeScriptDynamic().bootstrapModule(AppModule);
+...
 ```
 
 ### Login
