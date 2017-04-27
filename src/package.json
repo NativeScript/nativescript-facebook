@@ -9,7 +9,9 @@
     }
   },
   "scripts": {
-    "build": "tsc",
+    "tsc": "tsc",
+    "ngc": "node --max-old-space-size=8192 ./node_modules/.bin/ngc",
+    "build": "tsc && ngc",
     "demo.ios": "npm run preparedemo && cd ../demo && tns run ios --emulator",
     "demo.ios.device": "npm run preparedemo && cd ../demo && tns run ios",
     "demo.android": "npm run preparedemo && cd ../demo && tns debug android --justlaunch",
@@ -49,9 +51,13 @@
     "tns-core-modules": "^3.0.0 || ^3.0.0-rc.2",
     "tns-platform-declarations": "^3.0.0 || ^3.0.0-rc.2",
     "typescript": "~2.2.2",
+    "nativescript-angular": "^3.0.0 || ^2.0.0-rc.1",
     "@angular/core": "~4.0.1",
     "@angular/common": "~4.0.1",
-    "@angular/compiler": "~4.0.1"
+    "@angular/compiler": "~4.0.1",
+    "@angular/compiler-cli": "~4.0.1",
+    "rxjs": "~5.3.0",
+    "zone.js": "~0.8.4"
   },
   "peerDependencies": {
     "tns-core-modules": "^3.0.0 || ^3.0.0-rc.2"
