@@ -89,6 +89,7 @@ export function requestReadPermissions(permissions: string[], callback: Function
 }
 
 export function login(callback: Function) {
+    console.log("requesting read permissions .... .")
   requestReadPermissions(LOGIN_PERMISSIONS, callback);
 }
 

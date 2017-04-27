@@ -1,10 +1,8 @@
-import { Directive } from '@angular/core'; // TODO: check require .Directive without hacks
+import { Directive } from "@angular/core"; // TODO: check require .Directive without hacks
 
 @Directive({
     selector: "FacebookLoginButton"
 })
-export class FacebookLoginButtonDirective {
-    constructor() { }
-}
+export class FacebookLoginButtonDirective { }
 
 export const DIRECTIVES = [FacebookLoginButtonDirective];
