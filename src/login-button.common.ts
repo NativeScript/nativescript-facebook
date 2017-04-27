@@ -8,7 +8,7 @@ export abstract class LoginButtonBase extends View {
 }
 
 export const onLoginProperty = new Property<LoginButtonBase, Function>({
-  name: "onLogin", valueChanged: (btn, oldV, newV) => {
+  name: "login", valueChanged: (btn, oldV, newV) => {
     btn.onLoginPropertyChanged(newV);
   }
 });

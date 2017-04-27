@@ -17,9 +17,9 @@
         "pretty": true
     },
     "exclude": [
-        "demo",
-        "demo-angular",
-        "node_modules"
+        "node_modules",
+        "platforms",
+        "hooks"
     ],
     "compileOnSave": false,
     "angularCompilerOptions": {

@@ -1,5 +1,5 @@
 import { Observable } from 'data/observable';
-import * as nsFacebook from "nativescript-facebook";
+import { login } from "nativescript-facebook";
 
 // Facebook Authentication CODE
 export class HelloWorldModel extends Observable {
@@ -9,6 +9,6 @@ export class HelloWorldModel extends Observable {
   }
 
   public testAction() {
-    nsFacebook.login((error, data) => console.log("Success!"));
+    login((error, data) => console.log("Success!"));
   }
 }
