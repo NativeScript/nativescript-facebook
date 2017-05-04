@@ -1,2 +1,2 @@
-export declare class NativescriptFacebookModule {
+export declare class NativeScriptFacebookModule {
 }

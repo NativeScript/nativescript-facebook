@@ -1,9 +1,7 @@
 import { Observable } from 'data/observable';
-let Facebook = require('nativescript-facebook');
-// Facebook Authentication CODE
-import * as application from "application";
-var view = require("ui/core/view");
+import { login } from "nativescript-facebook";
 
+// Facebook Authentication CODE
 export class HelloWorldModel extends Observable {
 
   public onLogin(error, data) {
@@ -11,8 +9,6 @@ export class HelloWorldModel extends Observable {
   }
 
   public testAction() {
-    Facebook.login((error, data) => {
-      console.log("Success!");
-    });
+    login((error, data) => console.log("Success!"));
   }
 }
