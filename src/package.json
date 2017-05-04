@@ -44,7 +44,7 @@
   "bugs": {
     "url": "https://github.com/angeltsvetkov/nativescript-facebook/issues"
   },
-  "license": "MIT",
+  "license": "Apache 2.0",
   "homepage": "https://github.com/angeltsvetkov/nativescript-facebook",
   "readmeFilename": "README.md",
   "devDependencies": {

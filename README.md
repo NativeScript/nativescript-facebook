@@ -91,7 +91,7 @@ main-page.xml
 
     ...
 
-    <Facebook:LoginButton onLogin="{{ onLogin }}"></Facebook:LoginButton>
+    <Facebook:LoginButton login="{{ onLogin }}"></Facebook:LoginButton>
 
     ...
 
@@ -101,7 +101,6 @@ main-page.xml
 main-view-model.ts
 ```TypeScript
 import { Observable } from 'data/observable';
-let Facebook = require('nativescript-facebook');
 
 export class HelloWorldModel extends Observable {
 
@@ -131,14 +130,12 @@ main-page.xml
 main-view-model.ts
 ```TypeScript
 import { Observable } from 'data/observable';
-let Facebook = require('nativescript-facebook');
+import { login } from "nativescript-facebook";
 
 export class HelloWorldModel extends Observable {
 
   public testAction() {
-    Facebook.login((error, data) => {
-      console.log("Success!");
-    });
+    login((error, data) => console.log("Success!"));
   }
 
 }
@@ -167,7 +164,7 @@ application.on(application.launchEvent, function (args) {
 app.component.html
 ```html
 <StackLayout>
-    <FacebookLoginButton [onLogin]="onLogin"></FacebookLoginButton>
+    <FacebookLoginButton [login]="onLogin"></FacebookLoginButton>
 </StackLayout>
 ```
 
@@ -198,7 +195,7 @@ app.component.html
 app.component.ts
 ```TypeScript
 import { Component } from "@angular/core";
-import { LoginResponse } from "nativescript-facebook";
+import * as Facebook from "nativescript-facebook";
 
 @Component({
     selector: "ns-app",
