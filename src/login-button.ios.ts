@@ -1,5 +1,5 @@
 import * as applicationModule from "application";
-import { LoginButton as LoginButtonBase } from './login-button.common';
+import { LoginButtonBase } from './login-button.common';
 import * as loginManager from './login-manager';
 
 declare let FBSDKLoginButton: any;

@@ -17,9 +17,15 @@
         "pretty": true
     },
     "exclude": [
-        "demo",
-        "demo-angular",
-        "node_modules"
+        "node_modules",
+        "platforms",
+        "hooks"
     ],
-    "compileOnSave": false
+    "compileOnSave": false,
+    "angularCompilerOptions": {
+        "annotateForClosureCompiler": true,
+        "strictMetadataEmit": true,
+        "skipTemplateCodegen": true,
+        "genDir": "."
+    }
 }

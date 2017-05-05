@@ -17,7 +17,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
     - [Login](#login)
         - [Facebook Login Button](#facebook-login-button)
         - [Custom Login Button](#custom-login-button)
-- [NativeScript + Angular](#nativescript--angular)
+- [NativeScript Angular](#nativescript--angular)
     - [Initialization](#initialization-1)
     - [Login](#login-1)
         - [Facebook Login Button](#facebook-login-button-1)
@@ -91,7 +91,7 @@ main-page.xml
 
     ...
 
-    <Facebook:LoginButton onLogin="{{ onLogin }}"></Facebook:LoginButton>
+    <Facebook:LoginButton login="{{ onLogin }}"></Facebook:LoginButton>
 
     ...
 
@@ -101,7 +101,6 @@ main-page.xml
 main-view-model.ts
 ```TypeScript
 import { Observable } from 'data/observable';
-let Facebook = require('nativescript-facebook');
 
 export class HelloWorldModel extends Observable {
 
@@ -131,26 +130,24 @@ main-page.xml
 main-view-model.ts
 ```TypeScript
 import { Observable } from 'data/observable';
-let Facebook = require('nativescript-facebook');
+import { login } from "nativescript-facebook";
 
 export class HelloWorldModel extends Observable {
 
   public testAction() {
-    Facebook.login((error, data) => {
-      console.log("Success!");
-    });
+    login((error, data) => console.log("Success!"));
   }
 
 }
 ```
 
-## NativeScript + Angular
+## NativeScript Angular
 ### Initialization
 Call init of nativescript-facebook module on application launch.
 
-main.ts
+app.module.ts
 ```TypeScript
-import { platformNativeScriptDynamic } from "nativescript-angular/platform";
+...
 import * as application from 'application';
 var nsFacebook = require('nativescript-facebook');
 
@@ -159,8 +156,7 @@ import { AppModule } from "./app.module";
 application.on(application.launchEvent, function (args) {
     nsFacebook.init("{facebook_app_id}");
 });
-
-platformNativeScriptDynamic().bootstrapModule(AppModule);
+...
 ```
 
 ### Login
@@ -168,7 +164,7 @@ platformNativeScriptDynamic().bootstrapModule(AppModule);
 app.component.html
 ```html
 <StackLayout>
-    <FacebookLoginButton [onLogin]="onLogin"></FacebookLoginButton>
+    <FacebookLoginButton [login]="onLogin"></FacebookLoginButton>
 </StackLayout>
 ```
 
@@ -199,7 +195,7 @@ app.component.html
 app.component.ts
 ```TypeScript
 import { Component } from "@angular/core";
-import { LoginResponse } from "nativescript-facebook";
+import * as Facebook from "nativescript-facebook";
 
 @Component({
     selector: "ns-app",

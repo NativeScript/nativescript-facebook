@@ -7,6 +7,6 @@ import { DIRECTIVES } from "./nativescript-facebook-directives";
     declarations: [DIRECTIVES],
     exports: [DIRECTIVES],
 })
-export class NativescriptFacebookModule { }
+export class NativeScriptFacebookModule { }
 
 registerElement("FacebookLoginButton", () => require("../").LoginButton);
