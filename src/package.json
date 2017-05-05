@@ -1,7 +1,7 @@
 {
   "name": "nativescript-facebook",
-  "version": "1.0.0",
-  "description": "Your awesome NativeScript plugin.",
+  "version": "1.0.1",
+  "description": "NativeScript plugin, wrapper of native Facebook SDK for Adroid and iOS.",
   "nativescript": {
     "platforms": {
       "android": "3.0.0",
@@ -29,27 +29,38 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/angeltsvetkov/nativescript-facebook.git"
+    "url": "https://github.com/NativeScript/nativescript-facebook.git"
   },
   "keywords": [
     "NativeScript",
-    "JavaScript",
+    "TypeScript",
     "Android",
-    "iOS"
+    "iOS",
+    "Facebook"
   ],
   "author": {
-    "name": "Your Name",
-    "email": "youremail@yourdomain.com"
+    "name": "NativeScript Team",
+    "email": "support@telerik.com",
+    "url": "http://www.telerik.com"
   },
+  "maintainers": [{
+      "name": "angeltsvetkov",
+      "email": "angel.tsvetkov@progress.com"
+    },
+    {
+      "name": "Dimitar Tachev",
+      "email": "dimitar.tachev@progress.com"
+    }
+  ],
   "bugs": {
-    "url": "https://github.com/angeltsvetkov/nativescript-facebook/issues"
+    "url": "https://github.com/NativeScript/nativescript-facebook/issues"
   },
   "license": "Apache 2.0",
-  "homepage": "https://github.com/angeltsvetkov/nativescript-facebook",
+  "homepage": "https://github.com/NativeScript/nativescript-facebook",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "tns-core-modules": "^3.0.0 || ^3.0.0-rc.2",
-    "tns-platform-declarations": "^3.0.0 || ^3.0.0-rc.2",
+    "tns-core-modules": "^3.0.0",
+    "tns-platform-declarations": "^3.0.0",
     "typescript": "~2.2.2",
     "nativescript-angular": "^3.0.0 || ^2.0.0-rc.1",
     "@angular/core": "~4.0.1",
@@ -60,6 +71,6 @@
     "zone.js": "~0.8.4"
   },
   "peerDependencies": {
-    "tns-core-modules": "^3.0.0 || ^3.0.0-rc.2"
+    "tns-core-modules": "^3.0.0"
   }
 }
