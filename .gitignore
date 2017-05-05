@@ -1,1 +1,15 @@
-/.vscode/
+.vscode/
+.idea/
+node_modules/
+*.js
+*.js.map
+*.log
+demo/app/*.js
+!demo/karma.conf.js
+!demo/app/tests/*.js
+demo/*.d.ts
+!demo/references.d.ts
+demo/platforms/
+demo-angular/app/*.js
+demo-angular/*.d.ts
+demo-angular/platforms/

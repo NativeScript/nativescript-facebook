@@ -1,10 +1,4 @@
-*.ts
-*.tgz
-
+*.log
+*.map
 *.ts
 !*.d.ts
-
-*.js.map
-
-tsconfig.json
-.npmignore
