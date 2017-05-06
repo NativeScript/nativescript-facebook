@@ -11,7 +11,7 @@
   "scripts": {
     "tsc": "tsc",
     "ngc": "node --max-old-space-size=8192 ./node_modules/.bin/ngc",
-    "build": "tsc && ngc",
+    "build": "tsc",
     "demo.ios": "npm run preparedemo && cd ../demo && tns run ios --emulator",
     "demo.ios.device": "npm run preparedemo && cd ../demo && tns run ios",
     "demo.android": "npm run preparedemo && cd ../demo && tns debug android --justlaunch",
