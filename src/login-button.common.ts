@@ -1,4 +1,4 @@
-import { View, Property } from "ui/core/view"
+import { View, Property } from "ui/core/view";
 import * as loginManager from './login-manager';
 
 export abstract class LoginButtonBase extends View {

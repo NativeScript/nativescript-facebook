@@ -5,7 +5,7 @@ import { AppComponent } from "./app.component";
 import { NativeScriptFacebookModule } from "nativescript-facebook/angular";
 
 import * as application from 'application';
-var nsFacebook = require('nativescript-facebook');
+let nsFacebook = require('nativescript-facebook');
 
 application.on(application.launchEvent, function (args) {
     nsFacebook.init("1771472059772879");

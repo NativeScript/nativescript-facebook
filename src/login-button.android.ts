@@ -1,4 +1,4 @@
-//NativeScript modules
+// NativeScript modules
 import * as applicationModule from "application";
 import { LoginButtonBase } from './login-button.common';
 
