@@ -3,7 +3,7 @@ import { LoginButtonBase } from './login-button.common';
 import * as loginManager from './login-manager';
 
 declare let FBSDKLoginButton: any;
-declare class FBSDKLoginButtonDelegate { };
+declare class FBSDKLoginButtonDelegate { }
 
 export class LoginButton extends LoginButtonBase {
 
@@ -11,7 +11,7 @@ export class LoginButton extends LoginButtonBase {
   private _localDelegate;
 
   constructor() {
-    super()
+    super();
     this.nativeView = new FBSDKLoginButton();
     this._localDelegate = LoginButtonDelegate.new();
   }
@@ -37,7 +37,7 @@ class LoginButtonDelegate extends NSObject implements FBSDKLoginButtonDelegate {
   }
 
   loginButtonDidLogOut(loginButton: any) {
-    //TODO: Provide logout callback
+    // TODO: Provide logout callback
   }
 
   loginButtonWillLogin(loginButton: any) {

@@ -1,5 +1,9 @@
 NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/picons-social/57/16-apple-32.png) ![android](https://cdn4.iconfinder.com/data/icons/logos-3/228/android-32.png)
  =======
+[![npm](https://img.shields.io/npm/v/nativescript-facebook.svg)](https://www.npmjs.com/package/nativescript-facebook)
+[![npm](https://img.shields.io/npm/dm/nativescript-facebook.svg)](https://www.npmjs.com/package/nativescript-facebook)
+[![Travis](https://img.shields.io/travis/nativescript-facebook/master.svg)](https://travis-ci.org/NativeScript/nativescript-facebook)
+-------
 
 [NativeScript](https://www.nativescript.org) plugin, wrapper of native [Facebook SDK](https://developers.facebook.com) for Android and iOS.
 
@@ -17,7 +21,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
     - [Login](#login)
         - [Facebook Login Button](#facebook-login-button)
         - [Custom Login Button](#custom-login-button)
-- [NativeScript Angular](#nativescript--angular)
+- [NativeScript Angular](#nativescript-angular)
     - [Initialization](#initialization-1)
     - [Login](#login-1)
         - [Facebook Login Button](#facebook-login-button-1)
@@ -28,7 +32,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 <!-- /TOC -->
 
 ## Features
-- [x] Login
+- [x] Login & Logout
 - [ ] Share
 - [ ] Graph API
 

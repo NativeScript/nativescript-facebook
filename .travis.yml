@@ -1,0 +1,49 @@
+matrix:
+  include:
+    - language: android
+      env: NAME="Android Build"
+      os: linux
+      jdk: oraclejdk8
+      before_install: cd src && nvm install node
+      script: npm run ci.android
+    - language: node_js
+      env: NAME="iOS Build"
+      os: osx
+      node_js: "6"
+      jdk: oraclejdk8
+      script: npm run ci.ios
+    - language: node_js
+      env: NAME="tslint"
+      os: linux
+      node_js: "6"
+      jdk: oraclejdk8
+      script: npm run ci.tslint
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-23.0.1
+    - android-23
+    - extra-android-m2repository
+    - sys-img-armeabi-v7a-android-23
+
+before_cache:
+    - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+
+cache:
+    directories:
+        - .nvm
+        - $HOME/.gradle/caches/
+        - $HOME/.gradle/wrapper/
+
+before_install:
+    - cd src
+
+install:
+    - npm install -g nativescript
+    - npm install -g tslint
+    - npm install -g typescript@2.2.2
+    - tns usage-reporting disable
+    - tns error-reporting disable
+    - npm install

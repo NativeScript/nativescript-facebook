@@ -9,9 +9,14 @@
     }
   },
   "scripts": {
-    "tsc": "tsc",
     "ngc": "node --max-old-space-size=8192 ./node_modules/.bin/ngc",
     "build": "tsc",
+    "tslint": "tslint *.ts",
+    "tslint.demo": "tslint ../demo/app/*.ts",
+    "tslint.demo.angular": "tslint ../demo-angular/app/*.ts",
+    "ci.tslint": "npm run tslint && npm run tslint.demo && npm run tslint.demo.angular",
+    "ci.android": "cd ../demo && tns build android",
+    "ci.ios": "cd ../demo && tns build ios",
     "demo.ios": "npm run preparedemo && cd ../demo && tns run ios --emulator",
     "demo.ios.device": "npm run preparedemo && cd ../demo && tns run ios",
     "demo.android": "npm run preparedemo && cd ../demo && tns debug android --justlaunch",
