@@ -5,14 +5,14 @@ import * as Facebook from "nativescript-facebook";
     selector: "ns-app",
     templateUrl: "app.component.html",
 })
-export class AppComponent { 
-    onLogin = function (error: string, loginResponse : Facebook.LoginResponse) {
+export class AppComponent {
+    onLogin = function (error: string, loginResponse: Facebook.LoginResponse) {
         console.log("TOKEN: " + loginResponse.token);
-    }
+    };
 
     testAction = function () {
         Facebook.login((error, data) => {
             console.log("Success!");
         });
-    }
+    };
 }
