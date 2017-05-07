@@ -2,7 +2,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
  =======
 [![npm](https://img.shields.io/npm/v/nativescript-facebook.svg)](https://www.npmjs.com/package/nativescript-facebook)
 [![npm](https://img.shields.io/npm/dm/nativescript-facebook.svg)](https://www.npmjs.com/package/nativescript-facebook)
-[![Travis](https://img.shields.io/travis/nativescript-facebook/master.svg)](https://travis-ci.org/NativeScript/nativescript-facebook)
+[![Travis](https://img.shields.io/travis/NativeScript/nativescript-facebook.svg)](https://travis-ci.org/NativeScript/nativescript-facebook)
 -------
 
 [NativeScript](https://www.nativescript.org) plugin, wrapper of native [Facebook SDK](https://developers.facebook.com) for Android and iOS.
