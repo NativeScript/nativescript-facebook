@@ -1,23 +1,28 @@
 matrix:
   include:
-    - language: android
-      env: NAME="Android Build"
-      os: linux
-      jdk: oraclejdk8
-      before_install: cd src && nvm install node
-      script: npm run ci.android
-    - language: node_js
-      env: NAME="iOS Build"
-      os: osx
-      node_js: "6"
-      jdk: oraclejdk8
-      script: npm run ci.ios
-    - language: node_js
-      env: NAME="tslint"
+    - stage: "Lint"
+      language: node_js
       os: linux
       node_js: "6"
       jdk: oraclejdk8
       script: npm run ci.tslint
+    - stage: "Build"
+      env: 
+        - Android="23"
+      language: android
+      os: linux
+      jdk: oraclejdk8
+      before_install: cd src && nvm install node
+      script: npm run ci.android
+    - os: osx
+      env: 
+        - iOS="10.3"
+        - Xcode="8.3"
+      osx_image: xcode8.3
+      language: node_js 
+      node_js: "6"
+      jdk: oraclejdk8
+      script: npm run ci.ios
 
 android:
   components:
