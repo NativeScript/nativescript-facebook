@@ -2,7 +2,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
  =======
 [![npm](https://img.shields.io/npm/v/nativescript-facebook.svg)](https://www.npmjs.com/package/nativescript-facebook)
 [![npm](https://img.shields.io/npm/dm/nativescript-facebook.svg)](https://www.npmjs.com/package/nativescript-facebook)
-[![Travis](https://img.shields.io/travis/NativeScript/nativescript-facebook.svg)](https://travis-ci.org/NativeScript/nativescript-facebook)
+[![Build Status](https://travis-ci.org/NativeScript/nativescript-facebook.svg?branch=master)](https://travis-ci.org/NativeScript/nativescript-facebook)
 -------
 
 [NativeScript](https://www.nativescript.org) plugin, wrapper of native [Facebook SDK](https://developers.facebook.com) for Android and iOS.
@@ -51,7 +51,7 @@ Update Info.plist file (app/App_Resources/iOS/Info.plist) to contains `CFBundleU
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    
+    <dict>
     ...
 
         <key>CFBundleURLTypes</key>
