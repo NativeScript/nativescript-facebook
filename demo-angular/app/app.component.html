@@ -1,4 +1,5 @@
 <StackLayout>
-    <FacebookLoginButton [login]="onLogin"></FacebookLoginButton>
-    <Button text="Custom Login Button" (tap)="testAction()"></Button>
+    <Label text="{{userId}}"></Label>
+    <FacebookLoginButton (login)="onLogin($event)"></FacebookLoginButton>
+    <Button text="Custom Login Button" (tap)="manualLogin()"></Button>
 </StackLayout>

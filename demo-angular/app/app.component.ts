@@ -6,13 +6,15 @@ import * as Facebook from "nativescript-facebook";
     templateUrl: "app.component.html",
 })
 export class AppComponent {
-    onLogin = function (error: string, loginResponse: Facebook.LoginResponse) {
-        console.log("TOKEN: " + loginResponse.token);
+    userId: string;
+
+    onLogin = function (eventData: Facebook.LoginEventData) {
+        this.userId = "UserId: " + eventData.loginResponse.userId;
     };
 
-    testAction = function () {
-        Facebook.login((error, data) => {
-            console.log("Success!");
+    manualLogin = function () {
+        Facebook.login((error, loginResponse) => {
+            this.userId = "UserId: " + loginResponse.userId;
         });
     };
 }

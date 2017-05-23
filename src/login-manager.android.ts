@@ -38,7 +38,7 @@ export function _registerLoginCallback(callback: Function) {
       callback(null, loginResponse);
     },
     onCancel: function () {
-      callback('canceled');
+      callback(new Error('canceled'));
 
     },
     onError: function (e) {
@@ -52,7 +52,7 @@ export function _registerLoginCallback(callback: Function) {
       else {
         errorMessage += ": " + e;
       }
-      callback(errorMessage);
+      callback(new Error(errorMessage));
     }
 
   }));
