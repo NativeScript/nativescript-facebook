@@ -14,7 +14,8 @@
         "noLib": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "pretty": true
+        "pretty": true,
+        "noEmitHelpers": true
     },
     "exclude": [
         "node_modules",
