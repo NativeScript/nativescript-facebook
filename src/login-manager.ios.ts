@@ -14,6 +14,8 @@ const LOGIN_PERMISSIONS = ["public_profile", "email"];
 
 // TODO: add getter and setter
 export let onLoginCallback;
+export let onLogoutCallback;
+
 let loginManager;
 
 export function init(fbId: string) {
@@ -21,6 +23,10 @@ export function init(fbId: string) {
   loginManager = FBSDKLoginManager.alloc().init();
   loginManager.loginBehavior = FB_LOGIN_BEHAVIOUR;
   loginManager.logOut();
+}
+
+export function _registerLogoutCallback(callback: Function) {
+  onLogoutCallback = callback;
 }
 
 export function _registerLoginCallback(callback: Function) {
@@ -79,4 +85,3 @@ export function logout(callback: Function) {
     callback();
   }
 }
-

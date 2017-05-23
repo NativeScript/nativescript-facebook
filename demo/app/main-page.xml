@@ -3,7 +3,7 @@
   loaded="pageLoaded" class="page">
   <StackLayout>
     <Label text="{{ userId }}"></Label>
-    <Facebook:LoginButton login="{{ onLogin }}"></Facebook:LoginButton>
+    <Facebook:LoginButton login="{{ onLogin }}" logout="{{ onLogout }}"></Facebook:LoginButton>
     <Button text="Log Out" tap="{{ logout }}"></Button>
   </StackLayout>
 </Page>

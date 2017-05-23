@@ -12,6 +12,10 @@ export class HelloWorldModel extends Observable {
     }
   }
 
+  public onLogout() {
+    this.set("userId", "not logged in");
+  }
+
   public logout() {
     fbLogout(() => this.set("userId", "not logged in"));
   }

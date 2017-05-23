@@ -1,6 +1,6 @@
 <StackLayout>
     <Label text="{{userId}}"></Label>
-    <FacebookLoginButton (login)="onLogin($event)"></FacebookLoginButton>
+    <FacebookLoginButton (login)="onLogin($event)" (logout)="onLogout($event)"></FacebookLoginButton>
     <Button text="Custom Login Button" (tap)="manualLogin()"></Button>
-    <Button text="Custom Logout Button" (tap)="logout()"></Button>
+    <Button text="Custom Logout Button" (tap)="manualLogout()"></Button>
 </StackLayout>

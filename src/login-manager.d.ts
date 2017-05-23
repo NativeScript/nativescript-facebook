@@ -1,5 +1,7 @@
 export declare function _registerLoginCallback(callback: Function): void;
+export declare function _registerLogoutCallback(callback: Function): void;
 export declare let onLoginCallback: Function;
+export declare let onLogoutCallback: Function;
 
 /**
 * Sets the Facebook application Id for the current app and init the native facebook sdk.
