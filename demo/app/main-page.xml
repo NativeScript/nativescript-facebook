@@ -4,5 +4,6 @@
   <StackLayout>
     <Label text="{{ userId }}"></Label>
     <Facebook:LoginButton login="{{ onLogin }}"></Facebook:LoginButton>
+    <Button text="Log Out" tap="{{ logout }}"></Button>
   </StackLayout>
 </Page>

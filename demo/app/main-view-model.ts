@@ -1,8 +1,8 @@
 import { Observable } from 'data/observable';
-import { LoginEventData } from "nativescript-facebook";
+import { LoginEventData, logout as fbLogout } from "nativescript-facebook";
 
 export class HelloWorldModel extends Observable {
-  public userId: string;
+  public userId: string = "not logged in";
 
   public onLogin(eventData: LoginEventData) {
     if (eventData.error) {
@@ -10,5 +10,9 @@ export class HelloWorldModel extends Observable {
     } else {
       this.set("userId", "UserId: " + eventData.loginResponse.userId);
     }
+  }
+
+  public logout() {
+    fbLogout(() => this.set("userId", "not logged in"));
   }
 }

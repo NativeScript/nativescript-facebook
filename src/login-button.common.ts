@@ -8,7 +8,7 @@ export abstract class LoginButtonBase extends View {
 
   initNativeView() {
     loginManager._registerLoginCallback((error: Error, loginResponse: LoginResponse) => {
-      this.notify(<LoginEventData>{ eventName: LoginButtonBase.loginEvent, object: this, error: error,loginResponse: loginResponse });
+      this.notify(<LoginEventData>{ eventName: LoginButtonBase.loginEvent, object: this, error: error, loginResponse: loginResponse });
     });
   }
 }

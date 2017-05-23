@@ -6,15 +6,25 @@ import * as Facebook from "nativescript-facebook";
     templateUrl: "app.component.html",
 })
 export class AppComponent {
-    userId: string;
+    userId: string = "not logged in";
 
     onLogin = function (eventData: Facebook.LoginEventData) {
-        this.userId = "UserId: " + eventData.loginResponse.userId;
+        if (eventData.error) {
+            alert("Error during login: " + eventData.error);
+        } else {
+            this.userId = "UserId: " + eventData.loginResponse.userId;
+        }
     };
 
     manualLogin = function () {
         Facebook.login((error, loginResponse) => {
             this.userId = "UserId: " + loginResponse.userId;
+        });
+    };
+
+    logout = function () {
+        Facebook.logout(() => {
+            this.userId = "not logged in";
         });
     };
 }

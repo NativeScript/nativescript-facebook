@@ -73,3 +73,10 @@ export function login(callback: Function) {
   requestReadPermissions(LOGIN_PERMISSIONS, callback);
 }
 
+export function logout(callback: Function) {
+  loginManager.logOut();
+  if (callback) {
+    callback();
+  }
+}
+

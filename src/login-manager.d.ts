@@ -1,5 +1,5 @@
 export declare function _registerLoginCallback(callback: Function): void;
-export declare let _onLoginCallback: Function;
+export declare let onLoginCallback: Function;
 
 /**
 * Sets the Facebook application Id for the current app and init the native facebook sdk.
@@ -23,3 +23,8 @@ export declare function requestReadPermissions(permissions: string[], callback: 
 * @param {Function} callback Function reference to be executed when the requested permissions are granted or denied.
 */
 export declare function login(callback: Function): void;
+/**
+* Trigger a logout procedure.
+* @param {Function} callback Function reference to be executed when the logout is executed.
+*/
+export declare function logout(callback: Function): void;
