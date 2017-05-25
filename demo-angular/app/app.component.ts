@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectorRef } from "@angular/core";
 import * as Facebook from "nativescript-facebook";
 
 @Component({
@@ -6,13 +6,36 @@ import * as Facebook from "nativescript-facebook";
     templateUrl: "app.component.html",
 })
 export class AppComponent {
-    onLogin = function (error: string, loginResponse: Facebook.LoginResponse) {
-        console.log("TOKEN: " + loginResponse.token);
+    userId: string = "not logged in";
+
+    constructor(private ref: ChangeDetectorRef) {
+    }
+
+    onLogin = function (eventData: Facebook.LoginEventData) {
+        if (eventData.error) {
+            alert("Error during login: " + eventData.error);
+        } else {
+            this.userId = "UserId: " + eventData.loginResponse.userId;
+            this.ref.detectChanges();
+        }
     };
 
-    testAction = function () {
-        Facebook.login((error, data) => {
-            console.log("Success!");
+    manualLogin = function () {
+        Facebook.login((error, loginResponse) => {
+            this.userId = "UserId: " + loginResponse.userId;
+            this.ref.detectChanges();
         });
     };
+
+    manualLogout = function () {
+        Facebook.logout(() => {
+            this.userId = "not logged in";
+            this.ref.detectChanges();
+        });
+    };
+
+    public onLogout() {
+        this.userId = "not logged in";
+        this.ref.detectChanges();
+    }
 }

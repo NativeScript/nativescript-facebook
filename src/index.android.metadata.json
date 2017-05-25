@@ -1,1 +1,1 @@
-[{"__symbolic":"module","version":3,"metadata":{},"exports":[{"from":"./login-manager"},{"from":"./login-button"}]},{"__symbolic":"module","version":1,"metadata":{},"exports":[{"from":"./login-manager"},{"from":"./login-button"}]}]
+[{"__symbolic":"module","version":3,"metadata":{},"exports":[{"from":"./login-manager"},{"from":"./login-button"},{"from":"./login-event-data"}]},{"__symbolic":"module","version":1,"metadata":{},"exports":[{"from":"./login-manager"},{"from":"./login-button"},{"from":"./login-event-data"}]}]

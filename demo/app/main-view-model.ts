@@ -1,14 +1,22 @@
 import { Observable } from 'data/observable';
-import { login } from "nativescript-facebook";
+import { LoginEventData, logout as fbLogout } from "nativescript-facebook";
 
-// Facebook Authentication CODE
 export class HelloWorldModel extends Observable {
+  public userId: string = "not logged in";
 
-  public onLogin(error, data) {
-    console.log("Success!");
+  public onLogin(eventData: LoginEventData) {
+    if (eventData.error) {
+      alert("Error during login: " + eventData.error.message);
+    } else {
+      this.set("userId", "UserId: " + eventData.loginResponse.userId);
+    }
   }
 
-  public testAction() {
-    login((error, data) => console.log("Success!"));
+  public onLogout() {
+    this.set("userId", "not logged in");
+  }
+
+  public logout() {
+    fbLogout(() => this.set("userId", "not logged in"));
   }
 }

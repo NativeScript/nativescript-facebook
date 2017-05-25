@@ -5,10 +5,15 @@ declare let com: any;
 const LOGIN_PERMISSIONS = ["public_profile", "email"];
 
 // TODO: add getter and setter
-let onLoginCallback;
+export let onLoginCallback;
+export let onLogoutCallback;
 let androidApplication;
 let _act: android.app.Activity;
 let loginManager;
+
+export function _registerLogoutCallback(callback: Function) {
+  onLogoutCallback = callback;
+}
 
 export function init(fbId: string) {
   setAppId(fbId);
@@ -23,6 +28,18 @@ export function init(fbId: string) {
   onLoginCallback = com.facebook.CallbackManager.Factory.create();
   loginManager = com.facebook.login.LoginManager.getInstance();
   loginManager.logOut();
+
+  // Workaround for firing the logout event in android:
+  // https://stackoverflow.com/questions/30233284/how-to-add-a-logout-callback-for-facebook-sdk-in-android
+  let LogoutAccessTokenTracker = com.facebook.AccessTokenTracker.extend({
+    onCurrentAccessTokenChanged: function (oldToken, newToken) {
+      if (oldToken != null && newToken == null && onLogoutCallback) {
+        onLogoutCallback();
+      }
+    }
+  });
+  let accessTokenTracker = new LogoutAccessTokenTracker();
+  accessTokenTracker.startTracking();
 }
 
 export function _registerLoginCallback(callback: Function) {
@@ -38,7 +55,7 @@ export function _registerLoginCallback(callback: Function) {
       callback(null, loginResponse);
     },
     onCancel: function () {
-      callback('canceled');
+      callback(new Error('canceled'));
 
     },
     onError: function (e) {
@@ -52,7 +69,7 @@ export function _registerLoginCallback(callback: Function) {
       else {
         errorMessage += ": " + e;
       }
-      callback(errorMessage);
+      callback(new Error(errorMessage));
     }
 
   }));
@@ -89,7 +106,13 @@ export function requestReadPermissions(permissions: string[], callback: Function
 }
 
 export function login(callback: Function) {
-    console.log("requesting read permissions .... .");
   requestReadPermissions(LOGIN_PERMISSIONS, callback);
+}
+
+export function logout(callback: Function) {
+  loginManager.logOut();
+  if (callback) {
+    callback();
+  }
 }
 

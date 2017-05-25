@@ -1,9 +1,9 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
       xmlns:Facebook="nativescript-facebook"
   loaded="pageLoaded" class="page">
-  <StackLayout class="p-20" style="vertical-align: bottom;" >
-    <Label id="userIdLabel" text="{{ labelContent }}" style="padding-bottom: 100;horizontal-align: center;"/>
-    <Facebook:LoginButton login="{{ onLogin }}"></Facebook:LoginButton>
-    <Button tap="{{ testAction }}" text="Custom Login Button"></Button>
+  <StackLayout>
+    <Label text="{{ userId }}"></Label>
+    <Facebook:LoginButton login="{{ onLogin }}" logout="{{ onLogout }}"></Facebook:LoginButton>
+    <Button text="Log Out" tap="{{ logout }}"></Button>
   </StackLayout>
-</Page> 
+</Page>

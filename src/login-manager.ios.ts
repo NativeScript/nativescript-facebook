@@ -14,6 +14,8 @@ const LOGIN_PERMISSIONS = ["public_profile", "email"];
 
 // TODO: add getter and setter
 export let onLoginCallback;
+export let onLogoutCallback;
+
 let loginManager;
 
 export function init(fbId: string) {
@@ -23,23 +25,26 @@ export function init(fbId: string) {
   loginManager.logOut();
 }
 
+export function _registerLogoutCallback(callback: Function) {
+  onLogoutCallback = callback;
+}
+
 export function _registerLoginCallback(callback: Function) {
 
   onLoginCallback = function (result: FBSDKLoginManagerLoginResult, error: NSError) {
 
     if (error) {
-      callback(error);
+      callback(new Error(error.localizedDescription));
       return;
     }
 
-    // something went really wrong no error and no result
     if (!result) {
-      callback("Fatal error");
+      callback(new Error("Fatal error"));
       return;
     }
 
     if (result.isCancelled) {
-      callback('canceled');
+      callback(new Error('canceled'));
       return;
     }
 
@@ -50,7 +55,7 @@ export function _registerLoginCallback(callback: Function) {
       callback(null, loginResponse);
     }
     else {
-      callback("Could not acquire an access token");
+      callback(new Error("Could not acquire an access token"));
       return;
     }
   };
@@ -74,3 +79,9 @@ export function login(callback: Function) {
   requestReadPermissions(LOGIN_PERMISSIONS, callback);
 }
 
+export function logout(callback: Function) {
+  loginManager.logOut();
+  if (callback) {
+    callback();
+  }
+}

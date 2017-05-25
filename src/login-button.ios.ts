@@ -31,13 +31,15 @@ class LoginButtonDelegate extends NSObject implements FBSDKLoginButtonDelegate {
   public static ObjCProtocols = [FBSDKLoginButtonDelegate];
 
   loginButtonDidCompleteWithResultError(loginButton: any, result: any, error: NSError) {
-    if (loginManager._onLoginCallback) {
-      loginManager._onLoginCallback(result, error);
+    if (loginManager.onLoginCallback) {
+      loginManager.onLoginCallback(result, error);
     }
   }
 
   loginButtonDidLogOut(loginButton: any) {
-    // TODO: Provide logout callback
+    if (loginManager.onLogoutCallback) {
+      loginManager.onLogoutCallback();
+    }
   }
 
   loginButtonWillLogin(loginButton: any) {
