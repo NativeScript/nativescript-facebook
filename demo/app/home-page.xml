@@ -1,0 +1,17 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+      xmlns:Facebook="nativescript-facebook"
+  loaded="pageLoaded" class="page">
+  <StackLayout class="home">
+    <Image src="{{avatarUrl}}" class="avatar"/>
+    <StackLayout class="info">
+      <Label text="ID:" class="label"></Label>
+      <Label text="{{ userId }}"></Label>
+      <Label text="NAME:" class="label"></Label>
+      <Label text="{{ username }}"></Label>
+    </StackLayout>
+    <StackLayout class="buttons">
+      <Facebook:LoginButton logout="{{ onLogout }}"></Facebook:LoginButton>
+      <Button tap="{{ logout }}" text="Log out (custom)"></Button>
+    </StackLayout>
+  </StackLayout>
+</Page>

@@ -7,5 +7,5 @@ application.on(application.launchEvent, function (args) {
     init("1771472059772879");
 });
 
-application.start({ moduleName: "main-page" });
+application.start({ moduleName: "login-page" });
 

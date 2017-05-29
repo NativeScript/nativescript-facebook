@@ -1,0 +1,13 @@
+<StackLayout class="home">
+    <Image *ngIf="avatarUrl" src="{{avatarUrl}}" class="avatar"></Image>
+    <StackLayout class="info">
+        <Label text="ID:" class="label"></Label>
+        <Label text="{{ userId }}"></Label>
+        <Label text="NAME:" class="label"></Label>
+        <Label text="{{ username }}"></Label>
+    </StackLayout>
+    <StackLayout class="buttons">
+        <FacebookLoginButton (logout)="onLogout($event)"></FacebookLoginButton>
+        <Button text="Log out (custom)" (tap)="logout()"></Button>
+    </StackLayout>
+</StackLayout>
