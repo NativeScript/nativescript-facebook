@@ -11,6 +11,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 
 <!-- TOC -->
 
+- [Breaking Changes](#breaking-changes)
 - [Features](#features)
 - [Installation](#installation)
 - [Configuration](#configuration)
@@ -30,6 +31,12 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 - [License](#license)
 
 <!-- /TOC -->
+
+## Breaking Changes
+
+2.0.0
+-------------
+* Login event instead of login callback
 
 ## Features
 - [x] Login & Logout
@@ -76,18 +83,18 @@ Call init of nativescript-facebook module on application launch.
 app.ts
 ```TypeScript
 import * as application from 'application';
-var nsFacebook = require('nativescript-facebook');
+import { init } from "nativescript-facebook";
 
 application.on(application.launchEvent, function (args) {
-    nsFacebook.init("{facebook_app_id}");
+    init("{facebook_app_id}");
 });
 
-application.start({ moduleName: "main-page" });
+application.start({ moduleName: "login-page" });
 ```
 
 ### Login
 #### Facebook Login Button
-main-page.xml
+login-page.xml
 ```xml
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
       xmlns:Facebook="nativescript-facebook"
@@ -102,21 +109,26 @@ main-page.xml
 </Page> 
 ```
 
-main-view-model.ts
+login-view-model.ts
 ```TypeScript
 import { Observable } from 'data/observable';
+import { LoginEventData } from "nativescript-facebook";
 
-export class HelloWorldModel extends Observable {
+export class LoginViewModel extends Observable {
 
-  public onLogin(error, data) {
-    console.log("Success!");
+  public onLogin(eventData: LoginEventData) {
+    if (eventData.error) {
+      alert("Error during login: " + eventData.error.message);
+    } else {
+      console.log(eventData.loginResponse.token);
+    }
   }
 
 }
 ```
 
 #### Custom Login Button
-main-page.xml
+login-page.xml
 ```xml
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
       xmlns:Facebook="nativescript-facebook"
@@ -124,22 +136,28 @@ main-page.xml
 
     ...
 
-    <Button tap="{{ testAction }}" text="Custom Login Button"></Button>
+    <Button tap="{{ login }}" text="Log in (custom)"></Button>
 
     ...
 
 </Page> 
 ```
 
-main-view-model.ts
+login-view-model.ts
 ```TypeScript
 import { Observable } from 'data/observable';
-import { login } from "nativescript-facebook";
+import { login as fbLogin } from "nativescript-facebook";
 
-export class HelloWorldModel extends Observable {
+export class LoginViewModel extends Observable {
 
-  public testAction() {
-    login((error, data) => console.log("Success!"));
+  public login() {
+    fbLogin((err, fbData) => {
+      if (err) {
+        alert("Error during login: " + err.message);
+      } else {
+        console.log(fbData.token);
+      }
+    });
   }
 
 }
@@ -153,9 +171,9 @@ app.module.ts
 ```TypeScript
 ...
 import * as application from 'application';
-var nsFacebook = require('nativescript-facebook');
+import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
-import { AppModule } from "./app.module";
+let nsFacebook = require('nativescript-facebook');
 
 application.on(application.launchEvent, function (args) {
     nsFacebook.init("{facebook_app_id}");
@@ -165,38 +183,42 @@ application.on(application.launchEvent, function (args) {
 
 ### Login
 #### Facebook Login Button
-app.component.html
+pages/login/login.component.html
 ```html
 <StackLayout>
-    <FacebookLoginButton [login]="onLogin"></FacebookLoginButton>
+    <FacebookLoginButton (login)="onLogin($event)"></FacebookLoginButton>
 </StackLayout>
 ```
 
-app.component.ts
+pages/login/login.component.ts
 ```TypeScript
 import { Component } from "@angular/core";
-import { LoginResponse } from "nativescript-facebook";
+import * as Facebook from "nativescript-facebook";
 
 @Component({
-    selector: "ns-app",
-    templateUrl: "app.component.html",
+    selector: "login",
+    templateUrl: "login.component.html",
 })
-export class AppComponent { 
-    onLogin = function (error: string, loginResponse : LoginResponse) {
-        console.log("TOKEN: " + loginResponse.token);
+export class LoginComponent { 
+    onLogin = function (eventData: Facebook.LoginEventData) {
+        if (eventData.error) {
+            alert("Error during login: " + eventData.error);
+        } else {
+            console.log(eventData.loginResponse.token);
+        }
     }
 }
 ```
 
 #### Custom Login Button
-app.component.html
+pages/login/login.component.html
 ```html
 <StackLayout>
-    <Button text="Custom Login Button" (tap)="testAction()"></Button>
+    <Button text="Login Button (custom)" (tap)="testAction()"></Button>
 </StackLayout>
 ```
 
-app.component.ts
+pages/login/login.component.ts
 ```TypeScript
 import { Component } from "@angular/core";
 import * as Facebook from "nativescript-facebook";
@@ -206,11 +228,15 @@ import * as Facebook from "nativescript-facebook";
     templateUrl: "app.component.html",
 })
 export class AppComponent { 
-    testAction = function () {
-        Facebook.login((error, data) => {
-            console.log("Success!");
+    login = function () {
+        Facebook.login((error, fbData) => {
+            if (error) {
+                alert("Error during login: " + error.message);
+            } else {
+                console.log(fbData.token);
+            }
         });
-    }
+    };
 }
 ```
 
@@ -219,7 +245,6 @@ The callback that have to be provided to Facebook.login method receives 2 argume
 
 | Property        | Description  
 | ------------- |:-------------| 
-| userId        | user Id of the logged in user | 
 | token         | access token which will be used for further authentications      |  
 
 
