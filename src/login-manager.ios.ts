@@ -2,7 +2,7 @@ import * as applicationModule from "application";
 import { LoginResponse } from './login-response';
 declare let FBSDKLoginManager: any;
 declare let FBSDKSettings: any;
-declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; userId: any; }
+declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; }
 declare class UIResponder { }
 declare var UIApplicationDelegate: any;
 declare class UIApplication { }
@@ -50,8 +50,7 @@ export function _registerLoginCallback(callback: Function) {
 
     if (result.token) {
       let token = result.token.tokenString;
-      let userId = result.token.userID;
-      let loginResponse = new LoginResponse(userId, token);
+      let loginResponse = new LoginResponse(token);
       callback(null, loginResponse);
     }
     else {

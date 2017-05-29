@@ -1,9 +1,7 @@
 export class LoginResponse {
-  userId: string;
   token: string;
 
-  constructor(userId: string, token: string) {
-    this.userId = userId;
+  constructor(token: string) {
     this.token = token;
   }
 }
