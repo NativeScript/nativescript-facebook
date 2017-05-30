@@ -1,15 +1,13 @@
 {
-  "description": "NativeScript Application",
-  "license": "SEE LICENSE IN <your-license-filename>",
-  "readme": "NativeScript Application",
-  "repository": "<fill-your-repository-here>",
+  "description": "NativeScript Facebook Sample Application With Angular",
+  "license": "MIT",
   "nativescript": {
     "id": "org.nativescript.demoangular",
     "tns-android": {
       "version": "3.0.0"
     },
     "tns-ios": {
-      "version": "3.0.0"
+      "version": "3.0.1"
     }
   },
   "dependencies": {

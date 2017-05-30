@@ -1,0 +1,8 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+      xmlns:Facebook="nativescript-facebook"
+  loaded="pageLoaded" class="page">
+  <StackLayout class="login-buttons">
+    <Facebook:LoginButton login="{{ onLogin }}"></Facebook:LoginButton>
+    <Button tap="{{ login }}" text="Continue with Facebook (custom)"></Button>
+  </StackLayout>
+</Page>

@@ -1,6 +1,6 @@
 {
   "name": "nativescript-facebook",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "NativeScript plugin, wrapper of native Facebook SDK for Adroid and iOS.",
   "nativescript": {
     "platforms": {

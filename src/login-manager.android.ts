@@ -50,8 +50,7 @@ export function _registerLoginCallback(callback: Function) {
 
     onSuccess: function (result) {
       let token = result.getAccessToken().getToken();
-      let userId = result.getAccessToken().getUserId();
-      let loginResponse = new LoginResponse(userId, token);
+      let loginResponse = new LoginResponse(token);
       callback(null, loginResponse);
     },
     onCancel: function () {
