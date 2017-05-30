@@ -14,16 +14,16 @@ export class LoginComponent {
     constructor(private ref: ChangeDetectorRef, private navigationService: NavigationService) {
     }
 
-    onLogin = function (eventData: Facebook.LoginEventData) {
+    onLogin(eventData: Facebook.LoginEventData) {
         if (eventData.error) {
             alert("Error during login: " + eventData.error);
         } else {
             appSettings.setString("access_token", eventData.loginResponse.token);
             this.navigationService.go(['home']);
         }
-    };
+    }
 
-    login = function () {
+    login() {
         Facebook.login((error, fbData) => {
             if (error) {
                 alert("Error during login: " + error.message);
@@ -32,5 +32,5 @@ export class LoginComponent {
                 this.navigationService.go(['home']);
             }
         });
-    };
+    }
 }

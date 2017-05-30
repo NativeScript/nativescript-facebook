@@ -46,10 +46,10 @@ export class HomeComponent {
 
     }
 
-    logout = function () {
+    logout() {
         Facebook.logout(() => {
             appSettings.clear();
             this.navigationService.go(['login'], "slideRight");
         });
-    };
+    }
 }
