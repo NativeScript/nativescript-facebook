@@ -306,7 +306,7 @@ Add a button and define a `tap` event handler in your login component html.
 [pages/login/login.component.html](https://github.com/NativeScript/nativescript-facebook/blob/master/demo-angular/app/pages/login/login.component.html)
 ```html
 <StackLayout>
-    <Button text="Login Button (custom)" (tap)="testAction()"></Button>
+    <Button text="Login Button (custom)" (tap)="login()"></Button>
 </StackLayout>
 ```
 
