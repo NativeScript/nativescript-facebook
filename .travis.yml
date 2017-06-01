@@ -12,7 +12,7 @@ matrix:
       language: android
       os: linux
       jdk: oraclejdk8
-      before_install: cd src && nvm install node
+      before_install: cd src && nvm install 6.10.3
       script: npm run ci.android
     - os: osx
       env: 
