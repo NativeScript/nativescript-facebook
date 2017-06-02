@@ -78,7 +78,7 @@ Update Info.plist file (app/App_Resources/iOS/Info.plist) to contains `CFBundleU
 >Make sure you replaced {facebook_app_id} with your Facebook App Id. More info regarding how to obtain a Facebook App Id can be found [here](https://developers.facebook.com/docs/apps/register).
 
 ## NativeScript Core
-### Initialization
+### Initialization 
 Call init of nativescript-facebook module on application launch.
 
 [app.ts](https://github.com/NativeScript/nativescript-facebook/blob/master/demo/app/app.ts)
