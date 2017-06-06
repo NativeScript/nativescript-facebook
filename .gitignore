@@ -13,3 +13,4 @@ demo/platforms/
 demo-angular/app/*.js
 demo-angular/*.d.ts
 demo-angular/platforms/
+!demo/e2e-tests/*
