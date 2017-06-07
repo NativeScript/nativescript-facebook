@@ -11,7 +11,7 @@
     </StackLayout>
     <StackLayout class="buttons">
       <Facebook:LoginButton logout="{{ onLogout }}"></Facebook:LoginButton>
-      <Button tap="{{ logout }}" text="Log out (custom)"></Button>
+      <Button automationText="customLogOut" tap="{{ logout }}" text="Log out (custom)"></Button>
     </StackLayout>
   </StackLayout>
 </Page>
