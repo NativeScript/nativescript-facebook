@@ -2,10 +2,10 @@
   "nativescript": {
     "id": "org.nativescript.demo",
     "tns-android": {
-      "version": "3.0.0"
+      "version": "3.0.1"
     },
     "tns-ios": {
-      "version": "3.0.0"
+      "version": "3.0.1"
     }
   },
   "dependencies": {
@@ -30,7 +30,7 @@
     "karma-nativescript-launcher": "^0.4.0",
     "lazy": "1.0.11",
     "nativescript-css-loader": "~0.26.0",
-    "nativescript-dev-appium": "^0.3.0",
+    "nativescript-dev-appium": "~0",
     "nativescript-dev-typescript": "^0.4.0",
     "nativescript-dev-webpack": "^0.4.0",
     "raw-loader": "~0.5.1",
