@@ -1,0 +1,21 @@
+{
+    "android23": {
+            "browserName": "",
+            "appium-version": "1.6.5",
+            "platformName": "Android",
+            "platformVersion": "6.0",
+            "deviceName": "Android Emulator",
+            "noReset": false,
+            "app": ""
+        
+    },
+    "ios-simulator10iPhone6": {
+            "browserName": "",
+            "appium-version": "1.6.5",
+            "platformName": "iOS",
+            "platformVersion": "10.0",
+            "deviceName": "iPhone 6 Simulator",
+            "app": ""
+        
+    }
+}

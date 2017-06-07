@@ -25,12 +25,17 @@ There are three main points in order to get nativescript-facebook e2e UI tests r
 
 * Run Android emulator or/and iOS Simulator. For iOS appium will run simulator if such is not running. It is a requirement for appium that Android emulator has device name 'Android Emulator' and uses Android '6.0' version. For iOS Simulator you will need similator with device name 'iPhone 7 100' which is using iOS '10.0' version. These requirements come from the nativescript-dev-appium plugin and are still hardcoded in it, but notice that plugin itself is in development and the future plans are to become the ultimate testing tool for NativeScript plugins.
 
-* Navigate to /src folder and execute:
+* Navigate to `/demo` folder and execute the commands below to build the plugin and demo app which will produce the package needed for appium to execute the tests :
 
-        $ npm run ci.uitest.android
+        $ npm run ci.android.build
+        $ npm run ci.ios.build
+
+* Run the tests
+
+        $ npm run ci.android.uitest
 
     or
 
-        $ npm run ci.uitest.ios
+        $ npm run ci.ios.uitest
 
 That's it. You should have running UI tests in your Simulator/Emulator.
