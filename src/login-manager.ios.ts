@@ -22,7 +22,6 @@ export function init(fbId: string) {
   setAppId(fbId);
   loginManager = FBSDKLoginManager.alloc().init();
   loginManager.loginBehavior = FB_LOGIN_BEHAVIOUR;
-  loginManager.logOut();
 }
 
 export function _registerLogoutCallback(callback: Function) {
