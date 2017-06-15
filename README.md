@@ -465,5 +465,8 @@ This sample is part of the demo apps and can be observed [here](https://github.c
 * NativeScript 3.0 ready
 * Webpack ready
 
+## FAQ
+Check out our FAQ section [here](https://github.com/NativeScript/nativescript-facebook/wiki/FAQ).
+
 ## License
 [Apache 2.0](https://github.com/NativeScript/nativescript-facebook/blob/master/LICENSE)
