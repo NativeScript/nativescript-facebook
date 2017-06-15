@@ -1,68 +1,68 @@
 {
-  "name": "nativescript-facebook",
-  "version": "2.0.0",
-  "description": "NativeScript plugin, wrapper of native Facebook SDK for Adroid and iOS.",
-  "nativescript": {
-    "platforms": {
-      "android": "3.0.0",
-      "ios": "3.0.0"
-    }
-  },
-  "scripts": {
-    "build": "tsc",
-    "ci.tslint": "tslint *.ts && tslint ../demo/app/*.ts && tslint ../demo-angular/app/*.ts",
-    "ci.android": "cd ../demo && tns build android",
-    "ci.ios": "cd ../demo && tns build ios",
-    "ci.test.ios": "cd ../demo && tns platform remove ios && tns test ios",
-    "ci.test.android": "cd ../demo && tns platform remove android && tns test android",
-    "ci.test.ios.angular": "cd ../demo-angular && tns platform remove ios && tns test ios",
-    "ci.test.android.angular": "cd ../demo-angular && tns platform remove android",
-    "prepublish": "npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/NativeScript/nativescript-facebook.git"
-  },
-  "keywords": [
-    "NativeScript",
-    "TypeScript",
-    "Android",
-    "iOS",
-    "Facebook"
-  ],
-  "author": {
-    "name": "NativeScript Team",
-    "email": "support@telerik.com",
-    "url": "http://www.telerik.com"
-  },
-  "maintainers": [{
-      "name": "angeltsvetkov",
-      "email": "angel.tsvetkov@progress.com"
+    "name": "nativescript-facebook",
+    "version": "2.0.1",
+    "description": "NativeScript plugin, wrapper of native Facebook SDK for Adroid and iOS.",
+    "nativescript": {
+        "platforms": {
+            "android": "3.0.0",
+            "ios": "3.0.0"
+        }
     },
-    {
-      "name": "Dimitar Tachev",
-      "email": "dimitar.tachev@progress.com"
+    "scripts": {
+        "build": "tsc",
+        "ci.tslint": "tslint *.ts && tslint ../demo/app/*.ts && tslint ../demo-angular/app/*.ts",
+        "ci.android": "cd ../demo && tns build android",
+        "ci.ios": "cd ../demo && tns build ios",
+        "ci.test.ios": "cd ../demo && tns platform remove ios && tns test ios",
+        "ci.test.android": "cd ../demo && tns platform remove android && tns test android",
+        "ci.test.ios.angular": "cd ../demo-angular && tns platform remove ios && tns test ios",
+        "ci.test.android.angular": "cd ../demo-angular && tns platform remove android",
+        "prepublish": "npm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/NativeScript/nativescript-facebook.git"
+    },
+    "keywords": [
+        "NativeScript",
+        "TypeScript",
+        "Android",
+        "iOS",
+        "Facebook"
+    ],
+    "author": {
+        "name": "NativeScript Team",
+        "email": "support@telerik.com",
+        "url": "http://www.telerik.com"
+    },
+    "maintainers": [{
+            "name": "angeltsvetkov",
+            "email": "angel.tsvetkov@progress.com"
+        },
+        {
+            "name": "Dimitar Tachev",
+            "email": "dimitar.tachev@progress.com"
+        }
+    ],
+    "bugs": {
+        "url": "https://github.com/NativeScript/nativescript-facebook/issues"
+    },
+    "license": "Apache 2.0",
+    "homepage": "https://github.com/NativeScript/nativescript-facebook",
+    "readmeFilename": "README.md",
+    "devDependencies": {
+        "tns-core-modules": "^3.0.0",
+        "tns-platform-declarations": "^3.0.0",
+        "typescript": "~2.2.2",
+        "nativescript-angular": "^3.0.0 || ^2.0.0-rc.1",
+        "@angular/core": "~4.0.1",
+        "@angular/common": "~4.0.1",
+        "@angular/compiler": "~4.0.1",
+        "@angular/compiler-cli": "~4.0.1",
+        "rxjs": "~5.3.0",
+        "zone.js": "~0.8.4"
+    },
+    "peerDependencies": {
+        "tns-core-modules": "^3.0.0"
     }
-  ],
-  "bugs": {
-    "url": "https://github.com/NativeScript/nativescript-facebook/issues"
-  },
-  "license": "Apache 2.0",
-  "homepage": "https://github.com/NativeScript/nativescript-facebook",
-  "readmeFilename": "README.md",
-  "devDependencies": {
-    "tns-core-modules": "^3.0.0",
-    "tns-platform-declarations": "^3.0.0",
-    "typescript": "~2.2.2",
-    "nativescript-angular": "^3.0.0 || ^2.0.0-rc.1",
-    "@angular/core": "~4.0.1",
-    "@angular/common": "~4.0.1",
-    "@angular/compiler": "~4.0.1",
-    "@angular/compiler-cli": "~4.0.1",
-    "rxjs": "~5.3.0",
-    "zone.js": "~0.8.4"
-  },
-  "peerDependencies": {
-    "tns-core-modules": "^3.0.0"
-  }
 }
