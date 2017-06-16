@@ -2,8 +2,8 @@ import { Component, ChangeDetectorRef } from "@angular/core";
 import * as Facebook from "nativescript-facebook";
 import { NavigationService } from "../../services/navigation.service";
 import { config } from "../../app.config";
-let http = require("http");
-let appSettings = require("application-settings");
+let http = require("tns-core-modules/http");
+let appSettings = require("tns-core-modules/application-settings");
 
 @Component({
     selector: "home",

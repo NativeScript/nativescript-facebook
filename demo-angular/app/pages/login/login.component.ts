@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
 import * as Facebook from "nativescript-facebook";
 import { NavigationService } from "../../services/navigation.service";
-let appSettings = require("application-settings");
+let appSettings = require("tns-core-modules/application-settings");
 
 @Component({
     selector: "login",

@@ -5,7 +5,7 @@ import { AppComponent } from "./app.component";
 import { LoginModule } from "./pages/login/login.module";
 import { HomeModule } from "./pages/home/home.module";
 import { NativeScriptFacebookModule } from "nativescript-facebook/angular";
-import * as application from 'application';
+import * as application from 'tns-core-modules/application';
 import { routes } from "./app.routing";
 import { NavigationService } from "./services/navigation.service";
 
