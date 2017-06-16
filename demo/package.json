@@ -2,10 +2,10 @@
   "nativescript": {
     "id": "org.nativescript.demo",
     "tns-android": {
-      "version": "3.0.0"
+      "version": "3.0.1"
     },
     "tns-ios": {
-      "version": "3.0.0"
+      "version": "3.0.1"
     }
   },
   "dependencies": {
@@ -19,6 +19,8 @@
     "babel-traverse": "6.12.0",
     "babel-types": "6.11.1",
     "babylon": "6.8.4",
+    "chai": "~3.5.0",
+    "chai-as-promised": "~5.3.0",
     "copy-webpack-plugin": "~4.0.1",
     "extract-text-webpack-plugin": "~2.1.0",
     "filewalker": "0.1.2",
@@ -28,16 +30,19 @@
     "karma-nativescript-launcher": "^0.4.0",
     "lazy": "1.0.11",
     "nativescript-css-loader": "~0.26.0",
+    "nativescript-dev-appium": "~0",
     "nativescript-dev-typescript": "^0.4.0",
     "nativescript-dev-webpack": "^0.4.0",
     "raw-loader": "~0.5.1",
     "resolve-url-loader": "~2.0.2",
     "typescript": "~2.2.2",
+    "wd": "~1.1.1",
     "webpack": "~2.3.3",
     "webpack-sources": "~0.2.3"
   },
   "scripts": {
     "ns-bundle": "ns-bundle",
+    "appium": "nativescript-dev-appium",
     "start-android-bundle": "npm run ns-bundle --android --start-app",
     "start-ios-bundle": "npm run ns-bundle --ios --start-app",
     "build-android-bundle": "npm run ns-bundle --android --build-app",

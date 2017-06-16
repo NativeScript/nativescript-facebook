@@ -17,6 +17,8 @@
         "ci.test.android": "cd ../demo && tns platform remove android && tns test android",
         "ci.test.ios.angular": "cd ../demo-angular && tns platform remove ios && tns test ios",
         "ci.test.android.angular": "cd ../demo-angular && tns platform remove android",
+        "ci.uitest.ios": "cd ../demo && npm run appium --runtype=ios-simulator10",
+        "ci.uitest.android": "cd ../demo && npm run appium --runtype=android23",
         "prepublish": "npm run build"
     },
     "repository": {
