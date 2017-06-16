@@ -1,5 +1,5 @@
 // NativeScript modules
-import * as applicationModule from "application";
+import * as applicationModule from "tns-core-modules/application";
 import { LoginButtonBase } from './login-button.common';
 
 declare let com: any;

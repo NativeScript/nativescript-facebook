@@ -1,6 +1,6 @@
 ﻿import "./bundle-config";
 
-import * as application from 'application';
+import * as application from 'tns-core-modules/application';
 import { init } from "nativescript-facebook";
 
 application.on(application.launchEvent, function (args) {

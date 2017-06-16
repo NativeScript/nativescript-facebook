@@ -1,10 +1,10 @@
-import { Observable } from 'data/observable';
+import { Observable } from 'tns-core-modules/data/observable';
 import { LoginEventData, logout as fbLogout } from "nativescript-facebook";
 
-let frameModule = require("ui/frame");
-let appSettings = require("application-settings");
-let imageSource = require("image-source");
-let http = require("http");
+let frameModule = require("tns-core-modules/ui/frame");
+let appSettings = require("tns-core-modules/application-settings");
+let imageSource = require("tns-core-modules/image-source");
+let http = require("tns-core-modules/http");
 let config = require("./app.config").config;
 
 export class HomeViewModel extends Observable {

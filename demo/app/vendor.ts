@@ -1,3 +1,3 @@
 require("./vendor-platform");
 
-require("bundle-entry-points");
+require("tns-core-modules/bundle-entry-points");
