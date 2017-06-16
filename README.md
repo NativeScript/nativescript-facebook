@@ -35,6 +35,8 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 - [Login Response](#login-response)
 - [Graph API Example](#graph-api-example)
 - [Release notes](#release-notes)
+- [FAQ](#faq)
+- [Contributing](#contributing)
 - [License](#license)
 
 <!-- /TOC -->
@@ -467,6 +469,9 @@ This sample is part of the demo apps and can be observed [here](https://github.c
 
 ## FAQ
 Check out our FAQ section [here](https://github.com/NativeScript/nativescript-facebook/wiki/FAQ).
+
+## Contributing
+Check out our Contribution guide [here](https://github.com/NativeScript/nativescript-facebook/blob/master/CONTRIBUTING.md).
 
 ## License
 [Apache 2.0](https://github.com/NativeScript/nativescript-facebook/blob/master/LICENSE)
