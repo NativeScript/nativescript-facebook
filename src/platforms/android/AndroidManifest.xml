@@ -1,19 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
-	<!--Describe the permissions, features or other configurations required by your plugin for Android. 
-		To read more about android permissions go to https://developer.android.com/guide/topics/permissions/index.html -->
-	<!--EXAMPLE: uses-permission android:name="android.permission.INTERNET"/> -->
-
 	<uses-permission android:name="android.permission.INTERNET"/>
-	<application>
-	<!--<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>-->
-    <activity android:name="com.facebook.FacebookActivity"
-          android:configChanges=
-                 "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-          android:theme="@android:style/Theme.Translucent.NoTitleBar"
-          android:label="@string/app_name" />
-	</application>
-
-
 </manifest>

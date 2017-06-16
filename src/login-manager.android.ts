@@ -16,6 +16,7 @@ export function _registerLogoutCallback(callback: Function) {
 }
 
 export function init(fbId: string) {
+  com.facebook.FacebookSdk.setAutoLogAppEventsEnabled(true);
   setAppId(fbId);
   androidApplication = application.android;
   try {
@@ -27,7 +28,6 @@ export function init(fbId: string) {
   }
   onLoginCallback = com.facebook.CallbackManager.Factory.create();
   loginManager = com.facebook.login.LoginManager.getInstance();
-  loginManager.logOut();
 
   // Workaround for firing the logout event in android:
   // https://stackoverflow.com/questions/30233284/how-to-add-a-logout-callback-for-facebook-sdk-in-android
