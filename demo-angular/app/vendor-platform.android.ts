@@ -8,9 +8,9 @@
 // At runtime the module gets loaded *before* the rest of the app code, so code
 // placed here needs to be careful about its dependencies.
 
-require("application");
-require("ui/frame");
-require("ui/frame/activity");
+require("tns-core-modules/application");
+require("tns-core-modules/ui/frame");
+require("tns-core-modules/ui/frame/activity");
 
 if (global.TNS_WEBPACK) {
     global.__requireOverride = function (name, dir) {

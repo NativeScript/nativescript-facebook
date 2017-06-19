@@ -1,6 +1,6 @@
 {
     "name": "nativescript-facebook",
-    "version": "2.0.1",
+    "version": "2.0.0",
     "description": "NativeScript plugin, wrapper of native Facebook SDK for Adroid and iOS.",
     "nativescript": {
         "platforms": {
@@ -9,17 +9,18 @@
         }
     },
     "scripts": {
-        "build": "tsc",
+        "ngc": "node --max-old-space-size=8192 ./node_modules/.bin/ngc",
+        "build": "npm i && tsc && npm run ngc",
         "ci.tslint": "tslint *.ts && tslint ../demo/app/*.ts && tslint ../demo-angular/app/*.ts",
-        "ci.android": "cd ../demo && tns build android",
-        "ci.ios": "cd ../demo && tns build ios",
-        "ci.test.ios": "cd ../demo && tns platform remove ios && tns test ios",
-        "ci.test.android": "cd ../demo && tns platform remove android && tns test android",
-        "ci.test.ios.angular": "cd ../demo-angular && tns platform remove ios && tns test ios",
-        "ci.test.android.angular": "cd ../demo-angular && tns platform remove android",
+        "ci.android": "npm run build && cd ../demo && tns build android",
+        "ci.ios": "npm run build && cd ../demo && tns build ios",
+        "ci.test.ios": "npm run build && cd ../demo && tns platform remove ios && tns test ios",
+        "ci.test.android": "npm run build && cd ../demo && tns platform remove android && tns test android",
+        "ci.test.ios.angular": "npm run build && cd ../demo-angular && tns platform remove ios && tns test ios",
+        "ci.test.android.angular": "npm run build && cd ../demo-angular && tns platform remove android",
         "ci.uitest.ios": "cd ../demo && npm run appium --runtype=ios-simulator10",
         "ci.uitest.android": "cd ../demo && npm run appium --runtype=android23",
-        "prepublish": "npm run build"
+        "prepublishOnly": "npm run build"
     },
     "repository": {
         "type": "git",

@@ -1,5 +1,5 @@
 if ((<any>global).TNS_WEBPACK) {
-    require("bundle-entry-points");
+    require("tns-core-modules/bundle-entry-points");
 
     global.registerModule("login-page", () => require("./login-page"));
     global.registerModule("home-page", () => require("./home-page"));

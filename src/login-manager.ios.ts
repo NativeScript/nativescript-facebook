@@ -1,4 +1,4 @@
-import * as applicationModule from "application";
+import * as applicationModule from "tns-core-modules/application";
 import { LoginResponse } from './login-response';
 declare let FBSDKLoginManager: any;
 declare let FBSDKSettings: any;

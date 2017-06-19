@@ -1,8 +1,8 @@
-import { View, Property } from "ui/core/view";
+import { View, Property } from "tns-core-modules/ui/core/view";
 import * as loginManager from './login-manager';
 import { LoginResponse } from './login-response';
 import { LoginEventData } from './login-event-data';
-import { EventData } from "data/observable";
+import { EventData } from "tns-core-modules/data/observable";
 
 export abstract class LoginButtonBase extends View {
   public static loginEvent: string = "login";

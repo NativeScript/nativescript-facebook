@@ -1,7 +1,7 @@
-import { Observable } from 'data/observable';
+import { Observable } from 'tns-core-modules/data/observable';
 import { LoginEventData, login as fbLogin } from "nativescript-facebook";
-let frameModule = require("ui/frame");
-let appSettings = require("application-settings");
+let frameModule = require("tns-core-modules/ui/frame");
+let appSettings = require("tns-core-modules/application-settings");
 
 export class LoginViewModel extends Observable {
 

@@ -1,4 +1,4 @@
-import { EventData } from "data/observable";
+import { EventData } from "tns-core-modules/data/observable";
 import { LoginResponse } from "./login-response";
 
 export interface LoginEventData extends EventData {
