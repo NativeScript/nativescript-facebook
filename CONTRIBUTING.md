@@ -10,7 +10,7 @@ Third-party patches are essential for keeping nativescript-facebook plugin great
         git clone git@github.com:<your-username>/nativescript-facebook.git
 
 * Make commits of logical units.
-* Make sure your commit messages are in the proper format. We are strongly recommend to use [semantic commit messages](https://seesparkbox.com/foundry/semantic_commit_messages)
+* Make sure your commit messages are in the proper format. We strongly recommend to use [semantic commit messages](https://seesparkbox.com/foundry/semantic_commit_messages)
 * Add tests for your changes and make them pass. How to run tests you can find in [Testing section](#Testing)
 * Push your changes to a topic branch in your fork of the repository.
 * Submit a pull request to the **nativescript-facebook** repository.
