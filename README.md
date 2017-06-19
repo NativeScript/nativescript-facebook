@@ -448,24 +448,7 @@ This sample is part of the demo apps and can be observed [here](https://github.c
 
 ## Release notes
 
-2.0.0
--------------
-* Login event instead of login callback
-* Log out
-* Breaking Changes
-    * Core
-        * [Updated callback arguments](https://github.com/NativeScript/nativescript-facebook/pull/27/commits/5b862cdff5b86265f2c8626650f64823894fceee#diff-d1caaad1e0e272eb17c0a532f49657fdR7)
-    * Angular
-        * [Define Facebook login event handler](https://github.com/NativeScript/nativescript-facebook/pull/27/commits/5b862cdff5b86265f2c8626650f64823894fceee#diff-7cb31853fb9985534873f170bdc9df34R3)
-        * [Updated callback arguments](https://github.com/NativeScript/nativescript-facebook/pull/27/commits/5b862cdff5b86265f2c8626650f64823894fceee#diff-05f7e0f50b1b755ef9122a67a9561abcR16)
-
-1.0.1
--------------
-* Native Facebook login button
-* Custom Facebook login button
-* Angular ready
-* NativeScript 3.0 ready
-* Webpack ready
+Check out release notes [here] (https://github.com/NativeScript/nativescript-facebook/releases)
 
 ## FAQ
 Check out our FAQ section [here](https://github.com/NativeScript/nativescript-facebook/wiki/FAQ).
