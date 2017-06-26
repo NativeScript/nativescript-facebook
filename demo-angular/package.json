@@ -3,6 +3,9 @@
   "license": "MIT",
   "nativescript": {
     "id": "org.nativescript.demoangular",
+    "tns-android": {
+      "version": "3.0.1"
+    },
     "tns-ios": {
       "version": "3.0.1"
     }
