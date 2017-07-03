@@ -24,7 +24,7 @@ matrix:
       script: cd demo && npm run build.plugin && npm i && npm run build-android-bundle && cd ../demo-angular && npm run build.plugin && npm i && npm run build-android-bundle
     - stage: "Build"
       env: 
-        - Android="23"
+        - Android="25"
       language: android
       os: linux
       jdk: oraclejdk8
@@ -44,10 +44,9 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-23.0.1
-    - android-23
+    - build-tools-25.0.2
+    - android-25
     - extra-android-m2repository
-    - sys-img-armeabi-v7a-android-23
 
 before_cache:
     - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
