@@ -4,7 +4,6 @@ matrix:
       language: node_js
       os: linux
       node_js: "6"
-      jdk: oraclejdk8
       script: cd src && npm run ci.tslint && cd ../demo && npm run ci.tslint && cd ../demo-angular && npm run ci.tslint
     - stage: "WebPack"
       os: osx
@@ -59,8 +58,5 @@ cache:
 
 install:
     - npm install -g nativescript
-    - npm install -g tslint
-    - npm install -g typescript@2.2.2
     - tns usage-reporting disable
     - tns error-reporting disable
-    - npm install

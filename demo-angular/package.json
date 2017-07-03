@@ -48,12 +48,13 @@
     "resolve-url-loader": "~2.0.2",
     "typescript": "~2.3.4",
     "webpack": "~2.6.1",
-    "webpack-sources": "~1.0.1"
+    "webpack-sources": "~1.0.1",
+    "tslint":"~5.4.3"
   },
   "scripts": {
     "ns-bundle": "ns-bundle",
     "build.plugin": "cd ../src && npm run build",
-    "ci.tslint": "tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'",
+    "ci.tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'",
     "ci.android.build": "npm run build.plugin && tns build android",
     "ci.ios.build": "npm run build.plugin && tns build ios",
     "publish-ios-bundle": "npm run ns-bundle --ios --publish-app",
