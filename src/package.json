@@ -11,7 +11,7 @@
     "scripts": {
         "ngc": "node --max-old-space-size=8192 ./node_modules/.bin/ngc",
         "build": "npm i && tsc && npm run ngc",
-        "ci.tslint": "tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
+        "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
         "prepublishOnly": "npm run build"
     },
     "repository": {
@@ -55,7 +55,8 @@
         "@angular/compiler": "~4.0.1",
         "@angular/compiler-cli": "~4.0.1",
         "rxjs": "~5.3.0",
-        "zone.js": "~0.8.4"
+        "zone.js": "~0.8.4",
+        "tslint":"~5.4.3"
     },
     "peerDependencies": {
         "tns-core-modules": "^3.0.0"

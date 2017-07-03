@@ -36,6 +36,7 @@
     "raw-loader": "~0.5.1",
     "resolve-url-loader": "~2.0.2",
     "typescript": "~2.2.2",
+    "tslint": "~5.4.3",
     "wd": "~1.1.1",
     "webpack": "~2.6.1",
     "webpack-sources": "~1.0.1"
@@ -44,7 +45,7 @@
     "ns-bundle": "ns-bundle",
     "appium": "nativescript-dev-appium",
     "build.plugin": "cd ../src && npm run build",
-    "ci.tslint": "tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'",
+    "ci.tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'",
     "ci.android.build": "npm run build.plugin && tns build android",
     "ci.android.uitest": "npm run appium --runtype=android23",
     "ci.ios.build": "npm run build.plugin && tns build ios",
