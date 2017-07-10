@@ -1,8 +1,9 @@
 "use strict";
 var nsAppium = require("nativescript-dev-appium");
-var isAndroid = process.env.npm_config_runtype.includes("android");
+var isAndroid = process.env.npm_config_runType.includes("android");
+var isSauceRun = process.env.npm_config_sauceLab;
 describe("facebook tests", function () {
-    this.timeout(100000);
+    this.timeout(600000);
     var driver;
     const FACEBOOK_BUTTON = "fbLogin";
     const USERNAME = "nativescript_gctpjih_user@tfbnw.net";
@@ -16,6 +17,11 @@ describe("facebook tests", function () {
     });
 
     after(function () {
+        if(isSauceRun){
+            driver.getSessionId().then(function(sessionId) {
+                console.log("Report: https://saucelabs.com/beta/tests/" + sessionId);
+            });
+        }
         return driver
         .quit()
         .finally(function () {
@@ -42,13 +48,14 @@ describe("facebook tests", function () {
             .waitForElementByAccessibilityId(FACEBOOK_BUTTON, timeout)
                 .should.eventually.exist
             .click()
+            .waitForElementByXPath(passwordFieldElement, 20000).click()  //Password field
+            .sendKeys(PASSWORD)
             .waitForElementByXPath(usernameFieldElement, timeout)
             .sendKeys(USERNAME)
-            .waitForElementByXPath(passwordFieldElement, timeout)  //Password field
-            .sendKeys(PASSWORD)
+            .hideDeviceKeyboard("Done")
             .waitForElementByXPath(loginButtonElement, timeout) //Log in button
             .click();
-        var step2 = isAndroid ? step1.sleep(6000) : step1.sleep(2000);
+        var step2 = isAndroid ? step1.sleep(5000) : step1.sleep(2000);
         step2
             .waitForElementByXPath(okButtonElement, timeout) // OK button
             .click();

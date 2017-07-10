@@ -1,3 +1,12 @@
+env:
+  global:
+    - ANDROID_PACKAGE='demo-debug.apk'
+    - ANDROID_PACKAGE_FOLDER=$TRAVIS_BUILD_DIR/demo/platforms/android/build/outputs/apk
+    - ANDROID_SAUCE_STORAGE="https://saucelabs.com/rest/v1/storage/$SAUCE_USER/$ANDROID_PACKAGE?overwrite=true"
+    - IOS_PACKAGE='demo.zip'
+    - IOS_PACKAGE_FOLDER=$TRAVIS_BUILD_DIR/demo/platforms/ios/build/emulator
+    - IOS_SAUCE_STORAGE="https://saucelabs.com/rest/v1/storage/$SAUCE_USER/$IOS_PACKAGE?overwrite=true"
+
 matrix:
   include:
     - stage: "Lint"
@@ -5,10 +14,10 @@ matrix:
       os: linux
       node_js: "6"
       script: cd src && npm run ci.tslint && cd ../demo && npm run ci.tslint && cd ../demo-angular && npm run ci.tslint
-    - stage: "WebPack"
+    - stage: "WebPack and Build"
       os: osx
       env:
-        - Platform="iOS"
+        - Webpack="iOS"
       osx_image: xcode8.3
       language: node_js 
       node_js: "6"
@@ -17,27 +26,49 @@ matrix:
     - language: android
       os: linux
       env:
-        - Platform="Android"
+        - Webpack="Android"
       jdk: oraclejdk8
       before_install: nvm install 6.10.3
       script: cd demo && npm run build.plugin && npm i && npm run build-android-bundle && cd ../demo-angular && npm run build.plugin && npm i && npm run build-android-bundle
     - stage: "Build"
       env: 
-        - Android="25"
+        - BuildAndroid="25"
       language: android
       os: linux
       jdk: oraclejdk8
       before_install: nvm install 6.10.3
-      script: cd demo && npm run ci.android.build && cd ../demo-angular && npm run ci.android.build
+      script:
+        - cd demo && npm run ci.android.build && cd ../demo-angular && npm run ci.android.build
+        - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $ANDROID_SAUCE_STORAGE --data-binary @$ANDROID_PACKAGE_FOLDER/$ANDROID_PACKAGE"
     - os: osx
       env: 
-        - iOS="10.3"
+        - BuildiOS="10.3"
         - Xcode="8.3"
       osx_image: xcode8.3
       language: node_js 
       node_js: "6"
       jdk: oraclejdk8
-      script: cd demo && npm run ci.ios.build && cd ../demo-angular && npm run ci.ios.build
+      script: 
+        - cd demo && npm run ci.ios.build && cd ../demo-angular && npm run ci.ios.build
+        - cd $IOS_PACKAGE_FOLDER && zip -r $IOS_PACKAGE demo.app
+        - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $IOS_SAUCE_STORAGE --data-binary @$IOS_PACKAGE_FOLDER/$IOS_PACKAGE"
+    - stage: "UI Tests"
+      env: 
+      - Android="23"
+      language: node_js
+      os: linux
+      node_js: "6"
+      script:
+        - npm i -g appium
+        - cd demo && npm i && npm run appium --runType=android23 --sauceLab=true --appLocation=$ANDROID_PACKAGE
+    - os: linux
+      env: 
+        - iOS="10"
+      language: node_js 
+      node_js: "6"
+      script: 
+        - npm i -g appium
+        - cd demo && npm i && npm run appium --runType=ios-simulator10iPhone6 --sauceLab=true --appLocation=$IOS_PACKAGE
 
 android:
   components:
