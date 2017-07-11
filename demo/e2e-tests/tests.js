@@ -3,7 +3,7 @@ var nsAppium = require("nativescript-dev-appium");
 var isAndroid = process.env.npm_config_runType.includes("android");
 var isSauceRun = process.env.npm_config_sauceLab;
 describe("facebook tests", function () {
-    this.timeout(600000);
+    this.timeout(800000);
     var driver;
     const FACEBOOK_BUTTON = "fbLogin";
     const USERNAME = "nativescript_gctpjih_user@tfbnw.net";
@@ -34,13 +34,13 @@ describe("facebook tests", function () {
             var usernameFieldElement = "//" + nsAppium.getXPathElement("textfield") + "[@content-desc='Email or Phone']";
             var passwordFieldElement = "//" + nsAppium.getXPathElement("textfield") + "[@NAF='true']";
             var loginButtonElement = "//" + nsAppium.getXPathElement("button") + "[@text='']";
-            var okButtonElement = "//" + nsAppium.getXPathElement("button") + "[@text='' and @instance='1']";
+            var okButtonElement = "//" + nsAppium.getXPathElement("button") + "[@text='' and @instance='0']";
             var userNameLabelElement = "//" + nsAppium.getXPathElement("label") + "[@text='Nativescript User']";
         } else {
             var usernameFieldElement = "//" + nsAppium.getXPathElement("textfield") + "[@value='Email or Phone']";
             var passwordFieldElement = "//" + nsAppium.getXPathElement("securetextfield") + "[@value='Facebook Password']";
             var loginButtonElement = "//" + nsAppium.getXPathElement("button") + "[@name='Log In']";
-            var okButtonElement = "//" + nsAppium.getXPathElement("button") + "[@name='OK']";
+            var okButtonElement = "//" + nsAppium.getXPathElement("button") + "[@name='Continue']";
             var userNameLabelElement = "//" + nsAppium.getXPathElement("label") + "[@name='Nativescript User']";
         }
 
@@ -55,7 +55,7 @@ describe("facebook tests", function () {
             .hideDeviceKeyboard("Done")
             .waitForElementByXPath(loginButtonElement, timeout) //Log in button
             .click();
-        var step2 = isAndroid ? step1.sleep(5000) : step1.sleep(2000);
+        var step2 = isAndroid ? step1.sleep(5000) : step1.sleep(6000);
         step2
             .waitForElementByXPath(okButtonElement, timeout) // OK button
             .click();

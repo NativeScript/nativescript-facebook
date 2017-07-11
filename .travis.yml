@@ -14,7 +14,7 @@ matrix:
       os: linux
       node_js: "6"
       script: cd src && npm run ci.tslint && cd ../demo && npm run ci.tslint && cd ../demo-angular && npm run ci.tslint
-    - stage: "WebPack and Build"
+    - stage: "WebPack"
       os: osx
       env:
         - Webpack="iOS"
@@ -68,7 +68,8 @@ matrix:
       node_js: "6"
       script: 
         - npm i -g appium
-        - cd demo && npm i && npm run appium --runType=ios-simulator10iPhone6 --sauceLab=true --appLocation=$IOS_PACKAGE
+        - cd demo && npm i
+        - travis_wait npm run appium --runType=ios-simulator10iPhone6 --sauceLab=true --appLocation=$IOS_PACKAGE
 
 android:
   components:
