@@ -17,5 +17,14 @@
             "deviceName": "iPhone 6 Simulator",
             "app": ""
         
+    },
+    "ios-simulator103iPhone6": {
+            "browserName": "",
+            "appium-version": "1.6.5",
+            "platformName": "iOS",
+            "platformVersion": "10.3",
+            "deviceName": "iPhone 6 Simulator",
+            "app": ""
+        
     }
 }
