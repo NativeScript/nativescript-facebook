@@ -69,7 +69,7 @@ matrix:
       script: 
         - npm i -g appium
         - cd demo && npm i
-        - travis_wait npm run appium --runType=ios-simulator10iPhone6 --sauceLab=true --appLocation=$IOS_PACKAGE
+        - travis_wait npm run appium --runType=ios-simulator103iPhone6 --sauceLab=true --appLocation=$IOS_PACKAGE
 
 android:
   components:
