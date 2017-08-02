@@ -10,7 +10,7 @@ declare let FBSDKLoginButton: any;
 declare class NSDictionary { }
 
 const FB_LOGIN_BEHAVIOUR = 2;
-const LOGIN_PERMISSIONS = ["public_profile", "email"];
+const LOGIN_PERMISSIONS = ["public_profile", "email", "user_friends"];
 
 // TODO: add getter and setter
 export let onLoginCallback;

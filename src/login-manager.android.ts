@@ -2,7 +2,7 @@ import * as application from "tns-core-modules/application";
 import { LoginResponse } from './login-response';
 declare let com: any;
 
-const LOGIN_PERMISSIONS = ["public_profile", "email"];
+const LOGIN_PERMISSIONS = ["public_profile", "email", "user_friends"];
 
 // TODO: add getter and setter
 export let onLoginCallback;
