@@ -1,3 +1,6 @@
+branches:
+  only: 
+    - master
 env:
   global:
     - ANDROID_PACKAGE='demo-debug.apk'
