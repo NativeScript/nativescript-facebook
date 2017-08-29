@@ -30,7 +30,8 @@
         "email": "support@telerik.com",
         "url": "http://www.telerik.com"
     },
-    "maintainers": [{
+    "maintainers": [
+        {
             "name": "angeltsvetkov",
             "email": "angel.tsvetkov@progress.com"
         },
@@ -56,9 +57,6 @@
         "@angular/compiler-cli": "~4.0.1",
         "rxjs": "~5.3.0",
         "zone.js": "~0.8.4",
-        "tslint":"~5.4.3"
-    },
-    "peerDependencies": {
-        "tns-core-modules": "^3.0.0"
+        "tslint": "~5.4.3"
     }
 }
