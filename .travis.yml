@@ -63,7 +63,8 @@ matrix:
       node_js: "6"
       script:
         - npm i -g appium
-        - cd demo && npm i && npm run appium --runType=android23 --sauceLab=true --appLocation=$ANDROID_PACKAGE
+        - cd demo && npm i
+        - travis_retry npm run appium --runType=android23 --sauceLab=true --appLocation=$ANDROID_PACKAGE
     - os: linux
       env: 
         - iOS="10"
@@ -72,7 +73,7 @@ matrix:
       script: 
         - npm i -g appium
         - cd demo && npm i
-        - travis_wait npm run appium --runType=ios-simulator103iPhone6 --sauceLab=true --appLocation=$IOS_PACKAGE
+        - travis_wait travis_retry npm run appium --runType=ios-simulator103iPhone6 --sauceLab=true --appLocation=$IOS_PACKAGE
 
 android:
   components:
