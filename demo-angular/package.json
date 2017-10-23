@@ -53,6 +53,7 @@
     "webpack-bundle-analyzer": "^2.8.2"
   },
   "scripts": {
+    "update-webpack": "./node_modules/.bin/update-ns-webpack --scripts --configs --deps",
     "ns-bundle": "ns-bundle",
     "build.plugin": "cd ../src && npm run build",
     "ci.tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'",
