@@ -16,22 +16,23 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 - [Configuration](#configuration)
     - [Android](#android)
     - [iOS](#ios)
-- [NativeScript Core](#nativescript-core)
-    - [Initialization](#initialization)
-    - [Login](#login)
-        - [Facebook Login Button](#facebook-login-button)
-        - [Custom Login Button](#custom-login-button)
-    - [Log out](#log-out)
-        - [Facebook Logout Button](#facebook-logout-button)
-        - [Custom Logout Button](#custom-logout-button)
-- [NativeScript Angular](#nativescript-angular)
-    - [Initialization](#initialization-1)
-    - [Login](#login-1)
-        - [Facebook Login Button](#facebook-login-button-1)
-        - [Custom Login Button](#custom-login-button-1)
-    - [Logout](#logout)
-        - [Facebook Logout Button](#facebook-logout-button-1)
-        - [Custom Logout Button](#custom-logout-button-1)
+- [Usage](#usage)
+    - [NativeScript Core](#nativescript-core)
+        - [Initialization](#initialization)
+        - [Login](#login)
+            - [Facebook Login Button](#facebook-login-button)
+            - [Custom Login Button](#custom-login-button)
+        - [Log out](#log-out)
+            - [Facebook Logout Button](#facebook-logout-button)
+            - [Custom Logout Button](#custom-logout-button)
+    - [NativeScript Angular](#nativescript-angular)
+        - [Initialization](#initialization-1)
+        - [Login](#login-1)
+            - [Facebook Login Button](#facebook-login-button-1)
+            - [Custom Login Button](#custom-login-button-1)
+        - [Logout](#logout)
+            - [Facebook Logout Button](#facebook-logout-button-1)
+            - [Custom Logout Button](#custom-logout-button-1)
 - [Login Response](#login-response)
 - [Graph API Example](#graph-api-example)
 - [Release notes](#release-notes)
@@ -79,6 +80,7 @@ Update Info.plist file (app/App_Resources/iOS/Info.plist) to contains `CFBundleU
 ```
 >Make sure you replaced {facebook_app_id} with your Facebook App Id. More info regarding how to obtain a Facebook App Id can be found [here](https://developers.facebook.com/docs/apps/register).
 
+# Usage
 ## NativeScript Core
 ### Initialization 
 Call init of nativescript-facebook module on application launch.
