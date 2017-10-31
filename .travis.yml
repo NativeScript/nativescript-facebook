@@ -15,7 +15,7 @@ matrix:
   include:
     - stage: "Build"
       env: 
-        - BuildAndroid="25"
+        - BuildAndroid="26"
       language: android
       os: linux
       jdk: oraclejdk8
@@ -29,9 +29,9 @@ matrix:
         - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $ANDROID_SAUCE_STORAGE --data-binary @$ANDROID_PACKAGE_FOLDER/$ANDROID_PACKAGE"
     - os: osx
       env: 
-        - BuildiOS="10.3"
-        - Xcode="8.3"
-      osx_image: xcode8.3
+        - BuildiOS="11"
+        - Xcode="9.1"
+      osx_image: xcode9.1
       language: node_js 
       node_js: "6"
       jdk: oraclejdk8
@@ -45,7 +45,7 @@ matrix:
     - os: osx
       env:
         - Webpack="iOS"
-      osx_image: xcode8.3
+      osx_image: xcode9.1
       language: node_js 
       node_js: "6"
       jdk: oraclejdk8
@@ -65,7 +65,7 @@ matrix:
       script: cd ../demo && npm run build.plugin && npm i && npm run ns-bundle --android --build-app --uglify --snapshot && cd ../demo-angular && npm i && npm run ns-bundle --android --build-app --uglify --snapshot
     - stage: "UI Tests"
       env: 
-      - Android="23"
+      - Android="26"
       language: node_js
       os: linux
       node_js: "6"
@@ -89,8 +89,9 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-25.0.2
-    - android-25
+    - build-tools-26.0.1
+    - android-26
+    - android-23
     - extra-android-m2repository
 
 before_cache:

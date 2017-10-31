@@ -43,14 +43,15 @@
     "lazy": "1.0.11",
     "nativescript-css-loader": "~0.26.0",
     "nativescript-dev-typescript": "^0.4.0",
-    "nativescript-dev-webpack": "0.7.3",
+    "nativescript-dev-webpack": "^0.8.0",
     "raw-loader": "~0.5.1",
     "resolve-url-loader": "~2.0.2",
     "typescript": "~2.3.4",
     "webpack": "~2.6.1",
     "webpack-sources": "~1.0.1",
     "tslint": "~5.4.3",
-    "webpack-bundle-analyzer": "^2.8.2"
+    "webpack-bundle-analyzer": "^2.8.2",
+    "nativescript-worker-loader": "~0.8.1"
   },
   "scripts": {
     "update-webpack": "./node_modules/.bin/update-ns-webpack --scripts --configs --deps",
