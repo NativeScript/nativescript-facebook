@@ -2,6 +2,7 @@ import * as applicationModule from "tns-core-modules/application";
 export * from  "./login-button";
 export * from "./login-manager";
 export * from "./login-event-data";
+export * from "./login-behavior";
 
 declare class UIResponder { }
 declare class NSDictionary { }
