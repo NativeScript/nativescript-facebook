@@ -18,7 +18,7 @@ export let onLogoutCallback;
 
 let loginManager;
 
-export function init(fbId: string, fbLoginBehavior: LoginBehavior = LoginBehavior.FBSDKLoginBehaviorBrowser) {
+export function init(fbId: string, fbLoginBehavior: LoginBehavior = LoginBehavior.LoginBehaviorBrowser) {
   setAppId(fbId);
   loginManager = FBSDKLoginManager.alloc().init();
   loginManager.loginBehavior = fbLoginBehavior;

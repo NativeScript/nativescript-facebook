@@ -1,6 +1,6 @@
 export enum LoginBehavior {
-    FBSDKLoginBehaviorNative = 0,
-    FBSDKLoginBehaviorBrowser = 1,
-    FBSDKLoginBehaviorSystemAccount = 2,
-    FBSDKLoginBehaviorWeb = 3,
+    LoginBehaviorNative = 0,
+    LoginBehaviorBrowser = 1,
+    LoginBehaviorSystemAccount = 2,
+    LoginBehaviorWeb = 3,
 }
