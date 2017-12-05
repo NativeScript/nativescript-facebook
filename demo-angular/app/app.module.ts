@@ -10,7 +10,7 @@ import { routes } from "./app.routing";
 import { NavigationService } from "./services/navigation.service";
 import * as nsFacebook from "nativescript-facebook";
 
-application.on(application.launchEvent, function (args) {    
+application.on(application.launchEvent, function (args) {
     nsFacebook.init("1771472059772879");
 });
 
