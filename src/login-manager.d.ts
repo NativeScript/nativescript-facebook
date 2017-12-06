@@ -2,12 +2,14 @@ export declare function _registerLoginCallback(callback: Function): void;
 export declare function _registerLogoutCallback(callback: Function): void;
 export declare let onLoginCallback: Function;
 export declare let onLogoutCallback: Function;
+import { LoginBehavior } from "./login-behavior";
 
 /**
 * Sets the Facebook application Id for the current app and init the native facebook sdk.
 * @param {string} fbAppId the application Id
+* @param {LoginBehavior} fbLoginBehavior (iOS only) specifies the login behavior, default value: LoginBehavior.FBSDKLoginBehaviorSystemAccount
 */
-export declare function init(fbId: string): void;
+export declare function init(fbId: string, fbLoginBehavior?: LoginBehavior): void;
 /**
 * Request the specified publish permissions.
 * @param {string[]} permissions Array of the requested publish permissions.

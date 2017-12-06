@@ -1,5 +1,6 @@
 import * as applicationModule from "tns-core-modules/application";
 import { LoginResponse } from './login-response';
+import { LoginBehavior } from './login-behavior';
 declare let FBSDKLoginManager: any;
 declare let FBSDKSettings: any;
 declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; }
@@ -9,7 +10,6 @@ declare class UIApplication { }
 declare let FBSDKLoginButton: any;
 declare class NSDictionary { }
 
-const FB_LOGIN_BEHAVIOUR = 2;
 const LOGIN_PERMISSIONS = ["public_profile", "email"];
 
 // TODO: add getter and setter
@@ -18,10 +18,10 @@ export let onLogoutCallback;
 
 let loginManager;
 
-export function init(fbId: string) {
+export function init(fbId: string, fbLoginBehavior: LoginBehavior = LoginBehavior.LoginBehaviorBrowser) {
   setAppId(fbId);
   loginManager = FBSDKLoginManager.alloc().init();
-  loginManager.loginBehavior = FB_LOGIN_BEHAVIOUR;
+  loginManager.loginBehavior = fbLoginBehavior;
 }
 
 export function _registerLogoutCallback(callback: Function) {
