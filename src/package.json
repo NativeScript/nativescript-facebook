@@ -12,7 +12,9 @@
         "ngc": "node --max-old-space-size=8192 ./node_modules/.bin/ngc",
         "build": "npm i && tsc && npm run ngc",
         "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
-        "prepublishOnly": "npm run build"
+        "prepublishOnly": "npm run build",
+        "plugin.link": "npm link && cd ../demo-angular && npm link nativescript-camera",
+        "plugin.tscwatch": "tsc -skipLibCheck -w"
     },
     "repository": {
         "type": "git",
