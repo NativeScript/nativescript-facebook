@@ -4,8 +4,6 @@ declare let com: any;
 
 const LOGIN_PERMISSIONS = ["public_profile", "email"];
 
-// TODO: add getter and setter
-export let onLoginCallback;
 export let onLogoutCallback;
 let androidApplication;
 let _act: android.app.Activity;
@@ -26,7 +24,6 @@ export function init(fbId: string) {
   catch (e) {
     console.log("nativescript-facebook: The plugin could not find the android library, try to clean the android platform");
   }
-  onLoginCallback = com.facebook.CallbackManager.Factory.create();
   loginManager = com.facebook.login.LoginManager.getInstance();
 
   // Workaround for firing the logout event in android:
@@ -43,9 +40,8 @@ export function init(fbId: string) {
 }
 
 export function _registerLoginCallback(callback: Function) {
-
-  let act = androidApplication.foregroundActivity || androidApplication.startActivity;
-  _act = act;
+  let onLoginCallback = com.facebook.CallbackManager.Factory.create();
+  _act = androidApplication.startActivity || androidApplication.foregroundActivity;
   loginManager.registerCallback(onLoginCallback, new com.facebook.FacebookCallback({
 
     onSuccess: function (result) {
