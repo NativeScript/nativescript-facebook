@@ -1,9 +1,9 @@
 if ((<any>global).TNS_WEBPACK) {
-    require("tns-core-modules/bundle-entry-points");
+    // registers tns-core-modules UI framework modules
+    require("bundle-entry-points");
 
-    global.registerModule("login-page", () => require("./login-page"));
-    global.registerModule("home-page", () => require("./home-page"));
-
-    // register application modules
+    //register application modules
+    const context = require.context("~/", true, /page\.(xml|css|js|ts|scss|less|sass)$/);
+    global.registerWebpackModules(context);
     global.registerModule("nativescript-facebook", () => require("nativescript-facebook"));
 }

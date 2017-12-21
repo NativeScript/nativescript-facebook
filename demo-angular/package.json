@@ -3,38 +3,39 @@
   "license": "MIT",
   "nativescript": {
     "id": "org.nativescript.demoangular",
-    "tns-android": {
-      "version": "3.0.1"
-    },
     "tns-ios": {
-      "version": "3.0.1"
+      "version": "3.4.0"
+    },
+    "tns-android": {
+      "version": "3.4.0"
     }
   },
   "dependencies": {
-    "@angular/common": "~4.0.0",
-    "@angular/compiler": "~4.0.0",
-    "@angular/core": "~4.0.0",
-    "@angular/forms": "~4.0.0",
-    "@angular/http": "~4.0.0",
-    "@angular/platform-browser": "~4.0.0",
-    "@angular/platform-browser-dynamic": "~4.0.0",
-    "@angular/router": "~4.0.0",
-    "nativescript-angular": "^3.0.0 || ^2.0.0-rc.1",
+    "@angular/common": "~5.0.0",
+    "@angular/compiler": "~5.0.0",
+    "@angular/core": "~5.0.0",
+    "@angular/forms": "~5.0.0",
+    "@angular/http": "~5.0.0",
+    "@angular/platform-browser": "~5.0.0",
+    "@angular/platform-browser-dynamic": "~5.0.0",
+    "@angular/router": "~5.0.0",
+    "nativescript-angular": "^5.0.0",
     "nativescript-facebook": "../src",
     "nativescript-theme-core": "^1.0.2",
     "nativescript-unit-test-runner": "^0.3.4",
-    "rxjs": "~5.3.0",
-    "tns-core-modules": "^3.0.0",
+    "rxjs": "^5.5.0",
+    "tns-core-modules": "^3.4.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "~4.0.0",
-    "@ngtools/webpack": "~1.5.0",
+    "@angular/compiler-cli": "~5.0.0",
+    "@ngtools/webpack": "~1.8.2",
     "babel-traverse": "6.12.0",
     "babel-types": "6.11.1",
     "babylon": "6.8.4",
     "copy-webpack-plugin": "~4.0.1",
-    "extract-text-webpack-plugin": "~2.1.0",
+    "css-loader": "~0.28.7",
+    "extract-text-webpack-plugin": "~3.0.0",
     "filewalker": "0.1.2",
     "jasmine-core": "^2.5.2",
     "karma": "^1.3.0",
@@ -44,14 +45,14 @@
     "nativescript-css-loader": "~0.26.0",
     "nativescript-dev-typescript": "^0.4.0",
     "nativescript-dev-webpack": "^0.8.0",
+    "nativescript-worker-loader": "~0.8.1",
     "raw-loader": "~0.5.1",
-    "resolve-url-loader": "~2.0.2",
-    "typescript": "~2.3.4",
-    "webpack": "~2.6.1",
-    "webpack-sources": "~1.0.1",
+    "resolve-url-loader": "~2.1.0",
     "tslint": "~5.4.3",
+    "typescript": "~2.4.2",
+    "webpack": "~3.8.1",
     "webpack-bundle-analyzer": "^2.8.2",
-    "nativescript-worker-loader": "~0.8.1"
+    "webpack-sources": "~1.0.1"
   },
   "scripts": {
     "update-webpack": "./node_modules/.bin/update-ns-webpack --scripts --configs --deps",
@@ -61,10 +62,10 @@
     "ci.android.build": "npm run build.plugin && tns build android",
     "ci.ios.build": "npm run build.plugin && tns build ios",
     "publish-ios-bundle": "npm run ns-bundle --ios --publish-app",
-    "start-android-bundle": "npm run ns-bundle --android --run-app --uglify --snapshot",
-    "start-ios-bundle": "npm run ns-bundle --ios --run-app --uglify",
-    "build-android-bundle": "npm run ns-bundle --android --build-app --uglify --snapshot",
-    "build-ios-bundle": "npm run ns-bundle --ios --build-app --uglify",
-    "generate-android-snapshot": "generate-android-snapshot --targetArchs arm,arm64,ia32 --install"
+    "generate-android-snapshot": "generate-android-snapshot --targetArchs arm,arm64,ia32 --install",
+    "start-android-bundle": "npm run ns-bundle --android --run-app",
+    "start-ios-bundle": "npm run ns-bundle --ios --run-app",
+    "build-android-bundle": "npm run ns-bundle --android --build-app",
+    "build-ios-bundle": "npm run ns-bundle --ios --build-app"
   }
 }
