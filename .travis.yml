@@ -52,7 +52,7 @@ matrix:
       before_script:
         - cd ../demo && tns platform add ios@next
         - cd ../demo-angular && tns platform add ios@next
-      script: cd ../demo && npm run build.plugin && npm i && tns build ios --bundle --env.uglify && cd ../demo-angular && npm i && tns run ios --bundle --env.uglify
+      script: cd ../demo && npm run build.plugin && npm i && tns build ios --bundle --env.uglify && cd ../demo-angular && npm i && tns build ios --bundle --env.uglify
     - os: linux
       language: android
       env:
@@ -62,7 +62,7 @@ matrix:
       before_script:
         - cd ../demo && tns platform add android@next
         - cd ../demo-angular && tns platform add android@next
-      script: cd ../demo && npm run build.plugin && npm i && tns build android --bundle --env.uglify --env.snapshot && cd ../demo-angular && npm i && tns run android --bundle --env.uglify --env.snapshot
+      script: cd ../demo && npm run build.plugin && npm i && tns build android --bundle --env.uglify --env.snapshot && cd ../demo-angular && npm i && tns build android --bundle --env.uglify --env.snapshot
     - stage: "UI Tests"
       env: 
       - Android="26"
@@ -113,6 +113,7 @@ install:
     - cd ../demo
     - npm uninstall tns-core-modules -P && npm install tns-core-modules@next -P
     - npm uninstall nativescript-dev-webpack -D && npm install nativescript-dev-webpack@next -D
+    - npm uninstall nativescript-dev-typescript -D && npm install nativescript-dev-typescript@next -D
     - npm run update-webpack
     - cd ../demo-angular
     - npm uninstall tns-core-modules -P && npm install tns-core-modules@next -P
