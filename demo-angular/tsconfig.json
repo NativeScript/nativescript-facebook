@@ -35,8 +35,7 @@
     },
     "exclude": [
         "node_modules",
-        "platforms",
-        "**/*.aot.ts"
+        "platforms"
     ],
     "compileOnSave": false
 }
