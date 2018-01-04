@@ -14,35 +14,35 @@ env:
 matrix:
   include:
     - stage: "Build"
-      env: 
-        - BuildAndroid="26"
-      language: android
-      os: linux
-      jdk: oraclejdk8
-      before_install: 
-        - nvm install 6.10.3
-      before_script:
-        - cd ../demo && tns platform add android@next
-        - cd ../demo-angular && tns platform add android@next
-      script:
-        - cd ../demo && npm run ci.android.build && cd ../demo-angular && npm run ci.android.build
-        - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $ANDROID_SAUCE_STORAGE --data-binary @$ANDROID_PACKAGE_FOLDER/$ANDROID_PACKAGE"
-    - os: osx
-      env: 
-        - BuildiOS="11"
-        - Xcode="9.2"
-      osx_image: xcode9.2
-      language: node_js 
-      node_js: "6"
-      jdk: oraclejdk8
-      before_script:
-        - cd ../demo && tns platform add ios@next
-        - cd ../demo-angular && tns platform add ios@next
-      script: 
-        - cd ../demo && npm run ci.ios.build && cd ../demo-angular && npm run ci.ios.build
-        - cd $IOS_PACKAGE_FOLDER && zip -r $IOS_PACKAGE_NEXT demo.app
-        - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $IOS_SAUCE_STORAGE --data-binary @$IOS_PACKAGE_FOLDER/$IOS_PACKAGE_NEXT"
-    - os: osx
+    #   env: 
+    #     - BuildAndroid="26"
+    #   language: android
+    #   os: linux
+    #   jdk: oraclejdk8
+    #   before_install: 
+    #     - nvm install 6.10.3
+    #   before_script:
+    #     - cd ../demo && tns platform add android@next
+    #     - cd ../demo-angular && tns platform add android@next
+    #   script:
+    #     - cd ../demo && npm run ci.android.build && cd ../demo-angular && npm run ci.android.build
+    #     - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $ANDROID_SAUCE_STORAGE --data-binary @$ANDROID_PACKAGE_FOLDER/$ANDROID_PACKAGE"
+    # - os: osx
+    #   env: 
+    #     - BuildiOS="11"
+    #     - Xcode="9.2"
+    #   osx_image: xcode9.2
+    #   language: node_js 
+    #   node_js: "6"
+    #   jdk: oraclejdk8
+    #   before_script:
+    #     - cd ../demo && tns platform add ios@next
+    #     - cd ../demo-angular && tns platform add ios@next
+    #   script: 
+    #     - cd ../demo && npm run ci.ios.build && cd ../demo-angular && npm run ci.ios.build
+    #     - cd $IOS_PACKAGE_FOLDER && zip -r $IOS_PACKAGE_NEXT demo.app
+    #     - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $IOS_SAUCE_STORAGE --data-binary @$IOS_PACKAGE_FOLDER/$IOS_PACKAGE_NEXT"
+      os: osx
       env:
         - Webpack="iOS"
       osx_image: xcode9.2
@@ -63,27 +63,27 @@ matrix:
         - cd ../demo && tns platform add android@next
         - cd ../demo-angular && tns platform add android@next
       script: cd ../demo && npm run build.plugin && npm i && tns build android --bundle --env.uglify --env.snapshot && cd ../demo-angular && npm i && tns build android --bundle --env.uglify --env.snapshot --env.aot
-    - stage: "UI Tests"
-      env: 
-      - Android="26"
-      language: node_js
-      os: linux
-      node_js: "6"
-      install: true
-      script:
-        - npm i -g appium
-        - cd demo && npm i
-        - travis_retry npm run appium --runType=android23 --sauceLab=true --appLocation=$ANDROID_PACKAGE_NEXT
-    - os: linux
-      env: 
-        - iOS="10"
-      language: node_js 
-      node_js: "6"
-      install: true
-      script: 
-        - npm i -g appium
-        - cd demo && npm i
-        - travis_wait travis_retry npm run appium --runType=ios-simulator103iPhone6 --sauceLab=true --appLocation=$IOS_PACKAGE_NEXT
+    # - stage: "UI Tests"
+    #   env: 
+    #   - Android="26"
+    #   language: node_js
+    #   os: linux
+    #   node_js: "6"
+    #   install: true
+    #   script:
+    #     - npm i -g appium
+    #     - cd demo && npm i
+    #     - travis_retry npm run appium --runType=android23 --sauceLab=true --appLocation=$ANDROID_PACKAGE_NEXT
+    # - os: linux
+    #   env: 
+    #     - iOS="10"
+    #   language: node_js 
+    #   node_js: "6"
+    #   install: true
+    #   script: 
+    #     - npm i -g appium
+    #     - cd demo && npm i
+    #     - travis_wait travis_retry npm run appium --runType=ios-simulator103iPhone6 --sauceLab=true --appLocation=$IOS_PACKAGE_NEXT
 
 android:
   components:
@@ -114,11 +114,9 @@ install:
     - npm uninstall tns-core-modules -P && npm install tns-core-modules@next -P
     - npm uninstall nativescript-dev-webpack -D && npm install nativescript-dev-webpack@next -D
     - npm uninstall nativescript-dev-typescript -D && npm install nativescript-dev-typescript@next -D
-    - npm run update-webpack
     - cd ../demo-angular
     - npm uninstall tns-core-modules -P && npm install tns-core-modules@next -P
     - npm uninstall nativescript-angular -P && npm install nativescript-angular@next -P
     - npm uninstall nativescript-dev-webpack -D && npm install nativescript-dev-webpack@next -D
     - npm uninstall nativescript-dev-typescript -D && npm install nativescript-dev-typescript@next -D
-    - npm run update-webpack
     
