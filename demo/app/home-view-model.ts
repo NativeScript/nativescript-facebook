@@ -52,6 +52,8 @@ export class HomeViewModel extends Observable {
   }
 
   public getCurrentAccessToken() {
-    alert("Current access token: " + getCurrentAccessToken());
+    let accessToken = getCurrentAccessToken();
+
+    alert("Current access token: " + JSON.stringify(accessToken, null, '\t'));
   }
 }
