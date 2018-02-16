@@ -52,4 +52,10 @@ export class HomeComponent {
             this.navigationService.go(['login'], "slideRight");
         });
     }
+
+    public getCurrentAccessToken() {
+        let accessToken = Facebook.getCurrentAccessToken();
+
+        alert("Current access token: " + JSON.stringify(accessToken, null, '\t'));
+    }
 }
