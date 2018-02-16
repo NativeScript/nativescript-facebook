@@ -5,7 +5,7 @@ import { LoginEventData } from './login-event-data';
 import { EventData } from "tns-core-modules/data/observable";
 
 export abstract class LoginButtonBase extends View {
-  public static loginEvent: string = "login";
+  public static loginEvent: string = "logine";
   public static logoutEvent: string = "logout";
 
   initNativeView() {
