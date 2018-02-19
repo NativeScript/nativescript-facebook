@@ -3,6 +3,7 @@ export declare function _registerLogoutCallback(callback: Function): void;
 export declare let onLoginCallback: Function;
 export declare let onLogoutCallback: Function;
 import { LoginBehavior } from "./login-behavior";
+import { FacebookAccessToken } from "./facebook-access-token";
 
 /**
 * Sets the Facebook application Id for the current app and init the native facebook sdk.
@@ -32,3 +33,7 @@ export declare function login(callback: Function): void;
 * @param {Function} callback Function reference to be executed when the logout is executed.
 */
 export declare function logout(callback: Function): void;
+/**
+* Get the current access token.
+*/
+export declare function getCurrentAccessToken(): FacebookAccessToken;
