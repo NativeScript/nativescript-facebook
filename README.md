@@ -413,6 +413,9 @@ The callback that have to be provided to Facebook.login method receives 2 argume
 | token         | access token which will be used for further authentications      |  
 
 
+## Get Current Access Token
+The plugin allows to get the current access token, if any, via getCurrentAccessToken() method.
+
 ## Graph API Example
 Once the Facebook access token is retrieved you can execute Graph API requests. In the example below after successful login, the access token is stored in application settings. And then on the home view it is retrieved and 2 Graph API calls are executed.
 1. Get Facebook id of the logged in user
