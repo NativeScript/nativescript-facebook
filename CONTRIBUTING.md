@@ -1,41 +1,75 @@
-# Contributing
+# Contributing to NativeScript facebook
 
-Third-party patches are essential for keeping nativescript-facebook plugin great so we welcome all pull requests from everyone.
+:+1: First of all, thank you for taking the time to contribute! :+1:
 
-## Making Changes
+Here are some guides on how to do that:
 
-* Fork the repository on GitHub
-* Clone the repo:
+<!-- TOC depthFrom:2 -->
 
-        git clone git@github.com:<your-username>/nativescript-facebook.git
+- [Code of Conduct](#code-of-conduct)
+- [Reporting Bugs](#reporting-bugs)
+- [Requesting Features](#requesting-features)
+- [Submitting a PR](#submitting-a-pr)
+- [Where to Start](#where-to-start)
 
-* Make commits of logical units.
-* Make sure your commit messages are in the proper format. We strongly recommend to use [semantic commit messages](https://seesparkbox.com/foundry/semantic_commit_messages)
-* Add tests for your changes and make them pass. How to run tests you can find in [Testing section](#Testing)
-* Push your changes to a topic branch in your fork of the repository.
-* Submit a pull request to the **nativescript-facebook** repository.
+<!-- /TOC -->
 
-## Testing
+##  Code of Conduct
+Help us keep a healthy and open community. We expect all participants in this project to adhere to the [NativeScript Code Of Conduct](https://github.com/NativeScript/codeofconduct).
 
-There are three main points in order to get nativescript-facebook e2e UI tests running locally on iOS 10 Simulator and Android api 23 Emulator. Before that if you want to take a look at the tests and make some changes find them located in `demo/e2e-tests` folder.
 
-* Install Appium. Test execution depends on [nativescript-dev-appium](https://github.com/NativeScript/nativescript-dev-appium) plugin which is added as dev dependency in `demo` app folder and first command satisfies its requirement to have appium installed.
+## Reporting Bugs
 
-        $ npm install -g appium@1.6.3
+1. Always update to the most recent master release; the bug may already be resolved.
+2. Search for similar issues in the issues list for this repo; it may already be an identified problem.
+3. If this is a bug or problem that is clear, simple, and is unlikely to require any discussion -- it is OK to open an issue on GitHub with a reproduction of the bug including workflows and screenshots. If possible, submit a Pull Request with a failing test, entire application or module. If you'd rather take matters into your own hands, fix the bug yourself (jump down to the [Submitting a PR](#submitting-a-pr) section).
 
-* Run Android emulator or/and iOS Simulator. For iOS appium will run simulator if such is not running. It is a requirement for appium that Android emulator has device name 'Android Emulator' and uses Android '6.0' version. For iOS Simulator you will need similator with device name 'iPhone 7 100' which is using iOS '10.0' version. These requirements come from the nativescript-dev-appium plugin and are still hardcoded in it, but notice that plugin itself is in development and the future plans are to become the ultimate testing tool for NativeScript plugins.
+## Requesting Features
 
-* Navigate to `/demo` folder and execute the commands below to build the plugin and demo app which will produce the package needed for appium to execute the tests :
+1. Use Github Issues to submit feature requests.
+2. First, search for a similar request and extend it if applicable. This way it would be easier for the community to track the features.
+3. When requesting a new feature, please provide as much detail as possible about why you need the feature in your apps. We prefer that you explain a need rather than explain a technical solution for it. That might trigger a nice conversation on finding the best and broadest technical solution to a specific need.
 
-        $ npm run ci.android.build
-        $ npm run ci.ios.build
+## Submitting a PR
 
-* Run the tests
+Before you begin make sure there is an issue for the bug or feature you will be working on.
 
-        $ npm run ci.android.uitest
+Following these steps is the best way to get your code included in the project:
 
-    or
+1. Fork and clone the nativescript-facebook repo:
+```bash
+git clone https://github.com/<your-git-username>/nativescript-facebook.git
+# Navigate to the newly cloned directory
+cd nativescript-facebook
+# Add an "upstream" remote pointing to the original repo.
+git remote add upstream https://github.com/NativeScript/nativescript-facebook.git
+```
 
-        $ npm run ci.ios.uitest
+2. Read our [development workflow guide](DevelopmentWorkflow.md) for local setup
 
-That's it. You should have running UI tests in your Simulator/Emulator.
+3. Create a branch for your PR
+```bash
+git checkout -b <my-fix-branch> master
+```
+
+4. The fun part! Make your code changes. Make sure you:
+    - Follow the [code conventions guide](https://github.com/NativeScript/NativeScript/blob/master/CodingConvention.md).
+    - Follow the [commit message guidelines](https://github.com/NativeScript/NativeScript/blob/pr-template/CONTRIBUTING.md#commit-messages)
+    - Update the README if you make changes to the plugin API
+
+5. Before you submit your PR:
+    - Rebase your changes to the latest master: `git pull --rebase upstream master`.
+    - Ensure your changes pass tslint validation. (run `npm run tslint` in the `src` folder).
+
+6. Push your fork. If you have rebased you might have to use force-push your branch:
+```
+git push origin <my-fix-branch> --force
+```
+
+7. [Submit your pull request](https://github.com/NativeScript/nativescript-facebook/compare) and compare to `NativeScript/nativescript-facebook`. Please, fill in the Pull Request template - it will help us better understand the PR and increase the chances of it getting merged quickly.
+
+It's our turn from there on! We will review the PR and discuss changes you might have to make before merging it! Thanks! 
+
+## Where to Start
+
+If you want to contribute, but you are not sure where to start - look for issues labeled [`help wanted`](https://github.com/NativeScript/nativescript-facebook/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
