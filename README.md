@@ -9,36 +9,36 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 
 ![demo](https://github.com/nativescript-space/nativescript-facebook/blob/assets/demo.gif?raw=true)
 
-<!-- TOC -->
+<!-- TOC depthFrom:2 -->
 
 - [Features](#features)
 - [Installation](#installation)
 - [Configuration](#configuration)
     - [Android](#android)
     - [iOS](#ios)
-- [Usage](#usage)
-    - [NativeScript Core](#nativescript-core)
-        - [Initialization](#initialization)
-        - [Login](#login)
-            - [Facebook Login Button](#facebook-login-button)
-            - [Custom Login Button](#custom-login-button)
-        - [Log out](#log-out)
-            - [Facebook Logout Button](#facebook-logout-button)
-            - [Custom Logout Button](#custom-logout-button)
-    - [NativeScript Angular](#nativescript-angular)
-        - [Initialization](#initialization-1)
-        - [Login](#login-1)
-            - [Facebook Login Button](#facebook-login-button-1)
-            - [Custom Login Button](#custom-login-button-1)
-        - [Logout](#logout)
-            - [Facebook Logout Button](#facebook-logout-button-1)
-            - [Custom Logout Button](#custom-logout-button-1)
+- [NativeScript Core](#nativescript-core)
+    - [Initialization](#initialization)
+    - [Login](#login)
+        - [Facebook Login Button](#facebook-login-button)
+        - [Custom Login Button](#custom-login-button)
+    - [Log out](#log-out)
+        - [Facebook Logout Button](#facebook-logout-button)
+        - [Custom Logout Button](#custom-logout-button)
+- [NativeScript Angular](#nativescript-angular)
+    - [Initialization](#initialization-1)
+    - [Login](#login-1)
+        - [Facebook Login Button](#facebook-login-button-1)
+        - [Custom Login Button](#custom-login-button-1)
+    - [Logout](#logout)
+        - [Facebook Logout Button](#facebook-logout-button-1)
+        - [Custom Logout Button](#custom-logout-button-1)
 - [Login Response](#login-response)
+- [Get Current Access Token](#get-current-access-token)
 - [Graph API Example](#graph-api-example)
 - [Release notes](#release-notes)
 - [FAQ](#faq)
-- [Contributing](#contributing)
-- [License](#license)
+- [Contribute](#contribute)
+- [Get Help](#get-help)
 
 <!-- /TOC -->
 
@@ -453,13 +453,16 @@ This sample is part of the demo apps and can be observed [here](https://github.c
 
 ## Release notes
 
-Check out release notes [here] (https://github.com/NativeScript/nativescript-facebook/releases)
+Check out release notes [here](https://github.com/NativeScript/nativescript-facebook/releases)
 
 ## FAQ
 Check out our FAQ section [here](https://github.com/NativeScript/nativescript-facebook/wiki/FAQ).
 
-## Contributing
-Check out our Contribution guide [here](https://github.com/NativeScript/nativescript-facebook/blob/master/CONTRIBUTING.md).
+## Contribute
+We love PRs! Check out the [contributing guidelines](CONTRIBUTING.md). If you want to contribute, but you are not sure where to start - look for [issues labeled `help wanted`](https://github.com/NativeScript/nativescript-facebook/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
 
-## License
-[Apache 2.0](https://github.com/NativeScript/nativescript-facebook/blob/master/LICENSE)
+  
+## Get Help 
+Please, use [github issues](https://github.com/NativeScript/nativescript-facebook/issues) strictly for [reporting bugs](CONTRIBUTING.md#reporting-bugs) or [requesting features](CONTRIBUTING.md#requesting-new-features). For general questions and support, check out the [NativeScript community forum](https://discourse.nativescript.org/) or ask our experts in [NativeScript community Slack channel](http://developer.telerik.com/wp-login.php?action=slack-invitation).
+  
+![](https://ga-beacon.appspot.com/UA-111455-24/nativescript/nativescript-facebook?pixel) 
