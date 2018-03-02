@@ -1,4 +1,4 @@
-# Contributing to NativeScript facebook
+# Contributing to NativeScript Facebook
 
 :+1: First of all, thank you for taking the time to contribute! :+1:
 
