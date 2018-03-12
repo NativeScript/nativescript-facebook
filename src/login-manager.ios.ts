@@ -1,7 +1,9 @@
 import * as applicationModule from "tns-core-modules/application";
 import { LoginResponse } from './login-response';
 import { LoginBehavior } from './login-behavior';
+import { FacebookAccessToken } from "./facebook-access-token";
 declare let FBSDKLoginManager: any;
+declare let FBSDKAccessToken: any;
 declare let FBSDKSettings: any;
 declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; }
 declare class UIResponder { }
@@ -75,6 +77,21 @@ export function requestReadPermissions(permissions: string[], callback: Function
 
 export function login(callback: Function) {
   requestReadPermissions(LOGIN_PERMISSIONS, callback);
+}
+
+export function getCurrentAccessToken() {
+  let sdkAccessToken = FBSDKAccessToken.currentAccessToken();
+  let accessToken = null;
+
+  if (sdkAccessToken) {
+    accessToken = new FacebookAccessToken();
+    accessToken.accessToken = sdkAccessToken.tokenString;
+    accessToken.userId = sdkAccessToken.userID;
+    accessToken.refreshDate = sdkAccessToken.refreshDate;
+    accessToken.expirationDate = sdkAccessToken.expirationDate;
+  }
+
+  return accessToken;
 }
 
 export function logout(callback: Function) {

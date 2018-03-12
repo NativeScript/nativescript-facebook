@@ -1,5 +1,6 @@
 import * as application from "tns-core-modules/application";
 import { LoginResponse } from './login-response';
+import { FacebookAccessToken } from "./facebook-access-token";
 declare let com: any;
 
 const LOGIN_PERMISSIONS = ["public_profile", "email"];
@@ -104,6 +105,21 @@ export function login(callback: Function) {
   requestReadPermissions(LOGIN_PERMISSIONS, callback);
 }
 
+export function getCurrentAccessToken() {
+  let sdkAccessToken = com.facebook.AccessToken.getCurrentAccessToken();
+  let accessToken = null;
+
+  if (sdkAccessToken) {
+    accessToken = new FacebookAccessToken();
+    accessToken.accessToken = sdkAccessToken.getToken();
+    accessToken.userId = sdkAccessToken.getUserId();
+    accessToken.expirationDate = convertToISOStringDate(sdkAccessToken.getExpires().toGMTString());
+    accessToken.refreshDate = convertToISOStringDate(sdkAccessToken.getLastRefresh().toGMTString());
+  }
+
+  return accessToken;
+}
+
 export function logout(callback: Function) {
   loginManager.logOut();
   if (callback) {
@@ -111,3 +127,6 @@ export function logout(callback: Function) {
   }
 }
 
+function convertToISOStringDate(GMTStringDate: string) {
+  return new Date(GMTStringDate).toISOString();
+}

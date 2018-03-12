@@ -33,4 +33,10 @@ export class LoginComponent {
             }
         });
     }
+
+    public getCurrentAccessToken() {
+        let accessToken = Facebook.getCurrentAccessToken();
+
+        alert("Current access token: " + JSON.stringify(accessToken, null, '\t'));
+    }
 }

@@ -9,5 +9,6 @@
     <StackLayout class="buttons">
         <FacebookLoginButton (logout)="onLogout($event)"></FacebookLoginButton>
         <Button text="Log out (custom)" (tap)="logout()"></Button>
+        <Button text="Get current access token" (tap)="getCurrentAccessToken()"></Button>
     </StackLayout>
 </StackLayout>

@@ -1,6 +1,6 @@
 {
     "name": "nativescript-facebook",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "description": "NativeScript plugin, wrapper of native Facebook SDK for Adroid and iOS.",
     "nativescript": {
         "platforms": {
@@ -14,7 +14,11 @@
         "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
         "prepublishOnly": "npm run build",
         "plugin.link": "npm link && cd ../demo-angular && npm link nativescript-camera",
-        "plugin.tscwatch": "tsc -skipLibCheck -w"
+        "plugin.tscwatch": "tsc -skipLibCheck -w",
+        "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
+        "demo.android": "npm i && npm run tsc && cd ../demo && tns run android --syncAllFiles",
+        "demo.ng.ios": "npm i && npm run tsc && cd ../demo-angular && tns run ios --syncAllFiles",
+        "demo.ng.android": "npm i && npm run tsc && cd ../demo-angular && tns run android --syncAllFiles"
     },
     "repository": {
         "type": "git",

@@ -1,6 +1,6 @@
 import * as applicationModule from "tns-core-modules/application";
 import { LoginButtonBase } from './login-button.common';
-import * as loginManager from './login-manager';
+import * as loginManager from './../login-manager';
 
 declare let FBSDKLoginButton: any;
 declare class FBSDKLoginButtonDelegate { }
