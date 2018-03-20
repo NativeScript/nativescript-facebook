@@ -14,5 +14,5 @@ demo-angular/app/*.js
 demo-angular/*.d.ts
 demo-angular/platforms/
 !demo/e2e-tests/*
-/src/platforms/android/nativescript_camera.aar
+/src/platforms/android/nativescript_facebook.aar
 /src/*.tgz
