@@ -1,6 +1,6 @@
 {
     "name": "nativescript-facebook",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "description": "NativeScript plugin, wrapper of native Facebook SDK for Adroid and iOS.",
     "nativescript": {
         "platforms": {
@@ -9,6 +9,7 @@
         }
     },
     "scripts": {
+        "tsc": "tsc -skipLibCheck",
         "ngc": "node --max-old-space-size=8192 ./node_modules/.bin/ngc",
         "build": "npm i && tsc && npm run ngc",
         "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
