@@ -41,5 +41,13 @@
                 "deviceName": "iPhone 6",
                 "appium-version": "1.7.1",
                 "app": ""
+        },
+        "sim_11.2_iPhone6": {
+                "browserName": "",
+                "appium-version": "1.7.1",
+                "platformName": "iOS",
+                "platformVersion": "11.2",
+                "deviceName": "iPhone 6",
+                "app": ""
         }
 }
