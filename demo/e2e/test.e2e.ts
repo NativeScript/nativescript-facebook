@@ -16,7 +16,7 @@ describe("Facebook tests", async function () {
 
     before(async () => {
         driver = await createDriver();
-        driver.defaultWaitTime = 15000;
+        driver.defaultWaitTime = 20000;
     });
 
     after(async () => {
@@ -38,7 +38,8 @@ describe("Facebook tests", async function () {
             var userNameLabelElement = "[@name='Nativescript User']";
         }
 
-        const facebookButton = await driver.findElementByAccessibilityId(FACEBOOK_BUTTON);
+        // const facebookButton = await driver.findElementByAccessibilityId(FACEBOOK_BUTTON);
+        const facebookButton = await driver.findElementByText("Custom", SearchOptions.contains);
         await facebookButton.click();
 
         if (isAndroid) {
@@ -46,6 +47,9 @@ describe("Facebook tests", async function () {
             await allFields[1].click().sendKeys(PASSWORD);
             await allFields[0].click().sendKeys(USERNAME);
         } else {
+            // const continueButton = await driver.findElementByText("Continue");
+            // await continueButton.click();
+            // await driver.wait(2000);
             const passField = await driver.driver.waitForElementByClassName(driver.locators.getElementByName("securetextfield"), 10000);
             await passField.click().sendKeys(PASSWORD);
             const usernameField = await driver.driver.waitForElementByClassName(driver.locators.getElementByName("textfield"), 10000);
@@ -58,9 +62,10 @@ describe("Facebook tests", async function () {
             const okButton = await driver.findElementByClassName(driver.locators.button);
             await okButton.click();
         } else {
-            const logInButton = await driver.findElementByXPath("//" + driver.locators.button + loginButtonElement);
+            //const logInButton = await driver.findElementByXPath("//" + driver.locators.button + loginButtonElement);
+            const logInButton = await driver.findElementByText("Log In");
             await logInButton.click();
-            const continueButton = await driver.findElementByXPath("//" + driver.locators.button + continueButtonAttribute);
+            const continueButton = await driver.findElementByText("Continue");
             await continueButton.click();
         }
         const userNameLabel = await driver.findElementByXPath("//" + driver.locators.getElementByName("label") + userNameLabelElement);
@@ -70,8 +75,11 @@ describe("Facebook tests", async function () {
     });
 
     it("should log out via custom button", async function () {
-        const facebookLogoutButton = await driver.findElementByAccessibilityId(CUSTOM_LOGOUT_BUTTON);
-        await facebookLogoutButton.click();
+        //const facebookLogoutButton = await driver.findElementByAccessibilityId(CUSTOM_LOGOUT_BUTTON);
+        // const facebookLogoutButton = await driver.findElementByText("Log out", SearchOptions.contains);
+        // await facebookLogoutButton.click();
+        const allButtons = await driver.findElementsByClassName(driver.locators.button);
+        await allButtons[1].click();
         const facebookButton = await driver.findElementByAccessibilityId(FACEBOOK_BUTTON);
         expect(facebookButton).to.exist;
     });

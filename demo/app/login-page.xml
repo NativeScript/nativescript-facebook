@@ -3,7 +3,7 @@
   loaded="pageLoaded" class="page">
   <StackLayout class="login-buttons">
     <Facebook:LoginButton automationText="fbLogin" login="{{ onLogin }}"></Facebook:LoginButton>
-    <Button tap="{{ login }}" text="Continue with Facebook (custom)"></Button>
+    <Button tap="{{ login }}" text="Continue with Facebook (Custom)"></Button>
     <Button tap="{{ getCurrentAccessToken }}" text="Get current access token"></Button>
   </StackLayout>
 </Page>

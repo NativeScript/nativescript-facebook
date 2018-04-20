@@ -1,7 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { HomeComponent } from "./home.component";
+import { CommonModule } from "@angular/common";
 
 import { NativeScriptFacebookModule } from "nativescript-facebook/angular";
 
@@ -14,9 +14,9 @@ export const routerConfig = [
 
 @NgModule({
     imports: [
-        NativeScriptModule,
         NativeScriptRouterModule,
-        NativeScriptRouterModule.forChild(routerConfig)
+        NativeScriptRouterModule.forChild(routerConfig),
+        CommonModule
     ],
     declarations: [ HomeComponent ],
     schemas: [ NO_ERRORS_SCHEMA ]
