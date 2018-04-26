@@ -51,6 +51,7 @@
         "url": "https://github.com/NativeScript/nativescript-facebook/issues"
     },
     "license": "Apache 2.0",
+    "typings": "index.d.ts",
     "homepage": "https://github.com/NativeScript/nativescript-facebook",
     "readmeFilename": "README.md",
     "devDependencies": {
