@@ -9,8 +9,7 @@
         "experimentalDecorators": true,
         "lib": [
             "es6",
-            "dom",
-            "es2015.iterable"
+            "dom"
         ],
         "pretty": true,
         "allowUnreachableCode": false,
