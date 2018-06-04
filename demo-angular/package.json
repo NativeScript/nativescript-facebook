@@ -4,10 +4,10 @@
   "nativescript": {
     "id": "org.nativescript.demoangular",
     "tns-ios": {
-      "version": "4.0.1"
+      "version": "4.1.0"
     },
     "tns-android": {
-      "version": "4.0.0"
+      "version": "4.1.1"
     }
   },
   "dependencies": {
@@ -19,12 +19,12 @@
     "@angular/platform-browser": "~6.0.0",
     "@angular/platform-browser-dynamic": "~6.0.0",
     "@angular/router": "~6.0.0",
-    "nativescript-angular": "next",
+    "nativescript-angular": "6.0.0",
     "nativescript-facebook": "../src",
     "nativescript-theme-core": "^1.0.4",
     "nativescript-unit-test-runner": "^0.3.4",
     "rxjs": "~6.1.0",
-    "tns-core-modules": "next",
+    "tns-core-modules": "4.1.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
@@ -44,7 +44,7 @@
     "lazy": "1.0.11",
     "nativescript-css-loader": "~0.26.0",
     "nativescript-dev-typescript": "^0.7.1",
-    "nativescript-dev-webpack": "next",
+    "nativescript-dev-webpack": "0.12.0",
     "nativescript-worker-loader": "~0.8.1",
     "raw-loader": "~0.5.1",
     "resolve-url-loader": "~2.3.0",
