@@ -10,9 +10,20 @@
                 "platformName": "Android",
                 "platformVersion": "6.0",
                 "deviceName": "Android Emulator",
-                "appium-version": "1.7.1",
+                "appiumVersion": "1.7.2",
                 "noReset": true
         },
+        "android24.sauce": {
+                "platformName": "Android",
+                "platformVersion": "7.0",
+                "deviceName": "Android GoogleAPI Emulator",
+                "lt": 60000,
+                "newCommandTimeout": 720,
+                "appiumVersion": "1.7.2",
+                "noReset": true,
+                "fullReset": false,
+                "app": ""
+            },
         "android25": {
                 "platformName": "Android",
                 "platformVersion": "7.1",

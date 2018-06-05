@@ -13,77 +13,78 @@ env:
 
 matrix:
   include:
-    - stage: "Build"
-      env: 
-        - BuildAndroid="26"
-      language: android
-      os: linux
-      jdk: oraclejdk8
-      before_install: 
-        - nvm install 8.9.4
-      before_script:
-        - cd ../demo && tns platform add android@next
-        - cd ../demo-angular && tns platform add android@next
-      script:
-        - cd ../demo && npm run ci.android.build && cd ../demo-angular && npm run ci.android.build
-        - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $ANDROID_SAUCE_STORAGE --data-binary @$ANDROID_PACKAGE_FOLDER/$ANDROID_PACKAGE"
-    - os: osx
-      env: 
-        - BuildiOS="11"
-        - Xcode="9.2"
-      osx_image: xcode9.2
-      language: node_js 
-      node_js: "8"
-      jdk: oraclejdk8
-      before_script:
-        - cd ../demo && tns platform add ios@next
-        - cd ../demo-angular && tns platform add ios@next
-      script: 
-        - cd ../demo && npm run ci.ios.build && cd ../demo-angular && npm run ci.ios.build
-        - cd $IOS_PACKAGE_FOLDER && zip -r $IOS_PACKAGE_NEXT demo.app
-        - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $IOS_SAUCE_STORAGE --data-binary @$IOS_PACKAGE_FOLDER/$IOS_PACKAGE_NEXT"
-    - os: osx
-      env:
-        - Webpack="iOS"
-      osx_image: xcode9.2
-      language: node_js 
-      node_js: "6"
-      jdk: oraclejdk8
-      before_script:
-        - cd ../demo && tns platform add ios@next
-        - cd ../demo-angular && tns platform add ios@next
-      script: cd ../demo && npm run build.plugin && npm i && tns build ios --bundle --env.uglify && cd ../demo-angular && npm i && tns build ios --bundle --env.uglify --env.aot
-    - os: linux
-      language: android
-      env:
-        - Webpack="Android"
-      jdk: oraclejdk8
-      before_install: nvm install 6.10.3
-      before_script:
-        - cd ../demo && tns platform add android@next
-        - cd ../demo-angular && tns platform add android@next
-      script: cd ../demo && npm run build.plugin && npm i && tns build android --bundle --env.uglify --env.snapshot && cd ../demo-angular && npm i && tns build android --bundle --env.uglify --env.snapshot --env.aot
+    # - stage: "Build"
+    #   env: 
+    #     - BuildAndroid="26"
+    #   language: android
+    #   os: linux
+    #   jdk: oraclejdk8
+    #   before_install: 
+    #     - nvm install 8.9.4
+    #   before_script:
+    #     - cd ../demo && tns platform add android@next
+    #     - cd ../demo-angular && tns platform add android@next
+    #   script:
+    #     - cd ../demo && npm run ci.android.build && cd ../demo-angular && npm run ci.android.build
+    #     - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $ANDROID_SAUCE_STORAGE --data-binary @$ANDROID_PACKAGE_FOLDER/app-debug.apk"
+    # - os: osx
+    #   env: 
+    #     - BuildiOS="11"
+    #     - Xcode="9.2"
+    #   osx_image: xcode9.2
+    #   language: node_js 
+    #   node_js: "8"
+    #   jdk: oraclejdk8
+    #   before_script:
+    #     - cd ../demo && tns platform add ios@next
+    #     - cd ../demo-angular && tns platform add ios@next
+    #   script: 
+    #     - cd ../demo && npm run ci.ios.build && cd ../demo-angular && npm run ci.ios.build
+    #     - cd $IOS_PACKAGE_FOLDER && zip -r $IOS_PACKAGE_NEXT demo.app
+    #     - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $IOS_SAUCE_STORAGE --data-binary @$IOS_PACKAGE_FOLDER/$IOS_PACKAGE_NEXT"
+    # - os: osx
+    #   env:
+    #     - Webpack="iOS"
+    #   osx_image: xcode9.2
+    #   language: node_js 
+    #   node_js: "6"
+    #   jdk: oraclejdk8
+    #   before_script:
+    #     - cd ../demo && tns platform add ios@next
+    #     - cd ../demo-angular && tns platform add ios@next
+    #   script: cd ../demo && npm run build.plugin && npm i && tns build ios --bundle --env.uglify && cd ../demo-angular && npm i && tns build ios --bundle --env.uglify --env.aot
+    # - os: linux
+    #   language: android
+    #   env:
+    #     - Webpack="Android"
+    #   jdk: oraclejdk8
+    #   before_install: nvm install 6.10.3
+    #   before_script:
+    #     - cd ../demo && tns platform add android@next
+    #     - cd ../demo-angular && tns platform add android@next
+    #   script: cd ../demo && npm run build.plugin && npm i && tns build android --bundle --env.uglify --env.snapshot && cd ../demo-angular && npm i && tns build android --bundle --env.uglify --env.snapshot --env.aot
     - stage: "UI Tests"
       env: 
       - Android="23"
       language: node_js
       os: linux
-      node_js: "6"
+      node_js: "8"
       install: true
       script:
         - npm i -g appium
         - cd demo && npm i
-        - travis_wait travis_retry npm run e2e -- --runType android23 --sauceLab --reuseDevice --appPath $ANDROID_PACKAGE_NEXT
-    - os: linux
-      env: 
-        - iOS="10"
-      language: node_js 
-      node_js: "6"
-      install: true
-      script: 
-        - npm i -g appium
-        - cd demo && npm i
-        - travis_wait travis_retry npm run e2e -- --runType sim103iPhone6 --sauceLab --reuseDevice --appPath $IOS_PACKAGE_NEXT
+        - travis_retry npm run e2e -- --runType android24.sauce --sauceLab --reuseDevice --appPath $ANDROID_PACKAGE_NEXT
+        - echo "Ko stana"
+    # - os: linux
+    #   env: 
+    #     - iOS="10"
+    #   language: node_js 
+    #   node_js: "6"
+    #   install: true
+    #   script: 
+    #     - npm i -g appium
+    #     - cd demo && npm i
+    #     - travis_wait travis_retry npm run e2e -- --runType sim103iPhone6 --sauceLab --reuseDevice --appPath $IOS_PACKAGE_NEXT
 
 android:
   components:
@@ -94,14 +95,14 @@ android:
     - android-23
     - extra-android-m2repository
 
-before_cache:
-    - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+# before_cache:
+#     - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 
-cache:
-    directories:
-        - .nvm
-        - $HOME/.gradle/caches/
-        - $HOME/.gradle/wrapper/
+# cache:
+#     directories:
+#         - .nvm
+#         - $HOME/.gradle/caches/
+#         - $HOME/.gradle/wrapper/
 
 install:
     - npm install -g nativescript@next
