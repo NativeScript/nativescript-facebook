@@ -73,7 +73,7 @@ matrix:
       script:
         - npm i -g appium
         - cd demo && npm i
-        - travis_retry npm run e2e -- --runType android23 --sauceLab --reuseDevice --appPath $ANDROID_PACKAGE_NEXT
+        - travis_wait travis_retry npm run e2e -- --runType android23 --sauceLab --reuseDevice --appPath $ANDROID_PACKAGE_NEXT
     - os: linux
       env: 
         - iOS="10"
