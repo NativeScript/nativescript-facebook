@@ -260,12 +260,24 @@ Call init of nativescript-facebook module on application launch.
 ...
 import * as application from 'application';
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { NativeScriptFacebookModule } from "nativescript-facebook/angular";
 
 let nsFacebook = require('nativescript-facebook');
 
 application.on(application.launchEvent, function (args) {
     nsFacebook.init("{facebook_app_id}");
 });
+...
+@NgModule({
+    ...
+    imports: [
+        AppRoutingModule,
+        NativeScriptModule,
+        NativeScriptFacebookModule,
+        ...
+    ],
+    ...
+})
 ...
 ```
 
