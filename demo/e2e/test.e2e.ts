@@ -44,8 +44,17 @@ describe("Facebook tests", async function () {
 
         if (isAndroid) {
             const allFields = await driver.driver.waitForElementsByClassName(driver.locators.getElementByName("textfield"), 10000);
-            await allFields[1].click().sendKeys(PASSWORD);
-            await allFields[0].click().sendKeys(USERNAME);
+            const wd = driver.wd();
+            const action = new wd.TouchAction(driver.driver);
+            action.press({ x: 52, y: 499 })
+                .moveTo({ x: -2, y: -294 })
+                .release();
+            await action.perform();
+            await driver.wait(1000);
+            await allFields[1].sendKeys(PASSWORD);
+            await driver.driver.hideDeviceKeyboard();
+            await driver.wait(1000);
+            await allFields[0].sendKeys(USERNAME);
         } else {
             // const continueButton = await driver.findElementByText("Continue");
             // await continueButton.click();
