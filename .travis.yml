@@ -121,7 +121,6 @@ install:
     - ./node_modules/.bin/update-ns-webpack --deps
     - npm install tns-core-modules@next -P
     - npm install nativescript-dev-typescript@next -D
-    - ./node_modules/.bin/update-ns-webpack --deps
     - cd ../demo-angular
     - npm install nativescript-dev-webpack@next -D
     - ./node_modules/.bin/update-ns-webpack --deps
@@ -129,4 +128,3 @@ install:
     - npm install tns-core-modules@next -P
     - npm install nativescript-angular@next -P
     - npm install nativescript-dev-typescript@next -D
-    - ./node_modules/.bin/update-ns-webpack --deps
