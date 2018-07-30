@@ -6,6 +6,7 @@ declare let com: any;
 
 const LOGIN_PERMISSIONS = ["public_profile", "email"];
 
+export let onLoginCallback;
 export let onLogoutCallback;
 let androidApplication;
 let _act: android.app.Activity;
