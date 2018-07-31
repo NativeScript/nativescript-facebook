@@ -52,7 +52,10 @@ matrix:
       before_script:
         - cd ../demo && tns platform add ios@next
         - cd ../demo-angular && tns platform add ios@next
-      script: cd ../demo && npm run build.plugin && npm i && tns build ios --bundle --env.uglify && cd ../demo-angular && npm i && tns build ios --bundle --env.uglify --env.aot
+      script:
+        - cd ../demo && npm run build.plugin && npm i && tns build ios --bundle --env.uglify
+        - cd ../publish && sh pack.sh && cp package/*.tgz ../demo-angular/package.tgz
+        - cd ../demo-angular && tns plugin add package.tgz && npm i && tns build ios --bundle --env.uglify --env.aot
     - os: linux
       language: android
       env:
@@ -62,13 +65,16 @@ matrix:
       before_script:
         - cd ../demo && tns platform add android@next
         - cd ../demo-angular && tns platform add android@next
-      script: cd ../demo && npm run build.plugin && npm i && tns build android --bundle --env.uglify --env.snapshot && cd ../demo-angular && npm i && tns build android --bundle --env.uglify --env.snapshot --env.aot
+      script:
+        - cd ../demo && npm run build.plugin && npm i && tns build android --bundle --env.uglify
+        - cd ../publish && sh pack.sh && cp package/*.tgz ../demo-angular/package.tgz
+        - cd ../demo-angular && tns plugin add package.tgz && npm i && tns build android --bundle --env.uglify --env.aot
     - stage: "UI Tests"
       env: 
-      - Android="23"
+        - Android="23"
       language: node_js
       os: linux
-      node_js: "6"
+      node_js: "8"
       install: true
       script:
         - npm i -g appium
@@ -78,7 +84,7 @@ matrix:
       env: 
         - iOS="10"
       language: node_js 
-      node_js: "6"
+      node_js: "8"
       install: true
       script: 
         - npm i -g appium
@@ -111,13 +117,14 @@ install:
     - npm install tns-core-modules@next -D
     - npm install nativescript-angular@next -D
     - cd ../demo
-    - npm install tns-core-modules@next -P
     - npm install nativescript-dev-webpack@next -D
-    - npm install nativescript-dev-typescript@next -D
     - ./node_modules/.bin/update-ns-webpack --deps
+    - npm install tns-core-modules@next -P
+    - npm install nativescript-dev-typescript@next -D
     - cd ../demo-angular
+    - npm install nativescript-dev-webpack@next -D
+    - ./node_modules/.bin/update-ns-webpack --deps
+    - ./node_modules/.bin/update-app-ng-deps
     - npm install tns-core-modules@next -P
     - npm install nativescript-angular@next -P
-    - npm install nativescript-dev-webpack@next -D
     - npm install nativescript-dev-typescript@next -D
-    - ./node_modules/.bin/update-ns-webpack --deps
