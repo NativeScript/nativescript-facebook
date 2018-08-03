@@ -24,7 +24,7 @@ export function init(fbId: string, fbLoginBehavior: LoginBehavior = LoginBehavio
     com.facebook.FacebookSdk.sdkInitialize(androidApplication.context.getApplicationContext());
   }
   catch (e) {
-    console.log(e)
+    console.log(e);
   }
   loginManager = com.facebook.login.LoginManager.getInstance();
 
