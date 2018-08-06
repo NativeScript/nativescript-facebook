@@ -25,7 +25,7 @@ export function init(fbId: string, fbLoginBehavior: LoginBehavior = LoginBehavio
     com.facebook.FacebookSdk.sdkInitialize(androidApplication.context.getApplicationContext());
   }
   catch (e) {
-    console.log("nativescript-facebook: The plugin could not find the android library, try to clean the android platform");
+    console.log(e);
   }
   loginManager = com.facebook.login.LoginManager.getInstance();
 
