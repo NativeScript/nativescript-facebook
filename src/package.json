@@ -11,7 +11,7 @@
     "scripts": {
         "tsc": "tsc -skipLibCheck",
         "ngc": "node --max-old-space-size=8192 ./node_modules/.bin/ngc",
-        "build": "npm i && tsc && npm run ngc",
+        "build": "npm i && tsc && tns plugin build && npm run ngc",
         "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
         "prepublishOnly": "npm run build",
         "plugin.link": "npm link && cd ../demo-angular && npm link nativescript-camera",
