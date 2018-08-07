@@ -4,6 +4,7 @@ node_modules/
 *.js
 *.js.map
 *.esm.json
+*.metadata.json
 *.log
 demo/**/*.js
 !demo/karma.conf.js
