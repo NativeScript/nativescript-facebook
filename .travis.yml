@@ -21,10 +21,9 @@ matrix:
       os: osx
       env:
         - WebpackiOS="11"
-      osx_image: xcode9.4
+      osx_image: xcode9.2
       language: node_js 
       node_js: "8"
-      python: "2.7"
       jdk: oraclejdk8
       script: cd src && npm run build.iosOnly && cd ../demo && npm i && tns build ios --env.uglify && cd ../demo-angular && npm i && tns build ios --env.uglify --env.aot
     - language: android
@@ -48,11 +47,10 @@ matrix:
     - os: osx
       env: 
         - BuildiOS="11"
-        - Xcode="9.4"
-      osx_image: xcode9.4
+        - Xcode="9.2"
+      osx_image: xcode9.2
       language: node_js 
       node_js: "8"
-      python: "2.7"
       jdk: oraclejdk8
       script: 
         - cd demo && npm run ci.ios.build && cd ../demo-angular && npm run ci.ios.build
