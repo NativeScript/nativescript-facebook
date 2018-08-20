@@ -24,6 +24,7 @@ matrix:
       osx_image: xcode9.4
       language: node_js 
       node_js: "8"
+      python: "2.7"
       jdk: oraclejdk8
       script: cd src && npm run build.iosOnly && cd ../demo && npm i && tns build ios --env.uglify && cd ../demo-angular && npm i && tns build ios --env.uglify --env.aot
     - language: android
@@ -51,6 +52,7 @@ matrix:
       osx_image: xcode9.4
       language: node_js 
       node_js: "8"
+      python: "2.7"
       jdk: oraclejdk8
       script: 
         - cd demo && npm run ci.ios.build && cd ../demo-angular && npm run ci.ios.build
