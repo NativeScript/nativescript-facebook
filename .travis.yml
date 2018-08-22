@@ -53,8 +53,8 @@ matrix:
         - cd ../demo && tns platform add ios@next
         - cd ../demo-angular && tns platform add ios@next
       script:
-        - cd ../demo && npm run build.plugin && npm i && tns build ios --bundle --env.uglify
-        - cd ../publish && sh pack.sh && cp package/*.tgz ../demo-angular/package.tgz
+        - cd ../src && npm run build.iosOnly && npm pack && cp *.tgz ../demo-angular/package.tgz
+        - cd ../demo && npm i && tns build ios --bundle --env.uglify
         - cd ../demo-angular && tns plugin add package.tgz && npm i && tns build ios --bundle --env.uglify --env.aot
     - os: linux
       language: android
