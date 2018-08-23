@@ -20,7 +20,7 @@ matrix:
       os: linux
       jdk: oraclejdk8
       before_install: 
-        - nvm install 8.9.4
+        - nvm install 8.11.4
       before_script:
         - cd ../demo && tns platform add android@next
         - cd ../demo-angular && tns platform add android@next
@@ -30,8 +30,8 @@ matrix:
     - os: osx
       env: 
         - BuildiOS="11"
-        - Xcode="9.2"
-      osx_image: xcode9.2
+        - Xcode="9.4"
+      osx_image: xcode9.4
       language: node_js 
       node_js: "8"
       jdk: oraclejdk8
@@ -45,7 +45,7 @@ matrix:
     - os: osx
       env:
         - Webpack="iOS"
-      osx_image: xcode9.2
+      osx_image: xcode9.4
       language: node_js 
       node_js: "8"
       jdk: oraclejdk8
@@ -61,7 +61,7 @@ matrix:
       env:
         - Webpack="Android"
       jdk: oraclejdk8
-      before_install: nvm install 8.9.4
+      before_install: nvm install 8.11.4
       before_script:
         - cd ../demo && tns platform add android@next
         - cd ../demo-angular && tns platform add android@next
@@ -113,6 +113,7 @@ install:
     - npm install -g nativescript@next
     - tns usage-reporting disable
     - tns error-reporting disable
+    - pip install six
     - cd src
     - npm install tns-core-modules@next -D
     - npm install nativescript-angular@next -D
