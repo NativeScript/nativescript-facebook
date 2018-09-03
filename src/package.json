@@ -15,7 +15,6 @@
         "build.iosOnly": "npm i && tsc && npm run ngc",
         "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
         "prepublishOnly": "npm run build",
-        "plugin.link": "npm link && cd ../demo-angular && npm link nativescript-camera",
         "plugin.tscwatch": "tsc -skipLibCheck -w",
         "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
         "demo.android": "npm i && npm run tsc && cd ../demo && tns run android --syncAllFiles",
@@ -33,21 +32,7 @@
         "iOS",
         "Facebook"
     ],
-    "author": {
-        "name": "NativeScript Team",
-        "email": "support@telerik.com",
-        "url": "http://www.telerik.com"
-    },
-    "maintainers": [
-        {
-            "name": "angeltsvetkov",
-            "email": "angel.tsvetkov@progress.com"
-        },
-        {
-            "name": "Dimitar Tachev",
-            "email": "dimitar.tachev@progress.com"
-        }
-    ],
+    "author": "NativeScript Team",
     "bugs": {
         "url": "https://github.com/NativeScript/nativescript-facebook/issues"
     },
