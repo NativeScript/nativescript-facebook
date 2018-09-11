@@ -114,8 +114,8 @@ export function getCurrentAccessToken() {
     accessToken = new FacebookAccessToken();
     accessToken.accessToken = sdkAccessToken.getToken();
     accessToken.userId = sdkAccessToken.getUserId();
-    accessToken.expirationDate = convertToISOStringDate(sdkAccessToken.getExpires().toGMTString());
-    accessToken.refreshDate = convertToISOStringDate(sdkAccessToken.getLastRefresh().toGMTString());
+    accessToken.expirationDate = convertToISOStringDate(sdkAccessToken.getExpires().getTime());
+    accessToken.refreshDate = convertToISOStringDate(sdkAccessToken.getLastRefresh().getTime());
   }
 
   return accessToken;
@@ -128,6 +128,10 @@ export function logout(callback: Function) {
   }
 }
 
-function convertToISOStringDate(GMTStringDate: string) {
-  return new Date(GMTStringDate).toISOString();
+function convertToISOStringDate(time: number) {
+  if (time != null && !isNaN(time) && isFinite(time)) {
+    return new Date(time).toISOString();
+  } else {
+    return "";
+  }
 }
