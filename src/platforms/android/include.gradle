@@ -9,5 +9,5 @@ android {
 }
 
 dependencies {
-	compile "com.facebook.android:facebook-android-sdk:4.22.0"
+	compile "com.facebook.android:facebook-android-sdk:4.36.0"
 }
