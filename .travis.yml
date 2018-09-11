@@ -85,15 +85,6 @@ android:
     - android-23
     - extra-android-m2repository
 
-before_cache:
-    - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-
-cache:
-    directories:
-        - .nvm
-        - $HOME/.gradle/caches/
-        - $HOME/.gradle/wrapper/
-
 install:
     - npm install -g nativescript
     - tns usage-reporting disable
