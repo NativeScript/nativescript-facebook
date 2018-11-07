@@ -4,10 +4,10 @@
   "nativescript": {
     "id": "org.nativescript.demoangular",
     "tns-ios": {
-      "version": "4.2.0"
+      "version": "5.0.0"
     },
     "tns-android": {
-      "version": "4.2.0"
+      "version": "5.0.0"
     }
   },
   "dependencies": {
@@ -19,12 +19,12 @@
     "@angular/platform-browser": "~6.1.0",
     "@angular/platform-browser-dynamic": "~6.1.0",
     "@angular/router": "~6.1.0",
-    "nativescript-angular": "~6.1.0",
+    "nativescript-angular": "~6.2.0",
     "nativescript-facebook": "../src",
     "nativescript-theme-core": "^1.0.4",
     "nativescript-unit-test-runner": "^0.3.4",
     "rxjs": "~6.1.0",
-    "tns-core-modules": "^4.2.0",
+    "tns-core-modules": "^5.0.1",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
@@ -33,10 +33,12 @@
     "karma-jasmine": "^1.0.2",
     "karma-nativescript-launcher": "^0.4.0",
     "nativescript-css-loader": "~0.26.0",
-    "nativescript-dev-typescript": "~0.7.2",
-    "nativescript-dev-webpack": "~0.15.1",
+    "nativescript-dev-typescript": "~0.7.4",
+    "nativescript-dev-webpack": "~0.17.0",
     "tslint": "~5.11.0",
-    "typescript": "~2.8.2"
+    "typescript": "~2.8.2",
+    "@angular/compiler-cli": "~6.1.0",
+    "@ngtools/webpack": "~6.2.0"
   },
   "scripts": {
     "build.plugin": "cd ../src && npm run build",
