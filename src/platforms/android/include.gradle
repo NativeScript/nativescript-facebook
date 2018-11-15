@@ -1,11 +1,6 @@
 /* Include.gradle configuration: http://docs.nativescript.org/plugins/plugins#includegradle-specification */
 
 android {
-	productFlavors {
-		"nativescript-facebook" {
-			dimension "nativescript-facebook"
-		}
-	}
 }
 
 dependencies {
