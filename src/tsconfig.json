@@ -18,7 +18,6 @@
     ],
     "compileOnSave": false,
     "angularCompilerOptions": {
-        "annotateForClosureCompiler": true,
         "strictMetadataEmit": true,
         "skipTemplateCodegen": true,
         "genDir": "."
