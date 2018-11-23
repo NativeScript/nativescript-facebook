@@ -95,7 +95,7 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-28.0.2
+    - build-tools-28.0.3
     - android-28
     - extra-android-m2repository
 
@@ -121,15 +121,14 @@ install:
     - npm install tns-core-modules@next -D
     - npm install nativescript-angular@next -D
     - cd ../demo
+    - npm install nativescript-dev-typescript@next -D
     - npm install nativescript-dev-webpack@next -D
     - ./node_modules/.bin/update-ns-webpack --deps
     - npm install tns-core-modules@next -P
-    - npm install nativescript-dev-typescript@next -D
     - cd ../demo-angular
+    - npm install nativescript-dev-typescript@next -D
     - npm install nativescript-dev-webpack@next -D
     - ./node_modules/.bin/update-ns-webpack --deps
     - ./node_modules/.bin/update-app-ng-deps
     - npm install tns-core-modules@next -P
     - npm install nativescript-angular@next -P
-    - npm install nativescript-dev-typescript@next -D
-    - npm install typescript@3.1.6 -D
