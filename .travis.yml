@@ -1,5 +1,5 @@
 branches:
-  only: 
+  only:
     - master
 env:
   global:
@@ -22,7 +22,7 @@ matrix:
       env:
         - WebpackiOS="12.0"
       osx_image: xcode10.0
-      language: node_js 
+      language: node_js
       node_js: "8"
       jdk: oraclejdk8
       script: cd src && npm run build.iosOnly && cd ../demo && npm i && tns build ios --env.uglify && cd ../demo-angular && npm i && tns build ios --env.uglify --env.aot
@@ -36,7 +36,7 @@ matrix:
         - cd src && npm run build && cd ../demo && npm i && tns build android --env.uglify --env.snapshot
         - cd ../demo-angular && npm i && tns build android --env.uglify --env.snapshot --env.aot
     - language: android
-      env: 
+      env:
         - BuildAndroid="28"
       os: linux
       jdk: oraclejdk8
@@ -45,36 +45,36 @@ matrix:
         - cd demo && npm run ci.android.build && cd ../demo-angular && npm run ci.android.build
         - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $ANDROID_SAUCE_STORAGE --data-binary @$ANDROID_PACKAGE_FOLDER/app-debug.apk"
     - os: osx
-      env: 
+      env:
         - BuildiOS="12.0"
         - Xcode="10.0"
       osx_image: xcode10.0
-      language: node_js 
+      language: node_js
       node_js: "8"
       jdk: oraclejdk8
-      script: 
+      script:
         - cd demo && npm run ci.ios.build && cd ../demo-angular && npm run ci.ios.build
         - cd $IOS_PACKAGE_FOLDER && zip -r $IOS_PACKAGE demo.app
         - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $IOS_SAUCE_STORAGE --data-binary @$IOS_PACKAGE_FOLDER/$IOS_PACKAGE"
     - stage: "UI Tests"
-      env: 
-        - Android="23"
+      env:
+        - Android="24"
       language: node_js
       os: linux
       node_js: "8"
       script:
         - npm i -g appium
         - cd demo && npm i
-        - travis_retry npm run e2e -- --runType android23 --sauceLab --reuseDevice --appPath $ANDROID_PACKAGE
+        - travis_retry npm run e2e -- --runType android24 --sauceLab --reuseDevice --appPath $ANDROID_PACKAGE
     - os: linux
-      env: 
+      env:
         - iOS="12.0"
-      language: node_js 
+      language: node_js
       node_js: "8"
-      script: 
+      script:
         - npm i -g appium
         - cd demo && npm i
-        - travis_wait travis_retry npm run e2e -- --runType sim103iPhone6 --sauceLab --reuseDevice --appPath $IOS_PACKAGE
+        - travis_wait travis_retry npm run e2e -- --runType sim12iPhoneX --sauceLab --reuseDevice --appPath $IOS_PACKAGE
 
 android:
   components:
@@ -85,10 +85,10 @@ android:
     - extra-android-m2repository
 
 before_install:
-    - sudo pip install --upgrade pip
-    - sudo pip install six
+  - sudo pip install --upgrade pip
+  - sudo pip install six
 
 install:
-    - npm install -g nativescript
-    - tns usage-reporting disable
-    - tns error-reporting disable
+  - npm install -g nativescript
+  - tns usage-reporting disable
+  - tns error-reporting disable
