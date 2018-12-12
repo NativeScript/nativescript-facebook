@@ -2,15 +2,6 @@ import * as applicationModule from "tns-core-modules/application";
 import { LoginResponse } from './login-response';
 import { LoginBehavior } from './login-behavior';
 import { FacebookAccessToken } from "./facebook-access-token";
-declare let FBSDKLoginManager: any;
-declare let FBSDKAccessToken: any;
-declare let FBSDKSettings: any;
-declare class FBSDKLoginManagerLoginResult { isCancelled: boolean; token: any; }
-declare class UIResponder { }
-declare var UIApplicationDelegate: any;
-declare class UIApplication { }
-declare let FBSDKLoginButton: any;
-declare class NSDictionary { }
 
 const LOGIN_PERMISSIONS = ["public_profile", "email"];
 
