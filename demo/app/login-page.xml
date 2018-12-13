@@ -8,7 +8,8 @@
 
     <Facebook:ShareButton content="{{ linkContent }}"></Facebook:ShareButton>
     <Facebook:SendButton content="{{ linkContent }}"></Facebook:SendButton>
-    <Button tap="{{ onShareDialog }}" text="Open Share dialog"></Button>
+    <Button tap="{{ onShareDialog }}" text="Open Share dialog (link)"></Button>
+    <Button tap="{{ onShareDialogPhotos }}" text="Open Share dialog (photos)"></Button>
     <Button tap="{{ onSendDialog }}" text="Open Message Share dialog"></Button>
   </StackLayout>
 </Page>

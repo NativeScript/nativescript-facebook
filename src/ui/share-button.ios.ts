@@ -6,11 +6,16 @@ export class ShareButton extends FacebookShareButtonBase {
     createNativeView() {
         const button = FBSDKShareButton.alloc().init();
         this.nativeView = button;
+        if (this.content) {
+            this.nativeView.shareContent = this.content;
+        }
         return button;
     }
 
     onContentChanged(oldValue: any, newValue: any): void {
-        this.nativeView.shareContent = newValue;
+        if (this.nativeView) {
+            this.nativeView.shareContent = newValue;
+        }
     }
 }
 
@@ -21,10 +26,15 @@ export class SendButton extends FacebookShareButtonBase {
     createNativeView() {
         const button = FBSDKSendButton.alloc().init();
         this.nativeView = button;
+        if (this.content) {
+            this.nativeView.shareContent = this.content;
+        }
         return button;
     }
 
     onContentChanged(oldValue: any, newValue: any): void {
-        this.nativeView.shareContent = newValue;
+        if (this.nativeView) {
+            this.nativeView.shareContent = newValue;
+        }
     }
 }

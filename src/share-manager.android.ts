@@ -5,11 +5,6 @@ import {topmost} from 'tns-core-modules/ui/frame';
 import {android as androidApp} from 'tns-core-modules/application';
 import {ShareAdditionContent} from './share-manager.common';
 
-function currentViewController(): any {
-    const topView = topmost();
-    return (topView.currentPage.modal || topView).viewController;
-}
-
 function attachAdditionalContent(content: any, addition?: ShareAdditionContent) {
     if (addition) {
         if (addition.hashtag) {
@@ -19,17 +14,17 @@ function attachAdditionalContent(content: any, addition?: ShareAdditionContent) 
                     .build()
             );
         }
-        if (addition.quote) {
-            content.setQuote(addition.quote)
-        }
     }
 }
 
 
-export function createLinksShareContent(link: string, addition?: ShareAdditionContent) {
-    const content = new com.facebook.share.model.ShareLinkContent
+export function createLinksShareContent(link: string, quote?: string, addition?: ShareAdditionContent) {
+    const content: com.facebook.share.model.ShareLinkContent.Builder = new com.facebook.share.model.ShareLinkContent
         .Builder()
         .setContentUrl(android.net.Uri.parse(link));
+    if (quote) {
+        content.setQuote(quote);
+    }
 
     attachAdditionalContent(content, addition);
     return content.build();
@@ -61,12 +56,24 @@ export function createPhotosShareContent(images: ImageSource[] | string[], userG
     return content.build();
 }
 
+export function canShareDialogShow(content: any): boolean {
+    if (content) {
+        return com.facebook.share.widget.ShareDialog.canShow(content.getClass());
+    }
+    return false;
+}
+
+export function canMessageDialogShow(content: any): boolean {
+    if (content) {
+        return com.facebook.share.widget.MessageDialog.canShow(content.getClass());
+    }
+    return false;
+}
+
 export function showShareDialog(content: any) {
-    // fragment
-    const dialog = new com.facebook.share.widget.ShareDialog(androidApp.context);
-    dialog.show(content);
+    com.facebook.share.widget.ShareDialog.show(androidApp.foregroundActivity, content);
 }
 
 export function showMessageDialog(content: any) {
-    com.facebook.share.widget.MessageDialog.show(androidApp.context, content);
+    com.facebook.share.widget.MessageDialog.show(androidApp.foregroundActivity, content);
 }

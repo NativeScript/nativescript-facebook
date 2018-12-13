@@ -1,18 +1,20 @@
-import {android as androidApp} from 'tns-core-modules/application';
 import {FacebookShareButtonBase} from './share-button.common';
 
 export class ShareButton extends FacebookShareButtonBase {
     nativeView: com.facebook.share.widget.ShareButton;
 
     createNativeView() {
-        const resourceId = androidApp.foregroundActivity.getResources().getIdentifier('fb_share_button', 'id', androidApp.context.getPackageName());
-        const button: com.facebook.share.widget.ShareButton = androidApp.foregroundActivity.findViewById(resourceId);
-        this.nativeView = button;
-        return button;
+        this.nativeView = new com.facebook.share.widget.ShareButton(this._context);
+        if (this.content) {
+            this.nativeView.setShareContent(this.content);
+        }
+        return this.nativeView;
     }
 
     onContentChanged(oldValue: any, newValue: any): void {
-        this.nativeView.setShareContent(newValue);
+        if (this.nativeView) {
+            this.nativeView.setShareContent(newValue);
+        }
     }
 }
 
@@ -21,13 +23,16 @@ export class SendButton extends FacebookShareButtonBase {
     nativeView: com.facebook.share.widget.SendButton;
 
     createNativeView() {
-        const resourceId = androidApp.foregroundActivity.getResources().getIdentifier('messenger_send_button', 'id', androidApp.context.getPackageName());
-        const button: com.facebook.share.widget.SendButton = androidApp.foregroundActivity.findViewById(resourceId);
-        this.nativeView = button;
-        return button;
+        this.nativeView = new com.facebook.share.widget.SendButton(this._context);
+        if (this.content) {
+            this.nativeView.setShareContent(this.content);
+        }
+        return this.nativeView;
     }
 
     onContentChanged(oldValue: any, newValue: any): void {
-        this.nativeView.setShareContent(newValue);
+        if (this.nativeView) {
+            this.nativeView.setShareContent(newValue);
+        }
     }
 }
