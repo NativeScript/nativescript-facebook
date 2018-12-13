@@ -5,5 +5,10 @@
     <Facebook:LoginButton automationText="fbLogin" login="{{ onLogin }}"></Facebook:LoginButton>
     <Button tap="{{ login }}" text="Continue with Facebook (Custom)"></Button>
     <Button tap="{{ getCurrentAccessToken }}" text="Get current access token"></Button>
+
+    <Facebook:ShareButton content="{{ linkContent }}"></Facebook:ShareButton>
+    <Facebook:SendButton content="{{ linkContent }}"></Facebook:SendButton>
+    <Button tap="{{ onShareDialog }}" text="Open Share dialog"></Button>
+    <Button tap="{{ onSendDialog }}" text="Open Message Share dialog"></Button>
   </StackLayout>
 </Page>

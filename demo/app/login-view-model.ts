@@ -1,9 +1,11 @@
 import { Observable } from 'tns-core-modules/data/observable';
-import { LoginEventData, login as fbLogin, getCurrentAccessToken } from "nativescript-facebook";
+import {ImageSource, fromResource} from 'tns-core-modules/image-source';
+import { LoginEventData, login as fbLogin, getCurrentAccessToken, createLinksShareContent, createPhotosShareContent, showShareDialog, showMessageDialog } from "nativescript-facebook";
 let frameModule = require("tns-core-modules/ui/frame");
 let appSettings = require("tns-core-modules/application-settings");
 
 export class LoginViewModel extends Observable {
+  public linkContent = this.generateLinksShareContent();
 
   private _navigate(path: string) {
     let topmost = frameModule.topmost();
@@ -37,5 +39,28 @@ export class LoginViewModel extends Observable {
     let accessToken = getCurrentAccessToken();
 
     alert("Current access token: " + JSON.stringify(accessToken, null, '\t'));
+  }
+
+  public generateLinksShareContent() {
+      return createLinksShareContent('https://www.nativescript.org', {
+          hashtag: '#Nativescript',
+          quote: 'Create Native iOS and Android Apps With JavaScript'
+      })
+  }
+
+  public generatePhotosShareContent(){
+      const logoImage = fromResource('logo');
+      return createPhotosShareContent([logoImage], false, {
+          hashtag: '#Nativescript',
+          quote: 'Create Native iOS and Android Apps With JavaScript'
+      });
+  }
+
+  public onShareDialog(){
+      showShareDialog(this.generatePhotosShareContent());
+  }
+
+  public onSendDialog(){
+      showMessageDialog(this.linkContent);
   }
 }

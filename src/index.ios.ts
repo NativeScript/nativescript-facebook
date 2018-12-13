@@ -6,15 +6,13 @@ export * from "./login-behavior";
 export * from './share-manager';
 export * from "./ui/share-button";
 
-declare class UIResponder { }
-declare class NSDictionary { }
 declare interface UIApplicationDelegate { }
 
 // TODO: Extend existing delegate if exists
 class BaseDelegate extends UIResponder implements UIApplicationDelegate {
   public static ObjCProtocols = [UIApplicationDelegate];
 
-  applicationDidFinishLaunchingWithOptions(application: UIApplication, launchOptions: NSDictionary): boolean {
+  applicationDidFinishLaunchingWithOptions(application: UIApplication, launchOptions: NSDictionary<any, any>): boolean {
     return FBSDKApplicationDelegate.sharedInstance().applicationDidFinishLaunchingWithOptions(application, launchOptions);
   }
 

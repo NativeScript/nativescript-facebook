@@ -1,7 +1,7 @@
-export * from './share-manager-common';
+export * from './share-manager.common';
 
-import {ImageAsset} from 'tns-core-modules/image-asset';
-import {ShareAdditionContent} from './share-manager-common';
+import {ImageSource} from 'tns-core-modules/image-source';
+import {ShareAdditionContent} from './share-manager.common';
 import {topmost} from 'tns-core-modules/ui/frame';
 
 function currentViewController(): any {
@@ -28,7 +28,7 @@ export function createLinksShareContent(link: string, addition?: ShareAdditionCo
     return content;
 }
 
-export function createPhotosShareContent(images: ImageAsset[] | string[], userGenerated: boolean, addition?: ShareAdditionContent) {
+export function createPhotosShareContent(images: ImageSource[] | string[], userGenerated: boolean, addition?: ShareAdditionContent) {
     let nativeImages;
     if (typeof images[0] === 'string') {
         nativeImages = (images as string[]).map(each => {
@@ -36,7 +36,7 @@ export function createPhotosShareContent(images: ImageAsset[] | string[], userGe
         });
     }
     else {
-        nativeImages = (images as ImageAsset[]).map(each => {
+        nativeImages = (images as ImageSource[]).map(each => {
             return FBSDKSharePhoto.photoWithImageUserGenerated(each.ios, userGenerated);
         });
     }

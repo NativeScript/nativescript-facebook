@@ -1,5 +1,3 @@
-/// <reference path="android-declarations.d.ts"/>
-
 declare module com {
 	export module facebook {
 		export class AccessToken {
@@ -3259,7 +3257,7 @@ declare module com {
 				public static readStringMapFromParcel(param0: globalAndroid.os.Parcel): java.util.Map<string,string>;
 				public static areObjectsEqual(param0: any, param1: any): boolean;
 				public static isChromeOS(param0: globalAndroid.content.Context): boolean;
-				public static hashSet(param0: native.Array<any>): java.util.HashSet;
+                public static hashSet(param0: native.Array<any>): java.util.HashSet;
 				public static putUri(param0: globalAndroid.os.Bundle, param1: string, param2: globalAndroid.net.Uri): void;
 				public static awaitGetGraphMeRequestWithCache(param0: string): org.json.JSONObject;
 				public static getMetadataApplicationId(param0: globalAndroid.content.Context): string;

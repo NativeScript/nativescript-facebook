@@ -1,9 +1,9 @@
-export * from './share-manager-common';
+export * from './share-manager.common';
 
-import {ImageAsset} from 'tns-core-modules/image-asset';
+import {ImageSource} from 'tns-core-modules/image-source';
 import {topmost} from 'tns-core-modules/ui/frame';
 import {android as androidApp} from 'tns-core-modules/application';
-import {ShareAdditionContent} from './share-manager-common';
+import {ShareAdditionContent} from './share-manager.common';
 
 function currentViewController(): any {
     const topView = topmost();
@@ -35,7 +35,7 @@ export function createLinksShareContent(link: string, addition?: ShareAdditionCo
     return content.build();
 }
 
-export function createPhotosShareContent(images: ImageAsset[] | string[], userGenerated: boolean, addition?: ShareAdditionContent) {
+export function createPhotosShareContent(images: ImageSource[] | string[], userGenerated: boolean, addition?: ShareAdditionContent) {
     let nativeImages;
     if (typeof images[0] === 'string') {
         nativeImages = (images as string[]).map(each => {
@@ -45,7 +45,7 @@ export function createPhotosShareContent(images: ImageAsset[] | string[], userGe
         });
     }
     else {
-        nativeImages = (images as ImageAsset[]).map(each => {
+        nativeImages = (images as ImageSource[]).map(each => {
             return new com.facebook.share.model.SharePhoto.Builder()
                 .setBitmap(each.android)
                 .build();
