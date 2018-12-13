@@ -4,7 +4,7 @@ export class ShareButton extends FacebookShareButtonBase {
     nativeView: FBSDKShareButton;
 
     createNativeView() {
-        const button = FBSDKShareButton.alloc().init();
+        const button = FBSDKShareButton.new();
         this.nativeView = button;
         if (this.content) {
             this.nativeView.shareContent = this.content;
@@ -24,7 +24,7 @@ export class SendButton extends FacebookShareButtonBase {
     nativeView: FBSDKSendButton;
 
     createNativeView() {
-        const button = FBSDKSendButton.alloc().init();
+        const button = FBSDKSendButton.new();
         this.nativeView = button;
         if (this.content) {
             this.nativeView.shareContent = this.content;

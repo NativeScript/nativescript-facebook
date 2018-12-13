@@ -19,7 +19,7 @@ function attachAdditionalContent(content: any, addition?: ShareAdditionContent) 
 
 
 export function createLinksShareContent(link: string, quote?: string, addition?: ShareAdditionContent) {
-    const content: FBSDKShareLinkContent = FBSDKShareLinkContent.alloc().init();
+    const content: FBSDKShareLinkContent = FBSDKShareLinkContent.new();
     content.contentURL = NSURL.URLWithString(link);
     if (quote) {
         content.quote = quote;
@@ -41,7 +41,7 @@ export function createPhotosShareContent(images: ImageSource[] | string[], userG
             return FBSDKSharePhoto.photoWithImageUserGenerated(each.ios, userGenerated);
         });
     }
-    const content: FBSDKSharePhotoContent = FBSDKSharePhotoContent.alloc().init();
+    const content: FBSDKSharePhotoContent = FBSDKSharePhotoContent.new();
     content.photos = NSArray.arrayWithArray(nativeImages);
     attachAdditionalContent(content, addition);
     return content;
@@ -59,12 +59,10 @@ export function showMessageDialog(content: any) {
 let _shareDialog;
 
 function getShareDialog(): FBSDKShareDialog {
-    if (_shareDialog) {
-        return _shareDialog;
+    if (!_shareDialog) {
+        _shareDialog = FBSDKShareDialog.new();
     }
-    else {
-        _shareDialog = FBSDKShareDialog.alloc().init();
-    }
+    return _shareDialog;
 }
 
 export function canShareDialogShow(content: any): boolean {
@@ -80,12 +78,10 @@ export function canShareDialogShow(content: any): boolean {
 let _messageDialog;
 
 function getMessageDialog(): FBSDKMessageDialog {
-    if (_messageDialog) {
-        return _messageDialog;
+    if (!_messageDialog) {
+        _messageDialog = FBSDKMessageDialog.new();
     }
-    else {
-        _messageDialog = FBSDKMessageDialog.alloc().init();
-    }
+    return _messageDialog;
 }
 
 export function canMessageDialogShow(content: any): boolean {
