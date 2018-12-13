@@ -7,7 +7,9 @@ import {
     createLinksShareContent,
     createPhotosShareContent,
     showShareDialog,
-    showMessageDialog
+    showMessageDialog,
+    canShareDialogShow,
+    canMessageDialogShow
 } from 'nativescript-facebook';
 
 let frameModule = require('tns-core-modules/ui/frame');
@@ -15,6 +17,11 @@ let appSettings = require('tns-core-modules/application-settings');
 
 export class LoginViewModel extends Observable {
     public linkContent = this.generateLinksShareContent();
+    public photosContent = this.generatePhotosShareContent();
+    public canShowLinksShareDialog = canShareDialogShow(this.linkContent);
+    public canShowPhotosShareDialog = canShareDialogShow(this.photosContent);
+    public canShowLinksMessageDialog = canMessageDialogShow(this.linkContent);
+
 
     private _navigate(path: string) {
         let topmost = frameModule.topmost();
@@ -70,7 +77,7 @@ export class LoginViewModel extends Observable {
     }
 
     public onShareDialogPhotos() {
-        showShareDialog(this.generatePhotosShareContent());
+        showShareDialog(this.photosContent);
     }
 
     public onSendDialog() {

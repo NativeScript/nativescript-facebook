@@ -8,8 +8,8 @@
 
     <Facebook:ShareButton content="{{ linkContent }}"></Facebook:ShareButton>
     <Facebook:SendButton content="{{ linkContent }}"></Facebook:SendButton>
-    <Button tap="{{ onShareDialog }}" text="Open Share dialog (link)"></Button>
-    <Button tap="{{ onShareDialogPhotos }}" text="Open Share dialog (photos)"></Button>
-    <Button tap="{{ onSendDialog }}" text="Open Message Share dialog"></Button>
+    <Button tap="{{ onShareDialog }}" text="Open Share dialog (link)" visibility="{{ canShowLinksShareDialog ? 'visible' : 'collapsed' }}" ></Button>
+    <Button tap="{{ onShareDialogPhotos }}" text="Open Share dialog (photos)" visibility="{{ canShowPhotosShareDialog ? 'visible' : 'collapsed' }}"></Button>
+    <Button tap="{{ onSendDialog }}" text="Open Message Share dialog" visibility="{{ canShowLinksMessageDialog ? 'visible' : 'collapsed' }}"></Button>
   </StackLayout>
 </Page>
