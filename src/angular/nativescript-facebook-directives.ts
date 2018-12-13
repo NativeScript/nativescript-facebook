@@ -5,4 +5,14 @@ import { Directive } from "@angular/core"; // TODO: check require .Directive wit
 })
 export class FacebookLoginButtonDirective { }
 
-export const DIRECTIVES = [FacebookLoginButtonDirective];
+@Directive({
+    selector: "FacebookShareButton"
+})
+export class FacebookShareButtonDirective { }
+
+@Directive({
+    selector: "FacebookSendButton"
+})
+export class FacebookSendButtonDirective { }
+
+export const DIRECTIVES = [FacebookLoginButtonDirective, FacebookShareButtonDirective, FacebookSendButtonDirective];
