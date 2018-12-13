@@ -1,7 +1,13 @@
 export * from './share-manager.common';
 
 import {ImageSource} from 'tns-core-modules/image-source';
-import {ShareAdditionContent} from './share-manager.common';
+import {
+    ShareAdditionContent,
+    MessageGenericTemplateElementContent,
+    MessageMediaTemplateContent,
+    MessageGenericTemplateImageAspectRatio,
+    MessageActionButton
+} from './share-manager.common';
 import {topmost} from 'tns-core-modules/ui/frame';
 
 function currentViewController(): any {
@@ -44,6 +50,49 @@ export function createPhotosShareContent(images: ImageSource[] | string[], userG
     const content: FBSDKSharePhotoContent = FBSDKSharePhotoContent.new();
     content.photos = NSArray.arrayWithArray(nativeImages);
     attachAdditionalContent(content, addition);
+    return content;
+}
+
+function createMessageActionButton(config?: MessageActionButton) {
+    if (config) {
+        const button = FBSDKShareMessengerURLActionButton.new();
+        button.title = config.title;
+        button.url = NSURL.URLWithString(config.url);
+        return button;
+    }
+    return null;
+}
+
+export function createShareMessengerGenericTemplateContent(contentConfig: MessageGenericTemplateElementContent) {
+    const elementConfig = contentConfig.element;
+    const element: FBSDKShareMessengerGenericTemplateElement = FBSDKShareMessengerGenericTemplateElement.new();
+    element.title = elementConfig.title;
+    element.subtitle = elementConfig.subtitle || null;
+    element.imageURL = NSURL.URLWithString(elementConfig.imageUrl);
+
+    if (elementConfig.button) {
+        element.button = createMessageActionButton(elementConfig.button);
+    }
+    if (elementConfig.defaultAction) {
+        element.defaultAction = createMessageActionButton(elementConfig.defaultAction);
+    }
+
+    const content = FBSDKShareMessengerGenericTemplateContent.new();
+    content.element = element;
+    if (contentConfig.hasOwnProperty('isSharable')) {
+        content.isSharable = contentConfig.isSharable;
+    }
+    if (contentConfig.pageID) {
+        content.pageID = contentConfig.pageID;
+    }
+    if (contentConfig.hasOwnProperty('imageAspectRatio')) {
+        if (contentConfig.imageAspectRatio === MessageGenericTemplateImageAspectRatio.Horizontal) {
+            content.imageAspectRatio = FBSDKShareMessengerGenericTemplateImageAspectRatio.Horizontal;
+        }
+        else {
+            content.imageAspectRatio = FBSDKShareMessengerGenericTemplateImageAspectRatio.Square;
+        }
+    }
     return content;
 }
 
