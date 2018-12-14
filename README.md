@@ -348,7 +348,7 @@ If the Messenger app is not installed, the Send button will be hidden. Be sure t
 
 **Note** The share dialog will try fallback to browse page sharing if user doesn't have Facebook installed (only for linkContent)
 
-```typescript
+```TypeScript
 showShareDialog(this.linkContent);
 showMessageDialog(this.linkContent);
 ```
@@ -357,7 +357,7 @@ showMessageDialog(this.linkContent);
 
 You can use this method to check if the content can be shared and hide the custom button if can't
 
-```typescript
+```TypeScript
 public canShowPhotosShareDialog = canShareDialogShow(this.photosContent);
 public canShowGenericMessageDialog = canMessageDialogShow(this.genericContent);
 ```
@@ -537,7 +537,7 @@ export class AppComponent {
 Read Nativescript [chapter](#create-sharing-content) for this
 
 ### Facebook Share Button
-```angular2html
+```html
 <FacebookShareButton [content] = "linkContent"></FacebookShareButton>
 ```
 
@@ -545,7 +545,7 @@ Read Nativescript [chapter](#create-sharing-content) for this
 
 If the Messenger app is not installed, the Send button will be hidden. Be sure that your app layout is appropriate when this button is hidden.
  
-```angular2html
+```html
 <FacebookSendButton [content] = "genericContent"></FacebookSendButton>
 ```
 
@@ -553,7 +553,7 @@ If the Messenger app is not installed, the Send button will be hidden. Be sure t
 
 **Note** The share dialog will try fallback to browse page sharing if user doesn't have Facebook installed (only for linkContent)
 
-```typescript
+```TypeScript
 showShareDialog(this.linkContent);
 showMessageDialog(this.linkContent);
 ```
@@ -562,11 +562,11 @@ showMessageDialog(this.linkContent);
 
 You can use this method to check if the content can be shared and hide the custom button if can't
 
-```typescript
+```TypeScript
 public canShowPhotosShareDialog = canShareDialogShow(this.photosContent);
 public canShowGenericMessageDialog = canMessageDialogShow(this.genericContent);
 ```
-```angular2html
+```html
 <Button (tap) = "onShareDialogPhotos()" text = "Open Share dialog (photos)" *ngIf = "canShowPhotosShareDialog"></Button>
 <Button (tap) = "onSendGenericDialog()" text = "Share Message Generic Template" *ngIf = "canShowGenericMessageDialog"></Button>
 ```
