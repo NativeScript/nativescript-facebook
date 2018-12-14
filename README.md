@@ -24,6 +24,12 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
     - [Log out](#log-out)
         - [Facebook Logout Button](#facebook-logout-button)
         - [Custom Logout Button](#custom-logout-button)
+    - [Share](#share)
+        - [Create Sharing Content](#create-sharing-content)
+        - [Facebook Share Button](#facebook-share-button)
+        - [Facebook Send Button](#facebook-send-button)
+        - [Show Share Dialog Programmatically](#show-dialog-programmatically)
+        - [Hide Custom Button If Can't share](#hide-custom-button)
 - [NativeScript Angular](#nativescript-angular)
     - [Initialization](#initialization-1)
     - [Login](#login-1)
@@ -32,6 +38,12 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
     - [Logout](#logout)
         - [Facebook Logout Button](#facebook-logout-button-1)
         - [Custom Logout Button](#custom-logout-button-1)
+    - [Share](#share-1)
+        - [Create Sharing Content](#create-sharing-content-1)
+        - [Facebook Share Button](#facebook-share-button-1)
+        - [Facebook Send Button](#facebook-send-button-1)
+        - [Show Share Dialog Programmatically](#show-dialog-programmatically-1)
+        - [Hide Custom Button If Can't share](#hide-custom-button-1)
 - [Login Response](#login-response)
 - [Get Current Access Token](#get-current-access-token)
 - [Graph API Example](#graph-api-example)
@@ -55,9 +67,16 @@ tns plugin add nativescript-facebook
 
 ## Configuration
 ### Android
-No additional configuration required!
+Update AndroidManifest.xml (app/App_Resources/Android/AndroidManifest.xml) to put `provider` under `<application>`  
+`{facebook_app_id}` is your app id
+
+```xml
+<provider android:authorities="com.facebook.app.FacebookContentProvider{facebook_app_id}"
+				  android:name="com.facebook.FacebookContentProvider"
+				  android:exported="true"/>
+```
 ### iOS
-Update Info.plist file (app/App_Resources/iOS/Info.plist) to contains `CFBundleURLTypes` like below:
+Update Info.plist file (app/App_Resources/iOS/Info.plist) to contains `CFBundleURLTypes` and `LSApplicationQueriesSchemes` like below:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -74,7 +93,13 @@ Update Info.plist file (app/App_Resources/iOS/Info.plist) to contains `CFBundleU
                 </array>
             </dict>
         </array>
-
+		<key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>fbapi</string>
+            <string>fb-messenger-share-api</string>
+            <string>fbauth2</string>
+            <string>fbshareextension</string>
+        </array>
     </dict>
 </plist>
 ```
@@ -250,6 +275,96 @@ export class LoginViewModel extends Observable {
 }
 ```
 
+### Share
+### Create Sharing Content
+For sharing, you have to create sharing content first. 
+Currently the available content types are: 
+- **createLinksShareContent(link: string, quote?: string, addition?: ShareAdditionContent)** available for every condition 
+- **createPhotosShareContent(images: ImageSource[] | string[], userGenerated: boolean, addition?: ShareAdditionContent)** available for ShareButton and `showShareDialog` ( only when user have native Facebook installed, version 7.0 or higher )
+- **createShareMessengerGenericTemplateContent(contentConfig: MessageGenericTemplateElementContent)**  available for SendButton and `showMessageDialog`
+- **createShareMessageMediaTemplateContent(contentConfig: MessageMediaTemplateContent)**  available for SendButton and `showMessageDialog`
+
+You can see more information from [https://developers.facebook.com/docs/sharing/overview#content](https://developers.facebook.com/docs/sharing/overview#content) and [https://developers.facebook.com/docs/sharing/messenger#share-types](https://developers.facebook.com/docs/sharing/messenger#share-types)
+```TypeScript
+import {
+    LoginEventData,
+    getCurrentAccessToken,
+    createLinksShareContent,
+    createPhotosShareContent,
+    createShareMessengerGenericTemplateContent,
+    MessageGenericTemplateImageAspectRatio,
+    showShareDialog,
+    showMessageDialog,
+    canShareDialogShow,
+    canMessageDialogShow
+} from 'nativescript-facebook';
+
+const linkContent = createLinksShareContent('https://www.nativescript.org',
+            'Create Native iOS and Android Apps With JavaScript',
+            {
+                hashtag: '#Nativescript'
+            });
+
+// you can also pass in imageUrls as string[] in here
+const logoImage = fromResource('logo');
+const photosContent = createPhotosShareContent([logoImage], false, {
+              hashtag: '#Nativescript'
+          });
+const GenericTemplate = createShareMessengerGenericTemplateContent({
+            element: {
+                title: 'Nativescript',
+                subtitle: 'Create Native iOS and Android Apps With JavaScript',
+                imageUrl: 'https://d2odgkulk9w7if.cloudfront.net/images/default-source/home/how-it-works-min.png',
+                button: {
+                    title: 'Check Doc',
+                    url: 'https://docs.nativescript.org'
+                },
+                defaultAction: {
+                    title: 'Go HomePage',
+                    url: 'https://www.nativescript.org'
+                }
+            },
+            // it seems android have to provide a pageId, otherwise the MessageDialog just wont show
+            pageID: 'testestsett',
+            imageAspectRatio: MessageGenericTemplateImageAspectRatio.Horizontal
+        });
+
+```
+
+### Facebook Share Button
+```xml
+<Facebook:ShareButton content="{{ linkContent }}"></Facebook:ShareButton>
+```
+
+### Facebook Send Button
+
+If the Messenger app is not installed, the Send button will be hidden. Be sure that your app layout is appropriate when this button is hidden.
+ 
+```xml
+<Facebook:SendButton content="{{ genericContent }}"></Facebook:SendButton>
+```
+
+### Show Share Dialog Programmatically
+
+**Note** The share dialog will try fallback to browse page sharing if user doesn't have Facebook installed (only for linkContent)
+
+```typescript
+showShareDialog(this.linkContent);
+showMessageDialog(this.linkContent);
+```
+
+### Hide Custom Button If Can't share
+
+You can use this method to check if the content can be shared and hide the custom button if can't
+
+```typescript
+public canShowPhotosShareDialog = canShareDialogShow(this.photosContent);
+public canShowGenericMessageDialog = canMessageDialogShow(this.genericContent);
+```
+```xml
+<Button tap="{{ onShareDialogPhotos }}" text="Open Share dialog (photos)" visibility="{{ canShowPhotosShareDialog ? 'visible' : 'collapsed' }}"></Button>
+<Button tap="{{ onSendGenericDialog }}" text="Share Message Generic Template" visibility="{{ canShowGenericMessageDialog ? 'visible' : 'collapsed' }}"></Button>
+```
 
 ## NativeScript Angular
 ### Initialization
@@ -416,6 +531,45 @@ export class AppComponent {
 }
 ```
 
+
+### Share
+### Create Sharing Content
+Read Nativescript [chapter](#create-sharing-content) for this
+
+### Facebook Share Button
+```angular2html
+<FacebookShareButton [content] = "linkContent"></FacebookShareButton>
+```
+
+### Facebook Send Button
+
+If the Messenger app is not installed, the Send button will be hidden. Be sure that your app layout is appropriate when this button is hidden.
+ 
+```angular2html
+<FacebookSendButton [content] = "genericContent"></FacebookSendButton>
+```
+
+### Show Share Dialog Programmatically
+
+**Note** The share dialog will try fallback to browse page sharing if user doesn't have Facebook installed (only for linkContent)
+
+```typescript
+showShareDialog(this.linkContent);
+showMessageDialog(this.linkContent);
+```
+
+### Hide Custom Button If Can't share
+
+You can use this method to check if the content can be shared and hide the custom button if can't
+
+```typescript
+public canShowPhotosShareDialog = canShareDialogShow(this.photosContent);
+public canShowGenericMessageDialog = canMessageDialogShow(this.genericContent);
+```
+```angular2html
+<Button (tap) = "onShareDialogPhotos()" text = "Open Share dialog (photos)" *ngIf = "canShowPhotosShareDialog"></Button>
+<Button (tap) = "onSendGenericDialog()" text = "Share Message Generic Template" *ngIf = "canShowGenericMessageDialog"></Button>
+```
 
 ## Login Response
 The callback that have to be provided to Facebook.login method receives 2 arguments: error and login response object. Login response object has the following structure:
