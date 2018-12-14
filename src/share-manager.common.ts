@@ -36,6 +36,6 @@ export interface MessageMediaTemplateContent {
     mediaUrl?: string,
     attachmentID?: string,
     mediaType: MessageMediaTemplateMediaType,
-    pageId: string,
+    pageID: string,
     button?: MessageActionButton
 }

@@ -1,9 +1,13 @@
 export * from './share-manager.common';
 
 import {ImageSource} from 'tns-core-modules/image-source';
-import {topmost} from 'tns-core-modules/ui/frame';
 import {android as androidApp} from 'tns-core-modules/application';
-import {ShareAdditionContent} from './share-manager.common';
+import {
+    MessageActionButton,
+    MessageGenericTemplateElementContent,
+    MessageGenericTemplateImageAspectRatio, MessageMediaTemplateContent, MessageMediaTemplateMediaType,
+    ShareAdditionContent
+} from './share-manager.common';
 
 function attachAdditionalContent(content: any, addition?: ShareAdditionContent) {
     if (addition) {
@@ -68,6 +72,86 @@ export function canMessageDialogShow(content: any): boolean {
         return com.facebook.share.widget.MessageDialog.canShow(content.getClass());
     }
     return false;
+}
+
+
+function createMessageActionButton(config?: MessageActionButton) {
+    if (config) {
+        const builder = new com.facebook.share.model.ShareMessengerURLActionButton.Builder();
+        return builder
+            .setTitle(config.title)
+            .setUrl(android.net.Uri.parse(config.url))
+            .build();
+    }
+    return null;
+}
+
+export function createShareMessengerGenericTemplateContent(contentConfig: MessageGenericTemplateElementContent) {
+    const elementConfig = contentConfig.element;
+    const elementBuilder = new com.facebook.share.model.ShareMessengerGenericTemplateElement
+        .Builder()
+        .setTitle(elementConfig.title)
+        .setSubtitle(elementConfig.subtitle || null)
+        .setImageUrl(android.net.Uri.parse(elementConfig.imageUrl));
+
+    if (elementConfig.button) {
+        elementBuilder.setButton(createMessageActionButton(elementConfig.button));
+    }
+    if (elementConfig.defaultAction) {
+        elementBuilder.setDefaultAction(createMessageActionButton(elementConfig.defaultAction));
+    }
+    const element = elementBuilder.build();
+
+    const contentBuilder = new com.facebook.share.model.ShareMessengerGenericTemplateContent.Builder();
+    contentBuilder.setGenericTemplateElement(element);
+
+    if (contentConfig.hasOwnProperty('isSharable')) {
+        contentBuilder.setIsSharable(contentConfig.isSharable);
+    }
+    if (contentConfig.pageID) {
+        contentBuilder.setPageId(contentConfig.pageID);
+    }
+    if (contentConfig.hasOwnProperty('imageAspectRatio')) {
+        if (contentConfig.imageAspectRatio === MessageGenericTemplateImageAspectRatio.Horizontal) {
+            contentBuilder.setImageAspectRatio(com.facebook.share.model.ShareMessengerGenericTemplateContent.ImageAspectRatio.HORIZONTAL);
+        }
+        else {
+            contentBuilder.setImageAspectRatio(com.facebook.share.model.ShareMessengerGenericTemplateContent.ImageAspectRatio.SQUARE);
+        }
+    }
+    return contentBuilder.build();
+}
+
+export function createShareMessageMediaTemplateContent(contentConfig: MessageMediaTemplateContent) {
+    const contentBuilder = new com.facebook.share.model.ShareMessengerMediaTemplateContent.Builder();
+
+    if (contentConfig.mediaUrl) {
+        contentBuilder.setMediaUrl(android.net.Uri.parse(contentConfig.mediaUrl));
+    }
+    else if (contentConfig.attachmentID) {
+        contentBuilder.setAttachmentId(contentConfig.attachmentID);
+    }
+    else {
+        throw new Error('To use MediaTemplateContent, you have to provide either mediaUrl or attachmentID, see https://developers.facebook.com/docs/sharing/messenger#share-types for more detail');
+    }
+
+    if (contentConfig.pageID) {
+        contentBuilder.setPageId(contentConfig.pageID);
+    }
+    else {
+        throw new Error('To use MediaTemplateContent, you have to provide a pageId, see https://developers.facebook.com/docs/sharing/messenger#app-page-id for more detail');
+    }
+
+    if (contentConfig.mediaType === MessageMediaTemplateMediaType.Video) {
+        contentBuilder.setMediaType(com.facebook.share.model.ShareMessengerMediaTemplateContent.MediaType.VIDEO);
+    }
+    else {
+        contentBuilder.setMediaType(com.facebook.share.model.ShareMessengerMediaTemplateContent.MediaType.IMAGE);
+    }
+    if (contentConfig.button) {
+        contentBuilder.setButton(createMessageActionButton(contentConfig.button));
+    }
+    return contentBuilder.build();
 }
 
 export function showShareDialog(content: any) {

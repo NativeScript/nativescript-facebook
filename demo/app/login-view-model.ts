@@ -6,6 +6,8 @@ import {
     getCurrentAccessToken,
     createLinksShareContent,
     createPhotosShareContent,
+    createShareMessengerGenericTemplateContent,
+    MessageGenericTemplateImageAspectRatio,
     showShareDialog,
     showMessageDialog,
     canShareDialogShow,
@@ -18,9 +20,11 @@ let appSettings = require('tns-core-modules/application-settings');
 export class LoginViewModel extends Observable {
     public linkContent = this.generateLinksShareContent();
     public photosContent = this.generatePhotosShareContent();
+    public genericContent = this.generateGenericTemplateContent();
     public canShowLinksShareDialog = canShareDialogShow(this.linkContent);
     public canShowPhotosShareDialog = canShareDialogShow(this.photosContent);
     public canShowLinksMessageDialog = canMessageDialogShow(this.linkContent);
+    public canShowGenericMessageDialog = canMessageDialogShow(this.genericContent);
 
 
     private _navigate(path: string) {
@@ -72,6 +76,27 @@ export class LoginViewModel extends Observable {
         });
     }
 
+    public generateGenericTemplateContent() {
+        return createShareMessengerGenericTemplateContent({
+            element: {
+                title: 'Nativescript',
+                subtitle: 'Create Native iOS and Android Apps With JavaScript',
+                imageUrl: 'https://d2odgkulk9w7if.cloudfront.net/images/default-source/home/how-it-works-min.png',
+                button: {
+                    title: 'Check Doc',
+                    url: 'https://docs.nativescript.org'
+                },
+                defaultAction: {
+                    title: 'Go HomePage',
+                    url: 'https://www.nativescript.org'
+                }
+            },
+            // it seems android have to provide a pageId, otherwise the MessageDialog just wont show
+            pageID: 'testestsett',
+            imageAspectRatio: MessageGenericTemplateImageAspectRatio.Horizontal
+        });
+    }
+
     public onShareDialog() {
         showShareDialog(this.linkContent);
     }
@@ -82,5 +107,9 @@ export class LoginViewModel extends Observable {
 
     public onSendDialog() {
         showMessageDialog(this.linkContent);
+    }
+
+    public onSendGenericDialog() {
+        showMessageDialog(this.genericContent);
     }
 }

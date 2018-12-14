@@ -1,5 +1,9 @@
 import {ImageSource} from 'tns-core-modules/image-source';
-import {ShareAdditionContent} from './share-manager.common';
+import {
+    MessageGenericTemplateElementContent,
+    MessageMediaTemplateContent,
+    ShareAdditionContent
+} from './share-manager.common';
 
 export * from './share-manager.common';
 
@@ -11,7 +15,6 @@ export * from './share-manager.common';
  */
 export declare function createLinksShareContent(link: string, quote?: string, addition?: ShareAdditionContent): any;
 
-
 /**
  * People can share photos from your app to Facebook with the Share Dialog or with a custom interface.
  * Photos must be less than 12MB in size.
@@ -20,6 +23,20 @@ export declare function createLinksShareContent(link: string, quote?: string, ad
  * @param {ShareAdditionContent} addition When you use the Facebook share dialog, you have additional options that aren't available when you share by using the API.
  */
 export declare function createPhotosShareContent(images: ImageSource[] | string[], userGenerated: boolean, addition?: ShareAdditionContent): any;
+
+/**
+ * The generic template is a simple structured message that includes a title, subtitle, image, a button. You may also specify a default_action object that sets a URL that will be opened in the Messenger webview when the template is tapped.
+ * see https://developers.facebook.com/docs/messenger-platform/send-messages/template/generic for more.
+ * @param {MessageGenericTemplateElementContent} contentConfig : config of the structure
+ */
+export declare function createShareMessengerGenericTemplateContent(contentConfig: MessageGenericTemplateElementContent): any;
+
+/**
+ * The media template allows you to send images, GIFs, and video as a structured message with an optional button. Videos and animated GIFs sent with the media template are playable in the conversation.
+ * see https://developers.facebook.com/docs/messenger-platform/send-messages/template/media for more
+ * @param {MessageMediaTemplateContent} contentConfig : config of the structure
+ */
+export declare function createShareMessageMediaTemplateContent(contentConfig: MessageMediaTemplateContent): any;
 
 
 /**
@@ -35,7 +52,6 @@ export declare function showShareDialog(content: any): void
  * @param {any} content: Links content or photos content, SUPPORTED SHARE TYPES - ShareLinkContent - ShareCameraEffectContent - ShareMessengerOpenGraphMusicTemplateContent - ShareMessengerMediaTemplateContent - ShareMessengerGenericTemplateContent UNSUPPORTED SHARE TYPES (DEPRECATED AUGUST 2018) - ShareOpenGraphContent - SharePhotoContent - ShareVideoContent - Any other types that are not one of the four supported types listed above
  */
 export declare function showMessageDialog(content: any): void
-
 
 
 /**

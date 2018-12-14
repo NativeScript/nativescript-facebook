@@ -2,11 +2,12 @@ export * from './share-manager.common';
 
 import {ImageSource} from 'tns-core-modules/image-source';
 import {
-    ShareAdditionContent,
+    MessageActionButton,
     MessageGenericTemplateElementContent,
-    MessageMediaTemplateContent,
     MessageGenericTemplateImageAspectRatio,
-    MessageActionButton
+    MessageMediaTemplateContent,
+    MessageMediaTemplateMediaType,
+    ShareAdditionContent
 } from './share-manager.common';
 import {topmost} from 'tns-core-modules/ui/frame';
 
@@ -92,6 +93,37 @@ export function createShareMessengerGenericTemplateContent(contentConfig: Messag
         else {
             content.imageAspectRatio = FBSDKShareMessengerGenericTemplateImageAspectRatio.Square;
         }
+    }
+    return content;
+}
+
+export function createShareMessageMediaTemplateContent(contentConfig: MessageMediaTemplateContent) {
+    let content: FBSDKShareMessengerMediaTemplateContent;
+    if (contentConfig.mediaUrl) {
+        content = FBSDKShareMessengerMediaTemplateContent.alloc().initWithMediaURL(NSURL.URLWithString(contentConfig.mediaUrl));
+    }
+    else if (contentConfig.attachmentID) {
+        content = FBSDKShareMessengerMediaTemplateContent.alloc().initWithAttachmentID(contentConfig.attachmentID);
+    }
+    else {
+        throw new Error('To use MediaTemplateContent, you have to provide either mediaUrl or attachmentID, see https://developers.facebook.com/docs/sharing/messenger#share-types for more detail');
+    }
+
+    if (contentConfig.pageID) {
+        content.pageID = contentConfig.pageID
+    }
+    else {
+        throw new Error('To use MediaTemplateContent, you have to provide a pageId, see https://developers.facebook.com/docs/sharing/messenger#app-page-id for more detail');
+    }
+
+    if (contentConfig.mediaType === MessageMediaTemplateMediaType.Video) {
+        content.mediaType = FBSDKShareMessengerMediaTemplateMediaType.Video;
+    }
+    else {
+        content.mediaType = FBSDKShareMessengerMediaTemplateMediaType.Image;
+    }
+    if (contentConfig.button) {
+        content.button = createMessageActionButton(contentConfig.button);
     }
     return content;
 }
