@@ -113,22 +113,23 @@ before_install:
     - sudo pip install six
 
 install:
-    - npm install -g nativescript@next
+    - echo no | npm install -g nativescript@next
     - tns usage-reporting disable
     - tns error-reporting disable
-    - pip install six
     - cd src
     - npm install tns-core-modules@next -D
     - npm install nativescript-angular@next -D
     - cd ../demo
-    - npm install nativescript-dev-typescript@next -D
-    - npm install nativescript-dev-webpack@next -D
-    - ./node_modules/.bin/update-ns-webpack --deps
     - npm install tns-core-modules@next -P
-    - cd ../demo-angular
-    - npm install nativescript-dev-typescript@next -D
     - npm install nativescript-dev-webpack@next -D
-    - ./node_modules/.bin/update-ns-webpack --deps
-    - ./node_modules/.bin/update-app-ng-deps
+    - npm install nativescript-dev-typescript@next -D
+    - ./node_modules/.bin/update-ns-webpack --deps --configs
+    - npm install -D wd@latest
+    - cd ../demo-angular
     - npm install tns-core-modules@next -P
     - npm install nativescript-angular@next -P
+    - npm install nativescript-dev-webpack@next -D
+    - npm install nativescript-dev-typescript@next -D
+    - ./node_modules/.bin/update-ns-webpack --deps --configs
+    - ./node_modules/.bin/update-app-ng-deps
+    - npm install -D wd@latest
