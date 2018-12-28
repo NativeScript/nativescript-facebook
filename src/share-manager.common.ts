@@ -1,25 +1,25 @@
 export interface ShareAdditionContent {
-    hashtag?: string
+    hashtag?: string;
 }
 
 export interface MessageActionButton {
-    title: string,
-    url: string
+    title: string;
+    url: string;
 }
 
 export interface MessageGenericTemplateElement {
-    title: string,
-    subtitle?: string,
-    imageUrl: string,
-    button?: MessageActionButton,
-    defaultAction?: MessageActionButton,
+    title: string;
+    subtitle?: string;
+    imageUrl: string;
+    button?: MessageActionButton;
+    defaultAction?: MessageActionButton;
 }
 
 export interface MessageGenericTemplateElementContent {
-    element: MessageGenericTemplateElement,
-    imageAspectRatio?: MessageGenericTemplateImageAspectRatio,
-    pageID?: string,
-    isSharable?: boolean
+    element: MessageGenericTemplateElement;
+    imageAspectRatio?: MessageGenericTemplateImageAspectRatio;
+    pageID?: string;
+    isSharable?: boolean;
 }
 
 export enum MessageGenericTemplateImageAspectRatio {
@@ -33,9 +33,9 @@ export enum MessageMediaTemplateMediaType {
 }
 
 export interface MessageMediaTemplateContent {
-    mediaUrl?: string,
-    attachmentID?: string,
-    mediaType: MessageMediaTemplateMediaType,
-    pageID: string,
-    button?: MessageActionButton
+    mediaUrl?: string;
+    attachmentID?: string;
+    mediaType: MessageMediaTemplateMediaType;
+    pageID: string;
+    button?: MessageActionButton;
 }

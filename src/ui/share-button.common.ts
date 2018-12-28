@@ -3,7 +3,7 @@ import {Property, View} from 'tns-core-modules/ui/core/view';
 export abstract class FacebookShareButtonBase extends View {
     content: any;
 
-    abstract onContentChanged(oldValue: any, newValue: any): void
+    abstract onContentChanged(oldValue: any, newValue: any): void;
 }
 
 export const contentProperty = new Property<FacebookShareButtonBase, any>({

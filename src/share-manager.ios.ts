@@ -110,7 +110,7 @@ export function createShareMessageMediaTemplateContent(contentConfig: MessageMed
     }
 
     if (contentConfig.pageID) {
-        content.pageID = contentConfig.pageID
+        content.pageID = contentConfig.pageID;
     }
     else {
         throw new Error('To use MediaTemplateContent, you have to provide a pageId, see https://developers.facebook.com/docs/sharing/messenger#app-page-id for more detail');

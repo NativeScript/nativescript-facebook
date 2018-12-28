@@ -66,7 +66,7 @@ export class LoginViewModel extends Observable {
             'Create Native iOS and Android Apps With JavaScript',
             {
                 hashtag: '#Nativescript'
-            })
+            });
     }
 
     public generatePhotosShareContent() {

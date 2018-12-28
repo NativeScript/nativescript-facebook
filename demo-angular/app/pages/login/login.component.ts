@@ -10,7 +10,7 @@ import {fromResource} from 'tns-core-modules/image-source';
     templateUrl: "login.component.html",
     styleUrls: ["login.component.css"]
 })
-export class LoginComponent{
+export class LoginComponent {
     linkContent = null;
     photosContent = null;
     genericContent = null;
@@ -67,7 +67,7 @@ export class LoginComponent{
             'Create Native iOS and Android Apps With JavaScript',
             {
                 hashtag: '#Nativescript'
-            })
+            });
     }
 
     generatePhotosShareContent() {
