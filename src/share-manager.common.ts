@@ -7,11 +7,6 @@ export interface MessageActionButton {
     url: string
 }
 
-export enum MessageGenericTemplateImageAspectRatio {
-    Horizontal = 0,
-    Square = 1
-}
-
 export interface MessageGenericTemplateElement {
     title: string,
     subtitle?: string,
@@ -25,6 +20,11 @@ export interface MessageGenericTemplateElementContent {
     imageAspectRatio?: MessageGenericTemplateImageAspectRatio,
     pageID?: string,
     isSharable?: boolean
+}
+
+export enum MessageGenericTemplateImageAspectRatio {
+    Horizontal = 0,
+    Square = 1
 }
 
 export enum MessageMediaTemplateMediaType {

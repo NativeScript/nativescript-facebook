@@ -7,6 +7,16 @@ import {
 
 export * from './share-manager.common';
 
+export declare enum MessageGenericTemplateImageAspectRatio {
+    Horizontal = 0,
+    Square = 1
+}
+
+export declare enum MessageMediaTemplateMediaType {
+    Image = 0,
+    Video = 1
+}
+
 /**
  * When people share links from your app to Facebook it includes a contentURL with the link to be shared.
  * @param {string} link  Link to be shared.
