@@ -10,3 +10,5 @@ import { DIRECTIVES } from "./nativescript-facebook-directives";
 export class NativeScriptFacebookModule { }
 
 registerElement("FacebookLoginButton", () => require("../").LoginButton);
+registerElement('FacebookShareButton', () => require('../').ShareButton);
+registerElement('FacebookSendButton', () => require('../').SendButton);

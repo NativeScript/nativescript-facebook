@@ -1,4 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { LoginComponent } from "./login.component";
 
@@ -13,6 +14,7 @@ export const routerConfig = [
 
 @NgModule({
     imports: [
+        NativeScriptCommonModule,
         NativeScriptRouterModule,
         NativeScriptRouterModule.forChild(routerConfig)
     ],
