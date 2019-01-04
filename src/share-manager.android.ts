@@ -4,7 +4,7 @@ import {ImageSource} from 'tns-core-modules/image-source';
 import {android as androidApp} from 'tns-core-modules/application';
 import {
     MessageActionButton,
-    MessageGenericTemplateElementContent,
+    MessageGenericTemplateContent,
     MessageGenericTemplateImageAspectRatio, MessageMediaTemplateContent, MessageMediaTemplateMediaType,
     ShareAdditionContent
 } from './share-manager.common';
@@ -22,7 +22,7 @@ function attachAdditionalContent(content: any, addition?: ShareAdditionContent) 
 }
 
 
-export function createLinksShareContent(link: string, quote?: string, addition?: ShareAdditionContent) {
+export function createShareLinksContent(link: string, quote?: string, addition?: ShareAdditionContent) {
     const content: com.facebook.share.model.ShareLinkContent.Builder = new com.facebook.share.model.ShareLinkContent
         .Builder()
         .setContentUrl(android.net.Uri.parse(link));
@@ -34,7 +34,7 @@ export function createLinksShareContent(link: string, quote?: string, addition?:
     return content.build();
 }
 
-export function createPhotosShareContent(images: ImageSource[] | string[], userGenerated: boolean, addition?: ShareAdditionContent) {
+export function createSharePhotosContent(images: ImageSource[] | string[], userGenerated: boolean, addition?: ShareAdditionContent) {
     let nativeImages;
     if (typeof images[0] === 'string') {
         nativeImages = (images as string[]).map(each => {
@@ -86,7 +86,7 @@ function createMessageActionButton(config?: MessageActionButton) {
     return null;
 }
 
-export function createShareMessengerGenericTemplateContent(contentConfig: MessageGenericTemplateElementContent) {
+export function createShareMessageGenericTemplateContent(contentConfig: MessageGenericTemplateContent) {
     const elementConfig = contentConfig.element;
     const elementBuilder = new com.facebook.share.model.ShareMessengerGenericTemplateElement
         .Builder()

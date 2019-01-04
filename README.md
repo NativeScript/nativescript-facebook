@@ -279,9 +279,9 @@ export class LoginViewModel extends Observable {
 ### Create Sharing Content
 For sharing, you have to create sharing content first. 
 Currently the available content types are: 
-- **createLinksShareContent(link: string, quote?: string, addition?: ShareAdditionContent)** available for every condition 
-- **createPhotosShareContent(images: ImageSource[] | string[], userGenerated: boolean, addition?: ShareAdditionContent)** available for ShareButton and `showShareDialog` ( only when user have native Facebook installed, version 7.0 or higher )
-- **createShareMessengerGenericTemplateContent(contentConfig: MessageGenericTemplateElementContent)**  available for SendButton and `showMessageDialog`
+- **createShareLinksContent(link: string, quote?: string, addition?: ShareAdditionContent)** available for every condition 
+- **createSharePhotosContent(images: ImageSource[] | string[], userGenerated: boolean, addition?: ShareAdditionContent)** available for ShareButton and `showShareDialog` ( only when user have native Facebook installed, version 7.0 or higher )
+- **createShareMessageGenericTemplateContent(contentConfig: MessageGenericTemplateContent)**  available for SendButton and `showMessageDialog`
 - **createShareMessageMediaTemplateContent(contentConfig: MessageMediaTemplateContent)**  available for SendButton and `showMessageDialog`
 
 You can see more information from [https://developers.facebook.com/docs/sharing/overview#content](https://developers.facebook.com/docs/sharing/overview#content) and [https://developers.facebook.com/docs/sharing/messenger#share-types](https://developers.facebook.com/docs/sharing/messenger#share-types)
@@ -289,9 +289,9 @@ You can see more information from [https://developers.facebook.com/docs/sharing/
 import {
     LoginEventData,
     getCurrentAccessToken,
-    createLinksShareContent,
-    createPhotosShareContent,
-    createShareMessengerGenericTemplateContent,
+    createShareLinksContent,
+    createSharePhotosContent,
+    createShareMessageGenericTemplateContent,
     MessageGenericTemplateImageAspectRatio,
     showShareDialog,
     showMessageDialog,
@@ -299,7 +299,7 @@ import {
     canMessageDialogShow
 } from 'nativescript-facebook';
 
-const linkContent = createLinksShareContent('https://www.nativescript.org',
+const linkContent = createShareLinksContent('https://www.nativescript.org',
             'Create Native iOS and Android Apps With JavaScript',
             {
                 hashtag: '#Nativescript'
@@ -307,10 +307,10 @@ const linkContent = createLinksShareContent('https://www.nativescript.org',
 
 // you can also pass in imageUrls as string[] in here
 const logoImage = fromResource('logo');
-const photosContent = createPhotosShareContent([logoImage], false, {
+const photosContent = createSharePhotosContent([logoImage], false, {
               hashtag: '#Nativescript'
           });
-const GenericTemplate = createShareMessengerGenericTemplateContent({
+const GenericTemplate = createShareMessageGenericTemplateContent({
             element: {
                 title: 'Nativescript',
                 subtitle: 'Create Native iOS and Android Apps With JavaScript',

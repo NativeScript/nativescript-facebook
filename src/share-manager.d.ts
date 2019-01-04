@@ -1,6 +1,6 @@
-import {ImageSource} from 'tns-core-modules/image-source';
+import { ImageSource } from 'tns-core-modules/image-source';
 import {
-    MessageGenericTemplateElementContent,
+    MessageGenericTemplateContent,
     MessageMediaTemplateContent,
     ShareAdditionContent
 } from './share-manager.common';
@@ -23,7 +23,7 @@ export declare enum MessageMediaTemplateMediaType {
  * @param {string} quote You can enable people to highlight text to appear as a quote with a shared link. Alternatively, you can predefine a quote, for example, a pull quote in an article, to appear with the shared link. In either case, the quote appears in its own field separate from the user comments.
  * @param {ShareAdditionContent} addition When you use the Facebook share dialog, you have additional options that aren't available when you share by using the API.
  */
-export declare function createLinksShareContent(link: string, quote?: string, addition?: ShareAdditionContent): any;
+export declare function createShareLinksContent(link: string, quote?: string, addition?: ShareAdditionContent): any;
 
 /**
  * People can share photos from your app to Facebook with the Share Dialog or with a custom interface.
@@ -32,14 +32,14 @@ export declare function createLinksShareContent(link: string, quote?: string, ad
  * @param {ImageSource[] | string[]} images : ImageSources or image urls of the photo to be shared
  * @param {ShareAdditionContent} addition When you use the Facebook share dialog, you have additional options that aren't available when you share by using the API.
  */
-export declare function createPhotosShareContent(images: ImageSource[] | string[], userGenerated: boolean, addition?: ShareAdditionContent): any;
+export declare function createSharePhotosContent(images: ImageSource[] | string[], userGenerated: boolean, addition?: ShareAdditionContent): any;
 
 /**
  * The generic template is a simple structured message that includes a title, subtitle, image, a button. You may also specify a default_action object that sets a URL that will be opened in the Messenger webview when the template is tapped.
  * see https://developers.facebook.com/docs/messenger-platform/send-messages/template/generic for more.
- * @param {MessageGenericTemplateElementContent} contentConfig : config of the structure
+ * @param {MessageGenericTemplateContent} contentConfig : config of the structure
  */
-export declare function createShareMessengerGenericTemplateContent(contentConfig: MessageGenericTemplateElementContent): any;
+export declare function createShareMessageGenericTemplateContent(contentConfig: MessageGenericTemplateContent): any;
 
 /**
  * The media template allows you to send images, GIFs, and video as a structured message with an optional button. Videos and animated GIFs sent with the media template are playable in the conversation.

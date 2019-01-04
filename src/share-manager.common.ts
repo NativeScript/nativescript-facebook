@@ -15,7 +15,7 @@ export interface MessageGenericTemplateElement {
     defaultAction?: MessageActionButton;
 }
 
-export interface MessageGenericTemplateElementContent {
+export interface MessageGenericTemplateContent {
     element: MessageGenericTemplateElement;
     imageAspectRatio?: MessageGenericTemplateImageAspectRatio;
     pageID?: string;

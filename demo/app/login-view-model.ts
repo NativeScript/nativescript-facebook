@@ -4,9 +4,9 @@ import {
     LoginEventData,
     login as fbLogin,
     getCurrentAccessToken,
-    createLinksShareContent,
-    createPhotosShareContent,
-    createShareMessengerGenericTemplateContent,
+    createShareLinksContent,
+    createSharePhotosContent,
+    createShareMessageGenericTemplateContent,
     MessageGenericTemplateImageAspectRatio,
     showShareDialog,
     showMessageDialog,
@@ -62,7 +62,7 @@ export class LoginViewModel extends Observable {
     }
 
     public generateLinksShareContent() {
-        return createLinksShareContent('https://www.nativescript.org',
+        return createShareLinksContent('https://www.nativescript.org',
             'Create Native iOS and Android Apps With JavaScript',
             {
                 hashtag: '#Nativescript'
@@ -71,13 +71,13 @@ export class LoginViewModel extends Observable {
 
     public generatePhotosShareContent() {
         const logoImage = fromResource('logo');
-        return createPhotosShareContent([logoImage], false, {
+        return createSharePhotosContent([logoImage], false, {
             hashtag: '#Nativescript'
         });
     }
 
     public generateGenericTemplateContent() {
-        return createShareMessengerGenericTemplateContent({
+        return createShareMessageGenericTemplateContent({
             element: {
                 title: 'Nativescript',
                 subtitle: 'Create Native iOS and Android Apps With JavaScript',

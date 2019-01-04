@@ -63,7 +63,7 @@ export class LoginComponent {
     }
 
     generateLinksShareContent() {
-        return Facebook.createLinksShareContent('https://www.nativescript.org',
+        return Facebook.createShareLinksContent('https://www.nativescript.org',
             'Create Native iOS and Android Apps With JavaScript',
             {
                 hashtag: '#Nativescript'
@@ -72,13 +72,13 @@ export class LoginComponent {
 
     generatePhotosShareContent() {
         const logoImage = fromResource('logo');
-        return Facebook.createPhotosShareContent([logoImage], false, {
+        return Facebook.createSharePhotosContent([logoImage], false, {
             hashtag: '#Nativescript'
         });
     }
 
     generateGenericTemplateContent() {
-        return Facebook.createShareMessengerGenericTemplateContent({
+        return Facebook.createShareMessageGenericTemplateContent({
             element: {
                 title: 'Nativescript',
                 subtitle: 'Create Native iOS and Android Apps With JavaScript',
