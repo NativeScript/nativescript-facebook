@@ -9,7 +9,8 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "pretty": true,
-        "noEmitHelpers": true
+        "noEmitHelpers": true,
+        "skipLibCheck": true
     },
     "exclude": [
         "node_modules",

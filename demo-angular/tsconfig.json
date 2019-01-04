@@ -21,6 +21,7 @@
         "noImplicitReturns": true,
         "noImplicitUseStrict": false,
         "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
         "baseUrl": ".",
         "paths": {
             "*": [

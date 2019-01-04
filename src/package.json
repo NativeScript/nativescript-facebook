@@ -13,7 +13,7 @@
         "ngc": "node --max-old-space-size=8192 ./node_modules/.bin/ngc",
         "build": "npm i && tsc && tns plugin build && npm run ngc",
         "build.iosOnly": "npm i && tsc && npm run ngc",
-        "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
+        "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**' --exclude '**/platforms/**'",
         "prepublishOnly": "npm run build",
         "plugin.tscwatch": "tsc -skipLibCheck -w",
         "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
