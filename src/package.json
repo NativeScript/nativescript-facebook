@@ -19,7 +19,9 @@
         "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
         "demo.android": "npm i && npm run tsc && cd ../demo && tns run android --syncAllFiles",
         "demo.ng.ios": "npm i && npm run tsc && cd ../demo-angular && tns run ios --syncAllFiles",
-        "demo.ng.android": "npm i && npm run tsc && cd ../demo-angular && tns run android --syncAllFiles"
+        "demo.ng.android": "npm i && npm run tsc && cd ../demo-angular && tns run android --syncAllFiles",
+        "demo.vue.ios": "npm i && npm run tsc && cd ../demo-vue && tns run ios --bundle --syncAllFiles",
+        "demo.vue.android": "npm i && npm run tsc && cd ../demo-vue && tns run android --bundle --syncAllFiles"
     },
     "repository": {
         "type": "git",
@@ -45,6 +47,7 @@
         "tns-platform-declarations": "^5.1.0",
         "typescript": "~3.1.6",
         "nativescript-angular": "~7.1.0",
+        "nativescript-vue": "~2.0.2",
         "@angular/core": "~7.1.0",
         "@angular/common": "~7.1.0",
         "@angular/compiler": "~7.1.0",

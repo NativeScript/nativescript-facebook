@@ -1,0 +1,5 @@
+{
+    "name" : "facebook-vue-directives",
+    "main" : "facebook-vue-directives",
+    "typings" : "facebook-vue-directives.d.ts"
+  }
