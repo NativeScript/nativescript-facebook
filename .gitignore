@@ -21,3 +21,4 @@ demo-angular/platforms/
 /src/platforms/android/nativescript_facebook.aar
 /src/*.tgz
 /publish/package/*.tgz
+/publish/package/**/*
