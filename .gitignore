@@ -17,6 +17,7 @@ demo-angular/**/*.js
 demo-angular/*.d.ts
 demo-angular/platforms/
 !demo/e2e-tests/*
+!demo-vue/app/app.js
 /src/platforms/android/nativescript_facebook.aar
 /src/*.tgz
 /publish/package/*.tgz
