@@ -25,6 +25,7 @@ matrix:
       language: node_js
       node_js: "8"
       jdk: oraclejdk8
+      before_script: pod repo update
       script: cd src && npm run build.iosOnly && cd ../demo && npm i && tns build ios --env.uglify && cd ../demo-angular && npm i && tns build ios --env.uglify --env.aot
     - language: android
       os: linux
@@ -52,6 +53,7 @@ matrix:
       language: node_js
       node_js: "8"
       jdk: oraclejdk8
+      before_script: pod repo update
       script:
         - cd demo && npm run ci.ios.build && cd ../demo-angular && npm run ci.ios.build
         - cd $IOS_PACKAGE_FOLDER && zip -r $IOS_PACKAGE demo.app

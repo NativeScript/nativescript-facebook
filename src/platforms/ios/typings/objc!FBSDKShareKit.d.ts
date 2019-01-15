@@ -217,13 +217,13 @@ declare class FBSDKAppInviteDialog extends NSObject {
 
 	static showWithContentDelegate(content: FBSDKAppInviteContent, delegate: FBSDKAppInviteDialogDelegate): FBSDKAppInviteDialog;
 
+	readonly canShow: boolean;
+
 	content: FBSDKAppInviteContent;
 
 	delegate: FBSDKAppInviteDialogDelegate;
 
 	fromViewController: UIViewController;
-
-	canShow(): boolean;
 
 	show(): boolean;
 
@@ -455,13 +455,13 @@ declare class FBSDKGameRequestDialog extends NSObject {
 
 	static showWithContentDelegate(content: FBSDKGameRequestContent, delegate: FBSDKGameRequestDialogDelegate): FBSDKGameRequestDialog;
 
+	readonly canShow: boolean;
+
 	content: FBSDKGameRequestContent;
 
 	delegate: FBSDKGameRequestDialogDelegate;
 
 	frictionlessRequestsEnabled: boolean;
-
-	canShow(): boolean;
 
 	show(): boolean;
 
@@ -734,6 +734,8 @@ declare class FBSDKMessageDialog extends NSObject implements FBSDKSharingDialog 
 
 	static showWithContentDelegate(content: FBSDKSharingContent, delegate: FBSDKSharingDelegate): FBSDKMessageDialog;
 
+	readonly canShow: boolean; // inherited from FBSDKSharingDialog
+
 	readonly debugDescription: string; // inherited from NSObjectProtocol
 
 	delegate: FBSDKSharingDelegate; // inherited from FBSDKSharing
@@ -751,8 +753,6 @@ declare class FBSDKMessageDialog extends NSObject implements FBSDKSharingDialog 
 	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
 	readonly  // inherited from NSObjectProtocol
-
-	canShow(): boolean;
 
 	class(): typeof NSObject;
 
@@ -848,6 +848,8 @@ declare class FBSDKShareAPI extends NSObject implements FBSDKSharing {
 
 	accessToken: FBSDKAccessToken;
 
+	readonly canShare: boolean;
+
 	graphNode: string;
 
 	message: string;
@@ -869,8 +871,6 @@ declare class FBSDKShareAPI extends NSObject implements FBSDKSharing {
 	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
 	readonly  // inherited from NSObjectProtocol
-
-	canShare(): boolean;
 
 	class(): typeof NSObject;
 
@@ -1068,6 +1068,8 @@ declare class FBSDKShareDialog extends NSObject implements FBSDKSharingDialog {
 
 	mode: FBSDKShareDialogMode;
 
+	readonly canShow: boolean; // inherited from FBSDKSharingDialog
+
 	readonly debugDescription: string; // inherited from NSObjectProtocol
 
 	delegate: FBSDKSharingDelegate; // inherited from FBSDKSharing
@@ -1085,8 +1087,6 @@ declare class FBSDKShareDialog extends NSObject implements FBSDKSharingDialog {
 	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
 	readonly  // inherited from NSObjectProtocol
-
-	canShow(): boolean;
 
 	class(): typeof NSObject;
 
@@ -2422,7 +2422,7 @@ declare var FBSDKSharingDelegate: {
 
 interface FBSDKSharingDialog extends FBSDKSharing {
 
-	canShow(): boolean;
+	canShow: boolean;
 
 	show(): boolean;
 }
