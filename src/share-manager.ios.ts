@@ -150,7 +150,7 @@ export function canShareDialogShow(content: any): boolean {
     if (content) {
         const dialog = getShareDialog();
         getShareDialog().shareContent = content;
-        return dialog.canShow();
+        return dialog.canShow;
     }
     return false;
 }
@@ -169,7 +169,7 @@ export function canMessageDialogShow(content: any): boolean {
     if (content) {
         const dialog = getMessageDialog();
         getMessageDialog().shareContent = content;
-        return dialog.canShow();
+        return dialog.canShow;
     }
     return false;
 }
