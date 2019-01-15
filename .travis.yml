@@ -30,6 +30,7 @@ matrix:
       language: node_js
       node_js: "8"
       jdk: oraclejdk8
+      before_script: pod repo update
       script:
         - cd src && npm run build.iosOnly
         - cd ../demo && npm i && tns build ios --bundle --env.uglify
@@ -41,6 +42,7 @@ matrix:
       language: node_js
       node_js: "8"
       jdk: oraclejdk8
+      before_script: pod repo update
       script:
         - cd src && npm run build.iosOnly
         - cd ../demo-vue && npm i && tns build ios --bundle --env.uglify
@@ -52,6 +54,7 @@ matrix:
       language: node_js
       node_js: "8"
       jdk: oraclejdk8
+      before_script: pod repo update
       script:
         - cd src && npm run build.iosOnly
         - cd ../demo-ng && npm i && tns build ios --bundle --env.uglify --env.aot
@@ -111,6 +114,7 @@ matrix:
       language: node_js
       node_js: "8"
       jdk: oraclejdk8
+      before_script: pod repo update
       script:
         - cd demo && npm run ci.ios.build
         - cd $IOS_PACKAGE_FOLDER_JS && zip -r $IOS_PACKAGE_JS demo.app
@@ -123,6 +127,7 @@ matrix:
       language: node_js
       node_js: "8"
       jdk: oraclejdk8
+      before_script: pod repo update
       script:
         - cd ../demo-angular && npm run ci.ios.build
     - stage: "UI Tests"
@@ -184,4 +189,3 @@ install:
   - npm install -g nativescript
   - tns usage-reporting disable
   - tns error-reporting disable
-  - pod repo update
