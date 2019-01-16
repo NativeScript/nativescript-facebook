@@ -56,9 +56,8 @@ matrix:
       jdk: oraclejdk8
       before_script: pod repo update
       script:
-        - cd src && npm run build.iosOnly
-        - cd ../publish && sh pack.sh
-        - cd ../demo-angular && tns plugin add ../publish/package/*.tgz
+        - cd src && npm run build.iosOnly && npm pack
+        - cd ../demo-angular && tns plugin add ../src/*.tgz
         - npm i && tns build ios --bundle --env.uglify --env.aot
     - language: android
       os: linux
