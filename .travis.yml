@@ -8,8 +8,8 @@ env:
     - ANDROID_PACKAGE_FOLDER_JS=$TRAVIS_BUILD_DIR/demo/platforms/android/app/build/outputs/apk/debug
     - ANDROID_PACKAGE_FOLDER_VUE=$TRAVIS_BUILD_DIR/demo-vue/platforms/android/app/build/outputs/apk/debug
     - ANDROID_SAUCE_STORAGE="https://saucelabs.com/rest/v1/storage/$SAUCE_USER"
-    - IOS_PACKAGE_JS='demo-js.zip'
-    - IOS_PACKAGE_VUE='demo-vue.zip'
+    - IOS_PACKAGE_JS='facebook-demo-js.zip'
+    - IOS_PACKAGE_VUE='facebook-demo-vue.zip'
     - IOS_PACKAGE_FOLDER_JS=$TRAVIS_BUILD_DIR/demo/platforms/ios/build/emulator
     - IOS_PACKAGE_FOLDER_VUE=$TRAVIS_BUILD_DIR/demo-vue/platforms/ios/build/emulator
     - IOS_SAUCE_STORAGE="https://saucelabs.com/rest/v1/storage/$SAUCE_USER"
