@@ -16,7 +16,7 @@
   "android24": {
     "platformName": "Android",
     "platformVersion": "7.0",
-    "deviceName": "Android_GoogleAPI_Emulator",
+    "deviceName": "Android GoogleAPI Emulator",
     "appiumVersion": "1.9.1",
     "noReset": true,
     "lt": 60000,
