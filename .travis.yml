@@ -46,6 +46,8 @@ matrix:
       script:
         - cd src && npm run build.iosOnly
         - cd ../demo-vue && npm i && tns build ios --bundle --env.uglify
+        - cd $IOS_PACKAGE_FOLDER_VUE && zip -r $IOS_PACKAGE_VUE demovue.app
+        - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $IOS_SAUCE_STORAGE/$IOS_PACKAGE_VUE?overwrite=true --data-binary @$IOS_PACKAGE_FOLDER_VUE/$IOS_PACKAGE_VUE"
     - os: osx
       env:
         - WebpackiOS="12.0"
@@ -147,7 +149,7 @@ matrix:
       script:
         - npm i -g appium
         - cd demo && npm i
-        - travis_retry npm run e2e -- --runType android24 --sauceLab --reuseDevice --appPath $ANDROID_PACKAGE_JS
+        - travis_wait travis_retry npm run e2e -- --runType android24 --sauceLab --appPath $ANDROID_PACKAGE_JS
     - os: linux
       env:
         - Android="24"
@@ -158,7 +160,7 @@ matrix:
       script:
         - npm i -g appium
         - cd demo-vue && npm i
-        - travis_retry npm run e2e -- --runType android24 --sauceLab --reuseDevice --appPath $ANDROID_PACKAGE_VUE
+        - travis_wait travis_retry npm run e2e -- --runType android24 --sauceLab --appPath $ANDROID_PACKAGE_VUE
     - os: linux
       env:
         - iOS="12.0"
@@ -168,7 +170,7 @@ matrix:
       script:
         - npm i -g appium
         - cd demo && npm i
-        - travis_wait travis_retry npm run e2e -- --runType sim12iPhoneX --sauceLab --reuseDevice --appPath $IOS_PACKAGE_JS
+        - travis_wait travis_retry npm run e2e -- --runType sim12iPhoneX --sauceLab --appPath $IOS_PACKAGE_JS
     - os: linux
       env:
         - iOS="12.0"
@@ -178,7 +180,7 @@ matrix:
       script:
         - npm i -g appium
         - cd demo-vue && npm i
-        - travis_wait travis_retry npm run e2e -- --runType sim12iPhoneX --sauceLab --reuseDevice --appPath $IOS_PACKAGE_VUE
+        - travis_wait travis_retry npm run e2e -- --runType sim12iPhoneX --sauceLab --appPath $IOS_PACKAGE_VUE
 
 android:
   components:

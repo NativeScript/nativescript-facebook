@@ -35,7 +35,7 @@ describe("Facebook tests", async function () {
 
     it("should log in via custom button", async function () {
         if (isAndroid) {
-            var userNameLabelElement = "[@text='Nativescript User']";
+            var userNameLabelElement = "Nativescript User";
         } else {
             var userNameLabelElement = "[@name='Nativescript User']";
         }
@@ -44,12 +44,14 @@ describe("Facebook tests", async function () {
         await facebookButton.click();
 
         if (isAndroid) {
-            const allFields = await driver.findElementsByClassName(driver.locators.getElementByName("textfield"));
+            await driver.wait(1000);
+            const allFields = await driver.findElementsByClassName("android.widget.EditText");
+                // driver.locators.getElementByName("android.widget.EditText")
             const wd = driver.wd();
             const action = new wd.TouchAction(driver.driver);
             action
-                .press({ x: 52, y: 499 })
-                .moveTo({ x: -2, y: -294 })
+                .press({ x: 380, y: 720 })
+                .moveTo({ x: 380, y: 410 })
                 .release();
             await action.perform();
             await driver.wait(1000);
@@ -73,7 +75,7 @@ describe("Facebook tests", async function () {
         if (isAndroid) {
             const logInButton = await driver.findElementByClassName(driver.locators.button);
             await logInButton.click();
-            const continueButton = await driver.findElementByText("Continue");
+            const continueButton = await driver.findElementByAccessibilityId("Continue");
             await continueButton.click();
         } else {
             const logInButton = await driver.findElementByText("Log In");
@@ -81,11 +83,9 @@ describe("Facebook tests", async function () {
             const continueButton = await driver.findElementByText("Continue");
             await continueButton.click();
         }
-        const userNameLabel = await driver.findElementByXPath(
-            "//" + driver.locators.getElementByName("label") + userNameLabelElement
-        );
-        const userName = await userNameLabel.text();
-        expect(userName).to.equal(USER_NAME, "Not logged with the same user");
+        await driver.wait(1000);
+        const userNameLabel = await driver.findElementByText("Nativescript User", SearchOptions.contains);
+        expect(userNameLabel).to.exist;
     });
 
     it("should log out via custom button", async function () {
@@ -102,6 +102,9 @@ describe("Facebook tests", async function () {
             const allFields = await driver.findElementsByClassName(driver.locators.getElementByName("textfield"));
             await allFields[1].sendKeys(PASSWORD);
             await allFields[0].sendKeys(USERNAME);
+            try {
+                await driver.driver.hideDeviceKeyboard("Done");
+            } catch (error) { }
             const logInButton = await driver.findElementByClassName(driver.locators.button);
             await logInButton.click();
         } else {
