@@ -46,7 +46,6 @@ describe("Facebook tests", async function () {
         if (isAndroid) {
             await driver.wait(1000);
             const allFields = await driver.findElementsByClassName("android.widget.EditText");
-                // driver.locators.getElementByName("android.widget.EditText")
             const wd = driver.wd();
             const action = new wd.TouchAction(driver.driver);
             action
@@ -75,14 +74,13 @@ describe("Facebook tests", async function () {
         if (isAndroid) {
             const logInButton = await driver.findElementByClassName(driver.locators.button);
             await logInButton.click();
-            const continueButton = await driver.findElementByAccessibilityId("Continue");
-            await continueButton.click();
+            await driver.wait(500);
         } else {
             const logInButton = await driver.findElementByText("Log In");
             await logInButton.click();
-            const continueButton = await driver.findElementByText("Continue");
-            await continueButton.click();
         }
+        const continueButton = await driver.findElementByText("Continue", SearchOptions.exact);
+        await continueButton.click();
         await driver.wait(1000);
         const userNameLabel = await driver.findElementByText("Nativescript User", SearchOptions.contains);
         expect(userNameLabel).to.exist;
