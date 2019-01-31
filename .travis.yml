@@ -79,7 +79,7 @@ matrix:
         - cd ../demo && tns platform add ios@next
       script:
         - cd ../src && npm run build.iosOnly
-        - cd ../demo && npm i && tns build ios --bundle --env.uglify --copy-to "./options/demo.app"
+        - cd ../demo && npm i && tns build ios --bundle --env.uglify --copy-to "./outputs/demo.app"
         - cd $IOS_PACKAGE_FOLDER && zip -r $IOS_PACKAGE_NEXT demo.app
         - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $IOS_SAUCE_STORAGE --data-binary @$IOS_PACKAGE_FOLDER/$IOS_PACKAGE_NEXT"
     - os: osx
@@ -92,7 +92,7 @@ matrix:
       jdk: oraclejdk8
       before_script:
         - pod repo update
-        - cd ../demo-angulatr && tns platform add ios@next
+        - cd ../demo-angular && tns platform add ios@next
       script:
         - cd ../src && npm run build.iosOnly && npm pack && cp *.tgz ../demo-angular/package.tgz
         - cd ../demo-angular && tns plugin add package.tgz && npm i && tns build ios --bundle --env.uglify --env.aot
@@ -106,7 +106,7 @@ matrix:
       before_script:
         - cd ../demo && tns platform add android@next
       script:
-        - cd ../demo && npm run build.plugin && npm i && tns build android --bundle --env.uglify --copy-to "./options/app-debug.apk"
+        - cd ../demo && npm run build.plugin && npm i && tns build android --bundle --env.uglify --copy-to "./outputs/app-debug.apk"
         - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $ANDROID_SAUCE_STORAGE --data-binary @$ANDROID_PACKAGE_FOLDER/$ANDROID_PACKAGE"
     - os: linux
       language: android
