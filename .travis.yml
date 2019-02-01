@@ -5,10 +5,10 @@ env:
   global:
     - ANDROID_PACKAGE='app-debug.apk'
     - ANDROID_PACKAGE_NEXT='demo-debug-next.apk'
-    - ANDROID_PACKAGE_FOLDER=$TRAVIS_BUILD_DIR/demo/platforms/android/app/build/outputs/apk/debug
+    - ANDROID_PACKAGE_FOLDER=$TRAVIS_BUILD_DIR/demo/outputs
     - ANDROID_SAUCE_STORAGE="https://saucelabs.com/rest/v1/storage/$SAUCE_USER/$ANDROID_PACKAGE_NEXT?overwrite=true"
     - IOS_PACKAGE_NEXT='demo-next.zip'
-    - IOS_PACKAGE_FOLDER=$TRAVIS_BUILD_DIR/demo/platforms/ios/build/emulator
+    - IOS_PACKAGE_FOLDER=$TRAVIS_BUILD_DIR/demo/outputs
     - IOS_SAUCE_STORAGE="https://saucelabs.com/rest/v1/storage/$SAUCE_USER/$IOS_PACKAGE_NEXT?overwrite=true"
 
 matrix:
@@ -16,6 +16,7 @@ matrix:
     - stage: "Build"
       env: 
         - BuildAndroid="26"
+        - Type="VanillaJS"
       language: android
       os: linux
       jdk: oraclejdk8
@@ -23,14 +24,25 @@ matrix:
         - nvm install 8.11.4
       before_script:
         - cd ../demo && tns platform add android@next
+      script:
+        - cd ../demo && npm run ci.android.build
+    - env: 
+        - BuildAndroid="26"
+        - Type="Angular"
+      language: android
+      os: linux
+      jdk: oraclejdk8
+      before_install: 
+        - nvm install 8.11.4
+      before_script:
         - cd ../demo-angular && tns platform add android@next
       script:
-        - cd ../demo && npm run ci.android.build && cd ../demo-angular && npm run ci.android.build
-        - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $ANDROID_SAUCE_STORAGE --data-binary @$ANDROID_PACKAGE_FOLDER/$ANDROID_PACKAGE"
+        - cd ../demo-angular && npm run ci.android.build
     - os: osx
       env: 
         - BuildiOS="12.0"
         - Xcode="10.0"
+        - Type="VanillaJS"
       osx_image: xcode10.0
       language: node_js 
       node_js: "8"
@@ -38,37 +50,74 @@ matrix:
       before_script:
         - pod repo update
         - cd ../demo && tns platform add ios@next
+      script: 
+        - cd ../demo && npm run ci.ios.build
+    - os: osx
+      env: 
+        - BuildiOS="12.0"
+        - Xcode="10.0"
+        - Type="Angular"
+      osx_image: xcode10.0
+      language: node_js 
+      node_js: "8"
+      jdk: oraclejdk8
+      before_script:
+        - pod repo update
         - cd ../demo-angular && tns platform add ios@next
       script: 
-        - cd ../demo && npm run ci.ios.build && cd ../demo-angular && npm run ci.ios.build
+        - cd ../demo-angular && npm run ci.ios.build
+    - os: osx
+      env:
+        - Webpack="iOS"
+        - Type="VanillaJS"
+      osx_image: xcode10.0
+      language: node_js 
+      node_js: "8"
+      jdk: oraclejdk8
+      before_script:
+        - pod repo update
+        - cd ../demo && tns platform add ios@next
+      script:
+        - cd ../src && npm run build.iosOnly
+        - cd ../demo && npm i && tns build ios --bundle --env.uglify --copy-to "./outputs/demo.app"
         - cd $IOS_PACKAGE_FOLDER && zip -r $IOS_PACKAGE_NEXT demo.app
         - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $IOS_SAUCE_STORAGE --data-binary @$IOS_PACKAGE_FOLDER/$IOS_PACKAGE_NEXT"
     - os: osx
       env:
         - Webpack="iOS"
+        - Type="Angular"
       osx_image: xcode10.0
       language: node_js 
       node_js: "8"
       jdk: oraclejdk8
       before_script:
         - pod repo update
-        - cd ../demo && tns platform add ios@next
         - cd ../demo-angular && tns platform add ios@next
       script:
         - cd ../src && npm run build.iosOnly && npm pack && cp *.tgz ../demo-angular/package.tgz
-        - cd ../demo && npm i && tns build ios --bundle --env.uglify
         - cd ../demo-angular && tns plugin add package.tgz && npm i && tns build ios --bundle --env.uglify --env.aot
     - os: linux
       language: android
       env:
         - Webpack="Android"
+        - Type="VanillaJS"
       jdk: oraclejdk8
       before_install: nvm install 8.11.4
       before_script:
         - cd ../demo && tns platform add android@next
+      script:
+        - cd ../demo && npm run build.plugin && npm i && tns build android --bundle --env.uglify --copy-to "./outputs/app-debug.apk"
+        - "curl -u $SAUCE_USER:$SAUCE_KEY -X POST -H 'Content-Type: application/octet-stream' $ANDROID_SAUCE_STORAGE --data-binary @$ANDROID_PACKAGE_FOLDER/$ANDROID_PACKAGE"
+    - os: linux
+      language: android
+      env:
+        - Webpack="Android"
+        - Type="Angular"
+      jdk: oraclejdk8
+      before_install: nvm install 8.11.4
+      before_script:
         - cd ../demo-angular && tns platform add android@next
       script:
-        - cd ../demo && npm run build.plugin && npm i && tns build android --bundle --env.uglify
         - cd ../publish && sh pack.sh && cp package/*.tgz ../demo-angular/package.tgz
         - cd ../demo-angular && tns plugin add package.tgz && npm i && tns build android --bundle --env.uglify --env.aot
     - stage: "UI Tests"
