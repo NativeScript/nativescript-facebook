@@ -140,7 +140,7 @@ matrix:
       script: 
         - npm i -g appium
         - cd demo && npm i
-        - travis_wait travis_retry npm run e2e -- --runType sim103iPhone6 --sauceLab --reuseDevice --appPath $IOS_PACKAGE_NEXT
+        - travis_wait travis_retry npm run e2e -- --runType sim12iPhoneX --sauceLab --reuseDevice --appPath $IOS_PACKAGE_NEXT
 
 android:
   components:
