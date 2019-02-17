@@ -98,7 +98,13 @@ export class LoginViewModel extends Observable {
     }
 
     public onShareDialog() {
-        showShareDialog(this.linkContent);
+        showShareDialog(this.linkContent, (error, result) => {
+            if (error) {
+                console.error(error);
+                return;
+            }
+            alert('Successfully shared');
+        });
     }
 
     public onShareDialogPhotos() {
