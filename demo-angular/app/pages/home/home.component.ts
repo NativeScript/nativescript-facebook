@@ -34,6 +34,8 @@ export class HomeComponent {
         }, function (err) {
             alert("Error getting user info: " + err);
         });
+
+        Facebook.initAnalytics();
     }
 
     onLogout(eventData: Facebook.LoginEventData) {
@@ -51,6 +53,13 @@ export class HomeComponent {
             appSettings.clear();
             this.navigationService.go(['login'], "slideRight");
         });
+    }
+
+    logEvent() {
+        Facebook.logEvent('Initial', [{
+            key: 'number',
+            value: '',
+        }]);
     }
 
     public getCurrentAccessToken() {
