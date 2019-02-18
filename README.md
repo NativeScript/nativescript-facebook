@@ -58,6 +58,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 - [x] Login & Logout
 - [x] Share
 - [ ] Graph API
+- [x] Basic Analytics
 
 
 ## Installation
