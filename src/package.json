@@ -1,6 +1,6 @@
 {
     "name": "nativescript-facebook-analytics",
-    "version": "2.3.3",
+    "version": "2.3.4",
     "description": "NativeScript plugin, wrapper of native Facebook SDK for Adroid and iOS.",
     "nativescript": {
         "platforms": {

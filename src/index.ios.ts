@@ -5,6 +5,7 @@ export * from "./login-event-data";
 export * from "./login-behavior";
 export * from './share-manager';
 export * from "./ui/share-button";
+export * from "./app-events";
 
 declare interface UIApplicationDelegate { }
 
