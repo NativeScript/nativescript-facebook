@@ -9,9 +9,8 @@ import "mocha";
 const fs = require('fs');
 const addContext = require('mochawesome/addContext');
 const rimraf = require('rimraf');
-
 const isSauceRun = isSauceLab;
-const isAndroid: boolean = runType.includes("android");
+let isAndroid;
 
 describe("Facebook tests", async function () {
     const FACEBOOK_BUTTON = "fbLogin";
@@ -24,6 +23,7 @@ describe("Facebook tests", async function () {
     before(async () => {
         driver = await createDriver();
         driver.defaultWaitTime = 20000;
+        isAndroid = driver.isAndroid;
         let dir = "mochawesome-report";
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir);
@@ -94,7 +94,8 @@ describe("Facebook tests", async function () {
         if (isAndroid) {
             const logInButton = await driver.findElementByClassName(driver.locators.button);
             await logInButton.click();
-            const continueButton = await driver.findElementByText("Continue");
+            await driver.wait(2000);
+            const continueButton = await driver.findElementByText("Continue", SearchOptions.exact);
             await continueButton.click();
         } else {
             const logInButton = await driver.findElementByText("Log In");
