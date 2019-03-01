@@ -94,10 +94,11 @@ describe("Facebook tests", async function () {
         if (isAndroid) {
             const logInButton = await driver.findElementByClassName(driver.locators.button);
             await logInButton.click();
-            await driver.wait(500);
+            await driver.wait(2000);
         } else {
             const logInButton = await driver.findElementByText("Log In");
             await logInButton.click();
+            await driver.wait(2000);
         }
         const continueButton = await driver.findElementByText("Continue", SearchOptions.exact);
         await continueButton.click();
