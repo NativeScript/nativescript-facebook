@@ -5,6 +5,7 @@
         "declaration": false,
         "removeComments": true,
         "noLib": false,
+        "sourceMap": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": [
