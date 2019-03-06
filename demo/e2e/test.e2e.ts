@@ -6,9 +6,11 @@ import {
 import { isSauceLab, runType } from "nativescript-dev-appium/lib/parser";
 import { expect } from "chai";
 import "mocha";
-
+const fs = require('fs');
+const addContext = require('mochawesome/addContext');
+const rimraf = require('rimraf');
 const isSauceRun = isSauceLab;
-const isAndroid: boolean = runType.includes("android");
+let isAndroid;
 
 describe("Facebook tests", async function () {
     const FACEBOOK_BUTTON = "fbLogin";
@@ -21,6 +23,12 @@ describe("Facebook tests", async function () {
     before(async () => {
         driver = await createDriver();
         driver.defaultWaitTime = 20000;
+        isAndroid = driver.isAndroid;
+        let dir = "mochawesome-report";
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir);
+        }
+        rimraf('mochawesome-report/*', function () { });
     });
 
     after(async () => {
@@ -32,6 +40,19 @@ describe("Facebook tests", async function () {
         await driver.quit();
         console.log("Driver successfully quit");
     });
+
+    afterEach(async function (){
+        if (this.currentTest.state && this.currentTest.state === "failed") {
+            let png = await driver.logScreenshot(this.currentTest.title);
+            fs.copyFile(png, './mochawesome-report/' + this.currentTest.title + '.png', function (err) {
+                if (err) {
+                    throw err;
+                }
+                console.log('Screenshot saved.');
+            });
+            addContext(this, './' + this.currentTest.title + '.png');
+        }
+    })
 
     it("should log in via custom button", async function () {
         if (isAndroid) {
@@ -73,7 +94,8 @@ describe("Facebook tests", async function () {
         if (isAndroid) {
             const logInButton = await driver.findElementByClassName(driver.locators.button);
             await logInButton.click();
-            const continueButton = await driver.findElementByText("Continue");
+            await driver.wait(2000);
+            const continueButton = await driver.findElementByText("Continue", SearchOptions.exact);
             await continueButton.click();
         } else {
             const logInButton = await driver.findElementByText("Log In");

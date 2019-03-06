@@ -347,11 +347,17 @@ If the Messenger app is not installed, the Send button will be hidden. Be sure t
 
 ### Show Share Dialog Programmatically
 
-**Note** The share dialog will try fallback to browse page sharing if user doesn't have Facebook installed (only for linkContent)
+**Note** The share dialog will try fallback to browse page sharing if user doesn't have Facebook installed (only for linkContent) 
 
 ```TypeScript
 showShareDialog(this.linkContent);
 showMessageDialog(this.linkContent);
+showShareDialog(this.linkContent, (error:Error, result:ShareCallbackResult) => {
+    if(!error){
+        console.log(result.android); // com.facebook.share.Sharer.Result
+        console.log(result.ios); // (NSDictionary * ) The results from the sharer. This may be nil or empty.
+    }
+});
 ```
 
 ### Hide Custom Button If Can't share
@@ -557,6 +563,12 @@ If the Messenger app is not installed, the Send button will be hidden. Be sure t
 ```TypeScript
 showShareDialog(this.linkContent);
 showMessageDialog(this.linkContent);
+showShareDialog(this.linkContent, (error:Error, result:ShareCallbackResult) => {
+    if(!error){
+        console.log(result.android); // com.facebook.share.Sharer.Result
+        console.log(result.ios); // (NSDictionary * ) The results from the sharer. This may be nil or empty.
+    }
+});
 ```
 
 ### Hide Custom Button If Can't share
