@@ -58,6 +58,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 - [x] Login & Logout
 - [x] Share
 - [ ] Graph API
+- [x] Basic Analytics
 
 
 ## Installation
@@ -346,7 +347,7 @@ If the Messenger app is not installed, the Send button will be hidden. Be sure t
 
 ### Show Share Dialog Programmatically
 
-**Note** The share dialog will try fallback to browse page sharing if user doesn't have Facebook installed (only for linkContent) 
+**Note** The share dialog will try fallback to browse page sharing if user doesn't have Facebook installed (only for linkContent)
 
 ```TypeScript
 showShareDialog(this.linkContent);

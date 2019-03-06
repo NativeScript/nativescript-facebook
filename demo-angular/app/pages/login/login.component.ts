@@ -34,6 +34,7 @@ export class LoginComponent {
         this.canShowPhotosShareDialog = Facebook.canShareDialogShow(this.photosContent);
         this.canShowLinksMessageDialog = Facebook.canMessageDialogShow(this.linkContent);
         this.canShowGenericMessageDialog = Facebook.canMessageDialogShow(this.genericContent);
+        Facebook.initAnalytics();
     }
 
     onLogin(eventData: Facebook.LoginEventData) {
@@ -118,5 +119,12 @@ export class LoginComponent {
 
     onSendGenericDialog() {
         Facebook.showMessageDialog(this.genericContent);
+    }
+
+    logEvent() {
+        Facebook.logEvent('Initial', [{
+            key: 'number',
+            value: '',
+        }]);
     }
 }
