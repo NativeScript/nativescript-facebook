@@ -99,7 +99,13 @@ export class LoginComponent {
     }
 
     onShareDialog() {
-        Facebook.showShareDialog(this.linkContent);
+        Facebook.showShareDialog(this.linkContent, (error, result) => {
+            if (error) {
+                console.error(error);
+                return;
+            }
+            alert('Successfully shared');
+        });
     }
 
     onShareDialogPhotos() {

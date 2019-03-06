@@ -1,12 +1,15 @@
 export * from './share-manager.common';
 
 import {ImageSource} from 'tns-core-modules/image-source';
-import {android as androidApp} from 'tns-core-modules/application';
+import {android as androidApp, AndroidApplication} from 'tns-core-modules/application';
 import {
     MessageActionButton,
     MessageGenericTemplateContent,
-    MessageGenericTemplateImageAspectRatio, MessageMediaTemplateContent, MessageMediaTemplateMediaType,
-    ShareAdditionContent
+    MessageGenericTemplateImageAspectRatio,
+    MessageMediaTemplateContent,
+    MessageMediaTemplateMediaType,
+    ShareAdditionContent,
+    ShareCallbackFunction
 } from './share-manager.common';
 
 function attachAdditionalContent(content: any, addition?: ShareAdditionContent) {
@@ -154,10 +157,58 @@ export function createShareMessageMediaTemplateContent(contentConfig: MessageMed
     return contentBuilder.build();
 }
 
-export function showShareDialog(content: any) {
-    com.facebook.share.widget.ShareDialog.show(androidApp.foregroundActivity, content);
+export function showShareDialog(content: any, callback?: ShareCallbackFunction) {
+    let dialog = new com.facebook.share.widget.ShareDialog(androidApp.startActivity || androidApp.foregroundActivity);
+    if (callback) {
+        registerShareCallback(dialog, callback);
+    }
+    dialog.show(content);
 }
 
-export function showMessageDialog(content: any) {
-    com.facebook.share.widget.MessageDialog.show(androidApp.foregroundActivity, content);
+export function showMessageDialog(content: any, callback?: ShareCallbackFunction) {
+    let dialog = new com.facebook.share.widget.MessageDialog(androidApp.startActivity || androidApp.foregroundActivity);
+    if (callback) {
+        registerShareCallback(dialog, callback);
+    }
+    dialog.show(content);
+}
+
+
+function registerShareCallback(dialog: com.facebook.share.widget.ShareDialog | com.facebook.share.widget.MessageDialog, callback?: ShareCallbackFunction) {
+    let callbackManager = com.facebook.CallbackManager.Factory.create();
+    dialog.registerCallback(callbackManager, new com.facebook.FacebookCallback<com.facebook.share.Sharer.Result>({
+        onSuccess: function (result) {
+            callback(null, {
+                android: result
+            });
+        },
+        onCancel: function () {
+            callback(new Error('canceled'), null);
+        },
+        onError: function (e) {
+            let errorMessage = 'Error with Facebook';
+            if (e['getErrorMessage']) {
+                errorMessage += ': ' + e['getErrorMessage']();
+            }
+            else if (e['getErrorCode']) {
+                errorMessage += ': Code ' + e['getErrorCode']();
+            }
+            else {
+                errorMessage += ': ' + e;
+            }
+            callback(new Error(errorMessage), null);
+        }
+    }));
+
+    let onActivityResult = (args) => {
+        if (callbackManager.onActivityResult(args.requestCode, args.resultCode, args.intent)) {
+            unsubscribe();
+        }
+    };
+
+    let unsubscribe = () => {
+        androidApp.off(AndroidApplication.activityResultEvent, onActivityResult);
+    };
+
+    androidApp.on(AndroidApplication.activityResultEvent, onActivityResult);
 }
