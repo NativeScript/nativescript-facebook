@@ -7,7 +7,8 @@ import {
     MessageGenericTemplateImageAspectRatio,
     MessageMediaTemplateContent,
     MessageMediaTemplateMediaType,
-    ShareAdditionContent
+    ShareAdditionContent,
+    ShareCallbackFunction
 } from './share-manager.common';
 import {topmost} from 'tns-core-modules/ui/frame';
 
@@ -128,12 +129,27 @@ export function createShareMessageMediaTemplateContent(contentConfig: MessageMed
     return content;
 }
 
-export function showShareDialog(content: any) {
-    FBSDKShareDialog.showFromViewControllerWithContentDelegate(currentViewController(), content, null);
+function getCallbackDelegate(callback?: ShareCallbackFunction) {
+    let delegate;
+    if (callback) {
+        delegate = SharingDelegate.new().initWithCallback((error, result) => {
+            if (callback) {
+                callback(error, result);
+            }
+            CFRelease(delegate);
+            delegate = undefined;
+        });
+        CFRetain(delegate);
+    }
+    return delegate;
 }
 
-export function showMessageDialog(content: any) {
-    FBSDKMessageDialog.showWithContentDelegate(content, null);
+export function showShareDialog(content: any, callback?: ShareCallbackFunction) {
+    FBSDKShareDialog.showFromViewControllerWithContentDelegate(currentViewController(), content, getCallbackDelegate(callback));
+}
+
+export function showMessageDialog(content: any, callback?: ShareCallbackFunction) {
+    FBSDKMessageDialog.showWithContentDelegate(content, getCallbackDelegate(callback));
 }
 
 // to save the memory usage, cause ios don't have static method to check if a dialog can show
@@ -172,4 +188,36 @@ export function canMessageDialogShow(content: any): boolean {
         return dialog.canShow;
     }
     return false;
+}
+
+class SharingDelegate extends NSObject implements FBSDKSharingDelegate {
+    public static ObjCProtocols = [];
+
+    static new(): SharingDelegate {
+        if (SharingDelegate.ObjCProtocols.length === 0 && typeof (FBSDKSharingDelegate) !== 'undefined') {
+            SharingDelegate.ObjCProtocols.push(FBSDKSharingDelegate);
+        }
+        return <SharingDelegate>super.new();
+    }
+
+    private callback: ShareCallbackFunction;
+
+    public initWithCallback(callback: ShareCallbackFunction): SharingDelegate {
+        this.callback = callback;
+        return this;
+    }
+
+    sharerDidCancel(sharer: FBSDKSharing): void {
+        this.callback(new Error('canceled'), null);
+    }
+
+    sharerDidCompleteWithResults(sharer: FBSDKSharing, results: NSDictionary<any, any>): void {
+        this.callback(null, {
+            ios: results
+        });
+    }
+
+    sharerDidFailWithError(sharer: FBSDKSharing, error: NSError): void {
+        this.callback(new Error(error.localizedDescription), null);
+    }
 }
