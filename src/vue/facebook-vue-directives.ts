@@ -4,6 +4,6 @@ const FacebookPlugin = {
         Vue.registerElement("FacebookShareButton", () => require('../').ShareButton);
         Vue.registerElement("FacebookSendButton", () => require('../').SendButton);
     }
-}
+};
 
 export default FacebookPlugin;
