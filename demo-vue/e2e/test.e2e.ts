@@ -96,7 +96,13 @@ describe("Facebook tests", async function () {
             await logInButton.click();
             await driver.wait(2000);
         }
-        const continueButton = await driver.findElementByText("Continue", SearchOptions.exact);
+        let continueButton;
+        if(driver.isAndroid){
+            continueButton = await driver.findElementByAccessibilityId("Continue")
+        }
+        else{
+            continueButton = await driver.findElementByText("Continue", SearchOptions.exact);
+        }
         await continueButton.click();
         await driver.wait(1000);
         const userNameLabel = await driver.findElementByText("Nativescript User", SearchOptions.contains);
