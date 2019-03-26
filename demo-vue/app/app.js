@@ -7,6 +7,9 @@ import {
     LoginBehavior
 } from 'nativescript-facebook';
 
+import FacebookPlugin from "nativescript-facebook/vue";
+Vue.use(FacebookPlugin);
+
 Vue.config.silent = true;
 
 application.on(application.launchEvent, function (args) {
