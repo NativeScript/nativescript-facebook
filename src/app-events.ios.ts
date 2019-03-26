@@ -1,6 +1,6 @@
-var application = require("tns-core-modules/application");
-var iosApplication;
-var appEventsLogger;
+let application = require("tns-core-modules/application");
+let iosApplication;
+let appEventsLogger;
 export function initAnalytics() {
     iosApplication = application.iosApplication;
     FBSDKAppEvents.activateApp();
@@ -18,7 +18,7 @@ export function logEvent(name: string, parameters?: any) {
             parameters.map(parameter => parameter.value),
             parameters.map(parameter => parameter.key));
         console.log(parametersDictionary);
-    
-        FBSDKAppEvents.logEventParameters(name, parametersDictionary)
+
+        FBSDKAppEvents.logEventParameters(name, parametersDictionary);
     }
 }
