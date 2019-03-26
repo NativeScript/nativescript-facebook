@@ -98,7 +98,7 @@ describe("Facebook tests", async function () {
         }
         let continueButton;
         if(driver.isAndroid){
-            continueButton = await driver.findElementByAccessibilityId("Continue")
+            continueButton = await driver.findElementByClassName("android.widget.Button")
         }
         else{
             continueButton = await driver.findElementByText("Continue", SearchOptions.exact);
