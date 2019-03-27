@@ -11,7 +11,8 @@ import {
     showShareDialog,
     showMessageDialog,
     canShareDialogShow,
-    canMessageDialogShow
+    canMessageDialogShow,
+    logEvent
 } from 'nativescript-facebook';
 
 let frameModule = require('tns-core-modules/ui/frame');
@@ -111,5 +112,12 @@ export class LoginViewModel extends Observable {
 
     public onSendGenericDialog() {
         showMessageDialog(this.genericContent);
+    }
+
+    public logEvent() {
+        logEvent('Initial', [{
+            key: 'number',
+            value: '',
+        }]);
     }
 }
