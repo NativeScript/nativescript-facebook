@@ -1,6 +1,6 @@
 {
     "name": "nativescript-facebook",
-    "version": "2.5.0",
+    "version": "3.0.0",
     "description": "NativeScript plugin, wrapper of native Facebook SDK for Android and iOS.",
     "nativescript": {
         "platforms": {
@@ -43,10 +43,10 @@
     "homepage": "https://github.com/NativeScript/nativescript-facebook",
     "readmeFilename": "README.md",
     "devDependencies": {
-        "tns-core-modules": "^5.2.0",
-        "tns-platform-declarations": "^5.2.0",
+        "tns-core-modules": "^5.0.0",
+        "tns-platform-declarations": "^5.0.0",
         "typescript": "~3.1.6",
-        "nativescript-angular": "~7.2.1",
+        "nativescript-angular": "~7.2.0",
         "nativescript-vue": "^2.0.2",
         "@angular/core": "~7.2.0",
         "@angular/common": "~7.2.0",
