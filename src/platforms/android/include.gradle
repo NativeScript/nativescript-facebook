@@ -4,5 +4,11 @@ android {
 }
 
 dependencies {
-	implementation "com.facebook.android:facebook-android-sdk:4.36.0"
+	// In order to support AndroidX, the facebook sdk has been manually
+	// downloaded from https://developers.facebook.com/docs/android/downloads/
+	// migrated with https://developer.android.com/studio/command-line/jetifier
+	// and added as aar files in platforms/android/
+	// so the following include is not necessary:
+	//
+	// implementation "com.facebook.android:facebook-android-sdk:4.36.0"
 }

@@ -43,8 +43,8 @@
     "homepage": "https://github.com/NativeScript/nativescript-facebook",
     "readmeFilename": "README.md",
     "devDependencies": {
-        "tns-core-modules": "^5.0.0",
-        "tns-platform-declarations": "^5.0.0",
+        "tns-core-modules": "androidx",
+        "tns-platform-declarations": "androidx",
         "typescript": "~3.1.6",
         "nativescript-angular": "~7.2.0",
         "nativescript-vue": "^2.0.2",

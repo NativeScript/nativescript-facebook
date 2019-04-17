@@ -222,8 +222,8 @@ declare module com {
 			public onCreate(param0: globalAndroid.os.Bundle): void;
 			public onConfigurationChanged(param0: globalAndroid.content.res.Configuration): void;
 			public constructor();
-			public getFragment(): globalAndroid.support.v4.app.Fragment;
-			public getCurrentFragment(): globalAndroid.support.v4.app.Fragment;
+			public getFragment(): androidx.fragment.app.Fragment;
+			public getCurrentFragment(): androidx.fragment.app.Fragment;
 		}
 	}
 }
@@ -260,7 +260,7 @@ declare module com {
 			public getCompoundPaddingLeft(): number;
 			public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number, param3: number, param4: string, param5: string);
 			public getRequestCode(): number;
-			public setFragment(param0: globalAndroid.support.v4.app.Fragment): void;
+			public setFragment(param0: androidx.fragment.app.Fragment): void;
 			public onDraw(param0: globalAndroid.graphics.Canvas): void;
 			public getCompoundPaddingRight(): number;
 			public configureButton(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number, param3: number): void;
@@ -273,7 +273,7 @@ declare module com {
 			public setFragment(param0: globalAndroid.app.Fragment): void;
 			public callExternalOnClickListener(param0: globalAndroid.view.View): void;
 			public onAttachedToWindow(): void;
-			public getFragment(): globalAndroid.support.v4.app.Fragment;
+			public getFragment(): androidx.fragment.app.Fragment;
 			public getDefaultStyleResource(): number;
 		}
 	}
@@ -2695,8 +2695,8 @@ declare module com {
 			export class FragmentWrapper {
 				public static class: java.lang.Class<com.facebook.internal.FragmentWrapper>;
 				public getActivity(): globalAndroid.app.Activity;
-				public constructor(param0: globalAndroid.support.v4.app.Fragment);
-				public getSupportFragment(): globalAndroid.support.v4.app.Fragment;
+				public constructor(param0: androidx.fragment.app.Fragment);
+				public getSupportFragment(): androidx.fragment.app.Fragment;
 				public startActivityForResult(param0: globalAndroid.content.Intent, param1: number): void;
 				public getNativeFragment(): globalAndroid.app.Fragment;
 				public constructor(param0: globalAndroid.app.Fragment);
@@ -3678,10 +3678,10 @@ declare module com {
 				public onActivityResult(param0: number, param1: number, param2: globalAndroid.content.Intent): boolean;
 				public writeToParcel(param0: globalAndroid.os.Parcel, param1: number): void;
 				public static getLoginRequestCode(): number;
-				public constructor(param0: globalAndroid.support.v4.app.Fragment);
+				public constructor(param0: androidx.fragment.app.Fragment);
 				public describeContents(): number;
 				public getPendingRequest(): com.facebook.login.LoginClient.Request;
-				public getFragment(): globalAndroid.support.v4.app.Fragment;
+				public getFragment(): androidx.fragment.app.Fragment;
 				public getHandlersToTry(param0: com.facebook.login.LoginClient.Request): native.Array<com.facebook.login.LoginMethodHandler>;
 				public constructor(param0: globalAndroid.os.Parcel);
 			}
@@ -3786,10 +3786,10 @@ declare module com {
 				public static class: java.lang.Class<com.facebook.login.LoginManager>;
 				public setLoginBehavior(param0: com.facebook.login.LoginBehavior): com.facebook.login.LoginManager;
 				public logInWithPublishPermissions(param0: globalAndroid.app.Activity, param1: java.util.Collection<string>): void;
-				public logInWithPublishPermissions(param0: globalAndroid.support.v4.app.Fragment, param1: java.util.Collection<string>): void;
+				public logInWithPublishPermissions(param0: androidx.fragment.app.Fragment, param1: java.util.Collection<string>): void;
 				public getDefaultAudience(): com.facebook.login.DefaultAudience;
 				public retrieveLoginStatus(param0: globalAndroid.content.Context, param1: com.facebook.LoginStatusCallback): void;
-				public logInWithReadPermissions(param0: globalAndroid.support.v4.app.Fragment, param1: java.util.Collection<string>): void;
+				public logInWithReadPermissions(param0: androidx.fragment.app.Fragment, param1: java.util.Collection<string>): void;
 				public getLoginBehavior(): com.facebook.login.LoginBehavior;
 				public unregisterCallback(param0: com.facebook.CallbackManager): void;
 				public setDefaultAudience(param0: com.facebook.login.DefaultAudience): com.facebook.login.LoginManager;
@@ -3797,7 +3797,7 @@ declare module com {
 				public logInWithReadPermissions(param0: globalAndroid.app.Fragment, param1: java.util.Collection<string>): void;
 				public registerCallback(param0: com.facebook.CallbackManager, param1: com.facebook.FacebookCallback<com.facebook.login.LoginResult>): void;
 				public logOut(): void;
-				public resolveError(param0: globalAndroid.support.v4.app.Fragment, param1: com.facebook.GraphResponse): void;
+				public resolveError(param0: androidx.fragment.app.Fragment, param1: com.facebook.GraphResponse): void;
 				public resolveError(param0: globalAndroid.app.Fragment, param1: com.facebook.GraphResponse): void;
 				public createLoginRequest(param0: java.util.Collection<string>): com.facebook.login.LoginClient.Request;
 				public retrieveLoginStatus(param0: globalAndroid.content.Context, param1: number, param2: com.facebook.LoginStatusCallback): void;
@@ -5108,7 +5108,7 @@ declare module com {
 				public static class: java.lang.Class<com.facebook.share.DeviceShareDialog>;
 				public constructor(param0: com.facebook.internal.FragmentWrapper, param1: number);
 				public constructor(param0: globalAndroid.app.Activity);
-				public constructor(param0: globalAndroid.support.v4.app.Fragment);
+				public constructor(param0: androidx.fragment.app.Fragment);
 				public registerCallbackImpl(param0: com.facebook.internal.CallbackManagerImpl, param1: com.facebook.FacebookCallback<com.facebook.share.DeviceShareDialog.Result>): void;
 				public showImpl(param0: com.facebook.share.model.ShareContent<any,any>, param1: any): void;
 				public showImpl(param0: any, param1: any): void;
@@ -5585,7 +5585,7 @@ declare module com {
 					public show(param0: com.facebook.share.internal.LikeContent): void;
 					public registerCallbackImpl(param0: com.facebook.internal.CallbackManagerImpl, param1: com.facebook.FacebookCallback<com.facebook.share.internal.LikeDialog.Result>): void;
 					public canShow(param0: any): boolean;
-					public constructor(param0: globalAndroid.support.v4.app.Fragment);
+					public constructor(param0: androidx.fragment.app.Fragment);
 					public static canShowWebFallback(): boolean;
 					public constructor(param0: globalAndroid.app.Activity, param1: number);
 					public constructor(param0: com.facebook.internal.FragmentWrapper, param1: number);
@@ -7172,14 +7172,14 @@ declare module com {
 					public registerCallbackImpl(param0: com.facebook.internal.CallbackManagerImpl, param1: com.facebook.FacebookCallback<any>): void;
 					public registerCallback(param0: com.facebook.CallbackManager, param1: com.facebook.FacebookCallback<any>, param2: number): void;
 					public static show(param0: globalAndroid.app.Activity, param1: com.facebook.share.model.AppInviteContent): void;
-					public static show(param0: globalAndroid.support.v4.app.Fragment, param1: com.facebook.share.model.AppInviteContent): void;
+					public static show(param0: androidx.fragment.app.Fragment, param1: com.facebook.share.model.AppInviteContent): void;
 					public static show(param0: globalAndroid.app.Fragment, param1: com.facebook.share.model.AppInviteContent): void;
 					public registerCallback(param0: com.facebook.CallbackManager, param1: com.facebook.FacebookCallback<any>): void;
 					public constructor(param0: globalAndroid.app.Activity);
 					public getOrderedModeHandlers(): java.util.List<com.facebook.internal.FacebookDialogBase.ModeHandler>;
 					public show(param0: any): void;
 					public canShow(param0: any): boolean;
-					public constructor(param0: globalAndroid.support.v4.app.Fragment);
+					public constructor(param0: androidx.fragment.app.Fragment);
 					public constructor(param0: globalAndroid.app.Activity, param1: number);
 					public constructor(param0: com.facebook.internal.FragmentWrapper, param1: number);
 				}
@@ -7226,8 +7226,8 @@ declare module com {
 					public registerCallbackImpl(param0: com.facebook.internal.CallbackManagerImpl, param1: com.facebook.FacebookCallback<com.facebook.share.widget.CreateAppGroupDialog.Result>): void;
 					public show(param0: any): void;
 					public canShow(param0: any): boolean;
-					public static show(param0: globalAndroid.support.v4.app.Fragment, param1: com.facebook.share.model.AppGroupCreationContent): void;
-					public constructor(param0: globalAndroid.support.v4.app.Fragment);
+					public static show(param0: androidx.fragment.app.Fragment, param1: com.facebook.share.model.AppGroupCreationContent): void;
+					public constructor(param0: androidx.fragment.app.Fragment);
 					public constructor(param0: globalAndroid.app.Activity, param1: number);
 					public constructor(param0: com.facebook.internal.FragmentWrapper, param1: number);
 					public static show(param0: globalAndroid.app.Activity, param1: com.facebook.share.model.AppGroupCreationContent): void;
@@ -7290,12 +7290,12 @@ declare module com {
 					public registerCallback(param0: com.facebook.CallbackManager, param1: com.facebook.FacebookCallback<any>): void;
 					public constructor(param0: globalAndroid.app.Activity);
 					public getOrderedModeHandlers(): java.util.List<com.facebook.internal.FacebookDialogBase.ModeHandler>;
-					public static show(param0: globalAndroid.support.v4.app.Fragment, param1: com.facebook.share.model.GameRequestContent): void;
+					public static show(param0: androidx.fragment.app.Fragment, param1: com.facebook.share.model.GameRequestContent): void;
 					public static show(param0: globalAndroid.app.Fragment, param1: com.facebook.share.model.GameRequestContent): void;
 					public registerCallbackImpl(param0: com.facebook.internal.CallbackManagerImpl, param1: com.facebook.FacebookCallback<com.facebook.share.widget.GameRequestDialog.Result>): void;
 					public show(param0: any): void;
 					public canShow(param0: any): boolean;
-					public constructor(param0: globalAndroid.support.v4.app.Fragment);
+					public constructor(param0: androidx.fragment.app.Fragment);
 					public constructor(param0: globalAndroid.app.Activity, param1: number);
 					public constructor(param0: com.facebook.internal.FragmentWrapper, param1: number);
 					public static show(param0: globalAndroid.app.Activity, param1: com.facebook.share.model.GameRequestContent): void;
@@ -7328,7 +7328,7 @@ declare module com {
 					public static canShow(): boolean;
 					public constructor(param0: globalAndroid.app.Fragment);
 					public createBaseAppCall(): com.facebook.internal.AppCall;
-					public static show(param0: globalAndroid.support.v4.app.Fragment, param1: string): void;
+					public static show(param0: androidx.fragment.app.Fragment, param1: string): void;
 					public registerCallbackImpl(param0: com.facebook.internal.CallbackManagerImpl, param1: com.facebook.FacebookCallback<any>): void;
 					public registerCallback(param0: com.facebook.CallbackManager, param1: com.facebook.FacebookCallback<any>, param2: number): void;
 					public registerCallback(param0: com.facebook.CallbackManager, param1: com.facebook.FacebookCallback<any>): void;
@@ -7338,7 +7338,7 @@ declare module com {
 					public show(param0: any): void;
 					public static show(param0: globalAndroid.app.Activity, param1: string): void;
 					public canShow(param0: any): boolean;
-					public constructor(param0: globalAndroid.support.v4.app.Fragment);
+					public constructor(param0: androidx.fragment.app.Fragment);
 					public constructor(param0: globalAndroid.app.Activity, param1: number);
 					public constructor(param0: com.facebook.internal.FragmentWrapper, param1: number);
 					public registerCallbackImpl(param0: com.facebook.internal.CallbackManagerImpl, param1: com.facebook.FacebookCallback<com.facebook.share.widget.JoinAppGroupDialog.Result>): void;
@@ -7379,7 +7379,7 @@ declare module com {
 					public setForegroundColor(param0: number): void;
 					public setHorizontalAlignment(param0: com.facebook.share.widget.LikeView.HorizontalAlignment): void;
 					public setLikeViewStyle(param0: com.facebook.share.widget.LikeView.Style): void;
-					public setFragment(param0: globalAndroid.support.v4.app.Fragment): void;
+					public setFragment(param0: androidx.fragment.app.Fragment): void;
 				}
 				export module LikeView {
 					export class AuxiliaryViewPosition {
@@ -7464,9 +7464,9 @@ declare module com {
 					public getOrderedModeHandlers(): java.util.List<com.facebook.internal.FacebookDialogBase.ModeHandler>;
 					public setShouldFailOnDataError(param0: boolean): void;
 					public show(param0: any): void;
-					public static show(param0: globalAndroid.support.v4.app.Fragment, param1: com.facebook.share.model.ShareContent<any,any>): void;
+					public static show(param0: androidx.fragment.app.Fragment, param1: com.facebook.share.model.ShareContent<any,any>): void;
 					public canShow(param0: any): boolean;
-					public constructor(param0: globalAndroid.support.v4.app.Fragment);
+					public constructor(param0: androidx.fragment.app.Fragment);
 					public constructor(param0: globalAndroid.app.Activity, param1: number);
 					public constructor(param0: com.facebook.internal.FragmentWrapper, param1: number);
 					public registerCallbackImpl(param0: com.facebook.internal.CallbackManagerImpl, param1: com.facebook.FacebookCallback<com.facebook.share.Sharer.Result>): void;
@@ -7572,9 +7572,9 @@ declare module com {
 					public getOrderedModeHandlers(): java.util.List<com.facebook.internal.FacebookDialogBase.ModeHandler>;
 					public setShouldFailOnDataError(param0: boolean): void;
 					public show(param0: any): void;
-					public static show(param0: globalAndroid.support.v4.app.Fragment, param1: com.facebook.share.model.ShareContent<any,any>): void;
+					public static show(param0: androidx.fragment.app.Fragment, param1: com.facebook.share.model.ShareContent<any,any>): void;
 					public canShow(param0: any): boolean;
-					public constructor(param0: globalAndroid.support.v4.app.Fragment);
+					public constructor(param0: androidx.fragment.app.Fragment);
 					public constructor(param0: globalAndroid.app.Activity, param1: number);
 					public constructor(param0: com.facebook.internal.FragmentWrapper, param1: number);
 					public registerCallbackImpl(param0: com.facebook.internal.CallbackManagerImpl, param1: com.facebook.FacebookCallback<com.facebook.share.Sharer.Result>): void;

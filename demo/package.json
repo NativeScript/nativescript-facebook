@@ -2,7 +2,7 @@
   "nativescript": {
     "id": "org.nativescript.demo",
     "tns-android": {
-      "version": "5.3.0"
+      "version": "5.3.0-2019-03-19-143503-02"
     },
     "tns-ios": {
       "version": "5.3.0"
@@ -12,7 +12,7 @@
     "nativescript-facebook": "../src",
     "nativescript-theme-core": "^1.0.4",
     "nativescript-unit-test-runner": "^0.3.4",
-    "tns-core-modules": "^5.0.0"
+    "tns-core-modules": "androidx"
   },
   "devDependencies": {
     "chai": "~4.1.2",

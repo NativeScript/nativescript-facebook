@@ -5,3 +5,4 @@
 /platforms/android/**/*
 !platforms/android/include.gradle
 !platforms/android/nativescript_facebook.aar
+!platforms/android/*-androidx.aar
