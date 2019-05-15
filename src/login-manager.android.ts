@@ -1,7 +1,6 @@
 import * as application from "tns-core-modules/application";
 import { LoginResponse } from './login-response';
 import { FacebookAccessToken } from "./facebook-access-token";
-import { LoginBehavior } from "./login-behavior";
 
 const LOGIN_PERMISSIONS = ["public_profile", "email"];
 
@@ -15,7 +14,7 @@ export function _registerLogoutCallback(callback: Function) {
   onLogoutCallback = callback;
 }
 
-export function init(fbId: string, fbLoginBehavior: LoginBehavior = LoginBehavior.LoginBehaviorBrowser) {
+export function init(fbId: string) {
   com.facebook.FacebookSdk.setAutoLogAppEventsEnabled(true);
   setAppId(fbId);
   androidApplication = application.android;

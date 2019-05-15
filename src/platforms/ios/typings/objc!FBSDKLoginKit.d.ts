@@ -36,17 +36,6 @@ declare const enum FBSDKDeviceLoginError {
 	CodeExpired = 1349152
 }
 
-declare const enum FBSDKDeviceLoginErrorSubcode {
-
-	ExcessivePollingErrorSubcode = 1349172,
-
-	AuthorizationDeclinedErrorSubcode = 1349173,
-
-	AuthorizationPendingErrorSubcode = 1349174,
-
-	CodeExpiredErrorSubcode = 1349152
-}
-
 declare class FBSDKDeviceLoginManager extends NSObject implements NSNetServiceDelegate {
 
 	static alloc(): FBSDKDeviceLoginManager; // inherited from NSObject
@@ -142,15 +131,13 @@ declare class FBSDKDeviceLoginManagerResult extends NSObject {
 	readonly cancelled: boolean;
 }
 
+declare var FBSDKLoginAuthTypeReauthorize: string;
+
+declare var FBSDKLoginAuthTypeRerequest: string;
+
 declare const enum FBSDKLoginBehavior {
 
-	Native = 0,
-
-	Browser = 1,
-
-	SystemAccount = 2,
-
-	Web = 3
+	Browser = 0
 }
 
 declare class FBSDKLoginButton extends FBSDKButton {
@@ -179,9 +166,11 @@ declare class FBSDKLoginButton extends FBSDKButton {
 
 	loginBehavior: FBSDKLoginBehavior;
 
-	publishPermissions: NSArray<any>;
+	permissions: NSArray<string>;
 
-	readPermissions: NSArray<any>;
+	publishPermissions: NSArray<string>;
+
+	readPermissions: NSArray<string>;
 
 	tooltipBehavior: FBSDKLoginButtonTooltipBehavior;
 
@@ -231,27 +220,6 @@ declare const enum FBSDKLoginError {
 	BadChallengeString = 308
 }
 
-declare const enum FBSDKLoginErrorCode {
-
-	ReservedErrorCode = 300,
-
-	UnknownErrorCode = 301,
-
-	PasswordChangedErrorCode = 302,
-
-	UserCheckpointedErrorCode = 303,
-
-	UserMismatchErrorCode = 304,
-
-	UnconfirmedUserErrorCode = 305,
-
-	SystemAccountAppDisabledErrorCode = 306,
-
-	SystemAccountUnavailableErrorCode = 307,
-
-	BadChallengeString = 308
-}
-
 declare var FBSDKLoginErrorDomain: string;
 
 declare var FBSDKLoginKitVersionNumber: number;
@@ -264,21 +232,17 @@ declare class FBSDKLoginManager extends NSObject {
 
 	static new(): FBSDKLoginManager; // inherited from NSObject
 
-	static renewSystemCredentials(handler: (p1: ACAccountCredentialRenewResult, p2: NSError) => void): void;
-
 	authType: string;
 
 	defaultAudience: FBSDKDefaultAudience;
 
 	loginBehavior: FBSDKLoginBehavior;
 
-	logInWithPublishPermissionsFromViewControllerHandler(permissions: NSArray<any> | any[], fromViewController: UIViewController, handler: (p1: FBSDKLoginManagerLoginResult, p2: NSError) => void): void;
+	logInWithPermissionsFromViewControllerHandler(permissions: NSArray<string> | string[], fromViewController: UIViewController, handler: (p1: FBSDKLoginManagerLoginResult, p2: NSError) => void): void;
 
-	logInWithPublishPermissionsHandler(permissions: NSArray<any> | any[], handler: (p1: FBSDKLoginManagerLoginResult, p2: NSError) => void): void;
+	logInWithPublishPermissionsFromViewControllerHandler(permissions: NSArray<string> | string[], fromViewController: UIViewController, handler: (p1: FBSDKLoginManagerLoginResult, p2: NSError) => void): void;
 
-	logInWithReadPermissionsFromViewControllerHandler(permissions: NSArray<any> | any[], fromViewController: UIViewController, handler: (p1: FBSDKLoginManagerLoginResult, p2: NSError) => void): void;
-
-	logInWithReadPermissionsHandler(permissions: NSArray<any> | any[], handler: (p1: FBSDKLoginManagerLoginResult, p2: NSError) => void): void;
+	logInWithReadPermissionsFromViewControllerHandler(permissions: NSArray<string> | string[], fromViewController: UIViewController, handler: (p1: FBSDKLoginManagerLoginResult, p2: NSError) => void): void;
 
 	logOut(): void;
 
@@ -291,17 +255,17 @@ declare class FBSDKLoginManagerLoginResult extends NSObject {
 
 	static new(): FBSDKLoginManagerLoginResult; // inherited from NSObject
 
-	declinedPermissions: NSSet<any>;
+	declinedPermissions: NSSet<string>;
 
-	grantedPermissions: NSSet<any>;
+	grantedPermissions: NSSet<string>;
 
 	readonly isCancelled: boolean;
 
 	token: FBSDKAccessToken;
 
-	constructor(o: { token: FBSDKAccessToken; isCancelled: boolean; grantedPermissions: NSSet<any>; declinedPermissions: NSSet<any>; });
+	constructor(o: { token: FBSDKAccessToken; isCancelled: boolean; grantedPermissions: NSSet<string>; declinedPermissions: NSSet<string>; });
 
-	initWithTokenIsCancelledGrantedPermissionsDeclinedPermissions(token: FBSDKAccessToken, isCancelled: boolean, grantedPermissions: NSSet<any>, declinedPermissions: NSSet<any>): this;
+	initWithTokenIsCancelledGrantedPermissionsDeclinedPermissions(token: FBSDKAccessToken, isCancelled: boolean, grantedPermissions: NSSet<string>, declinedPermissions: NSSet<string>): this;
 }
 
 declare class FBSDKLoginTooltipView extends FBSDKTooltipView {
