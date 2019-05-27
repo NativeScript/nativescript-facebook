@@ -72,6 +72,7 @@ matrix:
       jdk: oraclejdk8
       before_install: 
         - nvm install 8
+      before_script: 
         - cd ../demo && tns platform add android@next
       script:
         - cd ../src && npm run build
@@ -85,6 +86,7 @@ matrix:
       jdk: oraclejdk8
       before_install: 
         - nvm install 8
+      before_script: 
         - cd ../demo-vue && tns platform add android@next
       script:
         - cd ../src && npm run build
@@ -98,6 +100,7 @@ matrix:
       jdk: oraclejdk8
       before_install: 
         - nvm install 8
+      before_script: 
         - cd ../demo-angular && tns platform add android@next
       script:
         - cd ../src && npm run build
@@ -112,6 +115,7 @@ matrix:
       jdk: oraclejdk8
       before_install: 
         - nvm install 8.11.4
+      before_script: 
         - cd ../demo && tns platform add android@next
       script:
         - cd ../demo && npm run ci.android.build
@@ -123,6 +127,7 @@ matrix:
       jdk: oraclejdk8
       before_install: 
         - nvm install 8.11.4
+      before_script: 
         - cd ../demo-angular && tns platform add android@next
       script:
         - cd ../demo-angular && npm run ci.android.build
