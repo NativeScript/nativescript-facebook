@@ -236,6 +236,7 @@ install:
     - npm install nativescript-dev-webpack@next -D
     - npm install nativescript-dev-typescript@next -D
     - ./node_modules/.bin/update-ns-webpack --deps --configs
+    - npx rimraf -- hooks node_modules platforms package-lock.json
     - npm install -D wd@latest
     - cd ../demo-angular
     - npm install tns-core-modules@next -P
@@ -244,6 +245,7 @@ install:
     - npm install nativescript-dev-typescript@next -D
     - ./node_modules/.bin/update-ns-webpack --deps --configs
     - ./node_modules/.bin/update-app-ng-deps
+    - npx rimraf -- hooks node_modules platforms package-lock.json
     - npm install -D wd@latest
     - cd ../demo-vue
     - npm install tns-core-modules@next -P
@@ -251,3 +253,4 @@ install:
     - npm install nativescript-dev-typescript@next -D
     - ./node_modules/.bin/update-ns-webpack --deps --configs
     - npm install -D wd@latest
+    - npx rimraf -- hooks node_modules platforms package-lock.json
