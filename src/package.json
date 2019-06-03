@@ -1,6 +1,6 @@
 {
     "name": "nativescript-facebook",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "NativeScript plugin, wrapper of native Facebook SDK for Android and iOS.",
     "nativescript": {
         "platforms": {
@@ -47,7 +47,7 @@
         "tns-platform-declarations": "^5.0.0",
         "typescript": "~3.1.6",
         "nativescript-angular": "~7.2.0",
-        "nativescript-vue": "^2.0.2",
+        "nativescript-vue": "~2.2.0",
         "@angular/core": "~7.2.0",
         "@angular/common": "~7.2.0",
         "@angular/compiler": "~7.2.0",
