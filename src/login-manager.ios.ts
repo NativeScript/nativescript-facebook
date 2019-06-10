@@ -1,6 +1,4 @@
-import * as applicationModule from "tns-core-modules/application";
 import { LoginResponse } from './login-response';
-import { LoginBehavior } from './login-behavior';
 import { FacebookAccessToken } from "./facebook-access-token";
 
 const LOGIN_PERMISSIONS = ["public_profile", "email"];
@@ -11,10 +9,10 @@ export let onLogoutCallback;
 
 let loginManager;
 
-export function init(fbId: string, fbLoginBehavior: LoginBehavior = LoginBehavior.LoginBehaviorBrowser) {
+export function init(fbId: string) {
   setAppId(fbId);
   loginManager = FBSDKLoginManager.alloc().init();
-  loginManager.loginBehavior = fbLoginBehavior;
+  loginManager.loginBehavior = FBSDKLoginBehavior.Browser;
 }
 
 export function _registerLogoutCallback(callback: Function) {
@@ -53,7 +51,7 @@ export function _registerLoginCallback(callback: Function) {
 }
 
 function setAppId(fbAppId: string) {
-  FBSDKSettings.setAppID(fbAppId);
+  FBSDKSettings.appID = fbAppId;
 }
 
 export function requestPublishPermissions(permissions: string[], callback: Function) {
@@ -63,7 +61,7 @@ export function requestPublishPermissions(permissions: string[], callback: Funct
 
 export function requestReadPermissions(permissions: string[], callback: Function) {
   _registerLoginCallback(callback);
-  loginManager.logInWithReadPermissionsHandler(permissions, onLoginCallback);
+  loginManager.logInWithPermissionsFromViewControllerHandler(permissions, undefined, onLoginCallback);
 }
 
 export function login(callback: Function) {
@@ -71,7 +69,7 @@ export function login(callback: Function) {
 }
 
 export function getCurrentAccessToken() {
-  let sdkAccessToken = FBSDKAccessToken.currentAccessToken();
+  let sdkAccessToken = FBSDKAccessToken.currentAccessToken;
   let accessToken = null;
 
   if (sdkAccessToken) {

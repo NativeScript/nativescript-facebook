@@ -3,15 +3,9 @@ declare class FBSDKAccessToken extends NSObject implements FBSDKCopying, NSSecur
 
 	static alloc(): FBSDKAccessToken; // inherited from NSObject
 
-	static currentAccessToken(): FBSDKAccessToken;
-
-	static currentAccessTokenIsActive(): boolean;
-
 	static new(): FBSDKAccessToken; // inherited from NSObject
 
 	static refreshCurrentAccessToken(completionHandler: (p1: FBSDKGraphRequestConnection, p2: any, p3: NSError) => void): void;
-
-	static setCurrentAccessToken(token: FBSDKAccessToken): void;
 
 	readonly appID: string;
 
@@ -19,19 +13,25 @@ declare class FBSDKAccessToken extends NSObject implements FBSDKCopying, NSSecur
 
 	readonly dataAccessExpired: boolean;
 
-	readonly declinedPermissions: NSSet<any>;
+	readonly declinedPermissions: NSSet<string>;
 
 	readonly expirationDate: Date;
 
 	readonly expired: boolean;
 
-	readonly permissions: NSSet<any>;
+	readonly expiredPermissions: NSSet<string>;
+
+	readonly permissions: NSSet<string>;
 
 	readonly refreshDate: Date;
 
 	readonly tokenString: string;
 
 	readonly userID: string;
+
+	static currentAccessToken: FBSDKAccessToken;
+
+	static readonly currentAccessTokenIsActive: boolean;
 
 	readonly debugDescription: string; // inherited from NSObjectProtocol
 
@@ -49,9 +49,7 @@ declare class FBSDKAccessToken extends NSObject implements FBSDKCopying, NSSecur
 
 	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
 
-	constructor(o: { tokenString: string; permissions: NSArray<any> | any[]; declinedPermissions: NSArray<any> | any[]; appID: string; userID: string; expirationDate: Date; refreshDate: Date; });
-
-	constructor(o: { tokenString: string; permissions: NSArray<any> | any[]; declinedPermissions: NSArray<any> | any[]; appID: string; userID: string; expirationDate: Date; refreshDate: Date; dataAccessExpirationDate: Date; });
+	constructor(o: { tokenString: string; permissions: NSArray<string> | string[]; declinedPermissions: NSArray<string> | string[]; expiredPermissions: NSArray<string> | string[]; appID: string; userID: string; expirationDate: Date; refreshDate: Date; dataAccessExpirationDate: Date; });
 
 	class(): typeof NSObject;
 
@@ -67,9 +65,7 @@ declare class FBSDKAccessToken extends NSObject implements FBSDKCopying, NSSecur
 
 	initWithCoder(aDecoder: NSCoder): this;
 
-	initWithTokenStringPermissionsDeclinedPermissionsAppIDUserIDExpirationDateRefreshDate(tokenString: string, permissions: NSArray<any> | any[], declinedPermissions: NSArray<any> | any[], appID: string, userID: string, expirationDate: Date, refreshDate: Date): this;
-
-	initWithTokenStringPermissionsDeclinedPermissionsAppIDUserIDExpirationDateRefreshDateDataAccessExpirationDate(tokenString: string, permissions: NSArray<any> | any[], declinedPermissions: NSArray<any> | any[], appID: string, userID: string, expirationDate: Date, refreshDate: Date, dataAccessExpirationDate: Date): this;
+	initWithTokenStringPermissionsDeclinedPermissionsExpiredPermissionsAppIDUserIDExpirationDateRefreshDateDataAccessExpirationDate(tokenString: string, permissions: NSArray<string> | string[], declinedPermissions: NSArray<string> | string[], expiredPermissions: NSArray<string> | string[], appID: string, userID: string, expirationDate: Date, refreshDate: Date, dataAccessExpirationDate: Date): this;
 
 	isEqual(object: any): boolean;
 
@@ -98,9 +94,23 @@ declare var FBSDKAccessTokenChangeOldKey: string;
 
 declare var FBSDKAccessTokenDidChangeNotification: string;
 
-declare var FBSDKAccessTokenDidChangeUserID: string;
+declare var FBSDKAccessTokenDidChangeUserIDKey: string;
 
-declare var FBSDKAccessTokenDidExpire: string;
+declare var FBSDKAccessTokenDidExpireKey: string;
+
+declare var FBSDKAppEventCity: string;
+
+declare var FBSDKAppEventCountry: string;
+
+declare var FBSDKAppEventDateOfBirth: string;
+
+declare var FBSDKAppEventEmail: string;
+
+declare var FBSDKAppEventFirstName: string;
+
+declare var FBSDKAppEventGender: string;
+
+declare var FBSDKAppEventLastName: string;
 
 declare var FBSDKAppEventNameAchievedLevel: string;
 
@@ -128,6 +138,8 @@ declare var FBSDKAppEventNameFindLocation: string;
 
 declare var FBSDKAppEventNameInitiatedCheckout: string;
 
+declare var FBSDKAppEventNamePurchased: string;
+
 declare var FBSDKAppEventNameRated: string;
 
 declare var FBSDKAppEventNameSchedule: string;
@@ -141,6 +153,8 @@ declare var FBSDKAppEventNameStartTrial: string;
 declare var FBSDKAppEventNameSubmitApplication: string;
 
 declare var FBSDKAppEventNameSubscribe: string;
+
+declare var FBSDKAppEventNameSubscriptionHeartbeat: string;
 
 declare var FBSDKAppEventNameUnlockedAchievement: string;
 
@@ -174,9 +188,57 @@ declare var FBSDKAppEventParameterNameSearchString: string;
 
 declare var FBSDKAppEventParameterNameSuccess: string;
 
+declare var FBSDKAppEventParameterProductAppLinkAndroidAppName: string;
+
+declare var FBSDKAppEventParameterProductAppLinkAndroidPackage: string;
+
+declare var FBSDKAppEventParameterProductAppLinkAndroidUrl: string;
+
+declare var FBSDKAppEventParameterProductAppLinkIOSAppName: string;
+
+declare var FBSDKAppEventParameterProductAppLinkIOSAppStoreID: string;
+
+declare var FBSDKAppEventParameterProductAppLinkIOSUrl: string;
+
+declare var FBSDKAppEventParameterProductAppLinkIPadAppName: string;
+
+declare var FBSDKAppEventParameterProductAppLinkIPadAppStoreID: string;
+
+declare var FBSDKAppEventParameterProductAppLinkIPadUrl: string;
+
+declare var FBSDKAppEventParameterProductAppLinkIPhoneAppName: string;
+
+declare var FBSDKAppEventParameterProductAppLinkIPhoneAppStoreID: string;
+
+declare var FBSDKAppEventParameterProductAppLinkIPhoneUrl: string;
+
+declare var FBSDKAppEventParameterProductAppLinkWindowsPhoneAppID: string;
+
+declare var FBSDKAppEventParameterProductAppLinkWindowsPhoneAppName: string;
+
+declare var FBSDKAppEventParameterProductAppLinkWindowsPhoneUrl: string;
+
+declare var FBSDKAppEventParameterProductCategory: string;
+
+declare var FBSDKAppEventParameterProductCustomLabel0: string;
+
+declare var FBSDKAppEventParameterProductCustomLabel1: string;
+
+declare var FBSDKAppEventParameterProductCustomLabel2: string;
+
+declare var FBSDKAppEventParameterProductCustomLabel3: string;
+
+declare var FBSDKAppEventParameterProductCustomLabel4: string;
+
 declare var FBSDKAppEventParameterValueNo: string;
 
 declare var FBSDKAppEventParameterValueYes: string;
+
+declare var FBSDKAppEventPhone: string;
+
+declare var FBSDKAppEventState: string;
+
+declare var FBSDKAppEventZip: string;
 
 declare class FBSDKAppEvents extends NSObject {
 
@@ -188,37 +250,35 @@ declare class FBSDKAppEvents extends NSObject {
 
 	static clearUserData(): void;
 
+	static clearUserDataForType(type: string): void;
+
 	static clearUserID(): void;
 
 	static flush(): void;
-
-	static flushBehavior(): FBSDKAppEventsFlushBehavior;
 
 	static getUserData(): string;
 
 	static logEvent(eventName: string): void;
 
-	static logEventParameters(eventName: string, parameters: NSDictionary<any, any>): void;
+	static logEventParameters(eventName: string, parameters: NSDictionary<string, any>): void;
 
 	static logEventValueToSum(eventName: string, valueToSum: number): void;
 
-	static logEventValueToSumParameters(eventName: string, valueToSum: number, parameters: NSDictionary<any, any>): void;
+	static logEventValueToSumParameters(eventName: string, valueToSum: number, parameters: NSDictionary<string, any>): void;
 
-	static logEventValueToSumParametersAccessToken(eventName: string, valueToSum: number, parameters: NSDictionary<any, any>, accessToken: FBSDKAccessToken): void;
+	static logEventValueToSumParametersAccessToken(eventName: string, valueToSum: number, parameters: NSDictionary<string, any>, accessToken: FBSDKAccessToken): void;
 
-	static logProductItemAvailabilityConditionDescriptionImageLinkLinkTitlePriceAmountCurrencyGtinMpnBrandParameters(itemID: string, availability: FBSDKProductAvailability, condition: FBSDKProductCondition, description: string, imageLink: string, link: string, title: string, priceAmount: number, currency: string, gtin: string, mpn: string, brand: string, parameters: NSDictionary<any, any>): void;
+	static logProductItemAvailabilityConditionDescriptionImageLinkLinkTitlePriceAmountCurrencyGtinMpnBrandParameters(itemID: string, availability: FBSDKProductAvailability, condition: FBSDKProductCondition, description: string, imageLink: string, link: string, title: string, priceAmount: number, currency: string, gtin: string, mpn: string, brand: string, parameters: NSDictionary<string, any>): void;
 
 	static logPurchaseCurrency(purchaseAmount: number, currency: string): void;
 
-	static logPurchaseCurrencyParameters(purchaseAmount: number, currency: string, parameters: NSDictionary<any, any>): void;
+	static logPurchaseCurrencyParameters(purchaseAmount: number, currency: string, parameters: NSDictionary<string, any>): void;
 
-	static logPurchaseCurrencyParametersAccessToken(purchaseAmount: number, currency: string, parameters: NSDictionary<any, any>, accessToken: FBSDKAccessToken): void;
+	static logPurchaseCurrencyParametersAccessToken(purchaseAmount: number, currency: string, parameters: NSDictionary<string, any>, accessToken: FBSDKAccessToken): void;
 
 	static logPushNotificationOpen(payload: NSDictionary<any, any>): void;
 
 	static logPushNotificationOpenAction(payload: NSDictionary<any, any>, action: string): void;
-
-	static loggingOverrideAppID(): string;
 
 	static new(): FBSDKAppEvents; // inherited from NSObject
 
@@ -226,23 +286,23 @@ declare class FBSDKAppEvents extends NSObject {
 
 	static sendEventBindingsToUnity(): void;
 
-	static setFlushBehavior(flushBehavior: FBSDKAppEventsFlushBehavior): void;
-
 	static setIsUnityInit(isUnityInit: boolean): void;
-
-	static setLoggingOverrideAppID(appID: string): void;
 
 	static setPushNotificationsDeviceToken(deviceToken: NSData): void;
 
-	static setUserData(userData: NSDictionary<any, any>): void;
+	static setPushNotificationsDeviceTokenString(deviceTokenString: string): void;
+
+	static setUserDataForType(data: string, type: string): void;
 
 	static setUserEmailFirstNameLastNamePhoneDateOfBirthGenderCityStateZipCountry(email: string, firstName: string, lastName: string, phone: string, dateOfBirth: string, gender: string, city: string, state: string, zip: string, country: string): void;
 
-	static setUserID(userID: string): void;
+	static updateUserPropertiesHandler(properties: NSDictionary<string, any>, handler: (p1: FBSDKGraphRequestConnection, p2: any, p3: NSError) => void): void;
 
-	static updateUserPropertiesHandler(properties: NSDictionary<any, any>, handler: (p1: FBSDKGraphRequestConnection, p2: any, p3: NSError) => void): void;
+	static flushBehavior: FBSDKAppEventsFlushBehavior;
 
-	static userID(): string;
+	static loggingOverrideAppID: string;
+
+	static userID: string;
 }
 
 declare const enum FBSDKAppEventsFlushBehavior {
@@ -283,8 +343,6 @@ declare class FBSDKAppLinkNavigation extends NSObject {
 
 	static callbackAppLinkDataForAppWithNameUrl(appName: string, url: string): NSDictionary<string, NSDictionary<string, string>>;
 
-	static defaultResolver(): FBSDKAppLinkResolving;
-
 	static navigateToAppLinkError(link: FBSDKAppLink): FBSDKAppLinkNavigationType;
 
 	static navigateToURLHandler(destination: NSURL, handler: (p1: FBSDKAppLinkNavigationType, p2: NSError) => void): void;
@@ -301,17 +359,17 @@ declare class FBSDKAppLinkNavigation extends NSObject {
 
 	static resolveAppLinkResolverHandler(destination: NSURL, resolver: FBSDKAppLinkResolving, handler: (p1: FBSDKAppLink, p2: NSError) => void): void;
 
-	static setDefaultResolver(resolver: FBSDKAppLinkResolving): void;
-
 	readonly appLink: FBSDKAppLink;
 
 	readonly appLinkData: NSDictionary<string, any>;
 
 	readonly extras: NSDictionary<string, any>;
 
-	navigate(): FBSDKAppLinkNavigationType;
+	readonly navigationType: FBSDKAppLinkNavigationType;
 
-	navigationType(): FBSDKAppLinkNavigationType;
+	static defaultResolver: FBSDKAppLinkResolving;
+
+	navigate(): FBSDKAppLinkNavigationType;
 }
 
 declare const enum FBSDKAppLinkNavigationType {
@@ -325,7 +383,7 @@ declare const enum FBSDKAppLinkNavigationType {
 
 declare var FBSDKAppLinkParseEventName: string;
 
-declare class FBSDKAppLinkResolver extends NSObject implements BFAppLinkResolving, FBSDKAppLinkResolving {
+declare class FBSDKAppLinkResolver extends NSObject implements FBSDKAppLinkResolving {
 
 	static alloc(): FBSDKAppLinkResolver; // inherited from NSObject
 
@@ -347,11 +405,7 @@ declare class FBSDKAppLinkResolver extends NSObject implements BFAppLinkResolvin
 
 	appLinkFromURLHandler(url: NSURL, handler: (p1: FBSDKAppLink, p2: NSError) => void): void;
 
-	appLinkFromURLInBackground(url: NSURL): BFTask<any>;
-
 	appLinksFromURLsHandler(urls: NSArray<NSURL> | NSURL[], handler: (p1: NSDictionary<NSURL, FBSDKAppLink>, p2: NSError) => void): void;
-
-	appLinksFromURLsInBackground(urls: NSArray<NSURL> | NSURL[]): BFTask<any>;
 
 	class(): typeof NSObject;
 
@@ -518,8 +572,6 @@ declare class FBSDKAppLinkUtility extends NSObject {
 
 	static appInvitePromotionCodeFromURL(url: NSURL): string;
 
-	static fetchDeferredAppInvite(handler: (p1: NSURL) => void): boolean;
-
 	static fetchDeferredAppLink(handler: (p1: NSURL, p2: NSError) => void): void;
 
 	static new(): FBSDKAppLinkUtility; // inherited from NSObject
@@ -531,15 +583,24 @@ declare class FBSDKApplicationDelegate extends NSObject {
 
 	static alloc(): FBSDKApplicationDelegate; // inherited from NSObject
 
+	static initializeSDK(launchOptions: NSDictionary<string, any>): void;
+
 	static new(): FBSDKApplicationDelegate; // inherited from NSObject
 
-	static sharedInstance(): FBSDKApplicationDelegate;
+	static readonly sharedInstance: FBSDKApplicationDelegate;
 
-	applicationDidFinishLaunchingWithOptions(application: UIApplication, launchOptions: NSDictionary<any, any>): boolean;
+	applicationDidFinishLaunchingWithOptions(application: UIApplication, launchOptions: NSDictionary<string, any>): boolean;
 
 	applicationOpenURLOptions(application: UIApplication, url: NSURL, options: NSDictionary<string, any>): boolean;
 
 	applicationOpenURLSourceApplicationAnnotation(application: UIApplication, url: NSURL, sourceApplication: string, annotation: any): boolean;
+}
+
+declare class FBSDKBasicUtility extends NSObject {
+
+	static alloc(): FBSDKBasicUtility; // inherited from NSObject
+
+	static new(): FBSDKBasicUtility; // inherited from NSObject
 }
 
 declare class FBSDKButton extends UIButton {
@@ -611,37 +672,6 @@ declare var FBSDKErrorArgumentNameKey: string;
 
 declare var FBSDKErrorArgumentValueKey: string;
 
-declare const enum FBSDKErrorCode {
-
-	ReservedErrorCode = 0,
-
-	EncryptionErrorCode = 1,
-
-	InvalidArgumentErrorCode = 2,
-
-	UnknownErrorCode = 3,
-
-	NetworkErrorCode = 4,
-
-	AppEventsFlushErrorCode = 5,
-
-	GraphRequestNonTextMimeTypeReturnedErrorCode = 6,
-
-	GraphRequestProtocolMismatchErrorCode = 7,
-
-	GraphRequestGraphAPIErrorCode = 8,
-
-	DialogUnavailableErrorCode = 9,
-
-	AccessTokenRequiredErrorCode = 10,
-
-	AppVersionUnsupportedErrorCode = 11,
-
-	BrowserUnavailableErrorCode = 12,
-
-	BrowswerUnavailableErrorCode = 12
-}
-
 declare var FBSDKErrorDeveloperMessageKey: string;
 
 declare var FBSDKErrorDomain: string;
@@ -693,23 +723,31 @@ declare class FBSDKGraphRequest extends NSObject {
 
 	readonly graphPath: string;
 
-	readonly parameters: NSMutableDictionary<any, any>;
+	parameters: NSDictionary<string, any>;
 
 	readonly tokenString: string;
 
 	readonly version: string;
 
-	constructor(o: { graphPath: string; parameters: NSDictionary<any, any>; });
+	constructor(o: { graphPath: string; });
 
-	constructor(o: { graphPath: string; parameters: NSDictionary<any, any>; HTTPMethod: string; });
+	constructor(o: { graphPath: string; HTTPMethod: string; });
 
-	constructor(o: { graphPath: string; parameters: NSDictionary<any, any>; tokenString: string; version: string; HTTPMethod: string; });
+	constructor(o: { graphPath: string; parameters: NSDictionary<string, any>; });
 
-	initWithGraphPathParameters(graphPath: string, parameters: NSDictionary<any, any>): this;
+	constructor(o: { graphPath: string; parameters: NSDictionary<string, any>; HTTPMethod: string; });
 
-	initWithGraphPathParametersHTTPMethod(graphPath: string, parameters: NSDictionary<any, any>, HTTPMethod: string): this;
+	constructor(o: { graphPath: string; parameters: NSDictionary<string, any>; tokenString: string; version: string; HTTPMethod: string; });
 
-	initWithGraphPathParametersTokenStringVersionHTTPMethod(graphPath: string, parameters: NSDictionary<any, any>, tokenString: string, version: string, HTTPMethod: string): this;
+	initWithGraphPath(graphPath: string): this;
+
+	initWithGraphPathHTTPMethod(graphPath: string, method: string): this;
+
+	initWithGraphPathParameters(graphPath: string, parameters: NSDictionary<string, any>): this;
+
+	initWithGraphPathParametersHTTPMethod(graphPath: string, parameters: NSDictionary<string, any>, method: string): this;
+
+	initWithGraphPathParametersTokenStringVersionHTTPMethod(graphPath: string, parameters: NSDictionary<string, any>, tokenString: string, version: string, method: string): this;
 
 	setGraphErrorRecoveryDisabled(disable: boolean): void;
 
@@ -722,25 +760,25 @@ declare class FBSDKGraphRequestConnection extends NSObject {
 
 	static new(): FBSDKGraphRequestConnection; // inherited from NSObject
 
-	static setDefaultConnectionTimeout(defaultConnectionTimeout: number): void;
-
-	readonly URLResponse: NSHTTPURLResponse;
-
 	delegate: FBSDKGraphRequestConnectionDelegate;
+
+	delegateQueue: NSOperationQueue;
 
 	timeout: number;
 
+	readonly urlResponse: NSHTTPURLResponse;
+
+	static defaultConnectionTimeout: number;
+
+	addRequestBatchEntryNameCompletionHandler(request: FBSDKGraphRequest, name: string, handler: (p1: FBSDKGraphRequestConnection, p2: any, p3: NSError) => void): void;
+
+	addRequestBatchParametersCompletionHandler(request: FBSDKGraphRequest, batchParameters: NSDictionary<string, any>, handler: (p1: FBSDKGraphRequestConnection, p2: any, p3: NSError) => void): void;
+
 	addRequestCompletionHandler(request: FBSDKGraphRequest, handler: (p1: FBSDKGraphRequestConnection, p2: any, p3: NSError) => void): void;
-
-	addRequestCompletionHandlerBatchEntryName(request: FBSDKGraphRequest, handler: (p1: FBSDKGraphRequestConnection, p2: any, p3: NSError) => void, name: string): void;
-
-	addRequestCompletionHandlerBatchParameters(request: FBSDKGraphRequest, handler: (p1: FBSDKGraphRequestConnection, p2: any, p3: NSError) => void, batchParameters: NSDictionary<any, any>): void;
 
 	cancel(): void;
 
-	overrideVersionPartWith(version: string): void;
-
-	setDelegateQueue(queue: NSOperationQueue): void;
+	overrideGraphAPIVersion(version: string): void;
 
 	start(): void;
 }
@@ -786,22 +824,7 @@ declare const enum FBSDKGraphRequestError {
 	Recoverable = 2
 }
 
-declare const enum FBSDKGraphRequestErrorCategory {
-
-	Other = 0,
-
-	Transient = 1,
-
-	Recoverable = 2
-}
-
-declare var FBSDKGraphRequestErrorCategoryKey: string;
-
-declare var FBSDKGraphRequestErrorGraphErrorCode: string;
-
 declare var FBSDKGraphRequestErrorGraphErrorCodeKey: string;
-
-declare var FBSDKGraphRequestErrorGraphErrorSubcode: string;
 
 declare var FBSDKGraphRequestErrorGraphErrorSubcodeKey: string;
 
@@ -811,13 +834,17 @@ declare var FBSDKGraphRequestErrorKey: string;
 
 declare var FBSDKGraphRequestErrorParsedJSONResponseKey: string;
 
+declare var FBSDKHTTPMethodDELETE: string;
+
+declare var FBSDKHTTPMethodGET: string;
+
+declare var FBSDKHTTPMethodPOST: string;
+
 declare const enum FBSDKIncludeStatusBarInSize {
 
 	Never = 0,
 
-	IOS7AndLater = 1,
-
-	Always = 2
+	Always = 1
 }
 
 declare var FBSDKLoggingBehaviorAccessTokens: string;
@@ -852,8 +879,6 @@ declare var FBSDKMeasurementEventArgsKey: string;
 declare var FBSDKMeasurementEventNameKey: string;
 
 declare var FBSDKMeasurementEventNotification: string;
-
-declare var FBSDKMeasurementEventNotificationName: string;
 
 interface FBSDKMutableCopying extends FBSDKCopying, NSMutableCopying {
 
@@ -892,15 +917,11 @@ declare class FBSDKProfile extends NSObject implements NSCopying, NSSecureCoding
 
 	static alloc(): FBSDKProfile; // inherited from NSObject
 
-	static currentProfile(): FBSDKProfile;
-
 	static enableUpdatesOnAccessTokenChange(enable: boolean): void;
 
 	static loadCurrentProfileWithCompletion(completion: (p1: FBSDKProfile, p2: NSError) => void): void;
 
 	static new(): FBSDKProfile; // inherited from NSObject
-
-	static setCurrentProfile(profile: FBSDKProfile): void;
 
 	readonly firstName: string;
 
@@ -916,6 +937,8 @@ declare class FBSDKProfile extends NSObject implements NSCopying, NSSecureCoding
 
 	readonly userID: string;
 
+	static currentProfile: FBSDKProfile;
+
 	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
 
 	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
@@ -925,8 +948,6 @@ declare class FBSDKProfile extends NSObject implements NSCopying, NSSecureCoding
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
 	encodeWithCoder(aCoder: NSCoder): void;
-
-	imagePathForPictureModeSize(mode: FBSDKProfilePictureMode, size: CGSize): string;
 
 	imageURLForPictureModeSize(mode: FBSDKProfilePictureMode, size: CGSize): NSURL;
 
@@ -977,65 +998,45 @@ declare class FBSDKProfilePictureView extends UIView {
 
 declare class FBSDKSettings extends NSObject {
 
-	static JPEGCompressionQuality(): number;
-
 	static alloc(): FBSDKSettings; // inherited from NSObject
-
-	static appID(): string;
-
-	static appURLSchemeSuffix(): string;
-
-	static autoLogAppEventsEnabled(): number;
-
-	static clientToken(): string;
-
-	static codelessDebugLogEnabled(): number;
 
 	static disableLoggingBehavior(loggingBehavior: string): void;
 
-	static displayName(): string;
-
 	static enableLoggingBehavior(loggingBehavior: string): void;
-
-	static facebookDomainPart(): string;
-
-	static graphAPIVersion(): string;
-
-	static legacyUserDefaultTokenInformationKeyName(): string;
-
-	static limitEventAndDataUsage(): boolean;
-
-	static loggingBehavior(): NSSet<any>;
 
 	static new(): FBSDKSettings; // inherited from NSObject
 
-	static sdkVersion(): string;
+	static JPEGCompressionQuality: number;
 
-	static setAppID(appID: string): void;
+	static advertiserIDCollectionEnabled: boolean;
 
-	static setAppURLSchemeSuffix(appURLSchemeSuffix: string): void;
+	static appID: string;
 
-	static setAutoLogAppEventsEnabled(AutoLogAppEventsEnabled: number): void;
+	static appURLSchemeSuffix: string;
 
-	static setClientToken(clientToken: string): void;
+	static autoInitEnabled: boolean;
 
-	static setCodelessDebugLogEnabled(CodelessDebugLogEnabled: number): void;
+	static autoLogAppEventsEnabled: boolean;
 
-	static setDisplayName(displayName: string): void;
+	static clientToken: string;
 
-	static setFacebookDomainPart(facebookDomainPart: string): void;
+	static codelessDebugLogEnabled: boolean;
 
-	static setGraphAPIVersion(version: string): void;
+	static readonly defaultGraphAPIVersion: string;
 
-	static setGraphErrorRecoveryDisabled(disableGraphErrorRecovery: boolean): void;
+	static displayName: string;
 
-	static setJPEGCompressionQuality(JPEGCompressionQuality: number): void;
+	static facebookDomainPart: string;
 
-	static setLegacyUserDefaultTokenInformationKeyName(tokenInformationKeyName: string): void;
+	static graphAPIVersion: string;
 
-	static setLimitEventAndDataUsage(limitEventAndDataUsage: boolean): void;
+	static graphErrorRecoveryEnabled: boolean;
 
-	static setLoggingBehavior(loggingBehavior: NSSet<any>): void;
+	static limitEventAndDataUsage: boolean;
+
+	static loggingBehaviors: NSSet<string>;
+
+	static readonly sdkVersion: string;
 }
 
 declare class FBSDKTestUsersManager extends NSObject {
@@ -1046,13 +1047,13 @@ declare class FBSDKTestUsersManager extends NSObject {
 
 	static sharedInstanceForAppIDAppSecret(appID: string, appSecret: string): FBSDKTestUsersManager;
 
-	addTestAccountWithPermissionsCompletionHandler(permissions: NSSet<any>, handler: (p1: NSArray<any>, p2: NSError) => void): void;
+	addTestAccountWithPermissionsCompletionHandler(permissions: NSSet<string>, handler: (p1: NSArray<FBSDKAccessToken>, p2: NSError) => void): void;
 
 	makeFriendsWithFirstSecondCallback(first: FBSDKAccessToken, second: FBSDKAccessToken, callback: (p1: NSError) => void): void;
 
 	removeTestAccountCompletionHandler(userId: string, handler: (p1: NSError) => void): void;
 
-	requestTestAccountTokensWithArraysOfPermissionsCreateIfNotFoundCompletionHandler(arraysOfPermissions: NSArray<any> | any[], createIfNotFound: boolean, handler: (p1: NSArray<any>, p2: NSError) => void): void;
+	requestTestAccountTokensWithArraysOfPermissionsCreateIfNotFoundCompletionHandler(arraysOfPermissions: NSArray<NSSet<string>> | NSSet<string>[], createIfNotFound: boolean, handler: (p1: NSArray<FBSDKAccessToken>, p2: NSError) => void): void;
 }
 
 declare class FBSDKURL extends NSObject {
@@ -1090,11 +1091,11 @@ declare class FBSDKUtility extends NSObject {
 
 	static alloc(): FBSDKUtility; // inherited from NSObject
 
-	static dictionaryWithQueryString(queryString: string): NSDictionary<any, any>;
+	static dictionaryWithQueryString(queryString: string): NSDictionary<string, string>;
 
 	static new(): FBSDKUtility; // inherited from NSObject
 
-	static queryStringWithDictionaryError(dictionary: NSDictionary<any, any>): string;
+	static queryStringWithDictionaryError(dictionary: NSDictionary<string, any>): string;
 
 	static startGCDTimerWithIntervalBlock(interval: number, block: () => void): NSObject;
 
@@ -1107,7 +1108,7 @@ declare class FBSDKWebViewAppLinkResolver extends NSObject implements FBSDKAppLi
 
 	static new(): FBSDKWebViewAppLinkResolver; // inherited from NSObject
 
-	static sharedInstance(): FBSDKWebViewAppLinkResolver;
+	static readonly sharedInstance: FBSDKWebViewAppLinkResolver;
 
 	readonly debugDescription: string; // inherited from NSObjectProtocol
 

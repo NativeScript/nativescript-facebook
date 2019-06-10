@@ -125,7 +125,13 @@
                 });
             },
             onShareDialog: function() {
-                showShareDialog(this.linkContent);
+                showShareDialog(this.linkContent, (error, result) => {
+                  if (error) {
+                    console.error(error);
+                    return;
+                  }
+                  alert('Successfully shared');
+                });
             },
             onShareDialogPhotos: function() {
                 showShareDialog(this.photosContent);

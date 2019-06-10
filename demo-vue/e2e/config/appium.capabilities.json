@@ -18,13 +18,7 @@
     "platformVersion": "7.0",
     "deviceName": "Android GoogleAPI Emulator",
     "appiumVersion": "1.9.1",
-    "noReset": true,
-    "lt": 60000,
-    "newCommandTimeout": 720,
-    "appium-version": "1.9.1",
-    "fullReset": false,
-    "idleTimeout": 120,
-    "automationName": "Appium"
+    "noReset": true
   },
   "android25": {
     "platformName": "Android",
