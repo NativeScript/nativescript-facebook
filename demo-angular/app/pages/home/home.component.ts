@@ -34,6 +34,8 @@ export class HomeComponent {
         }, function (err) {
             alert("Error getting user info: " + err);
         });
+
+        Facebook.initAnalytics();
     }
 
     onLogout(eventData: Facebook.LoginEventData) {
