@@ -120,7 +120,7 @@ export class LoginViewModel extends Observable {
         showMessageDialog(this.genericContent);
     }
 
-    public logEvent() {
+    public logEventAction() {
         logEvent('Initial', [{
             key: 'number',
             value: '',
