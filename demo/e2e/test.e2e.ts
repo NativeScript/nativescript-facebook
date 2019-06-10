@@ -41,7 +41,7 @@ describe("Facebook tests", async function () {
         console.log("Driver successfully quit");
     });
 
-    afterEach(async function (){
+    afterEach(async function () {
         if (this.currentTest.state && this.currentTest.state === "failed") {
             let png = await driver.logScreenshot(this.currentTest.title);
             fs.copyFile(png, './mochawesome-report/' + this.currentTest.title + '.png', function (err) {
@@ -52,13 +52,14 @@ describe("Facebook tests", async function () {
             });
             addContext(this, './' + this.currentTest.title + '.png');
         }
-    })
+    });
 
     it("should log in via custom button", async function () {
+        let userNameLabelElement;
         if (isAndroid) {
-            var userNameLabelElement = "[@text='Nativescript User']";
+            userNameLabelElement = "[@text='Nativescript User']";
         } else {
-            var userNameLabelElement = "[@name='Nativescript User']";
+            userNameLabelElement = "[@name='Nativescript User']";
         }
 
         const facebookButton = await driver.findElementByText("Custom", SearchOptions.contains);
@@ -81,6 +82,9 @@ describe("Facebook tests", async function () {
             await driver.wait(1000);
             await allFields[0].sendKeys(USERNAME);
         } else {
+            const continueBtn = await driver.findElementByText("Continue");
+            await continueBtn.click();
+
             const passField = await driver.findElementByClassName(driver.locators.getElementByName("securetextfield"));
             await passField.click();
             await passField.sendKeys(PASSWORD);

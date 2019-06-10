@@ -77,6 +77,9 @@ describe("Facebook tests", async function () {
             await driver.wait(1000);
             await allFields[0].sendKeys(USERNAME);
         } else {
+            const continueBtn = await driver.findElementByText("Continue");
+            await continueBtn.click();
+            
             const passField = await driver.findElementByClassName(driver.locators.getElementByName("securetextfield"));
             await passField.click();
             await passField.sendKeys(PASSWORD);
