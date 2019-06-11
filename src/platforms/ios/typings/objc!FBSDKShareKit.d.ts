@@ -1,36 +1,4 @@
 
-declare class FBSDKAppGroupAddDialog extends NSObject {
-
-	static alloc(): FBSDKAppGroupAddDialog; // inherited from NSObject
-
-	static new(): FBSDKAppGroupAddDialog; // inherited from NSObject
-
-	static showWithContentDelegate(content: FBSDKAppGroupContent, delegate: FBSDKAppGroupAddDialogDelegate): FBSDKAppGroupAddDialog;
-
-	content: FBSDKAppGroupContent;
-
-	delegate: FBSDKAppGroupAddDialogDelegate;
-
-	canShow(): boolean;
-
-	show(): boolean;
-
-	validateWithError(): boolean;
-}
-
-interface FBSDKAppGroupAddDialogDelegate extends NSObjectProtocol {
-
-	appGroupAddDialogDidCancel(appGroupAddDialog: FBSDKAppGroupAddDialog): void;
-
-	appGroupAddDialogDidCompleteWithResults(appGroupAddDialog: FBSDKAppGroupAddDialog, results: NSDictionary<any, any>): void;
-
-	appGroupAddDialogDidFailWithError(appGroupAddDialog: FBSDKAppGroupAddDialog, error: NSError): void;
-}
-declare var FBSDKAppGroupAddDialogDelegate: {
-
-	prototype: FBSDKAppGroupAddDialogDelegate;
-};
-
 declare class FBSDKAppGroupContent extends NSObject implements FBSDKCopying, NSSecureCoding {
 
 	static alloc(): FBSDKAppGroupContent; // inherited from NSObject
@@ -92,38 +60,6 @@ declare class FBSDKAppGroupContent extends NSObject implements FBSDKCopying, NSS
 	self(): this;
 }
 
-declare class FBSDKAppGroupJoinDialog extends NSObject {
-
-	static alloc(): FBSDKAppGroupJoinDialog; // inherited from NSObject
-
-	static new(): FBSDKAppGroupJoinDialog; // inherited from NSObject
-
-	static showWithGroupIDDelegate(groupID: string, delegate: FBSDKAppGroupJoinDialogDelegate): FBSDKAppGroupJoinDialog;
-
-	delegate: FBSDKAppGroupJoinDialogDelegate;
-
-	groupID: string;
-
-	canShow(): boolean;
-
-	show(): boolean;
-
-	validateWithError(): boolean;
-}
-
-interface FBSDKAppGroupJoinDialogDelegate extends NSObjectProtocol {
-
-	appGroupJoinDialogDidCancel(appGroupJoinDialog: FBSDKAppGroupJoinDialog): void;
-
-	appGroupJoinDialogDidCompleteWithResults(appGroupJoinDialog: FBSDKAppGroupJoinDialog, results: NSDictionary<any, any>): void;
-
-	appGroupJoinDialogDidFailWithError(appGroupJoinDialog: FBSDKAppGroupJoinDialog, error: NSError): void;
-}
-declare var FBSDKAppGroupJoinDialogDelegate: {
-
-	prototype: FBSDKAppGroupJoinDialogDelegate;
-};
-
 declare const enum FBSDKAppGroupPrivacy {
 
 	Open = 0,
@@ -142,8 +78,6 @@ declare class FBSDKAppInviteContent extends NSObject implements FBSDKCopying, FB
 	appLinkURL: NSURL;
 
 	destination: FBSDKAppInviteDestination;
-
-	previewImageURL: NSURL;
 
 	promotionCode: string;
 
@@ -207,40 +141,6 @@ declare const enum FBSDKAppInviteDestination {
 	Messenger = 1
 }
 
-declare class FBSDKAppInviteDialog extends NSObject {
-
-	static alloc(): FBSDKAppInviteDialog; // inherited from NSObject
-
-	static new(): FBSDKAppInviteDialog; // inherited from NSObject
-
-	static showFromViewControllerWithContentDelegate(viewController: UIViewController, content: FBSDKAppInviteContent, delegate: FBSDKAppInviteDialogDelegate): FBSDKAppInviteDialog;
-
-	static showWithContentDelegate(content: FBSDKAppInviteContent, delegate: FBSDKAppInviteDialogDelegate): FBSDKAppInviteDialog;
-
-	readonly canShow: boolean;
-
-	content: FBSDKAppInviteContent;
-
-	delegate: FBSDKAppInviteDialogDelegate;
-
-	fromViewController: UIViewController;
-
-	show(): boolean;
-
-	validateWithError(): boolean;
-}
-
-interface FBSDKAppInviteDialogDelegate extends NSObjectProtocol {
-
-	appInviteDialogDidCompleteWithResults(appInviteDialog: FBSDKAppInviteDialog, results: NSDictionary<any, any>): void;
-
-	appInviteDialogDidFailWithError(appInviteDialog: FBSDKAppInviteDialog, error: NSError): void;
-}
-declare var FBSDKAppInviteDialogDelegate: {
-
-	prototype: FBSDKAppInviteDialogDelegate;
-};
-
 declare class FBSDKCameraEffectArguments extends NSObject implements FBSDKCopying, NSSecureCoding {
 
 	static alloc(): FBSDKCameraEffectArguments; // inherited from NSObject
@@ -263,7 +163,7 @@ declare class FBSDKCameraEffectArguments extends NSObject implements FBSDKCopyin
 
 	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
 
-	arrayForKey(key: string): NSArray<any>;
+	arrayForKey(key: string): NSArray<string>;
 
 	class(): typeof NSObject;
 
@@ -386,15 +286,11 @@ declare class FBSDKGameRequestContent extends NSObject implements FBSDKCopying, 
 
 	objectID: string;
 
-	recipientSuggestions: NSArray<any>;
+	recipientSuggestions: NSArray<string>;
 
-	recipients: NSArray<any>;
-
-	suggestions: NSArray<any>;
+	recipients: NSArray<string>;
 
 	title: string;
-
-	to: NSArray<any>;
 
 	readonly debugDescription: string; // inherited from NSObjectProtocol
 
@@ -451,6 +347,8 @@ declare class FBSDKGameRequestDialog extends NSObject {
 
 	static alloc(): FBSDKGameRequestDialog; // inherited from NSObject
 
+	static dialogWithContentDelegate(content: FBSDKGameRequestContent, delegate: FBSDKGameRequestDialogDelegate): FBSDKGameRequestDialog;
+
 	static new(): FBSDKGameRequestDialog; // inherited from NSObject
 
 	static showWithContentDelegate(content: FBSDKGameRequestContent, delegate: FBSDKGameRequestDialogDelegate): FBSDKGameRequestDialog;
@@ -472,7 +370,7 @@ interface FBSDKGameRequestDialogDelegate extends NSObjectProtocol {
 
 	gameRequestDialogDidCancel(gameRequestDialog: FBSDKGameRequestDialog): void;
 
-	gameRequestDialogDidCompleteWithResults(gameRequestDialog: FBSDKGameRequestDialog, results: NSDictionary<any, any>): void;
+	gameRequestDialogDidCompleteWithResults(gameRequestDialog: FBSDKGameRequestDialog, results: NSDictionary<string, any>): void;
 
 	gameRequestDialogDidFailWithError(gameRequestDialog: FBSDKGameRequestDialog, error: NSError): void;
 }
@@ -551,161 +449,6 @@ declare class FBSDKHashtag extends NSObject implements FBSDKCopying, NSSecureCod
 	self(): this;
 }
 
-declare class FBSDKLikeButton extends FBSDKButton implements FBSDKLiking {
-
-	static alloc(): FBSDKLikeButton; // inherited from NSObject
-
-	static appearance(): FBSDKLikeButton; // inherited from UIAppearance
-
-	static appearanceForTraitCollection(trait: UITraitCollection): FBSDKLikeButton; // inherited from UIAppearance
-
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): FBSDKLikeButton; // inherited from UIAppearance
-
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): FBSDKLikeButton; // inherited from UIAppearance
-
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): FBSDKLikeButton; // inherited from UIAppearance
-
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): FBSDKLikeButton; // inherited from UIAppearance
-
-	static buttonWithType(buttonType: UIButtonType): FBSDKLikeButton; // inherited from UIButton
-
-	static new(): FBSDKLikeButton; // inherited from NSObject
-
-	soundEnabled: boolean;
-
-	readonly debugDescription: string; // inherited from NSObjectProtocol
-
-	readonly description: string; // inherited from NSObjectProtocol
-
-	readonly hash: number; // inherited from NSObjectProtocol
-
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
-
-	objectID: string; // inherited from FBSDKLiking
-
-	objectType: FBSDKLikeObjectType; // inherited from FBSDKLiking
-
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
-
-	readonly  // inherited from NSObjectProtocol
-
-	class(): typeof NSObject;
-
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
-
-	isEqual(object: any): boolean;
-
-	isKindOfClass(aClass: typeof NSObject): boolean;
-
-	isMemberOfClass(aClass: typeof NSObject): boolean;
-
-	performSelector(aSelector: string): any;
-
-	performSelectorWithObject(aSelector: string, object: any): any;
-
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
-
-	respondsToSelector(aSelector: string): boolean;
-
-	retainCount(): number;
-
-	self(): this;
-}
-
-declare class FBSDKLikeControl extends UIControl implements FBSDKLiking {
-
-	static alloc(): FBSDKLikeControl; // inherited from NSObject
-
-	static appearance(): FBSDKLikeControl; // inherited from UIAppearance
-
-	static appearanceForTraitCollection(trait: UITraitCollection): FBSDKLikeControl; // inherited from UIAppearance
-
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): FBSDKLikeControl; // inherited from UIAppearance
-
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): FBSDKLikeControl; // inherited from UIAppearance
-
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): FBSDKLikeControl; // inherited from UIAppearance
-
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): FBSDKLikeControl; // inherited from UIAppearance
-
-	static new(): FBSDKLikeControl; // inherited from NSObject
-
-	foregroundColor: UIColor;
-
-	likeControlAuxiliaryPosition: FBSDKLikeControlAuxiliaryPosition;
-
-	likeControlHorizontalAlignment: FBSDKLikeControlHorizontalAlignment;
-
-	likeControlStyle: FBSDKLikeControlStyle;
-
-	preferredMaxLayoutWidth: number;
-
-	soundEnabled: boolean;
-
-	readonly debugDescription: string; // inherited from NSObjectProtocol
-
-	readonly description: string; // inherited from NSObjectProtocol
-
-	readonly hash: number; // inherited from NSObjectProtocol
-
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
-
-	objectID: string; // inherited from FBSDKLiking
-
-	objectType: FBSDKLikeObjectType; // inherited from FBSDKLiking
-
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
-
-	readonly  // inherited from NSObjectProtocol
-
-	class(): typeof NSObject;
-
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
-
-	isEqual(object: any): boolean;
-
-	isKindOfClass(aClass: typeof NSObject): boolean;
-
-	isMemberOfClass(aClass: typeof NSObject): boolean;
-
-	performSelector(aSelector: string): any;
-
-	performSelectorWithObject(aSelector: string, object: any): any;
-
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
-
-	respondsToSelector(aSelector: string): boolean;
-
-	retainCount(): number;
-
-	self(): this;
-}
-
-declare const enum FBSDKLikeControlAuxiliaryPosition {
-
-	Inline = 0,
-
-	Top = 1,
-
-	Bottom = 2
-}
-
-declare const enum FBSDKLikeControlHorizontalAlignment {
-
-	Left = 0,
-
-	Center = 1,
-
-	Right = 2
-}
-
-declare const enum FBSDKLikeControlStyle {
-
-	Standard = 0,
-
-	BoxCount = 1
-}
-
 declare const enum FBSDKLikeObjectType {
 
 	Unknown = 0,
@@ -729,6 +472,8 @@ declare var FBSDKLiking: {
 declare class FBSDKMessageDialog extends NSObject implements FBSDKSharingDialog {
 
 	static alloc(): FBSDKMessageDialog; // inherited from NSObject
+
+	static dialogWithContentDelegate(content: FBSDKSharingContent, delegate: FBSDKSharingDelegate): FBSDKMessageDialog;
 
 	static new(): FBSDKMessageDialog; // inherited from NSObject
 
@@ -841,6 +586,8 @@ declare class FBSDKSendButton extends FBSDKButton implements FBSDKSharingButton 
 declare class FBSDKShareAPI extends NSObject implements FBSDKSharing {
 
 	static alloc(): FBSDKShareAPI; // inherited from NSObject
+
+	static apiWithContentDelegate(content: FBSDKSharingContent, delegate: FBSDKSharingDelegate): FBSDKShareAPI;
 
 	static new(): FBSDKShareAPI; // inherited from NSObject
 
@@ -999,7 +746,7 @@ declare class FBSDKShareCameraEffectContent extends NSObject implements FBSDKSha
 
 	pageID: string; // inherited from FBSDKSharingContent
 
-	peopleIDs: NSArray<any>; // inherited from FBSDKSharingContent
+	peopleIDs: NSArray<string>; // inherited from FBSDKSharingContent
 
 	placeID: string; // inherited from FBSDKSharingContent
 
@@ -1016,8 +763,6 @@ declare class FBSDKShareCameraEffectContent extends NSObject implements FBSDKSha
 	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
 
 	addParametersBridgeOptions(existingParameters: NSDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): NSDictionary<string, any>;
-
-	addToParametersBridgeOptions(parameters: NSMutableDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): void;
 
 	class(): typeof NSObject;
 
@@ -1059,6 +804,8 @@ declare class FBSDKShareCameraEffectContent extends NSObject implements FBSDKSha
 declare class FBSDKShareDialog extends NSObject implements FBSDKSharingDialog {
 
 	static alloc(): FBSDKShareDialog; // inherited from NSObject
+
+	static dialogWithViewControllerWithContentDelegate(viewController: UIViewController, content: FBSDKSharingContent, delegate: FBSDKSharingDelegate): FBSDKShareDialog;
 
 	static new(): FBSDKShareDialog; // inherited from NSObject
 
@@ -1143,17 +890,6 @@ declare const enum FBSDKShareError {
 	Unknown = 203
 }
 
-declare const enum FBSDKShareErrorCode {
-
-	ReservedErrorCode = 200,
-
-	OpenGraphErrorCode = 201,
-
-	DialogNotAvailableErrorCode = 202,
-
-	UnknownErrorCode = 203
-}
-
 declare var FBSDKShareErrorDomain: string;
 
 declare var FBSDKShareKitVersionNumber: number;
@@ -1165,12 +901,6 @@ declare class FBSDKShareLinkContent extends NSObject implements FBSDKSharingCont
 	static alloc(): FBSDKShareLinkContent; // inherited from NSObject
 
 	static new(): FBSDKShareLinkContent; // inherited from NSObject
-
-	readonly contentDescription: string;
-
-	readonly contentTitle: string;
-
-	readonly imageURL: NSURL;
 
 	quote: string;
 
@@ -1188,7 +918,7 @@ declare class FBSDKShareLinkContent extends NSObject implements FBSDKSharingCont
 
 	pageID: string; // inherited from FBSDKSharingContent
 
-	peopleIDs: NSArray<any>; // inherited from FBSDKSharingContent
+	peopleIDs: NSArray<string>; // inherited from FBSDKSharingContent
 
 	placeID: string; // inherited from FBSDKSharingContent
 
@@ -1205,8 +935,6 @@ declare class FBSDKShareLinkContent extends NSObject implements FBSDKSharingCont
 	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
 
 	addParametersBridgeOptions(existingParameters: NSDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): NSDictionary<string, any>;
-
-	addToParametersBridgeOptions(parameters: NSMutableDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): void;
 
 	class(): typeof NSObject;
 
@@ -1243,13 +971,20 @@ declare class FBSDKShareLinkContent extends NSObject implements FBSDKSharingCont
 	validateWithOptionsError(bridgeOptions: FBSDKShareBridgeOptions): boolean;
 }
 
+interface FBSDKShareMedia extends NSObjectProtocol {
+}
+declare var FBSDKShareMedia: {
+
+	prototype: FBSDKShareMedia;
+};
+
 declare class FBSDKShareMediaContent extends NSObject implements FBSDKSharingContent {
 
 	static alloc(): FBSDKShareMediaContent; // inherited from NSObject
 
 	static new(): FBSDKShareMediaContent; // inherited from NSObject
 
-	media: NSArray<any>;
+	media: NSArray<FBSDKShareMedia>;
 
 	contentURL: NSURL; // inherited from FBSDKSharingContent
 
@@ -1265,7 +1000,7 @@ declare class FBSDKShareMediaContent extends NSObject implements FBSDKSharingCon
 
 	pageID: string; // inherited from FBSDKSharingContent
 
-	peopleIDs: NSArray<any>; // inherited from FBSDKSharingContent
+	peopleIDs: NSArray<string>; // inherited from FBSDKSharingContent
 
 	placeID: string; // inherited from FBSDKSharingContent
 
@@ -1282,8 +1017,6 @@ declare class FBSDKShareMediaContent extends NSObject implements FBSDKSharingCon
 	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
 
 	addParametersBridgeOptions(existingParameters: NSDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): NSDictionary<string, any>;
-
-	addToParametersBridgeOptions(parameters: NSMutableDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): void;
 
 	class(): typeof NSObject;
 
@@ -1355,7 +1088,7 @@ declare class FBSDKShareMessengerGenericTemplateContent extends NSObject impleme
 
 	pageID: string; // inherited from FBSDKSharingContent
 
-	peopleIDs: NSArray<any>; // inherited from FBSDKSharingContent
+	peopleIDs: NSArray<string>; // inherited from FBSDKSharingContent
 
 	placeID: string; // inherited from FBSDKSharingContent
 
@@ -1372,8 +1105,6 @@ declare class FBSDKShareMessengerGenericTemplateContent extends NSObject impleme
 	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
 
 	addParametersBridgeOptions(existingParameters: NSDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): NSDictionary<string, any>;
-
-	addToParametersBridgeOptions(parameters: NSMutableDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): void;
 
 	class(): typeof NSObject;
 
@@ -1506,7 +1237,7 @@ declare class FBSDKShareMessengerMediaTemplateContent extends NSObject implement
 
 	pageID: string; // inherited from FBSDKSharingContent
 
-	peopleIDs: NSArray<any>; // inherited from FBSDKSharingContent
+	peopleIDs: NSArray<string>; // inherited from FBSDKSharingContent
 
 	placeID: string; // inherited from FBSDKSharingContent
 
@@ -1527,8 +1258,6 @@ declare class FBSDKShareMessengerMediaTemplateContent extends NSObject implement
 	constructor(o: { mediaURL: NSURL; });
 
 	addParametersBridgeOptions(existingParameters: NSDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): NSDictionary<string, any>;
-
-	addToParametersBridgeOptions(parameters: NSMutableDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): void;
 
 	class(): typeof NSObject;
 
@@ -1598,7 +1327,7 @@ declare class FBSDKShareMessengerOpenGraphMusicTemplateContent extends NSObject 
 
 	pageID: string; // inherited from FBSDKSharingContent
 
-	peopleIDs: NSArray<any>; // inherited from FBSDKSharingContent
+	peopleIDs: NSArray<string>; // inherited from FBSDKSharingContent
 
 	placeID: string; // inherited from FBSDKSharingContent
 
@@ -1615,8 +1344,6 @@ declare class FBSDKShareMessengerOpenGraphMusicTemplateContent extends NSObject 
 	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
 
 	addParametersBridgeOptions(existingParameters: NSDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): NSDictionary<string, any>;
-
-	addToParametersBridgeOptions(parameters: NSMutableDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): void;
 
 	class(): typeof NSObject;
 
@@ -1753,6 +1480,8 @@ declare class FBSDKShareOpenGraphAction extends FBSDKShareOpenGraphValueContaine
 
 	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
 
+	constructor(o: { actionType: string; });
+
 	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
 
 	class(): typeof NSObject;
@@ -1764,6 +1493,8 @@ declare class FBSDKShareOpenGraphAction extends FBSDKShareOpenGraphValueContaine
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
 	encodeWithCoder(aCoder: NSCoder): void;
+
+	initWithActionType(actionType: string): this;
 
 	initWithCoder(aDecoder: NSCoder): this;
 
@@ -1812,7 +1543,7 @@ declare class FBSDKShareOpenGraphContent extends NSObject implements FBSDKSharin
 
 	pageID: string; // inherited from FBSDKSharingContent
 
-	peopleIDs: NSArray<any>; // inherited from FBSDKSharingContent
+	peopleIDs: NSArray<string>; // inherited from FBSDKSharingContent
 
 	placeID: string; // inherited from FBSDKSharingContent
 
@@ -1829,8 +1560,6 @@ declare class FBSDKShareOpenGraphContent extends NSObject implements FBSDKSharin
 	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
 
 	addParametersBridgeOptions(existingParameters: NSDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): NSDictionary<string, any>;
-
-	addToParametersBridgeOptions(parameters: NSMutableDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): void;
 
 	class(): typeof NSObject;
 
@@ -1873,7 +1602,7 @@ declare class FBSDKShareOpenGraphObject extends FBSDKShareOpenGraphValueContaine
 
 	static new(): FBSDKShareOpenGraphObject; // inherited from NSObject
 
-	static objectWithProperties(properties: NSDictionary<any, any>): FBSDKShareOpenGraphObject;
+	static objectWithProperties(properties: NSDictionary<string, any>): FBSDKShareOpenGraphObject;
 
 	readonly debugDescription: string; // inherited from NSObjectProtocol
 
@@ -1930,6 +1659,8 @@ declare class FBSDKShareOpenGraphValueContainer extends NSObject implements FBSD
 
 	static new(): FBSDKShareOpenGraphValueContainer; // inherited from NSObject
 
+	readonly allProperties: NSDictionary<string, any>; // inherited from FBSDKShareOpenGraphValueContaining
+
 	readonly debugDescription: string; // inherited from NSObjectProtocol
 
 	readonly description: string; // inherited from NSObjectProtocol
@@ -1937,6 +1668,10 @@ declare class FBSDKShareOpenGraphValueContainer extends NSObject implements FBSD
 	readonly hash: number; // inherited from NSObjectProtocol
 
 	readonly isProxy: boolean; // inherited from NSObjectProtocol
+
+	readonly keyEnumerator: NSEnumerator<any>; // inherited from FBSDKShareOpenGraphValueContaining
+
+	readonly objectEnumerator: NSEnumerator<any>; // inherited from FBSDKShareOpenGraphValueContaining
 
 	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
@@ -1966,17 +1701,13 @@ declare class FBSDKShareOpenGraphValueContainer extends NSObject implements FBSD
 
 	isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	keyEnumerator(): NSEnumerator<any>;
-
 	numberForKey(key: string): number;
-
-	objectEnumerator(): NSEnumerator<any>;
 
 	objectForKey(key: string): FBSDKShareOpenGraphObject;
 
 	objectForKeyedSubscript(key: string): any;
 
-	parseProperties(properties: NSDictionary<any, any>): void;
+	parseProperties(properties: NSDictionary<string, any>): void;
 
 	performSelector(aSelector: string): any;
 
@@ -2011,23 +1742,25 @@ declare class FBSDKShareOpenGraphValueContainer extends NSObject implements FBSD
 
 interface FBSDKShareOpenGraphValueContaining extends NSObjectProtocol, NSSecureCoding {
 
+	allProperties: NSDictionary<string, any>;
+
+	keyEnumerator: NSEnumerator<any>;
+
+	objectEnumerator: NSEnumerator<any>;
+
 	URLForKey(key: string): NSURL;
 
 	arrayForKey(key: string): NSArray<any>;
 
 	enumerateKeysAndObjectsUsingBlock(block: (p1: string, p2: any, p3: interop.Pointer | interop.Reference<boolean>) => void): void;
 
-	keyEnumerator(): NSEnumerator<any>;
-
 	numberForKey(key: string): number;
-
-	objectEnumerator(): NSEnumerator<any>;
 
 	objectForKey(key: string): FBSDKShareOpenGraphObject;
 
 	objectForKeyedSubscript(key: string): any;
 
-	parseProperties(properties: NSDictionary<any, any>): void;
+	parseProperties(properties: NSDictionary<string, any>): void;
 
 	photoForKey(key: string): FBSDKSharePhoto;
 
@@ -2052,7 +1785,7 @@ declare var FBSDKShareOpenGraphValueContaining: {
 	prototype: FBSDKShareOpenGraphValueContaining;
 };
 
-declare class FBSDKSharePhoto extends NSObject implements FBSDKCopying, FBSDKSharingValidation, NSSecureCoding {
+declare class FBSDKSharePhoto extends NSObject implements FBSDKCopying, FBSDKShareMedia, FBSDKSharingValidation, NSSecureCoding {
 
 	static alloc(): FBSDKSharePhoto; // inherited from NSObject
 
@@ -2131,7 +1864,7 @@ declare class FBSDKSharePhotoContent extends NSObject implements FBSDKSharingCon
 
 	static new(): FBSDKSharePhotoContent; // inherited from NSObject
 
-	photos: NSArray<any>;
+	photos: NSArray<FBSDKSharePhoto>;
 
 	contentURL: NSURL; // inherited from FBSDKSharingContent
 
@@ -2147,7 +1880,7 @@ declare class FBSDKSharePhotoContent extends NSObject implements FBSDKSharingCon
 
 	pageID: string; // inherited from FBSDKSharingContent
 
-	peopleIDs: NSArray<any>; // inherited from FBSDKSharingContent
+	peopleIDs: NSArray<string>; // inherited from FBSDKSharingContent
 
 	placeID: string; // inherited from FBSDKSharingContent
 
@@ -2164,8 +1897,6 @@ declare class FBSDKSharePhotoContent extends NSObject implements FBSDKSharingCon
 	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
 
 	addParametersBridgeOptions(existingParameters: NSDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): NSDictionary<string, any>;
-
-	addToParametersBridgeOptions(parameters: NSMutableDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): void;
 
 	class(): typeof NSObject;
 
@@ -2202,7 +1933,7 @@ declare class FBSDKSharePhotoContent extends NSObject implements FBSDKSharingCon
 	validateWithOptionsError(bridgeOptions: FBSDKShareBridgeOptions): boolean;
 }
 
-declare class FBSDKShareVideo extends NSObject implements FBSDKCopying, FBSDKSharingValidation, NSSecureCoding {
+declare class FBSDKShareVideo extends NSObject implements FBSDKCopying, FBSDKShareMedia, FBSDKSharingValidation, NSSecureCoding {
 
 	static alloc(): FBSDKShareVideo; // inherited from NSObject
 
@@ -2285,8 +2016,6 @@ declare class FBSDKShareVideoContent extends NSObject implements FBSDKSharingCon
 
 	static new(): FBSDKShareVideoContent; // inherited from NSObject
 
-	previewPhoto: FBSDKSharePhoto;
-
 	video: FBSDKShareVideo;
 
 	contentURL: NSURL; // inherited from FBSDKSharingContent
@@ -2303,7 +2032,7 @@ declare class FBSDKShareVideoContent extends NSObject implements FBSDKSharingCon
 
 	pageID: string; // inherited from FBSDKSharingContent
 
-	peopleIDs: NSArray<any>; // inherited from FBSDKSharingContent
+	peopleIDs: NSArray<string>; // inherited from FBSDKSharingContent
 
 	placeID: string; // inherited from FBSDKSharingContent
 
@@ -2320,8 +2049,6 @@ declare class FBSDKShareVideoContent extends NSObject implements FBSDKSharingCon
 	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
 
 	addParametersBridgeOptions(existingParameters: NSDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): NSDictionary<string, any>;
-
-	addToParametersBridgeOptions(parameters: NSMutableDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): void;
 
 	class(): typeof NSObject;
 
@@ -2390,7 +2117,7 @@ interface FBSDKSharingContent extends FBSDKCopying, FBSDKSharingValidation, NSSe
 
 	pageID: string;
 
-	peopleIDs: NSArray<any>;
+	peopleIDs: NSArray<string>;
 
 	placeID: string;
 
@@ -2399,8 +2126,6 @@ interface FBSDKSharingContent extends FBSDKCopying, FBSDKSharingValidation, NSSe
 	shareUUID: string;
 
 	addParametersBridgeOptions(existingParameters: NSDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): NSDictionary<string, any>;
-
-	addToParametersBridgeOptions(parameters: NSMutableDictionary<string, any>, bridgeOptions: FBSDKShareBridgeOptions): void;
 }
 declare var FBSDKSharingContent: {
 
@@ -2411,7 +2136,7 @@ interface FBSDKSharingDelegate extends NSObjectProtocol {
 
 	sharerDidCancel(sharer: FBSDKSharing): void;
 
-	sharerDidCompleteWithResults(sharer: FBSDKSharing, results: NSDictionary<any, any>): void;
+	sharerDidCompleteWithResults(sharer: FBSDKSharing, results: NSDictionary<string, any>): void;
 
 	sharerDidFailWithError(sharer: FBSDKSharing, error: NSError): void;
 }
@@ -2450,12 +2175,6 @@ declare var FBSDKSharingValidation: {
 };
 
 declare function NSStringFromFBSDKAppGroupPrivacy(privacy: FBSDKAppGroupPrivacy): string;
-
-declare function NSStringFromFBSDKLikeControlAuxiliaryPosition(auxiliaryPosition: FBSDKLikeControlAuxiliaryPosition): string;
-
-declare function NSStringFromFBSDKLikeControlHorizontalAlignment(horizontalAlignment: FBSDKLikeControlHorizontalAlignment): string;
-
-declare function NSStringFromFBSDKLikeControlStyle(style: FBSDKLikeControlStyle): string;
 
 declare function NSStringFromFBSDKLikeObjectType(objectType: FBSDKLikeObjectType): string;
 

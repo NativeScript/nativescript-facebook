@@ -21,6 +21,5 @@ export function logEvent(name: string, parameters?: any) {
             }
         }
     }
-
     appEventsLogger.logEvent(name, bundle);
 }

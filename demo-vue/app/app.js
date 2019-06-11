@@ -4,7 +4,7 @@ import Login from "./components/Login";
 
 import {
     init,
-    LoginBehavior
+    initAnalytics,
 } from 'nativescript-facebook';
 
 import FacebookPlugin from "nativescript-facebook/vue";
@@ -13,7 +13,8 @@ Vue.use(FacebookPlugin);
 Vue.config.silent = true;
 
 application.on(application.launchEvent, function (args) {
-    init("1771472059772879", LoginBehavior.LoginBehaviorWeb);
+    init("1771472059772879");    
+    initAnalytics();
 });
 
 new Vue({

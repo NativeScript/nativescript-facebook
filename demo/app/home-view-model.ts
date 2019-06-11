@@ -1,5 +1,5 @@
 import { Observable } from 'tns-core-modules/data/observable';
-import { LoginEventData, logout as fbLogout, getCurrentAccessToken } from "nativescript-facebook";
+import { LoginEventData, logout as fbLogout, logEvent, getCurrentAccessToken } from "nativescript-facebook";
 
 let frameModule = require("tns-core-modules/ui/frame");
 let appSettings = require("tns-core-modules/application-settings");
@@ -55,5 +55,12 @@ export class HomeViewModel extends Observable {
     let accessToken = getCurrentAccessToken();
 
     alert("Current access token: " + JSON.stringify(accessToken, null, '\t'));
+  }
+
+  public logEventAction() {
+    logEvent('Initial', [{
+      key: 'number',
+      value: '',
+    }]);
   }
 }

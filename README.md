@@ -46,6 +46,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
         - [Hide Custom Button If Can't share](#hide-custom-button-1)
 - [Login Response](#login-response)
 - [Get Current Access Token](#get-current-access-token)
+- [Basic Analytics](#basic-analytics)
 - [Graph API Example](#graph-api-example)
 - [Release notes](#release-notes)
 - [FAQ](#faq)
@@ -594,6 +595,34 @@ The callback that have to be provided to Facebook.login method receives 2 argume
 
 ## Get Current Access Token
 The plugin allows to get the current access token, if any, via getCurrentAccessToken() method.
+
+## Basic Analytics
+The plugin allows to log analytics events. At the initialization of the application you need to init analytics:
+
+```Typescript
+application.on(application.launchEvent, function (args) {
+    nsFacebook.init("{facebook_app_id}");
+    nsFacebook.initAnalytics();
+});
+```
+
+Events logging:
+
+```Typescript
+nsFacebook.logEvent('Lead');
+```
+
+Logging event with parameters:
+
+```Typescript
+const value = 5;
+const parameters = [{
+    key: 'value',
+    value: value.toString(),
+}];
+
+nsFacebook.logEvent(FundsAdded, parameters);
+```
 
 ## Graph API Example
 Once the Facebook access token is retrieved you can execute Graph API requests. In the example below after successful login, the access token is stored in application settings. And then on the home view it is retrieved and 2 Graph API calls are executed.

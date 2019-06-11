@@ -13,6 +13,7 @@
       <Facebook:LoginButton logout="{{ onLogout }}"></Facebook:LoginButton>
       <Button automationText="customLogOut" tap="{{ logout }}" text="Log out (Custom)"></Button>
       <Button automationText="getCurrentAccessToken" tap="{{ getCurrentAccessToken }}" text="Get current access token"></Button>
+      <Button tap="{{ logEventAction }}" text="Log Event"></Button>
     </StackLayout>
   </StackLayout>
 </Page>
