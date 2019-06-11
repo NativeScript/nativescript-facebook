@@ -8,7 +8,7 @@ export function initAnalytics() {
 
 export function logEvent(name: string, parameters?: any) {
     if (name === undefined) {
-        throw ("Argument 'key' is missing");
+        throw ("Argument 'name' is missing");
     }
 
     const bundle = new android.os.Bundle();

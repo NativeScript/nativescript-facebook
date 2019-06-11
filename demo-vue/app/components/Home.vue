@@ -48,7 +48,8 @@
             return {
                 userId: null,
                 accessToken: appSettings.getString("access_token"),
-                avatarUrl: null
+                avatarUrl: null,
+                eventCounter: 0
             }
         },
         methods: {
@@ -67,9 +68,10 @@
                 alert("Current access token: " + JSON.stringify(accessToken, null, '\t'));
             },
             logEventAction() {
-                logEvent('Initial', [{
-                    key: 'number',
-                    value: '',
+                this.counter++;
+                logEvent('Home', [{
+                    key: 'counter',
+                    value: this.eventCounter.toString()
                 }]);
             }
         }

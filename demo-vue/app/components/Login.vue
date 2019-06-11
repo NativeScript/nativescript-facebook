@@ -55,7 +55,8 @@
                 canShowLinksShareDialog: false,
                 canShowPhotosShareDialog: false,
                 canShowLinksMessageDialog: false,
-                canShowGenericMessageDialog: false
+                canShowGenericMessageDialog: false,
+                eventCounter: 0
             }
         },
         methods: {
@@ -143,9 +144,10 @@
                 showMessageDialog(this.genericContent);
             },
             logEventAction() {
-                logEvent('Initial', [{
-                    key: 'number',
-                    value: '',
+                this.eventCounter++;
+                logEvent('Login', [{
+                    key: 'counter',
+                    value: this.eventCounter.toString()
                 }]);
             }
         }

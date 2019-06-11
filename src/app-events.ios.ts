@@ -8,7 +8,7 @@ export function initAnalytics() {
 
 export function logEvent(name: string, parameters?: any) {
     if (name === undefined) {
-        throw ("Argument 'key' is missing");
+        throw ("Argument 'name' is missing");
     }
 
     if (parameters === undefined) {
@@ -17,7 +17,6 @@ export function logEvent(name: string, parameters?: any) {
         const parametersDictionary = new (NSDictionary as any)(
             parameters.map(parameter => parameter.value),
             parameters.map(parameter => parameter.key));
-        console.log(parametersDictionary);
 
         FBSDKAppEvents.logEventParameters(name, parametersDictionary);
     }

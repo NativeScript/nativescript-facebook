@@ -10,6 +10,7 @@ let config = require("./app.config").config;
 export class HomeViewModel extends Observable {
   userId: string;
   accessToken: string = appSettings.getString("access_token");
+  eventCounter: 0;
 
   constructor() {
     super();
@@ -58,9 +59,10 @@ export class HomeViewModel extends Observable {
   }
 
   public logEventAction() {
-    logEvent('Initial', [{
-      key: 'number',
-      value: '',
+    this.eventCounter++;
+    logEvent('Home', [{
+      key: 'counter',
+      value: this.eventCounter.toString()
     }]);
   }
 }

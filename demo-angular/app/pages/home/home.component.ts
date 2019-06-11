@@ -16,6 +16,7 @@ export class HomeComponent {
     userId: string;
     username: string;
     avatarUrl: string;
+    eventCounter: number = 0;
 
     constructor(private ref: ChangeDetectorRef, private navigationService: NavigationService) {
         // Get logged in user's info
@@ -34,8 +35,6 @@ export class HomeComponent {
         }, function (err) {
             alert("Error getting user info: " + err);
         });
-
-        Facebook.initAnalytics();
     }
 
     onLogout(eventData: Facebook.LoginEventData) {
@@ -56,9 +55,10 @@ export class HomeComponent {
     }
 
     logEvent() {
-        Facebook.logEvent('Initial', [{
-            key: 'number',
-            value: '',
+        this.eventCounter++;
+        Facebook.logEvent('Home', [{
+            key: 'counter',
+            value: this.eventCounter.toString()
         }]);
     }
 
