@@ -6,10 +6,11 @@ import { NativeScriptFacebookModule } from "nativescript-facebook/angular";
 import * as application from 'tns-core-modules/application';
 import { routes } from "./app.routing";
 import { NavigationService } from "./services/navigation.service";
-import { init } from "nativescript-facebook";
+import { init, initAnalytics } from "nativescript-facebook";
 
 application.on(application.launchEvent, function (args) {
     init("1771472059772879");
+    initAnalytics();
 });
 
 @NgModule({
