@@ -15,6 +15,7 @@
             <Button @tap="onShareDialogPhotos" text="Open Share dialog (photos)" :visibility="canShowPhotosShareDialog ? 'visible' : 'collapsed'"></Button>
             <Button @tap="onSendDialog" text="Share Message (link)" :visibility="canShowLinksMessageDialog ? 'visible' : 'collapsed'"></Button>
             <Button @tap="onSendGenericDialog" text="Share Message (generic)" :visibility="canShowGenericMessageDialog ? 'visible' : 'collapsed'"></Button>
+            <Button @tap="logEventAction" text="Log event"></Button>
         </StackLayout>
     </Page>
 </template>
@@ -34,7 +35,8 @@
         showShareDialog,
         showMessageDialog,
         canShareDialogShow,
-        canMessageDialogShow
+        canMessageDialogShow,
+        logEvent
     } from 'nativescript-facebook';
     let appSettings = require('tns-core-modules/application-settings');
 
@@ -53,7 +55,8 @@
                 canShowLinksShareDialog: false,
                 canShowPhotosShareDialog: false,
                 canShowLinksMessageDialog: false,
-                canShowGenericMessageDialog: false
+                canShowGenericMessageDialog: false,
+                eventCounter: 0
             }
         },
         methods: {
@@ -139,6 +142,13 @@
             },
             onSendGenericDialog: function() {
                 showMessageDialog(this.genericContent);
+            },
+            logEventAction() {
+                this.eventCounter++;
+                logEvent('Login', [{
+                    key: 'counter',
+                    value: this.eventCounter.toString()
+                }]);
             }
         }
     };

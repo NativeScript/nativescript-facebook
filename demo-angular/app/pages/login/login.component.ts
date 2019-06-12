@@ -18,6 +18,7 @@ export class LoginComponent {
     canShowPhotosShareDialog = false;
     canShowLinksMessageDialog = false;
     canShowGenericMessageDialog = false;
+    eventCounter = 0;
 
     constructor(private ref: ChangeDetectorRef, private navigationService: NavigationService) {
         // have to init after facebook sdk inited
@@ -118,5 +119,13 @@ export class LoginComponent {
 
     onSendGenericDialog() {
         Facebook.showMessageDialog(this.genericContent);
+    }
+
+    logEvent() {
+        this.eventCounter++;
+        Facebook.logEvent('Login', [{
+            key: 'counter',
+            value: this.eventCounter.toString()
+        }]);
     }
 }

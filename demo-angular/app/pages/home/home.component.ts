@@ -16,6 +16,7 @@ export class HomeComponent {
     userId: string;
     username: string;
     avatarUrl: string;
+    eventCounter: number = 0;
 
     constructor(private ref: ChangeDetectorRef, private navigationService: NavigationService) {
         // Get logged in user's info
@@ -51,6 +52,14 @@ export class HomeComponent {
             appSettings.clear();
             this.navigationService.go(['login'], "slideRight");
         });
+    }
+
+    logEvent() {
+        this.eventCounter++;
+        Facebook.logEvent('Home', [{
+            key: 'counter',
+            value: this.eventCounter.toString()
+        }]);
     }
 
     public getCurrentAccessToken() {

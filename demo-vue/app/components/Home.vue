@@ -12,13 +12,14 @@
             <FacebookLoginButton @logout="onLogout"></FacebookLoginButton>
             <Button @tap="logout" text="Log out (Custom)"></Button>
             <Button @tap="getAccessToken" text="Get current access token"></Button>
+            <Button @tap="logEventAction" text="Log event"></Button>
             </StackLayout>
         </StackLayout>
     </Page>
 </template>
 
 <script>
-    import { logout as fbLogout, getCurrentAccessToken } from "nativescript-facebook";
+    import { logout as fbLogout, getCurrentAccessToken, logEvent } from "nativescript-facebook";
     import Login from "./Login";
     let appSettings = require("tns-core-modules/application-settings");
     let http = require("tns-core-modules/http");
@@ -47,7 +48,8 @@
             return {
                 userId: null,
                 accessToken: appSettings.getString("access_token"),
-                avatarUrl: null
+                avatarUrl: null,
+                eventCounter: 0
             }
         },
         methods: {
@@ -64,6 +66,13 @@
             getAccessToken: function() {
                 let accessToken = getCurrentAccessToken();
                 alert("Current access token: " + JSON.stringify(accessToken, null, '\t'));
+            },
+            logEventAction() {
+                this.counter++;
+                logEvent('Home', [{
+                    key: 'counter',
+                    value: this.eventCounter.toString()
+                }]);
             }
         }
     };
