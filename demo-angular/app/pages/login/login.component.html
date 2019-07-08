@@ -1,6 +1,6 @@
 <StackLayout class="login-buttons">
     <FacebookLoginButton (login)="onLogin($event)"></FacebookLoginButton>
-    <Button text="Continue with Facebook (custom)" (tap)="login()"></Button>
+    <Button text="Continue with Facebook (Custom)" (tap)="login()" automationText="facebookCustom"></Button>
     <Button text="Get current access token" (tap)="getCurrentAccessToken()"></Button>
 
     <FacebookShareButton [content] = "linkContent"></FacebookShareButton>
