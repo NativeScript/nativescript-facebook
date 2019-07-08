@@ -22,3 +22,7 @@ demo-angular/platforms/
 /src/*.tgz
 /publish/package/*.tgz
 /publish/package/**/*
+test-results.xml
+**/outputs
+**/mochawesome-report
+tests/e2e/reports

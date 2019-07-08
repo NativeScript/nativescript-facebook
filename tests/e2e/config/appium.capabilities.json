@@ -20,6 +20,22 @@
     "appiumVersion": "1.9.1",
     "noReset": true
   },
+  "android24.local": {
+    "platformName": "Android",
+    "platformVersion": "7.0",
+    "deviceName": "Emulator-Api24-Google",
+    "avd":"Emulator-Api24-Google",
+    "noReset": true,
+    "lt": 60000,
+    "newCommandTimeout": 720,
+    "appiumVersion": "1.9.1",
+    "appActivity": "com.tns.NativeScriptActivity",
+    "fullReset": false,
+    "app": "",
+    "automationName": "UIAutomator2",
+    "density": 3.2,
+    "offsetPixels": 51
+  },
   "android25": {
     "platformName": "Android",
     "platformVersion": "7.1",
@@ -38,8 +54,13 @@
     "platformName": "iOS",
     "platformVersion": "12.0",
     "deviceName": "iPhone X",
-    "appium-version": "1.9.1",
-    "app": ""
+    "appiumVersion": "1.9.1",
+    "app": "",
+    "noReset": false,
+    "fullReset": false,
+    "density": 3,
+    "offsetPixels": 87,
+    "idleTimeout": 120
   },
   "sim103iPhone6": {
     "browserName": "",

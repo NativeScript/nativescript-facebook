@@ -3,12 +3,12 @@
   loaded="pageLoaded" class="page">
   <StackLayout class="login-buttons">
     <Facebook:LoginButton automationText="fbLogin" login="{{ onLogin }}"></Facebook:LoginButton>
-    <Button tap="{{ login }}" text="Continue with Facebook (Custom)"></Button>
+    <Button tap="{{ login }}" text="Continue with Facebook (Custom)" automationText="facebookCustom"></Button>
     <Button tap="{{ getCurrentAccessToken }}" text="Get current access token"></Button>
 
     <Facebook:ShareButton content="{{ linkContent }}"></Facebook:ShareButton>
     <Facebook:SendButton content="{{ genericContent }}"></Facebook:SendButton>
-    <Button tap="{{ onShareDialog }}" text="Open Share dialog (link)" visibility="{{ canShowLinksShareDialog ? 'visible' : 'collapsed' }}" ></Button>
+    <Button tap="{{ onShareDialog }}" automationText="Open Share dialog" text="Open Share dialog (link)" visibility="{{ canShowLinksShareDialog ? 'visible' : 'collapsed' }}" ></Button>
     <Button tap="{{ onShareDialogPhotos }}" text="Open Share dialog (photos)" visibility="{{ canShowPhotosShareDialog ? 'visible' : 'collapsed' }}"></Button>
     <Button tap="{{ onSendDialog }}" text="Open Message Share dialog" visibility="{{ canShowLinksMessageDialog ? 'visible' : 'collapsed' }}"></Button>
     <Button tap="{{ onSendGenericDialog }}" text="Share Message Generic Template" visibility="{{ canShowGenericMessageDialog ? 'visible' : 'collapsed' }}"></Button>
