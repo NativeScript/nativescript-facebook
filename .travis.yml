@@ -15,7 +15,7 @@ env:
     - IOS_PACKAGE_NG='facebook-demo-ng.zip'
     - IOS_PACKAGE_FOLDER_JS=$TRAVIS_BUILD_DIR/demo/outputs
     - IOS_PACKAGE_FOLDER_VUE=$TRAVIS_BUILD_DIR/demo-vue/outputs
-    - IOS_PACKAGE_FOLDER_NG=$TRAVIS_BUILD_DIR/demo-ng/outputs
+    - IOS_PACKAGE_FOLDER_NG=$TRAVIS_BUILD_DIR/demo-angular/outputs
 
 matrix:
   include:
