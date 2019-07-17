@@ -16,12 +16,12 @@
         "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**' --exclude '**/platforms/**'",
         "prepublishOnly": "npm run build",
         "plugin.tscwatch": "tsc -skipLibCheck -w",
-        "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
-        "demo.android": "npm i && npm run tsc && cd ../demo && tns run android --syncAllFiles",
-        "demo.ng.ios": "npm i && npm run tsc && cd ../demo-angular && tns run ios --syncAllFiles",
-        "demo.ng.android": "npm i && npm run tsc && cd ../demo-angular && tns run android --syncAllFiles",
-        "demo.vue.ios": "npm i && npm run tsc && cd ../demo-vue && tns run ios --bundle --syncAllFiles",
-        "demo.vue.android": "npm i && npm run tsc && cd ../demo-vue && tns run android --bundle --syncAllFiles"
+        "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios",
+        "demo.android": "npm i && npm run tsc && cd ../demo && tns run android",
+        "demo.ng.ios": "npm i && npm run tsc && cd ../demo-angular && tns run ios",
+        "demo.ng.android": "npm i && npm run tsc && cd ../demo-angular && tns run android",
+        "demo.vue.ios": "npm i && npm run tsc && cd ../demo-vue && tns run ios",
+        "demo.vue.android": "npm i && npm run tsc && cd ../demo-vue && tns run android"
     },
     "repository": {
         "type": "git",
