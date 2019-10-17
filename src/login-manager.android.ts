@@ -15,12 +15,12 @@ export function _registerLogoutCallback(callback: Function) {
 }
 
 export function init(fbId: string) {
-  com.facebook.FacebookSdk.setAutoLogAppEventsEnabled(true);
   setAppId(fbId);
   androidApplication = application.android;
   try {
     // fb initialization
     com.facebook.FacebookSdk.sdkInitialize(androidApplication.context.getApplicationContext());
+    com.facebook.FacebookSdk.setAutoLogAppEventsEnabled(true);
   }
   catch (e) {
     console.log(e);
