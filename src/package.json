@@ -1,5 +1,5 @@
 {
-    "name": "nativescript-facebook",
+    "name": "xr-nativescript-facebook",
     "version": "4.2.1",
     "description": "NativeScript plugin, wrapper of native Facebook SDK for Android and iOS.",
     "nativescript": {
