@@ -13,7 +13,23 @@ class BaseDelegate extends UIResponder implements UIApplicationDelegate {
   public static ObjCProtocols = [UIApplicationDelegate];
 
   applicationDidFinishLaunchingWithOptions(application: UIApplication, launchOptions: NSDictionary<any, any>): boolean {
-    return FBSDKApplicationDelegate.sharedInstance.applicationDidFinishLaunchingWithOptions(application, launchOptions);
+    //TODO: Make this a setting somewhere.
+    FBSDKSettings.autoInitEnabled = true;
+    //TODO: Make this configurable;
+    FBSDKSettings.appID = "";
+    var launced = FBSDKApplicationDelegate.sharedInstance.applicationDidFinishLaunchingWithOptions(application, launchOptions);
+    //TODO: Make this a setting somewhere.
+    FBSDKAppLinkUtility.fetchDeferredAppLink((url, error) => {
+      if (url) {
+        console.log(url);
+      }
+      if (error) {
+        console.log(error);
+      }
+
+    })
+    return launced;
+
   }
 
   applicationOpenURLSourceApplicationAnnotation(application, url, sourceApplication, annotation) {
