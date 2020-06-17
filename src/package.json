@@ -1,12 +1,15 @@
 {
-    "name": "nativescript-facebook",
-    "version": "4.2.1",
+    "name": "@alexgritton/nativescript-facebook",
+    "version": "1.0.0",
     "description": "NativeScript plugin, wrapper of native Facebook SDK for Android and iOS.",
     "nativescript": {
         "platforms": {
             "android": "4.0.0",
             "ios": "4.0.0"
         }
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
     },
     "scripts": {
         "tsc": "tsc -skipLibCheck",
@@ -25,7 +28,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/NativeScript/nativescript-facebook.git"
+        "url": "https://github.com/alexgritton/nativescript-facebook.git"
     },
     "keywords": [
         "NativeScript",
