@@ -1,2 +1,4 @@
-export declare function initDeepLinking(): void;
-export declare function fetchDeferredAppLink(): Promise<string>;
+export * from './deep-linking.common';
+
+export declare function initDeepLinking(appId: string): void;
+export declare function fetchDeferredAppLink(): void;
