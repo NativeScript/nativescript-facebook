@@ -47,6 +47,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 - [Login Response](#login-response)
 - [Get Current Access Token](#get-current-access-token)
 - [Basic Analytics](#basic-analytics)
+- [Deferred Deep Linking](#deferred-deep-linking)
 - [Graph API Example](#graph-api-example)
 - [Release notes](#release-notes)
 - [FAQ](#faq)
@@ -60,6 +61,8 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 - [x] Share
 - [ ] Graph API
 - [x] Basic Analytics
+- [ ] Deep Linking
+- [x] Deferred Deep Linking
 
 
 ## Installation
@@ -622,6 +625,47 @@ const parameters = [{
 }];
 
 nsFacebook.logEvent(FundsAdded, parameters);
+```
+
+Events logging:
+
+```Typescript
+nsFacebook.logEvent('Lead');
+```
+
+Logging event with parameters:
+
+```Typescript
+const value = 5;
+const parameters = [{
+    key: 'value',
+    value: value.toString(),
+}];
+
+nsFacebook.logEvent(FundsAdded, parameters);
+```
+
+## Deferred Deep Linking
+The plugin has basic support for Deferred Deep Linking. At the initialization of the application you need to init deep linking:
+
+Note: The initDeepLinking() is only required if you aren't using init().
+
+```Typescript
+application.on(application.launchEvent, function (args) {
+    nsFacebook.initDeepLinking("{facebook_app_id}");
+    nsFacebook.fetchDeferredAppLink().then(deepLink => {
+
+    }).catch(error => {
+    })
+});
+```
+The fetchDeferredAppLink() returns a promise with a value of DeepLink defined below.
+```Typescript
+{
+    target: string;
+    ref: string;
+    promoCode: string;
+}
 ```
 
 ## Graph API Example

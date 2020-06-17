@@ -9,6 +9,7 @@ export function initDeepLinking(appId: string) {
     try {
         // fb initialization
         com.facebook.FacebookSdk.sdkInitialize(androidApplication.context.getApplicationContext());
+        com.facebook.FacebookSdk.setAutoLogAppEventsEnabled(true);
     }
     catch (e) {
         console.log(e);

@@ -12,11 +12,14 @@ export function fetchDeferredAppLink(): Promise<DeepLink> {
         FBSDKAppLinkUtility.fetchDeferredAppLink((url, error) => {
             if (error) {
                 reject(error);
+                return;
             }
-            else {
-                var deepLink = new DeepLink({ target: url.absoluteString });
-                resolve(deepLink);
+            if (!url) {
+                resolve(null);
+                return;
             }
+            var deepLink = new DeepLink({ target: url.absoluteString });
+            resolve(deepLink);
         });
     });
 }
