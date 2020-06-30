@@ -26,10 +26,10 @@ export function fetchDeferredAppLink(): Promise<DeepLink> {
                         resolve(null);
                         return;
                     }
-                    var targetUri = appLinkData.getTargetUri();
-                    var target = null;
+                    let targetUri = appLinkData.getTargetUri();
+                    let target = null;
                     if (targetUri) target = targetUri.toString();
-                    var deepLink = new DeepLink({ target: target, ref: appLinkData.getRef(), promoCode: appLinkData.getPromotionCode() });
+                    let deepLink = new DeepLink({ target: target, ref: appLinkData.getRef(), promoCode: appLinkData.getPromotionCode() });
                     resolve(deepLink);
                 }
             }));
