@@ -18,7 +18,7 @@ export function fetchDeferredAppLink(): Promise<DeepLink> {
                 resolve(null);
                 return;
             }
-            var deepLink = new DeepLink({ target: url.absoluteString });
+            let deepLink = new DeepLink({ target: url.absoluteString });
             resolve(deepLink);
         });
     });
