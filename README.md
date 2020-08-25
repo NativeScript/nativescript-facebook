@@ -47,7 +47,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 - [Login Response](#login-response)
 - [Get Current Access Token](#get-current-access-token)
 - [Basic Analytics](#basic-analytics)
-- [Deferred Deep Linking](#deep-linking)
+- [Deep Linking](#deep-linking)
 - [Deferred Deep Linking](#deferred-deep-linking)
 - [Graph API Example](#graph-api-example)
 - [Release notes](#release-notes)
