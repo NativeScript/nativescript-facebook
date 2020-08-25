@@ -47,6 +47,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 - [Login Response](#login-response)
 - [Get Current Access Token](#get-current-access-token)
 - [Basic Analytics](#basic-analytics)
+- [Deferred Deep Linking](#deep-linking)
 - [Deferred Deep Linking](#deferred-deep-linking)
 - [Graph API Example](#graph-api-example)
 - [Release notes](#release-notes)
@@ -61,7 +62,7 @@ NativeScript : Facebook SDK ![apple](https://cdn3.iconfinder.com/data/icons/pico
 - [x] Share
 - [ ] Graph API
 - [x] Basic Analytics
-- [ ] Deep Linking
+- [x] Deep Linking
 - [x] Deferred Deep Linking
 
 
@@ -643,6 +644,16 @@ const parameters = [{
 }];
 
 nsFacebook.logEvent(FundsAdded, parameters);
+```
+## Deep Linking
+The plugin supports Deep Linking. You must register the callback before the application is started:
+
+In your main.ts file call this before the app is initialized. Note: This must be done outside of the application.on(), and only done once;
+
+```Typescript
+(global as any).nsFacebook.registerDeepLinkCallback((application, url, options) => {
+  //Use the url;
+});
 ```
 
 ## Deferred Deep Linking
