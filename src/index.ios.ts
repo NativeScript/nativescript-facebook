@@ -26,4 +26,6 @@ class BaseDelegate extends UIResponder implements UIApplicationDelegate {
   }
 }
 
-applicationModule.ios.delegate = BaseDelegate;
+if (!applicationModule.ios.delegate) {
+  applicationModule.ios.delegate = BaseDelegate;
+}
