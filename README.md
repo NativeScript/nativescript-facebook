@@ -646,7 +646,7 @@ const parameters = [{
 nsFacebook.logEvent(FundsAdded, parameters);
 ```
 ## Deep Linking
-The plugin supports Deep Linking on IOS only right now. You must register the callback before the application is started:
+The plugin supports Deep Linking. You must register the callback before the application is started:
 
 In your main.ts file call this before the app is initialized. Note: This must be done outside of the application.on(), and only done once;
 

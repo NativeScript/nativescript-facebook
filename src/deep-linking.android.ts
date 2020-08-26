@@ -40,4 +40,20 @@ export function fetchDeferredAppLink(): Promise<DeepLink> {
     });
 }
 
+export function registerDeepLinkCallback(callback): void {
+    application.android.on(
+        application.AndroidApplication.activityNewIntentEvent,
+        args => {
+            const intent: android.content.Intent = args.activity.getIntent();
+            try {
+                const data = intent.getData();
+                if (!data) return; // nothing to do
+                if (callback) callback(null, data.toString(), null);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    );
+}
+
 
