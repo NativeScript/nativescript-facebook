@@ -46,13 +46,13 @@ export function registerDeepLinkCallback(callback): void {
         args => {
             const intent: android.content.Intent = args.activity.getIntent();
             try {
-                var data = intent.getData();
+                let data = intent.getData();
                 let url = null;
                 if (data) {
                     url = data.toString();
                 }
                 if (url == null) {
-                    var appLink = com.facebook.applinks.AppLinkData.createFromAlApplinkData(intent);
+                    let appLink = com.facebook.applinks.AppLinkData.createFromAlApplinkData(intent);
                     if (!appLink) return;
                     url = appLink.getTargetUri();
                 }

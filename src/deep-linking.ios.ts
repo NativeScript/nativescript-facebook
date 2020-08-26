@@ -35,6 +35,6 @@ export function registerDeepLinkCallback(callback): void {
                 args.push(result);
             }
             return callback.apply(this, args);
-        }
+        };
     }
 }
