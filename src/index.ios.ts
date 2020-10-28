@@ -5,6 +5,7 @@ export * from "./login-event-data";
 export * from './share-manager';
 export * from "./ui/share-button";
 export * from "./app-events";
+export * from './deep-linking';
 
 declare interface UIApplicationDelegate { }
 
@@ -25,4 +26,6 @@ class BaseDelegate extends UIResponder implements UIApplicationDelegate {
   }
 }
 
-applicationModule.ios.delegate = BaseDelegate;
+if (!applicationModule.ios.delegate) {
+  applicationModule.ios.delegate = BaseDelegate;
+}
