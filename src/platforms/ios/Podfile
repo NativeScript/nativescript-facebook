@@ -1,3 +1,3 @@
-pod 'FBSDKCoreKit', '~> 5.0'
-pod 'FBSDKLoginKit', '~> 5.0'
-pod 'FBSDKShareKit', '~> 5.0'
+pod 'FBSDKCoreKit', '~> 8.0'
+pod 'FBSDKLoginKit', '~> 8.0'
+pod 'FBSDKShareKit', '~> 8.0'
