@@ -48,7 +48,7 @@
         "typescript": "~3.5.3",
         "nativescript-angular": "~8.20.0",
         "nativescript-vue": "~2.4.0",
-        "@angular/core": "~8.2.0",
+        "@angular/core": "~11.0.5",
         "@angular/common": "~8.2.0",
         "@angular/compiler": "~8.2.0",
         "@angular/compiler-cli": "~8.2.0",
